@@ -25,3 +25,20 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+### TRYPS Landing Page (`artifacts/tryps-landing`)
+- **Framework**: React + Vite (TypeScript)
+- **Design**: Golden Hour — warm amber/honey palette (#D97706, #F59E0B, #FFFBF0, #1C1208, #6B5230)
+- **Styling**: Tailwind CSS v4 with inline custom values (no shadcn components — uses native HTML + Tailwind)
+- **SEO**: Full JSON-LD schemas in `index.html` (Organization, WebSite, SoftwareApplication, FAQPage, BreadcrumbList), OG + Twitter meta tags, canonical URL
+- **Semantic HTML**: `<header>`, `<main>`, `<section aria-labelledby>`, `<ol>` for steps, `<ul>` for features/use cases, `<blockquote>` for testimonials, `<details>/<summary>` for FAQ, `<figure>/<figcaption>` for product preview
+- **Sections** (in order): Hero → Features (5) → How It Works (4 steps) → Problem vs Solution → Comparison → Social Proof (3 quotes) → Use Cases (5) → Product Preview → FAQ (6) → Final CTA → Footer
+- **Canonical domain**: `jointryps.com`
+- **Product preview**: Code-built 4-panel flow mockup (no external image dependency)
+- **Hero mockup**: Code-built app card showing date poll + expense tracker + notification
+
+### Mockup Sandbox (`artifacts/mockup-sandbox`)
+- Design variant explorer with 7 variants (Sunshine A1, NightFlight B, Editorial C, Gradient D, Coastal A2, Golden A3, Punchy A4)
+- NightFlight.tsx has a known syntax error (template literal encoding issue) — does not affect the main landing page

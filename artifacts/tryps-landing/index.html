@@ -3,11 +3,171 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>TRYPS Landing Page</title>
+
+    <title>TRYPS — Group Trip Planning App for Friends</title>
+    <meta
+      name="description"
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    />
+    <link rel="canonical" href="https://jointryps.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TRYPS" />
+    <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
+    <meta
+      property="og:description"
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    />
+    <meta property="og:url" content="https://jointryps.com/" />
+    <meta property="og:image" content="https://jointryps.com/og/homepage-og.jpg" />
+    <meta property="og:image:alt" content="TRYPS group trip planning app preview" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
+    <meta
+      name="twitter:description"
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    />
+    <meta name="twitter:image" content="https://jointryps.com/og/homepage-og.jpg" />
+
+    <!-- Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TRYPS",
+      "url": "https://jointryps.com/",
+      "logo": "https://jointryps.com/logo.png",
+      "sameAs": [
+        "https://www.instagram.com/tryps",
+        "https://www.linkedin.com/company/tryps"
+      ]
+    }
+    </script>
+
+    <!-- Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TRYPS",
+      "url": "https://jointryps.com/"
+    }
+    </script>
+
+    <!-- Software Application -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TRYPS",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "iOS, Web",
+      "url": "https://jointryps.com/",
+      "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+      "image": "https://jointryps.com/images/tryps-app-preview.png",
+      "publisher": {
+        "@type": "Organization",
+        "name": "TRYPS",
+        "url": "https://jointryps.com/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://jointryps.com/start"
+      },
+      "featureList": [
+        "Get everyone in instantly",
+        "Lock dates in one round",
+        "Keep the plan in one place",
+        "No awkward money conversations",
+        "Know what everyone actually wants"
+      ]
+    }
+    </script>
+
+    <!-- FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is TRYPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from WhatsApp or Google Sheets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WhatsApp is great for chatting. Google Sheets is great for data. But neither was built for making group decisions — which is why most trip planning over those tools drags on for weeks or collapses entirely. TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one shared space your whole group can access. Decisions get made because the tool is designed to make them — not bury them in a thread."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does everyone need to download an app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. People can join instantly via link or iMessage without installing anything. One person creates the trip. Everyone else just shows up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can everyone edit the plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls, and log expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does expense splitting work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Create a trip, share the link, and start planning. Takes under a minute."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jointryps.com/"
+        }
+      ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
