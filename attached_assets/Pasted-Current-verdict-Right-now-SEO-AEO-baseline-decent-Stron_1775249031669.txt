@@ -1,0 +1,352 @@
+Current verdict
+
+Right now:
+
+SEO/AEO baseline: decent
+Strong body-level extractability: not yet proven
+Inference confidence: moderate, not high
+Decision rule
+
+If raw HTML contains:
+
+hero copy
+H1/H2s
+feature text
+FAQ answers
+schema
+
+then bots will infer the site well.
+
+If raw HTML contains mostly:
+
+title
+meta description
+schema
+empty app shell
+
+then inference is partial and weaker.
+
+Paste:
+
+head -120 page.html
+tail -120 page.html
+
+That will settle it.
+
+grep -i "<h2" page.html
+grep -i "faq" page.html
+grep -i "HowTo" page.html
+grep -i "FAQPage" page.html
+    <title>TRYPS — Group Trip Planning App for Friends</title>
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    <meta property="og:image:alt" content="TRYPS group trip planning app preview" />
+    <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+            "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+            "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."
+          "name": "Split expenses simply",
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+      "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+            "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."
+    <!-- FAQ -->
+      "@type": "FAQPage",
+      "@type": "HowTo",
+          "@type": "HowToStep",
+          "@type": "HowToStep",
+          "@type": "HowToStep",
+          "@type": "HowToStep",
+      "@type": "FAQPage",
+arunsharma@Aruns-MacBook-Pro ~ % 
+
+This is better than average, but still not conclusive on full body extractability.
+
+What you have confirmed:
+
+bots see the core category phrase in raw HTML
+bots see schema in raw HTML
+FAQPage is present
+HowTo is present
+“split expenses” and related feature language are present
+
+What is still not confirmed:
+
+whether actual visible page structure is in raw body HTML
+whether headings like H1/H2 are rendered server-side
+whether this is mostly metadata/schema plus a light app shell
+
+The biggest clue is this:
+
+your grep -i "<h2" page.html appears to return nothing
+
+That suggests one of two things:
+
+no H2s in raw HTML
+content is present mostly in JSON-LD / meta, not in actual rendered heading tags
+
+That is not ideal. Bots can still infer the site, but confidence is lower than if the page has real semantic body structure.
+
+Run these next:
+
+grep -n "<body" page.html
+grep -n "<h1" page.html
+grep -n "<h2" page.html
+grep -n "<main" page.html
+grep -n "Choose dates" page.html
+grep -n "shared itinerary" page.html
+grep -n "Split expenses" page.html
+tail -120 page.html
+
+What to look for:
+
+good:
+actual <h1>, <h2>, <main>
+readable hero/features/faq copy in body
+weaker:
+mostly <script type="application/ld+json">
+little or no visible body copy
+root div + JS bundles
+
+Most likely current verdict:
+
+AEO baseline: decent
+SEO metadata: solid
+schema coverage: good
+raw semantic body extractability: still uncertain
+bot inference quality: moderate, not strongest yet
+
+Best direct test now:
+
+sed -n '/<body/,/<\/body>/p' page.html
+
+That isolates exactly what bots get in the body.
+
+If you paste that output, I can tell you in one shot whether the site is:
+
+properly SSR-readable
+only partially extractable
+or mostly relying on metadata/schema.
+Pasted text.txt
+Document
+
+This is now clear and conclusive.
+
+🔴 Actual state of your site (based on HTML)
+
+From your output :
+
+<body>
+  <div id="root"><!--app-html--></div>
+</body>
+Meaning:
+❌ No real content in body
+❌ No H1 / H2 / sections
+❌ No readable copy for bots
+❌ Fully client-side rendered app
+🧠 What bots are actually inferring
+
+They ONLY see:
+
+✅ Metadata
+title
+description
+OG tags
+✅ JSON-LD schemas
+SoftwareApplication
+FAQPage
+HowTo
+❌ They DO NOT see:
+hero section
+feature explanations
+page structure
+headings
+real content hierarchy
+⚠️ Real implication (important)
+
+Your site is:
+
+"Schema-driven inference, not content-driven inference"
+
+That works partially, but:
+
+weaker ranking in AI search
+lower confidence for LLMs
+worse snippet extraction
+poorer long-tail coverage
+🧪 If you test inference right now
+
+LLMs will say:
+
+TRYPS is a group trip planning app…
+
+BUT only because:
+
+it's repeated in meta + schema
+
+Not because they actually read your page.
+
+📉 What you’re missing (critical gap)
+
+Bots want this in raw HTML:
+
+<h1>TRYPS is a group trip planning app for friends</h1>
+
+<section>
+  <h2>Choose dates together</h2>
+  <p>...</p>
+</section>
+
+<section>
+  <h2>Build a shared itinerary</h2>
+  <p>...</p>
+</section>
+
+You currently have none of this in HTML.
+
+🟡 Current grading
+Layer	Status
+Metadata	✅ Strong
+Schema	✅ Strong
+Body content	❌ Missing
+Semantic structure	❌ Missing
+Extractability	⚠️ Medium (not high)
+AEO readiness	⚠️ Partial
+🚨 Core problem (in one line)
+
+Your site is invisible as a document, visible only as metadata.
+
+✅ What you need to fix
+Option 1 (best): SSR / pre-render content
+
+Ensure HTML returns:
+
+hero copy
+features
+FAQ content
+headings
+Option 2 (fast workaround): Inject static HTML snapshot
+
+Even this is enough:
+
+<div style="display:none">
+  <h1>TRYPS is a group trip planning app for friends</h1>
+  <p>Plan trips together, choose dates, build itineraries, split expenses.</p>
+</div>
+
+(Not ideal, but better than nothing)
+
+Option 3 (ideal architecture)
+SSR (Next.js / Remix / Astro)
+OR prerender (Vite + prerender plugin)
+🎯 What “correct” should look like
+
+Run curl again after fix → you should see:
+
+<body>
+  <main>
+    <h1>TRYPS is a group trip planning app...</h1>
+    <p>Plan trips together...</p>
+
+    <h2>How it works</h2>
+    <p>...</p>
+
+    <h2>Split expenses</h2>
+    <p>...</p>
+  </main>
+</body>
+🧠 Bottom line
+
+Right now:
+
+bots infer correctly but weakly
+you’re relying on schema repetition instead of content clarity
+
+After fix:
+
+bots will read, chunk, and rank your page properly
+
+If you want, I can give you:
+
+exact HTML to inject
+or a minimal SSR/prerender setup for your stack
+
+That’s the actual unlock for GEO/AEO.
+
+Pasted text.txt
+Document
+sorry this one
+Thought
+
+Same conclusion. This output still shows the page body is effectively empty for bots.
+
+The decisive line is:
+
+<body>
+  <div id="root"><!--app-html--></div>
+</body>
+
+So when a non-JS bot fetches the page, it gets:
+
+strong title/meta tags
+strong JSON-LD
+no actual visible page copy in body
+no SSR-rendered H1/H2/content sections
+
+What that means in practice:
+
+Google/LLM inference: decent baseline because your metadata and schema are good
+true extractability: weak, because the page is not delivered as readable document content
+AI answer confidence: lower than it should be
+long-tail query coverage: worse than a real SSR/prerendered page
+
+So bots currently infer TRYPS mainly from:
+
+<title>
+meta description
+JSON-LD SoftwareApplication
+JSON-LD FAQPage
+JSON-LD HowTo
+
+They are not reading your hero, features, or FAQ as body content, because that content is not in the HTML response.
+
+What a good response should look like instead:
+
+<body>
+  <main>
+    <h1>TRYPS is a group trip planning app for friends</h1>
+    <p>Choose dates, build a shared itinerary, and split expenses.</p>
+
+    <h2>How it works</h2>
+    <p>...</p>
+
+    <h2>Split expenses</h2>
+    <p>...</p>
+
+    <h2>FAQ</h2>
+    <p>...</p>
+  </main>
+</body>
+
+So the answer to your original question — “how do I know what bots infer?” — is:
+
+Fetch raw HTML with curl.
+Check whether the actual body contains readable content.
+In your case, it does not.
+Therefore bots infer the site from metadata/schema, not from page content.
+
+Net assessment:
+
+SEO metadata: good
+schema setup: good
+SSR/prerender body content: not present
+overall bot-readability: partial, not strong
+
+The fix is not content wording anymore. It is rendering architecture: SSR, SSG, or prerendering.
