@@ -147,7 +147,7 @@ export function NightFlight() {
                       <div key={i} className="bg-white/5 border border-white/5 p-4 rounded-xl relative overflow-hidden group hover:border-blue-500/30 transition-colors">
                         <div 
                           className="absolute left-0 top-0 bottom-0 bg-blue-600/20 -z-10 transition-all duration-1000"
-                          style={{ width: \`\${(poll.votes / poll.total) * 100}%\` }}
+                          style={{ width: `${(poll.votes / poll.total) * 100}%` }}
                         />
                         <div className="flex justify-between items-center relative z-10">
                           <span className="font-medium text-sm">{poll.dates}</span>
@@ -438,7 +438,7 @@ export function NightFlight() {
                 a: "The native iOS and Android apps have full offline support. Your itinerary and confirmation numbers are always accessible, even when you're on a plane or out of cell service."
               }
             ].map((faq, i) => (
-              <AccordionItem key={i} value={\`item-\${i}\`} className="border-slate-200">
+              <AccordionItem key={i} value={`item-${i}`} className="border-slate-200">
                 <AccordionTrigger className="text-left text-lg font-bold hover:no-underline hover:text-blue-600 py-6">
                   {faq.q}
                 </AccordionTrigger>
