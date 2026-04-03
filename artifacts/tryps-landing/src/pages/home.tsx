@@ -280,7 +280,7 @@ export default function Home() {
                 { n: "04", title: "No awkward money conversations", desc: "Track who paid what and who owes whom — settle up cleanly at the end.", color: "bg-[#8B5CF6]", icon: Wallet },
                 { n: "05", title: "Know what everyone actually wants", desc: "Capture preferences early so you don't plan a trip half the group isn't excited about.", color: "bg-[#EC4899]", icon: Globe },
               ].map((f) => (
-                <li key={f.title} className="bg-[#FFFBF0] rounded-3xl p-8 border border-[#F5D78E]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <li key={f.title} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className={`${f.color} h-12 w-12 rounded-2xl flex items-center justify-center text-white mb-5 shadow-lg`}>
                     <f.icon className="h-6 w-6" />
                   </div>
@@ -290,7 +290,7 @@ export default function Home() {
               ))}
             </ul>
 
-            <div className="text-center bg-[#FFFBF0] rounded-3xl p-10 border border-[#F5D78E]/30">
+            <div className="text-center bg-[#FFFBF0] rounded-3xl p-7 md:p-10 border border-[#F5D78E]/30">
               <p className="text-xl font-black text-[#1C1208] mb-4">Start your group trip</p>
               <a href="/start" className="inline-flex items-center gap-2 bg-[#D97706] hover:bg-[#B45309] text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg shadow-[#D97706]/20 transition-colors">
                 Create trip
@@ -317,7 +317,7 @@ export default function Home() {
                 { n: "3", title: "Plan together", desc: "Add places, stays, activities. Everyone contributes to one shared plan." },
                 { n: "4", title: "Split expenses simply", desc: "Log costs as they happen. Everyone sees what they owe - no spreadsheets, no stress." },
               ].map((item) => (
-                <li key={item.n} className="bg-white rounded-3xl p-8 text-center border border-[#F5D78E]/30 hover:border-[#D97706] hover:shadow-xl transition-all duration-300 group">
+                <li key={item.n} className="bg-white rounded-3xl p-6 md:p-8 text-center border border-[#F5D78E]/30 hover:border-[#D97706] hover:shadow-xl transition-all duration-300 group">
                   <div className="h-14 w-14 bg-[#FEF3C7] rounded-full flex items-center justify-center text-2xl font-black text-[#D97706] mx-auto mb-5 border-4 border-[#FFFBF0] shadow-md group-hover:scale-110 transition-transform">
                     {item.n}
                   </div>
@@ -339,7 +339,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 items-stretch">
-              <div className="bg-white rounded-[2rem] p-10 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-[2rem] p-7 md:p-10 border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-7">
                   <XCircle className="h-7 w-7 text-red-400 shrink-0" />
                   <h3 className="text-xl font-black text-gray-400">Without TRYPS</h3>
@@ -360,7 +360,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-[2rem] p-10 text-white shadow-xl md:-translate-y-4">
+              <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-[2rem] p-7 md:p-10 text-white shadow-xl md:-translate-y-4">
                 <div className="flex items-center gap-3 mb-7">
                   <CheckCircle2 className="h-7 w-7 text-white shrink-0" />
                   <h3 className="text-xl font-black">With TRYPS</h3>
@@ -410,7 +410,7 @@ export default function Home() {
               ))}
             </ul>
 
-            <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-3xl p-10 text-white text-center shadow-xl">
+            <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-3xl p-7 md:p-10 text-white text-center shadow-xl">
               <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines all of this — built specifically for planning trips with friends.</p>
               <p className="text-2xl font-black">One link. Everyone in. Dates locked. Plan built. Costs settled.</p>
               <p className="text-lg mt-2 opacity-80">That's the whole trip.</p>
@@ -446,7 +446,7 @@ export default function Home() {
                   detail: "organised a 5-person road trip across New Zealand",
                 },
               ].map((t, i) => (
-                <blockquote key={i} className="bg-[#FFFBF0] rounded-3xl p-8 border border-[#F5D78E]/40 shadow-sm flex flex-col">
+                <blockquote key={i} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 border border-[#F5D78E]/40 shadow-sm flex flex-col">
                   <p className="text-[#1C1208] leading-relaxed mb-6 flex-1">"{t.quote}"</p>
                   <footer className="text-sm">
                     <strong className="text-[#D97706] block">{t.author}</strong>
@@ -483,7 +483,7 @@ export default function Home() {
                 { title: "The trip where money gets messy", desc: "Expenses tracked automatically. No follow-ups." },
                 { title: "Planning a Goa trip with friends?", desc: "Lock dates, build your plan, and split costs — faster than agreeing on a weekend." },
               ].map((uc, i) => (
-                <li key={i} className="bg-white rounded-3xl p-8 border border-[#F5D78E]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <li key={i} className="bg-white rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className="w-10 h-10 bg-[#FEF3C7] rounded-xl flex items-center justify-center mb-5">
                     <Star className="h-5 w-5 fill-[#D97706] text-[#D97706]" />
                   </div>
@@ -508,7 +508,7 @@ export default function Home() {
               </p>
             </div>
 
-            <figure className="bg-[#FFFBF0] rounded-3xl p-8 border border-[#F5D78E]/40 shadow-sm">
+            <figure className="bg-[#FFFBF0] rounded-3xl p-5 md:p-8 border border-[#F5D78E]/40 shadow-sm">
               <ProductPreview />
               <figcaption className="text-center text-sm text-[#9CA3AF] mt-6 font-medium">
                 iMessage invite &rarr; date poll &rarr; shared itinerary &rarr; expense summary
