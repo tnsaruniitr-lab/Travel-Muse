@@ -1,0 +1,102 @@
+Quick verdict: decent AEO surface, incomplete SEO setup, and the domain setup looks messy. Based on what I could verify, I’d call it 6.5/10 for AEO readiness and 4.5/10 for SEO readiness right now. The biggest issue is not copy. It’s domain/canonical/indexing clarity.
+
+What I could confirm:
+
+https://side-kik.me/ loads a page titled “TRYPS — Group Trip Planning App for Friends”.
+Google-visible content for the live TRYPS site already has strong keyword/entity signals like “group trip planning app for friends,” “split expenses,” “group date poll,” “shared itinerary,” and “Join 500+ groups already planning trips.”
+
+What looks good:
+
+Your surface copy is directionally right for AEO. The page clearly states what the product is, who it is for, and what it does. The live content also exposes feature-level entities that LLMs and search engines can classify easily: one-link invite, date polling, shared itinerary, split expenses. That is good structure for answer engines.
+
+What is not good:
+
+The domain situation is muddy. I could verify side-kik.me renders TRYPS, but the indexed/search-visible result I found is on jointryps.com, not side-kik.me. That usually means one of these is true:
+
+side-kik.me is a staging/alternate domain
+canonical points elsewhere
+Google is not treating side-kik.me as the primary indexable property
+
+If side-kik.me is not meant to rank, that is fine. If it is meant to rank, this is a problem.
+
+Audit
+AEO readiness: fairly solid
+
+You already have:
+
+a clear category phrase near the top
+concise feature/entity language
+comparison-friendly positioning versus fragmented planning tools
+enough structured content blocks for LLM extraction.
+
+What is still missing or likely weak:
+
+a visible FAQ block on the indexed page
+strong comparison language against WhatsApp / Google Sheets / Splitwise
+an llms.txt file
+a tight structured-data graph tied to the visible copy
+SEO readiness: weaker
+
+From what I could verify, the page has decent content but I could not verify from the live source:
+
+robots.txt
+sitemap.xml
+canonical behavior
+structured data
+H1/meta/schema consistency
+indexing directives
+
+So I would not call it launch-clean from an SEO standpoint.
+
+Biggest issues in order
+
+1. Primary domain confusion
+This is the main problem. Decide whether the ranking domain is jointryps.com or side-kik.me. Right now the signals look split.
+
+2. No evidence yet of category-page strategy
+I could verify the homepage/category content, but not dedicated crawlable landing pages like:
+
+/group-trip-planning-app
+/plan-trips-with-friends
+/split-travel-expenses
+/group-date-poll
+
+Those are usually what capture non-branded traffic.
+
+3. Homepage still looks more product-led than search-led
+Good for users, less complete for SEO. You need stronger keyword-targeted internal architecture, not just a solid hero.
+
+4. AEO is okay, but not maximized
+To be properly AEO-ready, the site should have:
+
+FAQ schema
+SoftwareApplication schema
+WebSite/WebPage/Organization graph
+llms.txt
+stronger answer-style headings and FAQ copy
+What I’d do next
+Must fix
+
+Pick one canonical domain and force everything to it with consistent canonical tags and redirects.
+
+Then ship these
+robots.txt
+sitemap.xml
+JSON-LD graph
+FAQ section + FAQ schema
+llms.txt
+Then build traffic pages
+
+Start with:
+
+/group-trip-planning-app
+/plan-trips-with-friends
+/split-travel-expenses
+Bottom line
+
+Copy quality is not the bottleneck anymore.
+The bottleneck is technical SEO hygiene + domain consolidation + landing page coverage.
+
+If side-kik.me is just a temporary/staging shell for jointryps.com, that is okay. If it is supposed to be the real ranking domain, it is not ready.
+
+Paste the current index.html or deployed source for side-kik.me and I’ll do a much tighter line-by-line SEO/AEO audit.
