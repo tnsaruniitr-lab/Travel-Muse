@@ -1,0 +1,495 @@
+Yes. Here is the full corrected draft with:
+
+semantic HTML
+corrected anchors
+exact AEO intro alignment
+exact featureList alignment
+fuller FAQ JSON-LD answers
+visible hero stat + footnote
+BreadcrumbList included
+clean OG/Twitter/meta setup
+
+Replace placeholder URLs, images, and social links with your actual ones.
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>TRYPS — Group Trip Planning App for Friends</title>
+  <meta
+    name="description"
+    content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+  />
+  <link rel="canonical" href="https://jointryps.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TRYPS" />
+  <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
+  <meta
+    property="og:description"
+    content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+  />
+  <meta property="og:url" content="https://jointryps.com/" />
+  <meta property="og:image" content="https://jointryps.com/og/homepage-og.jpg" />
+  <meta property="og:image:alt" content="TRYPS group trip planning app preview" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
+  <meta
+    name="twitter:description"
+    content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+  />
+  <meta name="twitter:image" content="https://jointryps.com/og/homepage-og.jpg" />
+
+  <!-- Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TRYPS",
+    "url": "https://jointryps.com/",
+    "logo": "https://jointryps.com/logo.png",
+    "sameAs": [
+      "https://www.instagram.com/tryps",
+      "https://www.linkedin.com/company/tryps"
+    ]
+  }
+  </script>
+
+  <!-- Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TRYPS",
+    "url": "https://jointryps.com/"
+  }
+  </script>
+
+  <!-- Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TRYPS",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "iOS, Web",
+    "url": "https://jointryps.com/",
+    "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+    "image": "https://jointryps.com/images/tryps-app-preview.png",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TRYPS",
+      "url": "https://jointryps.com/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://jointryps.com/start"
+    },
+    "featureList": [
+      "Get everyone in instantly",
+      "Lock dates in one round",
+      "Keep the plan in one place",
+      "No awkward money conversations",
+      "Know what everyone actually wants"
+    ]
+  }
+  </script>
+
+  <!-- FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is TRYPS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from WhatsApp or Google Sheets?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WhatsApp is great for chatting. Google Sheets is great for data. But neither was built for making group decisions — which is why most trip planning over those tools drags on for weeks or collapses entirely. TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one shared space your whole group can access. Decisions get made because the tool is designed to make them — not bury them in a thread."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does everyone need to download an app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. People can join instantly via link or iMessage without installing anything. One person creates the trip. Everyone else just shows up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can everyone edit the plan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls, and log expenses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does expense splitting work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I start?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Create a trip, share the link, and start planning. Takes under a minute."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://jointryps.com/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Primary navigation">
+      <a href="/">TRYPS</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#faq">FAQ</a>
+      <a href="/download">Download app</a>
+      <a href="/waitlist">Join waitlist</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section aria-labelledby="hero-title">
+      <p>Group trip planning app</p>
+
+      <h1 id="hero-title">A group trip planning app your friends actually use.</h1>
+
+      <p>
+        TRYPS is a group trip planning app for friends that helps you choose dates,
+        build a shared itinerary, and split expenses — all in one place.
+      </p>
+
+      <p>
+        No downloads. No sign-ups.
+        Send one link or iMessage — your group joins instantly and starts planning.
+      </p>
+
+      <p>
+        Because the hardest part of any group trip isn't the destination.
+        It's getting everyone in the same place.
+      </p>
+
+      <div>
+        <a href="/start">Start planning</a>
+        <a href="/waitlist">Join waitlist</a>
+      </div>
+
+      <p>
+        500+ trips planned. Groups lock dates <strong>3× faster</strong> than over chat.
+      </p>
+      <small>
+        *Based on trips planned on TRYPS vs. self-reported coordination time over WhatsApp.
+      </small>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Everything your group needs — without the chaos</h2>
+
+      <ul>
+        <li>
+          <h3>Get everyone in instantly</h3>
+          <p>Send one link. No apps, no accounts, no "wait, what are we using?"</p>
+        </li>
+        <li>
+          <h3>Lock dates in one round</h3>
+          <p>One poll. Everyone responds. Dates decided — no endless back-and-forth.</p>
+        </li>
+        <li>
+          <h3>Keep the plan in one place</h3>
+          <p>A shared itinerary everyone can see and update — no confusion, no scattered notes.</p>
+        </li>
+        <li>
+          <h3>No awkward money conversations</h3>
+          <p>Track who paid what and who owes whom — settle up cleanly at the end.</p>
+        </li>
+        <li>
+          <h3>Know what everyone actually wants</h3>
+          <p>Capture preferences early so you don't plan a trip half the group isn't excited about.</p>
+        </li>
+      </ul>
+
+      <div>
+        <p><strong>Start your group trip</strong></p>
+        <a href="/start">Create trip</a>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" aria-labelledby="how-title">
+      <h2 id="how-title">From "we should plan something" to booked and ready</h2>
+
+      <ol>
+        <li>
+          <h3>Create and invite</h3>
+          <p>Start a trip in seconds. Share a link or iMessage. Everyone joins instantly.</p>
+        </li>
+        <li>
+          <h3>Lock dates fast</h3>
+          <p>One availability poll. TRYPS finds what works — no chasing people.</p>
+        </li>
+        <li>
+          <h3>Plan together</h3>
+          <p>Add places, stays, activities. Everyone contributes to one shared plan.</p>
+        </li>
+        <li>
+          <h3>Split expenses simply</h3>
+          <p>Log costs as they happen. Everyone sees what they owe — no spreadsheets, no stress.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PROBLEM VS SOLUTION -->
+    <section aria-labelledby="problem-solution-title">
+      <h2 id="problem-solution-title">Why most group trips never happen</h2>
+
+      <div>
+        <div>
+          <h3>Without TRYPS</h3>
+          <ul>
+            <li>Endless group chat messages, no decisions</li>
+            <li>Dates that never get locked</li>
+            <li>Plans scattered across notes, chats, and spreadsheets</li>
+            <li>One person stuck organising everything</li>
+            <li>Awkward money follow-ups after the trip</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>With TRYPS</h3>
+          <ul>
+            <li>One shared plan from idea to execution</li>
+            <li>Dates locked in minutes, not weeks</li>
+            <li>Everyone aligned and contributing</li>
+            <li>Clear itinerary the whole group follows</li>
+            <li>Expenses handled automatically</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section id="comparison" aria-labelledby="comparison-title">
+      <h2 id="comparison-title">Why not just use WhatsApp, Google Sheets, or Wanderlog?</h2>
+
+      <ul>
+        <li><strong>WhatsApp</strong> → great for chatting, not for making decisions</li>
+        <li><strong>Google Sheets</strong> → flexible, but manual and fragmented</li>
+        <li><strong>Splitwise</strong> → solves money, not planning</li>
+        <li><strong>Wanderlog</strong> → built for individuals, not group coordination</li>
+      </ul>
+
+      <p>
+        TRYPS combines all of this — built specifically for planning trips with friends.
+      </p>
+      <p>
+        One link. Everyone in. Dates locked. Plan built. Costs settled.
+        That's the whole trip.
+      </p>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section aria-labelledby="social-proof-title">
+      <h2 id="social-proof-title">Trips that actually happened</h2>
+
+      <blockquote>
+        <p>
+          "We'd been trying to plan this for months. With TRYPS, dates were locked in a day.
+          I don't know why we didn't do it sooner."
+        </p>
+        <footer>— Marcus T., organised a 7-person trip to Barcelona</footer>
+      </blockquote>
+
+      <blockquote>
+        <p>
+          "I'm always the one chasing people for money after trips. TRYPS just... handled it.
+          That alone makes it worth it."
+        </p>
+        <footer>— Divya R., organised a bachelorette weekend in Jaipur</footer>
+      </blockquote>
+
+      <blockquote>
+        <p>
+          "We've tried so many apps and they always fall apart because half the group won't install something.
+          Nobody had to download anything. That changed everything."
+        </p>
+        <footer>— Tom H., organised a 5-person road trip across New Zealand</footer>
+      </blockquote>
+
+      <p><strong>500+ trips planned across friend groups globally.</strong></p>
+      <p>
+        Groups using TRYPS lock in dates an average of 3× faster than coordinating over chat —
+        based on trip data and user-reported coordination time.
+      </p>
+    </section>
+
+    <!-- USE CASES -->
+    <section aria-labelledby="use-cases-title">
+      <h2 id="use-cases-title">Built for the trip that never gets planned</h2>
+
+      <ul>
+        <li>
+          <h3>The trip stuck in the group chat</h3>
+          <p>Turn "we should go" into an actual plan.</p>
+        </li>
+        <li>
+          <h3>The trip where no one agrees on dates</h3>
+          <p>One poll. Dates locked. Move forward.</p>
+        </li>
+        <li>
+          <h3>The trip where one person does all the work</h3>
+          <p>Everyone contributes. No single organiser burden.</p>
+        </li>
+        <li>
+          <h3>The trip where money gets messy</h3>
+          <p>Expenses tracked automatically. No follow-ups.</p>
+        </li>
+        <li>
+          <h3>Planning a Goa trip with friends?</h3>
+          <p>Lock dates, build your plan, and split costs — faster than agreeing on a weekend.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- PRODUCT PREVIEW -->
+    <section aria-labelledby="preview-title">
+      <h2 id="preview-title">What planning actually looks like</h2>
+
+      <p>
+        From your group chat to a structured plan everyone follows — invite, poll, plan, split,
+        all in one flow.
+      </p>
+
+      <figure>
+        <img
+          src="https://jointryps.com/images/tryps-flow-preview.png"
+          alt="TRYPS flow showing iMessage invite, date poll, shared itinerary, and expense summary"
+          width="1440"
+          height="900"
+        />
+        <figcaption>
+          iMessage invite → date poll → shared itinerary → expense summary
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+
+      <details>
+        <summary>What is TRYPS?</summary>
+        <p>
+          TRYPS is a group trip planning app for friends that helps you coordinate dates,
+          build a shared itinerary, and split expenses — all in one place.
+        </p>
+      </details>
+
+      <details>
+        <summary>How is this different from WhatsApp or Google Sheets?</summary>
+        <p>
+          WhatsApp is great for chatting. Google Sheets is great for data. But neither was built
+          for making group decisions — which is why most trip planning over those tools drags on
+          for weeks or collapses entirely.
+        </p>
+        <p>
+          TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one
+          shared space your whole group can access. Decisions get made because the tool is designed
+          to make them — not bury them in a thread.
+        </p>
+      </details>
+
+      <details>
+        <summary>Does everyone need to download an app?</summary>
+        <p>
+          No. People can join instantly via link or iMessage without installing anything.
+          One person creates the trip. Everyone else just shows up.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can everyone edit the plan?</summary>
+        <p>
+          Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls,
+          and log expenses.
+        </p>
+      </details>
+
+      <details>
+        <summary>How does expense splitting work?</summary>
+        <p>
+          Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire.
+          TRYPS tracks balances and shows everyone what they owe at the end.
+          No spreadsheet. No uncomfortable follow-ups.
+        </p>
+      </details>
+
+      <details>
+        <summary>How do I start?</summary>
+        <p>Create a trip, share the link, and start planning. Takes under a minute.</p>
+      </details>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section aria-labelledby="final-cta-title">
+      <h2 id="final-cta-title">The trip has been in the group chat long enough.</h2>
+      <p>Create a trip. Share the link.</p>
+      <p>Get everyone aligned in minutes.</p>
+      <a href="/start">Start planning with friends</a>
+    </section>
+  </main>
+
+  <footer>
+    <nav aria-label="Footer navigation">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <p>© TRYPS</p>
+  </footer>
+</body>
+</html>
+Final notes
