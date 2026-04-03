@@ -18,3 +18,21 @@ id = "r6RuhlUdZ-ZvfNX7cLjHO"
 uri = "file://artifacts/tryps-landing/public/images/section-break.png"
 type = "image"
 title = "Beach from above"
+
+[[generated]]
+id = "K4CZWLHNbnCLZ2pKovH63"
+uri = "file://artifacts/mockup-sandbox/public/images/nightflight-hero.png"
+type = "image"
+title = "Moody night airport with glowing city"
+
+[[generated]]
+id = "NzTP1pY5PKVKnby30N3Fi"
+uri = "file://artifacts/mockup-sandbox/public/images/tryps-hero.png"
+type = "image"
+title = "Friends laughing at a sunny resort"
+
+[[generated]]
+id = "t-vEZtqpZbQB_I6C6UuQg"
+uri = "file://artifacts/mockup-sandbox/public/images/tryps-friends.png"
+type = "image"
+title = "Friends at sunset dinner"
