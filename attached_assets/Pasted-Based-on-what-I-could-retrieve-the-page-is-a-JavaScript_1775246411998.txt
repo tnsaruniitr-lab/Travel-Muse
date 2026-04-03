@@ -1,0 +1,63 @@
+Based on what I could retrieve (the page is a JavaScript-rendered SPA, which is itself the core problem), here's a thorough AEO & GEO audit for TRYPS at side-kik.me:
+
+🔍 AEO & GEO Audit — TRYPS (side-kik.me)
+
+🚨 Critical Issue #1: The Page is Essentially Invisible to AI & Search Crawlers
+The single biggest problem: the entire site renders via JavaScript. When fetched directly, the HTML shell returns only the page title — nothing else. AI crawlers (Perplexity, ChatGPT, Google AI Overview, Claude) and traditional search bots all read raw HTML first. If there's no content in the HTML, the site doesn't exist to them.
+Impact: Zero chance of being cited in AI-generated answers. Competitors like Troupe, Tripsy, TripIt, and Pilot all appear in AI responses for "best group trip planning app" — TRYPS does not.
+
+🚨 Critical Issue #2: Zero Discoverable Web Presence
+A search for "side-kik.me" and "TRYPS app" returns no results at all. The site is not indexed. For GEO (being cited by generative AI engines), you must first exist in the training data or live index — right now, TRYPS doesn't.
+
+🚨 Critical Issue #3: Domain/Brand Mismatch
+The brand is TRYPS but the domain is side-kik.me. This:
+
+Destroys brand authority signals for AI models
+Confuses crawlers trying to attribute expertise
+Makes it nearly impossible for users or AI to find the site by searching the brand name
+Looks like an early-stage prototype domain, not a trusted product
+
+
+⚠️ Issue #4: No Structured Data (Schema.org)
+No evidence of JSON-LD or any structured data markup. For AEO, the minimum you'd want is:
+
+SoftwareApplication schema (app name, category, platform, rating)
+FAQPage schema for common questions like "how does group trip planning work"
+Organization schema with social links and brand identity
+
+Without these, AI answer engines have no reliable, machine-readable facts to pull about the product.
+
+⚠️ Issue #5: No Crawlable Content to Cite
+GEO depends on AI models having something to quote or paraphrase — a clear value proposition, feature descriptions, use cases, testimonials. Since all content is JS-rendered, there's nothing for any AI to surface. Competing apps have crawlable landing pages with dense, clear, specific copy.
+
+⚠️ Issue #6: No Signals of Authority or Trust
+
+No backlinks discoverable
+No press mentions or reviews indexed
+No App Store / Play Store listing visible in searches
+No social proof (testimonials, user numbers, ratings) visible to crawlers
+
+AI models weight third-party citations heavily for GEO inclusion. Without any external sources writing about TRYPS, it won't get mentioned even if the on-page content is fixed.
+
+✅ What Needs to Happen — Prioritised Fix List
+Priority 1 — Fix the indexability problem
+Use Server-Side Rendering (SSR) or Static Site Generation (SSG) (Next.js, Nuxt, Astro, etc.) so that full HTML content is served on initial load. This is non-negotiable for AEO/GEO.
+Priority 2 — Get a brand-matching domain
+Move to tryps.app or trypsapp.com. The side-kik.me domain is invisible and untrustworthy to both users and AI systems.
+Priority 3 — Add structured data
+Implement SoftwareApplication and FAQPage JSON-LD on the homepage. This directly feeds AI answer engines.
+Priority 4 — Create crawlable, answer-ready content
+Write clear H1/H2-structured content that directly answers questions like:
+
+"What is the best app for planning a group trip?"
+"How do friends coordinate travel plans?"
+"How does TRYPS compare to TripIt or Troupe?"
+
+Priority 5 — Build third-party authority
+Submit to ProductHunt, get listed in app directories, pursue reviews/mentions on travel blogs. AI models cite what others say about you, not just what you say about yourself.
+Priority 6 — Get in the App Store listings
+App Store and Play Store pages are crawlable and frequently cited by AI. If the app exists on those platforms, those listing pages become your GEO footprint even while the website is being fixed.
+
+Summary Score
+AreaScoreNotesCrawlability❌ 0/10JS-only, no HTML content servedStructured Data❌ 0/10None detectedBrand Clarity❌ 1/10Domain/brand mismatchContent Quality⚠️ UnknownCan't evaluate JS contentWeb Presence❌ 0/10Zero indexed pagesGEO Readiness❌ 0/10Not appearing in any AI answers
+The core problem is architectural — fix the JavaScript rendering first, and everything else becomes buildable.
