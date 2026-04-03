@@ -207,7 +207,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-5 gap-12 items-start">
 
-              {/* Text — 3 columns */}
+              {/* Text - 3 columns */}
               <div className="lg:col-span-3 pt-6">
                 <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FEF3C7] text-[#D97706] font-bold text-sm mb-8 border border-[#F5D78E]">
                   <Star className="h-4 w-4 fill-[#D97706]" />
@@ -222,12 +222,12 @@ export default function Home() {
                 </h1>
 
                 <p className="text-xl text-[#6B5230] mb-4 leading-relaxed max-w-xl">
-                  TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
+                  TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses - all in one place.
                 </p>
 
                 <p className="text-base text-[#6B5230] mb-4 leading-relaxed max-w-xl flex items-start gap-3">
                   <MessageCircle className="h-5 w-5 text-[#D97706] shrink-0 mt-0.5" />
-                  <span>No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.</span>
+                  <span>No downloads. No sign-ups. Send one link or iMessage - your group joins instantly and starts planning.</span>
                 </p>
 
                 <p className="text-base text-[#9CA3AF] mb-10 leading-relaxed max-w-lg italic">
@@ -264,7 +264,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Mockup — 2 columns */}
+              {/* Mockup - 2 columns */}
               <div className="lg:col-span-2 pt-6">
                 <HeroMockup />
               </div>
@@ -278,16 +278,16 @@ export default function Home() {
             <div className="text-center max-w-2xl mx-auto mb-16">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Everything you need</p>
               <h2 id="features-title" className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-[#1C1208]">
-                Everything your group needs — without the chaos
+                Everything your group needs - without the chaos
               </h2>
             </div>
 
             <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 list-none p-0 mb-16">
               {[
                 { n: "01", title: "Get everyone in instantly", desc: 'Send one link. No apps, no accounts, no "wait, what are we using?"', color: "bg-[#D97706]", icon: MessageCircle },
-                { n: "02", title: "Lock dates in one round", desc: "One poll. Everyone responds. Dates decided — no endless back-and-forth.", color: "bg-[#F59E0B]", icon: Calendar },
-                { n: "03", title: "Keep the plan in one place", desc: "A shared itinerary everyone can see and update — no confusion, no scattered notes.", color: "bg-[#4ECDC4]", icon: MapPin },
-                { n: "04", title: "No awkward money conversations", desc: "Track who paid what and who owes whom — settle up cleanly at the end.", color: "bg-[#8B5CF6]", icon: Wallet },
+                { n: "02", title: "Lock dates in one round", desc: "One poll. Everyone responds. Dates decided - no endless back-and-forth.", color: "bg-[#F59E0B]", icon: Calendar },
+                { n: "03", title: "Keep the plan in one place", desc: "A shared itinerary everyone can see and update - no confusion, no scattered notes.", color: "bg-[#4ECDC4]", icon: MapPin },
+                { n: "04", title: "No awkward money conversations", desc: "Track who paid what and who owes whom - settle up cleanly at the end.", color: "bg-[#8B5CF6]", icon: Wallet },
                 { n: "05", title: "Know what everyone actually wants", desc: "Capture preferences early so you don't plan a trip half the group isn't excited about.", color: "bg-[#EC4899]", icon: Globe },
               ].map((f) => (
                 <li key={f.title} className="bg-[#FFFBF0] rounded-3xl p-8 border border-[#F5D78E]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
@@ -323,9 +323,9 @@ export default function Home() {
             <ol className="grid lg:grid-cols-4 gap-6 list-none p-0">
               {[
                 { n: "1", title: "Create and invite", desc: "Start a trip in seconds. Share a link or iMessage. Everyone joins instantly." },
-                { n: "2", title: "Lock dates fast", desc: "One availability poll. TRYPS finds what works — no chasing people." },
+                { n: "2", title: "Lock dates fast", desc: "One availability poll. TRYPS finds what works - no chasing people." },
                 { n: "3", title: "Plan together", desc: "Add places, stays, activities. Everyone contributes to one shared plan." },
-                { n: "4", title: "Split expenses simply", desc: "Log costs as they happen. Everyone sees what they owe — no spreadsheets, no stress." },
+                { n: "4", title: "Split expenses simply", desc: "Log costs as they happen. Everyone sees what they owe - no spreadsheets, no stress." },
               ].map((item) => (
                 <li key={item.n} className="bg-white rounded-3xl p-8 text-center border border-[#F5D78E]/30 hover:border-[#D97706] hover:shadow-xl transition-all duration-300 group">
                   <div className="h-14 w-14 bg-[#FEF3C7] rounded-full flex items-center justify-center text-2xl font-black text-[#D97706] mx-auto mb-5 border-4 border-[#FFFBF0] shadow-md group-hover:scale-110 transition-transform">
@@ -363,7 +363,7 @@ export default function Home() {
                     "Awkward money follow-ups after the trip",
                   ].map((t) => (
                     <li key={t} className="flex items-start gap-3 text-gray-400">
-                      <span className="text-lg opacity-40 mt-0.5 shrink-0">—</span>
+                      <span className="text-lg opacity-40 mt-0.5 shrink-0">-</span>
                       <span className="leading-relaxed">{t}</span>
                     </li>
                   ))}
@@ -415,14 +415,14 @@ export default function Home() {
                   <span className="text-[#D97706] font-black text-sm mt-0.5 shrink-0">→</span>
                   <p className="text-[#1C1208]">
                     <strong className="font-black">{row.tool}</strong>
-                    <span className="text-[#6B5230]"> — {row.verdict}</span>
+                    <span className="text-[#6B5230]"> - {row.verdict}</span>
                   </p>
                 </li>
               ))}
             </ul>
 
             <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-3xl p-10 text-white text-center shadow-xl">
-              <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines all of this — built specifically for planning trips with friends.</p>
+              <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines all of this - built specifically for planning trips with friends.</p>
               <p className="text-2xl font-black">One link. Everyone in. Dates locked. Plan built. Costs settled.</p>
               <p className="text-lg mt-2 opacity-80">That's the whole trip.</p>
             </div>
@@ -470,7 +470,7 @@ export default function Home() {
             <div className="text-center">
               <p className="text-xl font-black text-[#1C1208] mb-2">500+ trips planned across friend groups globally.</p>
               <p className="text-[#6B5230] max-w-xl mx-auto leading-relaxed">
-                Groups using TRYPS lock in dates an average of <strong className="text-[#D97706]">3&times; faster</strong> than coordinating over chat — based on trip data and user-reported coordination time.
+                Groups using TRYPS lock in dates an average of <strong className="text-[#D97706]">3&times; faster</strong> than coordinating over chat - based on trip data and user-reported coordination time.
               </p>
             </div>
           </div>
@@ -492,7 +492,7 @@ export default function Home() {
                 { title: "The trip where no one agrees on dates", desc: "One poll. Dates locked. Move forward." },
                 { title: "The trip where one person does all the work", desc: "Everyone contributes. No single organiser burden." },
                 { title: "The trip where money gets messy", desc: "Expenses tracked automatically. No follow-ups." },
-                { title: "Planning a Goa trip with friends?", desc: "Lock dates, build your plan, and split costs — faster than agreeing on a weekend." },
+                { title: "Planning a Goa trip with friends?", desc: "Lock dates, build your plan, and split costs - faster than agreeing on a weekend." },
               ].map((uc, i) => (
                 <li key={i} className="bg-white rounded-3xl p-8 border border-[#F5D78E]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className="w-10 h-10 bg-[#FEF3C7] rounded-xl flex items-center justify-center mb-5">
@@ -515,7 +515,7 @@ export default function Home() {
                 What planning actually looks like
               </h2>
               <p className="text-lg text-[#6B5230] max-w-2xl mx-auto leading-relaxed">
-                From your group chat to a structured plan everyone follows — invite, poll, plan, split, all in one flow.
+                From your group chat to a structured plan everyone follows - invite, poll, plan, split, all in one flow.
               </p>
             </div>
 
@@ -540,11 +540,11 @@ export default function Home() {
               {[
                 {
                   q: "What is TRYPS?",
-                  a: "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place.",
+                  a: "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses - all in one place.",
                 },
                 {
                   q: "How is this different from WhatsApp or Google Sheets?",
-                  a: "WhatsApp is great for chatting. Google Sheets is great for data. But neither was built for making group decisions — which is why most trip planning over those tools drags on for weeks or collapses entirely. TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one shared space your whole group can access. Decisions get made because the tool is designed to make them — not bury them in a thread.",
+                  a: "WhatsApp is great for chatting. Google Sheets is great for data. But neither was built for making group decisions - which is why most trip planning over those tools drags on for weeks or collapses entirely. TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one shared space your whole group can access. Decisions get made because the tool is designed to make them - not bury them in a thread.",
                 },
                 {
                   q: "Does everyone need to download an app?",
@@ -552,11 +552,11 @@ export default function Home() {
                 },
                 {
                   q: "Can everyone edit the plan?",
-                  a: "Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls, and log expenses.",
+                  a: "Yes. It's fully collaborative - everyone can add to the itinerary, respond to polls, and log expenses.",
                 },
                 {
                   q: "How does expense splitting work?",
-                  a: "Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups.",
+                  a: "Log costs as they happen - the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups.",
                 },
                 {
                   q: "How do I start?",
