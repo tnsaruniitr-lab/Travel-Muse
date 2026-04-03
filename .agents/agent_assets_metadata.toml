@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "snZbknKvdOxyeGSbP5ycX"
+uri = "file://artifacts/tryps-landing/public/images/hero-bg.png"
+type = "image"
+title = "Friends laughing on a rooftop"
+
+[[generated]]
+id = "crmmV8BiE13h1XFjF1snu"
+uri = "file://artifacts/tryps-landing/public/images/app-mockup.png"
+type = "image"
+title = "App mockup for trip planning"
+
+[[generated]]
+id = "r6RuhlUdZ-ZvfNX7cLjHO"
+uri = "file://artifacts/tryps-landing/public/images/section-break.png"
+type = "image"
+title = "Beach from above"

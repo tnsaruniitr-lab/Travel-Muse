@@ -1,0 +1,130 @@
+TRYPS - Final Homepage Content
+
+HERO SECTION
+H1
+Group trip planning app for friends
+
+Intro
+JOINTRYPS is a group trip planning app for friends. Plan trips together, choose dates that work for everyone, build shared itineraries, and split expenses in one place.
+
+USP line
+No setup or extra app downloads for your friends - invite your group instantly via iMessage or a simple link.
+
+CTA
+Start planning your trip with friends
+ [Join waitlist]
+ [Download app]
+
+Social proof
+Join 500+ groups already planning trips together
+
+
+SECTION 1
+H2
+Everything your group needs to plan a trip together
+
+One-link invite
+Invite your friends instantly via iMessage or a simple link so everyone can join the trip in seconds.
+
+Group date polling
+Find dates that work for everyone by collecting availability in one place.
+
+Shared itinerary
+Plan destinations, activities, and schedules together so the whole group stays aligned.
+
+Split expenses
+Track shared trip costs and settle balances without switching between apps.
+
+Real-time updates
+Keep everyone in sync as plans evolve.
+
+Travel preferences
+Understand where your group wants to go and align on destinations faster.
+
+MID CTA
+Start planning your trip with friends
+ [Join TRYPS]
+
+SECTION 2
+H2
+How TRYPS helps you plan trips with friends
+
+Create and invite
+Start a trip and invite your group in seconds via iMessage or a simple link.
+
+Poll for dates
+Find dates that work for everyone in the group.
+
+Build the itinerary together
+Create a shared trip plan where everyone can contribute ideas and plans.
+
+Track and split expenses
+Manage shared costs and settle balances across the group.
+
+SECTION 3
+H2
+Stop planning trips across multiple apps
+
+Without TRYPS
+chats spread across WhatsApp or iMessage
+dates discussed endlessly without resolution
+plans scattered across notes and messages
+expenses tracked separately in another app
+
+With TRYPS
+one shared trip plan for the entire group
+built-in group date polling
+shared itinerary everyone can edit
+expenses tracked and settled in one place
+
+SECTION 4
+H2
+Plan your entire trip in one place
+
+TRYPS brings planning, coordination, and expense tracking together so your group stays aligned from start to finish.
+No switching between apps. No confusion. Just one shared trip plan.
+
+SECTION 5
+H2
+Built for planning trips with friends
+
+TRYPS is designed for:
+friends planning vacations
+bachelor or bachelorette trips
+weekend getaways
+group travel where everyone needs to coordinate
+If your trip involves multiple people, TRYPS simplifies the process.
+
+SECTION 6
+H2
+See how group trip planning works in TRYPS
+
+Plan trips, coordinate dates, and manage expenses through one shared interface your entire group can access.
+(Place product screenshot or demo here)
+
+SECTION 7
+H2
+Frequently asked questions
+
+What is TRYPS?
+TRYPS is a group trip planning app for friends that helps you coordinate trips, manage shared itineraries, and split expenses.
+
+How is TRYPS different from using multiple apps?
+TRYPS brings planning, coordination, and expense tracking into one place, so you don’t have to juggle WhatsApp, Google Sheets, and Splitwise.
+
+Can multiple people edit a trip?
+Yes, TRYPS is designed for collaborative planning so everyone in the group can contribute.
+
+Does TRYPS help split travel expenses?
+Yes, TRYPS allows groups to track and settle shared costs.
+
+How do I invite friends to a trip?
+You can invite your friends instantly via iMessage or by sharing a simple link.
+
+FINAL SECTION
+H2
+Start planning your next trip with friends
+
+CTA
+[Join TRYPS]
+
