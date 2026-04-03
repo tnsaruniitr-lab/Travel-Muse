@@ -200,21 +200,21 @@ export default function Home() {
       <main>
 
         {/* ── HERO ── */}
-        <section aria-labelledby="hero-title" className="relative pt-20 pb-24 overflow-hidden">
+        <section aria-labelledby="hero-title" className="relative pt-12 md:pt-20 pb-12 md:pb-24 overflow-hidden">
           <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#FCD34D]/15 rounded-full blur-3xl -translate-y-1/4 translate-x-1/3 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D97706]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div className="grid lg:grid-cols-5 gap-12 items-start">
+            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
               {/* Text - 3 columns */}
               <div className="lg:col-span-3 pt-6">
-                <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FEF3C7] text-[#D97706] font-bold text-sm mb-8 border border-[#F5D78E]">
+                <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FEF3C7] text-[#D97706] font-bold text-sm mb-5 md:mb-8 border border-[#F5D78E]">
                   <Star className="h-4 w-4 fill-[#D97706]" />
                   Group trip planning app
                 </p>
 
-                <h1 id="hero-title" className="text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-6">
+                <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-5 md:mb-6">
                   A group trip planning app{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D97706] via-[#F59E0B] to-[#FCD34D]">
                     your friends actually use.
@@ -263,16 +263,16 @@ export default function Home() {
         </section>
 
         {/* ── FEATURES ── */}
-        <section id="features" aria-labelledby="features-title" className="py-24 bg-white border-t border-[#F5D78E]/30">
+        <section id="features" aria-labelledby="features-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Everything you need</p>
               <h2 id="features-title" className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-[#1C1208]">
                 Everything your group needs — without the chaos
               </h2>
             </div>
 
-            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 list-none p-0 mb-16">
+            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 list-none p-0 mb-10 md:mb-16">
               {[
                 { n: "01", title: "Get everyone in instantly", desc: 'Send one link. No apps, no accounts, no "wait, what are we using?"', color: "bg-[#D97706]", icon: MessageCircle },
                 { n: "02", title: "Lock dates in one round", desc: "One poll. Everyone responds. Dates decided — no endless back-and-forth.", color: "bg-[#F59E0B]", icon: Calendar },
@@ -301,9 +301,9 @@ export default function Home() {
         </section>
 
         {/* ── HOW IT WORKS ── */}
-        <section id="how-it-works" aria-labelledby="how-title" className="py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="how-it-works" aria-labelledby="how-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Simple process</p>
               <h2 id="how-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
                 From "we should plan something" to booked and ready
@@ -330,9 +330,9 @@ export default function Home() {
         </section>
 
         {/* ── PROBLEM VS SOLUTION ── */}
-        <section aria-labelledby="problem-solution-title" className="py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="problem-solution-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-5xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-14">
+            <div className="text-center mb-8 md:mb-14">
               <h2 id="problem-solution-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
                 Why most group trips never happen
               </h2>
@@ -385,9 +385,9 @@ export default function Home() {
         </section>
 
         {/* ── COMPARISON ── */}
-        <section id="comparison" aria-labelledby="comparison-title" className="py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="comparison" aria-labelledby="comparison-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Why TRYPS</p>
               <h2 id="comparison-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
                 Why not just use WhatsApp, Google Sheets, or Wanderlog?
@@ -419,16 +419,16 @@ export default function Home() {
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section aria-labelledby="social-proof-title" className="py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="social-proof-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-14">
+            <div className="text-center mb-8 md:mb-14">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Real trips</p>
               <h2 id="social-proof-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
                 Trips that actually happened
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-7 mb-12">
+            <div className="grid md:grid-cols-3 gap-7 mb-8 md:mb-12">
               {[
                 {
                   quote: "We'd been trying to plan this for months. With TRYPS, dates were locked in a day. I don't know why we didn't do it sooner.",
@@ -466,9 +466,9 @@ export default function Home() {
         </section>
 
         {/* ── USE CASES ── */}
-        <section aria-labelledby="use-cases-title" className="py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section aria-labelledby="use-cases-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-14">
+            <div className="text-center mb-8 md:mb-14">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Built for you</p>
               <h2 id="use-cases-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
                 Built for the trip that never gets planned
@@ -496,9 +496,9 @@ export default function Home() {
         </section>
 
         {/* ── PRODUCT PREVIEW ── */}
-        <section aria-labelledby="preview-title" className="py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="preview-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">See it in action</p>
               <h2 id="preview-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208] mb-4">
                 What planning actually looks like
@@ -518,9 +518,9 @@ export default function Home() {
         </section>
 
         {/* ── FAQ ── */}
-        <section id="faq" aria-labelledby="faq-title" className="py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="faq" aria-labelledby="faq-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">FAQ</p>
               <h2 id="faq-title" className="text-4xl font-black text-[#1C1208]">Frequently asked questions</h2>
             </div>
@@ -575,7 +575,7 @@ export default function Home() {
         </section>
 
         {/* ── FINAL CTA ── */}
-        <section aria-labelledby="final-cta-title" className="py-32 bg-[#D97706] relative overflow-hidden border-t border-[#B45309]">
+        <section aria-labelledby="final-cta-title" className="py-20 md:py-32 bg-[#D97706] relative overflow-hidden border-t border-[#B45309]">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
             <div className="absolute bottom-10 right-10 w-72 h-72 bg-[#F59E0B]/40 rounded-full blur-3xl" />

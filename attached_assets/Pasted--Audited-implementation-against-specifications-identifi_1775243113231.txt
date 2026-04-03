@@ -1,0 +1,36 @@
+
+Audited implementation against specifications, identified React architecture considerations
+The <head> is correctly implemented. The <body> raises a structural issue worth flagging immediately.
+
+Head — Correct
+Every element we defined is present and accurate:
+
+Meta description matches the AEO anchor word for word ✅
+OG description matches the AEO anchor word for word ✅
+Twitter description now matches too — previously it was shortened, now it's consistent ✅
+All five JSON-LD blocks present and correct ✅
+featureList matches agreed on-page language ✅
+Full two-paragraph FAQ answer on the key objection is in the JSON-LD ✅
+BreadcrumbList included ✅
+Body — Problem
+html
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+This is a client-side React app. All the semantic HTML we carefully defined — the sections, headings, schema-aligned copy, blockquotes, FAQ <details> — lives inside React components that render after JavaScript executes. Google can crawl JavaScript-rendered content but it is slower, less reliable, and treated as a second-class crawl signal compared to server-rendered HTML.
+
+This means everything we built in the semantic HTML document may not be seen by Google on first crawl.
+
+What This Means in Practice
+You have three options, in order of SEO reliability:
+
+1. Server-side rendering (SSR) — use Next.js or Remix. The semantic HTML we defined is delivered in the initial response. Most reliable for SEO and AEO. Best long-term choice if SEO matters.
+
+2. Static site generation (SSG) — pre-render the homepage to static HTML at build time. Same SEO benefit as SSR for a page that doesn't change per-user. Simpler than full SSR.
+
+3. Stay with client-side React + add prerendering — use a tool like vite-plugin-ssr or a service like Prerender.io to serve static HTML to crawlers. Lowest effort but adds a dependency.
+
+The JSON-LD Is Safe Either Way
+The JSON-LD blocks are in the <head> and are delivered in the initial HTML response regardless of whether the body renders client-side. Schema markup will be read correctly. The risk is specifically the visible page content — headings, copy, FAQ text — that Google uses to validate and reinforce the structured data.
+
+Immediate Recommendation
+Before launch, run the URL through Google's Rich Results Test. If it returns the FAQ and SoftwareApplication markup correctly, your JSON-LD is being read. Then separately check that Googlebot can see the page content by using the "Inspect URL" tool in Search Console after indexing. If the rendered HTML in Search Console looks blank or minimal, you have a crawlability problem that needs SSR or prerendering before the SEO work here pays off.
