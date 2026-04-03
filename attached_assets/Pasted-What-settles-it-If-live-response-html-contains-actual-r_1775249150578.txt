@@ -1,0 +1,171 @@
+What settles it:
+
+If live-response.html contains actual rendered body copy, headings, sections, FAQs, etc., then the site is SSR/prerendered in practice.
+If it contains only the placeholder root div, then the earlier criticism stands.
+
+So your rebuttal should be:
+
+“You tested the source template, not the live deployed HTML response. Bots read the server’s HTTP response, not the placeholder file in the repo/build template.”
+
+That said, the proof has to be the actual output of curl -sL https://side-kik.me, not the argument itself.
+
+Paste the “exact same test” output and I’ll tell you whether your rebuttal fully holds or whether there’s still a gap.
+
+arunsharma@Aruns-MacBook-Pro ~ % curl -sL https://side-kik.me > live-response.html
+wc -c live-response.html
+grep -i "<h1" live-response.html
+grep -i "<h2" live-response.html
+grep -i "TRYPS" live-response.html | head
+grep -i "FAQPage" live-response.html
+tail -80 live-response.html
+    7579 live-response.html
+    <title>TRYPS — Group Trip Planning App for Friends</title>
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    <link rel="canonical" href="https://jointryps.com/" />
+    <meta property="og:site_name" content="TRYPS" />
+    <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
+      content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place."
+    <meta property="og:url" content="https://jointryps.com/" />
+    <meta property="og:image" content="https://jointryps.com/og/homepage-og.jpg" />
+    <meta property="og:image:alt" content="TRYPS group trip planning app preview" />
+    <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
+      "@type": "FAQPage",
+            "text": "Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls, and log expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does expense splitting work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Create a trip, share the link, and start planning. Takes under a minute."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jointryps.com/"
+        }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to plan a group trip with TRYPS",
+      "description": "From \"we should plan something\" to booked and ready",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Create and invite",
+          "text": "Start a trip in seconds. Share a link or iMessage. Everyone joins instantly."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Lock dates fast",
+          "text": "One availability poll. TRYPS finds what works - no chasing people."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Plan together",
+          "text": "Add places, stays, activities. Everyone contributes to one shared plan."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Split expenses simply",
+          "text": "Log costs as they happen. Everyone sees what they owe - no spreadsheets, no stress."
+        }
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-B0DRWk5T.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CUD7Brw8.css">
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+  </body>
+</html>
+arunsharma@Aruns-MacBook-Pro ~ % 
+
+Your proof does not overturn it.
+
+It confirms the opposite.
+
+The live HTTP response you fetched still ends with:
+
+<body>
+  <div id="root"><!--app-html--></div>
+</body>
+
+So the deployed server is returning:
+
+metadata
+JSON-LD
+JS/CSS asset links
+empty app mount in body
+
+and not returning rendered page content.
+
+So the accurate conclusion is:
+
+the auditor may have described it as a template file
+but the live response is materially the same for bots
+therefore the core criticism still stands
+
+What your output proves:
+
+Bots do get useful head-level signals
+title
+meta description
+canonical
+FAQ / HowTo / SoftwareApplication schema
+Bots do not get body-level document content
+no <h1>
+no <h2>
+no rendered hero/features/FAQ copy in body
+
+That means inference today is driven by:
+
+meta tags
+structured data
+
+not by:
+
+visible HTML content structure
+
+So the honest verdict is:
+
+The auditor may have framed it imprecisely, but the substantive finding is still correct: the live deployed response is not SSR/prerendered as a readable document.
+
+If you want a one-line rebuttal to send, use this:
+
+The earlier audit was directionally right on the rendering issue, even if it overstated that it had inspected only a template. The live HTTP response also returns an empty root div in the body, with inference relying mainly on metadata and JSON-LD rather than rendered HTML content.
+
+And if you want a one-line technical requirement:
+
+To fix this, the live response must include actual body HTML for the hero, sections, headings, and FAQs, not just schema and meta tags.
