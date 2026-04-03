@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
-    "express": "^5"
+    "express": "^5",
+    "tsx": "4.21.0"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",
