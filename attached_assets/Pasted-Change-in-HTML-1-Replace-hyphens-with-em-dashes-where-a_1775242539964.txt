@@ -1,0 +1,86 @@
+Change in HTML
+1) Replace hyphens with em dashes where agreed
+
+Right now many lines use - instead of —.
+Change these to match the agreed copy and JSON-LD wording.
+
+Examples:
+
+split expenses - all in one place. → split expenses — all in one place.
+Send one link or iMessage - your group joins instantly... → Send one link or iMessage — your group joins instantly...
+Dates decided - no endless back-and-forth. → Dates decided — no endless back-and-forth.
+great for chatting, not for making decisions line should be rendered as WhatsApp → great for chatting, not for making decisions, not with a hyphen after the tool name.
+2) Make visible FAQ text match JSON-LD exactly
+
+The main one:
+
+“How is this different from WhatsApp or Google Sheets?”
+
+In HTML, split it into the same 2-paragraph structure you agreed earlier, not one compressed paragraph.
+
+Also do the same exact punctuation cleanup for:
+
+“What is TRYPS?”
+“Can everyone edit the plan?”
+“How does expense splitting work?”
+3) Remove or decide on the extra hero social-proof line
+
+You currently have:
+
+Join 500+ groups already planning trips together
+
+That was not in the agreed draft.
+Either remove it, or keep it intentionally. It is not wrong, just extra.
+
+4) Optional: restore the exact comparison phrasing
+
+Right now each comparison row renders as:
+
+WhatsApp - great for chatting...
+
+If you want exact match, render:
+
+WhatsApp → great for chatting, not for making decisions
+
+That is cleaner and closer to the agreed version.
+
+5) Optional: restore the exact preview sentence punctuation
+
+Current:
+
+From your group chat to a structured plan everyone follows - invite, poll, plan, split, all in one flow.
+
+Change to:
+
+From your group chat to a structured plan everyone follows — invite, poll, plan, split, all in one flow.
+Change in JSON-LD
+
+Almost nothing. It is basically fine.
+
+Keep as is
+Organization
+WebSite
+SoftwareApplication
+FAQPage
+BreadcrumbList
+Only change JSON-LD if one of these is false
+Remove "Web" from "operatingSystem": "iOS, Web" if there is no real web app
+Remove the offers block if the product is not actually free or /start is not the right public URL
+Replace placeholder social links if they are not real
+Replace logo/image URLs if they do not exist yet
+Priority order
+Must change
+hyphen - to em dash — in visible copy
+visible FAQ copy to match JSON-LD exactly
+Nice to change
+comparison arrow formatting
+preview sentence punctuation
+remove extra hero social-proof line if you want exactness
+Leave alone
+JSON-LD structure itself
+Bottom line
+
+HTML: 4–6 copy consistency fixes
+JSON-LD: likely 0 structural changes, only verify URLs / offer / operatingSystem are true
+
+If you want, I can rewrite the exact lines in home.tsx so you can paste them directly.
