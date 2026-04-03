@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "snZbknKvdOxyeGSbP5ycX"
@@ -36,3 +35,9 @@ id = "t-vEZtqpZbQB_I6C6UuQg"
 uri = "file://artifacts/mockup-sandbox/public/images/tryps-friends.png"
 type = "image"
 title = "Friends at sunset dinner"
+
+[[outputs]]
+id = "4K7k8a5ug7vwicy0W4a7g"
+uri = "file://tryps-seo-audit.txt"
+type = "text"
+title = "TRYPS - HTML & JSON-LD Schemas (index.html)"
