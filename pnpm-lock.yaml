@@ -400,6 +400,10 @@ importers:
         version: 3.25.76
 
   artifacts/tryps-landing:
+    dependencies:
+      express:
+        specifier: ^5
+        version: 5.2.1
     devDependencies:
       '@hookform/resolvers':
         specifier: ^3.10.0
@@ -503,6 +507,9 @@ importers:
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.90.21(react@19.1.0)
+      '@types/express':
+        specifier: ^5
+        version: 5.0.6
       '@types/node':
         specifier: 'catalog:'
         version: 25.3.5
@@ -575,6 +582,9 @@ importers:
       tailwindcss:
         specifier: 'catalog:'
         version: 4.2.1
+      tsx:
+        specifier: 'catalog:'
+        version: 4.21.0
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0

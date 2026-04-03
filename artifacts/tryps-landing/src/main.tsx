@@ -1,5 +1,5 @@
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import { hydrateRoot } from "react-dom/client";
+import Home from "./pages/home";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+hydrateRoot(document.getElementById("root")!, <Home />);
