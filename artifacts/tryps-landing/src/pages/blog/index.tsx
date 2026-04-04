@@ -14,8 +14,8 @@ export default function BlogIndex() {
     {
       href: "/blog/oahu-group-trip-itinerary",
       category: "Destination guides",
-      title: "7 Days in Oahu With Friends: The Group Trip Itinerary That Actually Works",
-      excerpt: "One person wants beach days, someone wants nightlife, someone wants food stops every two hours, and nobody has locked the plan. Here's how to fix that.",
+      title: "7 Days in Oahu With Friends: An Itinerary That Actually Works",
+      excerpt: "One person wants beach days. Someone wants to eat every two hours. Nobody has booked anything. Here's a day-by-day plan with real places, real food, and enough structure to keep the group chat quiet.",
       date: "April 4, 2026",
       readTime: "10 min read",
       image: "/images/blog/oahu-group-trip-hero.png",

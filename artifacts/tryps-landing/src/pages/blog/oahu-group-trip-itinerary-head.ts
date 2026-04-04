@@ -2,16 +2,16 @@ export const oahuGroupTripItineraryHeadTags = `
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
-  <title>7 Days in Oahu With Friends: The Group Trip Itinerary That Actually Works | TRYPS</title>
-  <meta name="description" content="Planning an Oahu trip with friends? Here is a 7-day Oahu group itinerary with Waikiki, North Shore, beach days, food plans, transport tips, and the easiest way to keep group plans organized." />
+  <title>7 Days in Oahu With Friends: An Itinerary That Actually Works | TRYPS</title>
+  <meta name="description" content="A day-by-day Oahu group trip itinerary with real places, real food, and enough structure to keep the group chat quiet. Covers Waikiki, North Shore, Kailua, Chinatown, and where to eat every day." />
   <link rel="canonical" href="https://jointryps.com/blog/oahu-group-trip-itinerary" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#ffffff" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="TRYPS" />
-  <meta property="og:title" content="7 Days in Oahu With Friends: The Group Trip Itinerary That Actually Works" />
-  <meta property="og:description" content="A practical 7-day Oahu itinerary for friend groups, with Waikiki, North Shore, flexible planning, and smarter group coordination." />
+  <meta property="og:title" content="7 Days in Oahu With Friends: An Itinerary That Actually Works" />
+  <meta property="og:description" content="A day-by-day Oahu group trip itinerary with real places, real food, and enough structure to keep the group chat quiet." />
   <meta property="og:url" content="https://jointryps.com/blog/oahu-group-trip-itinerary" />
   <meta property="og:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.png" />
   <meta property="og:image:width" content="1200" />

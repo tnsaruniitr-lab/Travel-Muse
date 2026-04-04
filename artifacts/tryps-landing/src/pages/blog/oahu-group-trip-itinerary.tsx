@@ -1,20 +1,5 @@
 import { ArrowRight, Star } from "lucide-react";
 
-function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
-  src: string; alt: string; width: number; height: number; loading?: "eager" | "lazy";
-}) {
-  return (
-    <figure className="my-10">
-      <img
-        src={src} alt={alt} width={width} height={height} loading={loading}
-        className="w-full rounded-2xl shadow-md"
-        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FEF3C7,#FDE68A,#FEF3C7)" }}
-      />
-      <figcaption className="text-sm text-[#9CA3AF] mt-3 text-center italic">{alt}</figcaption>
-    </figure>
-  );
-}
-
 function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h2
@@ -50,6 +35,15 @@ function DaySection({ num, id, title, children }: {
   );
 }
 
+function Places({ items }: { items: string[] }) {
+  return (
+    <div className="mt-5 pt-4 border-t border-[#F5D78E]/60">
+      <span className="text-[11px] font-black uppercase tracking-widest text-[#D97706] mr-3">Places</span>
+      <span className="text-[#6B5230] text-sm">{items.join(" · ")}</span>
+    </div>
+  );
+}
+
 function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2 mb-5 list-none p-0">
@@ -60,6 +54,21 @@ function BulletList({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
+  src: string; alt: string; width: number; height: number; loading?: "eager" | "lazy";
+}) {
+  return (
+    <figure className="my-10">
+      <img
+        src={src} alt={alt} width={width} height={height} loading={loading}
+        className="w-full rounded-2xl shadow-md"
+        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FEF3C7,#FDE68A,#FEF3C7)" }}
+      />
+      <figcaption className="text-sm text-[#9CA3AF] mt-3 text-center italic">{alt}</figcaption>
+    </figure>
   );
 }
 
@@ -102,7 +111,7 @@ export default function OahuGroupTripItinerary() {
           {/* Article header */}
           <header className="mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] border border-[#F5D78E] text-[#D97706] text-xs font-bold uppercase tracking-widest mb-5">
-              Group trip planning
+              Destination guides
             </div>
 
             <h1
@@ -110,7 +119,7 @@ export default function OahuGroupTripItinerary() {
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               7 Days in Oahu With Friends:{" "}
-              <em className="text-[#D97706] not-italic">The Itinerary That Actually Works</em>
+              <em className="text-[#D97706] not-italic">An Itinerary That Actually Works</em>
             </h1>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-[#9CA3AF] mb-7">
@@ -118,217 +127,152 @@ export default function OahuGroupTripItinerary() {
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
               <time dateTime="2026-04-04">April 4, 2026</time>
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
-              <span>10 min read</span>
+              <span>Updated with current recommendations</span>
             </div>
 
             <p className="text-xl md:text-2xl text-[#1C1208] font-semibold leading-snug mb-5 border-l-4 border-[#D97706] pl-5">
-              Planning an Oahu trip with friends sounds easy until the group chat starts doing what group chats do.
+              One person wants beach days. Someone wants to eat every two hours. Nobody has booked anything.
             </p>
 
-            <p className={`${body} mb-4`}>
-              One person wants beach days, someone wants nightlife, someone wants food stops every two hours, and nobody has locked the plan.
-            </p>
             <p className={`${body} mb-8`}>
-              This 7-day Oahu itinerary is built for friend groups who want the trip to feel fun, flexible, and actually organized.
+              Here's a day-by-day Oahu plan with real places, real food, and enough structure that the group chat can finally go quiet.
             </p>
 
             <ArticleImage
               src="/images/blog/oahu-group-trip-hero.png"
-              alt="Friends on a Hawaiian beach at golden hour, planning their Oahu group trip"
+              alt="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset"
               width={1200}
               height={675}
               loading="eager"
             />
           </header>
 
-          {/* Quick Answer */}
-          <section className="mb-14 rounded-3xl overflow-hidden border border-[#F5D78E] shadow-sm" aria-labelledby="quick-answer">
+          {/* Before you arrive */}
+          <section className="mb-14 rounded-3xl overflow-hidden border border-[#F5D78E] shadow-sm" aria-labelledby="before-arrive">
             <div className="bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-6 py-4 flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-black">✓</div>
+              <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-black">!</div>
               <h2
-                id="quick-answer"
+                id="before-arrive"
                 className="text-lg font-bold text-white"
                 style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
               >
-                Quick answer: what is the best way to plan an Oahu group trip?
+                Before you arrive: the three things to lock in
               </h2>
             </div>
-            <div className="bg-white px-6 py-5">
-              <p className="text-[#6B5230] mb-4 text-sm font-medium">
-                The easiest way to plan an Oahu trip with friends is to stay in Waikiki, keep the first day light, build around 2–3 anchor group days, do one proper North Shore day, leave room for split plans, and keep the itinerary and shared costs visible to everyone in one place.
-              </p>
-              <ul className="space-y-3 list-none p-0">
-                {[
-                  "Stay in Waikiki as your base",
-                  "Keep day one easy",
-                  "Plan 2–3 full-group anchor days",
-                  "Leave room for downtime and split plans",
-                  "Do a proper North Shore day",
-                  "Lock transport and expense tracking early",
-                  "Keep the plan visible to the whole group",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4">
-                    <span className="w-7 h-7 rounded-full bg-[#D97706] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm shadow-[#D97706]/30">{i + 1}</span>
-                    <span className="text-[#1C1208] text-base font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-white px-6 py-5 space-y-3">
+              {[
+                "Book Hanauma Bay snorkeling in advance — it sells out days ahead and you can't walk in",
+                "Reserve at least one dinner early (Mahina & Sun's, The Pig and the Lady, or MW Restaurant fill up fast)",
+                "Sort transport on day one — either rent a car for North Shore day or book a shuttle through Roberts Hawaii",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <ArrowRight className="h-4 w-4 text-[#D97706] mt-1 shrink-0" />
+                  <p className="text-[#1C1208] text-[15px] leading-relaxed">{item}</p>
+                </div>
+              ))}
             </div>
-          </section>
-
-          {/* Why Oahu works */}
-          <section className="mb-14" aria-labelledby="why-oahu-works">
-            <SectionHeading id="why-oahu-works">Why Oahu works so well for group trips</SectionHeading>
-            <p className={`${body} mb-4`}>
-              Oahu works especially well for friend groups because it gives you different kinds of days without forcing complicated logistics. You can do Waikiki beach mornings, easy lunches, sunset plans, late-night food runs, and then switch into a proper island day with a North Shore drive and beach stops.
-            </p>
-            <p className={body}>
-              That flexibility matters. The best group trips are not packed every hour. They have rhythm.
-            </p>
-          </section>
-
-          {/* Where to stay */}
-          <section className="mb-14" aria-labelledby="where-to-stay">
-            <SectionHeading id="where-to-stay">Where to stay in Oahu for a group trip</SectionHeading>
-            <p className={`${body} mb-4`}>
-              For most friend groups, Waikiki is the easiest base. It is not the quietest part of Oahu, but it solves the biggest group problems: food options, walkability, beach access, nightlife, and simpler coordination.
-            </p>
-            <BulletList items={[
-              "Easy breakfast, lunch, and dinner options",
-              "Walkable meeting points",
-              "Fast access to the beach",
-              "Good for groups moving at different speeds",
-              "Better for casual nights and last-minute plans",
-            ]} />
-            <p className={body}>
-              If possible, book a place with shared common space. A balcony, living room, or hangout area matters more on a group trip than people expect.
-            </p>
           </section>
 
           {/* Day 1 */}
-          <DaySection num={1} id="day-1" title="Arrive, settle in, and keep it light">
-            <p className={`${body} mb-4`}>Most groups make the same mistake on arrival day: they land and try to do too much. Do not do that.</p>
-            <p className={body}>
-              Use day one to check in, drop bags, walk Waikiki, grab food, and let the group settle into vacation mode. A beach walk, coffee stop, or casual dinner is enough.
-            </p>
+          <DaySection num={1} id="day-1" title="Arrive, eat, decompress">
+            <p className={`${body} mb-4`}>Most flights into Honolulu land mid-afternoon. By the time the group clears baggage and gets to Waikiki, it's early evening and everyone is tired and slightly annoyed. Don't fight this.</p>
+            <p className={`${body} mb-4`}>Check into your place, change, and walk down Kalakaua Avenue to Duke's Waikiki for the first group meal. It's touristy, yes — but it's open-air, reliably good for fish tacos and mai tais, and right on the beach. It's a good first-night vibe, not a special occasion restaurant.</p>
+            <p className={body}>After dinner, walk down to the beach. The water at night is warm and the lights of Waikiki behind you look great. No agenda. That's it for day one.</p>
+            <div className="mt-6 bg-[#FFFBF0] rounded-2xl border border-[#F5D78E]/60 px-5 py-4">
+              <p className="text-sm font-semibold text-[#1C1208] mb-1">Where to stay</p>
+              <p className="text-sm text-[#6B5230] leading-relaxed">For most groups, the Outrigger Waikiki or Alohilani Resort hits the right balance of location and price. If you want shared space, look for vacation rentals in the Ala Moana area — bigger living rooms, easier for groups of 6+.</p>
+            </div>
+            <Places items={["Duke's Waikiki", "Waikiki Beach (evening walk)", "Kalakaua Ave stroll"]} />
           </DaySection>
 
           {/* Day 2 */}
-          <DaySection num={2} id="day-2" title="Beach day, coffee, and easy momentum">
-            <p className={`${body} mb-4`}>
-              This is your first real everyone-is-here day. Keep it simple with coffee, beach time, an easy food plan, and no over-engineered schedule.
-            </p>
-            <p className={body}>The goal is not maximum productivity. The goal is getting the group fully into the trip.</p>
+          <DaySection num={2} id="day-2" title="The first real beach day">
+            <p className={`${body} mb-4`}>Start at Leonard's Bakery on Kapahulu Avenue for malasadas before 9am. Get the original sugar and the haupia cream-filled. This becomes the group's first shared memory and a recurring debate for the rest of the trip.</p>
+            <p className={`${body} mb-4`}>From there, head to Kaimana Beach (also called Sans Souci) at the quiet end of Waikiki, past the Natatorium. It's less crowded than central Waikiki, the water is calmer, and there's good snorkeling near the rock wall. Grab a mat from ABC Store on the way.</p>
+            <p className={`${body} mb-4`}>Lunch at Marukame Udon — the line looks long but moves fast. Under $10 a person, great udon, totally chaotic in the best way. Perfect for a hungry group.</p>
+            <p className={`${body} mb-4`}>Afternoon: surf lessons. The Waikiki Beach Boys operate right off the beach and get most beginners standing on their first wave. Book ahead for groups. Even people who are sure they'll hate it usually love it.</p>
+            <p className={body}>Dinner: walk to Ono Seafood on Kapahulu for the best poke on the island. Get there before 5pm or expect to wait. Eat it on the beach.</p>
+            <Places items={["Leonard's Bakery", "Kaimana Beach", "Marukame Udon", "Waikiki Beach Boys surf lessons", "Ono Seafood"]} />
           </DaySection>
 
           {/* Day 3 */}
-          <DaySection num={3} id="day-3" title="Build your first real full-group day">
-            <p className={`${body} mb-4`}>
-              By day three, the group usually wants something more memorable. This is a good day for a beach block, one shared activity, a proper dinner reservation, and something fun at night.
-            </p>
-            <p className={body}>
-              Longer trips only feel like true group trips when you deliberately create moments where everyone is actually together.
-            </p>
+          <DaySection num={3} id="day-3" title="Diamond Head + Chinatown night">
+            <p className={`${body} mb-4`}>Leave by 7am for Diamond Head Crater. It takes about 45 minutes each way, it's not technical, and the view from the top is one of the best in Hawaii. Go early because by 9am it gets crowded and hot. Parking is limited — Uber or drive and arrive early.</p>
+            <p className={`${body} mb-4`}>After the hike, shower and get acai bowls at Banan in Waikiki. They're made from frozen bananas and local fruit — lighter and fresher than most acai shops and exactly what you want after a morning hike.</p>
+            <p className={`${body} mb-4`}>Afternoon is free. Some people will nap. Some will go back to the beach. Let it happen.</p>
+            <p className={`${body} mb-4`}>For dinner, go to The Pig and the Lady in Chinatown. It's Vietnamese-inspired, locally sourced, and genuinely one of the best restaurants in the state. Book at least a week ahead for groups. The bone broth pho and the lamb tartare are the moves.</p>
+            <p className={body}>After dinner, stay in Chinatown. Bar 35 is a good casual next stop — great beer list, outdoor seating. Then walk to Tchin Tchin for cocktails and dancing if the group has legs. Chinatown is Honolulu's actual nightlife neighborhood — it's more interesting and less manufactured than anything in Waikiki.</p>
+            <div className="mt-5 bg-[#FEF3C7]/60 rounded-xl border border-[#F5D78E] px-4 py-3">
+              <p className="text-sm text-[#6B5230] leading-relaxed"><span className="font-bold text-[#D97706]">Booking note:</span> The Pig and the Lady doesn't take same-day reservations. If you didn't book ahead, go to Livestock Tavern instead — same Chinatown block, equally good, slightly easier to walk into.</p>
+            </div>
+            <Places items={["Diamond Head hike", "Banan acai", "The Pig and the Lady", "Bar 35", "Tchin Tchin"]} />
           </DaySection>
 
           {/* Day 4 */}
           <DaySection num={4} id="day-4" title="North Shore day">
-            <p className={`${body} mb-4`}>
-              If you do Oahu with friends and skip the North Shore, the trip usually feels incomplete.
-            </p>
-            <p className={`${body} mb-4`}>
-              Start early enough, keep the route loose, and leave room for stops instead of forcing every location into a rigid schedule.
-            </p>
-            <BulletList items={[
-              "One or two beach stops",
-              "Surf checks at Pipeline or Sunset Beach",
-              "Casual food",
-              "Turtle spotting if you get lucky",
-              "Unplanned pauses that make the day better",
-            ]} />
+            <p className={`${body} mb-4`}>This is the day the trip turns. Leave by 8am. Take H-2 north through the pineapple fields and come down through Haleiwa. The drive itself is part of it.</p>
+            <p className={`${body} mb-4`}>First stop: Waimea Bay. In summer the water is flat and you can swim and jump from the rock. In winter (October–April) the waves are enormous and you watch from the shore. Either version is worth stopping for.</p>
+            <p className={`${body} mb-4`}>Keep going to Sunset Beach and Pipeline (Ehukai Beach Park). Even if the surf is flat, standing on Pipeline and knowing what happens there in winter is its own thing.</p>
+            <p className={`${body} mb-4`}>Lunch is at Giovanni's Shrimp Truck in Haleiwa. There will be a line. Get the scampi — the garlic butter soaks into the rice in a way that nothing else quite replicates. Eat at the picnic tables under the trees.</p>
+            <p className={`${body} mb-4`}>Mandatory stop: Matsumoto's Shave Ice in Haleiwa town. Get it with ice cream at the bottom. Walk around Haleiwa for 20 minutes — it has good surf shops and a slower pace that feels different from Waikiki.</p>
+            <p className={`${body} mb-4`}>On the way back, if anyone spots turtles on the beach near Laniakea, stop. They're often right there on the sand. Keep distance and don't touch them.</p>
+            <p className={body}>Dinner back in town: Rainbow Drive-In on Kapahulu for a plate lunch. It's a Honolulu institution — open since 1961, cash only, cheap, perfect for a late return from a long day.</p>
             <ArticleImage
               src="/images/blog/oahu-north-shore-day.png"
-              alt="Friends driving along the scenic North Shore coastline of Oahu, Hawaii"
+              alt="Friends on scooters along Kamehameha Highway toward North Shore and Turtle Bay"
               width={1200}
               height={675}
             />
+            <Places items={["Waimea Bay", "Pipeline", "Sunset Beach", "Giovanni's Shrimp Truck", "Matsumoto's Shave Ice", "Laniakea turtle beach", "Rainbow Drive-In"]} />
           </DaySection>
 
           {/* Day 5 */}
-          <DaySection num={5} id="day-5" title="Roaming day or island movement day">
-            <p className={`${body} mb-4`}>
-              For the right group, this becomes the most fun day. Not because it is the most impressive activity, but because movement and spontaneity create shared moments naturally.
-            </p>
-            <p className={body}>
-              Pick a rough route, keep a few loose stops in mind, and leave room for beach pauses, food, and random detours.
-            </p>
+          <DaySection num={5} id="day-5" title="Kailua side + Hanauma Bay split">
+            <p className={`${body} mb-4`}>This is a good day to split by energy level. Half the group can go to Hanauma Bay for snorkeling (book online in advance — non-negotiable). The water clarity is exceptional and the reef is full. Go first thing; by midday it's crowded and the parking situation gets difficult.</p>
+            <p className={`${body} mb-4`}>The other half can drive 30 minutes to the windward side to Kailua Beach — consistently rated one of the best beaches in the US, calm turquoise water, almost no current, and far fewer people than Waikiki. Rent kayaks from Kailua Beach Adventures and paddle out to the Mokulua Islands. It takes about 20 minutes each way and you can land on the beach there.</p>
+            <p className={`${body} mb-4`}>Both groups converge at lunch in Kailua town. Cinnamon's Restaurant does a famous guava chiffon pancake that's worth ordering even if you've already eaten. Then browse the shops on Kailua Road.</p>
+            <p className={body}>Evening: sunset at Puu Ualakaa State Park (Tantalus Lookout). It's a short drive up into the hills above Honolulu and the view of the city and Diamond Head at dusk is one of the most underrated spots on the island. Get there 30 minutes before sunset.</p>
+            <Places items={["Hanauma Bay snorkeling", "Kailua Beach", "Mokulua Islands kayak", "Cinnamon's Restaurant", "Tantalus Lookout sunset"]} />
           </DaySection>
 
           {/* Day 6 */}
-          <DaySection num={6} id="day-6" title="Slower day, better food, and one last good night">
-            <p className={`${body} mb-4`}>
-              Every group trip needs one intentionally lighter day. Sleep more, do smoothies or acai, keep the beach casual, and save your energy for one dinner everyone commits to.
-            </p>
+          <DaySection num={6} id="day-6" title="Slow morning, the best dinner of the trip">
+            <p className={`${body} mb-4`}>Sleep late. Go to Eggs 'n Things on Saratoga Road for a proper breakfast — the macadamia nut pancakes and the guava syrup are the reasons people queue here. Don't rush.</p>
+            <p className={`${body} mb-4`}>Ala Moana Beach Park in the late morning if anyone wants one last calm swim. It's bigger and quieter than Waikiki and there's a reef that keeps the water flat.</p>
+            <p className={`${body} mb-4`}>If the group wants to do one cultural stop, the Bishop Museum is the best natural history and Hawaiian culture museum in the state. Two hours there is enough.</p>
+            <p className={`${body} mb-4`}>Tonight is the dinner you've been saving. MW Restaurant on Beretania Street is chef Michelle Karr-Ueoka and Wade Ueoka's flagship — refined local cuisine, exceptional execution, and the desserts alone justify the reservation. If you made one booking before the trip, make it this one. Get the tasting menu if the group is up for it.</p>
+            <p className={body}>After dinner: one last walk along Waikiki at night. The beach is different at night — fewer people, warmer air, and by now you know it well enough to feel like it's yours.</p>
+            <div className="mt-5 bg-[#FEF3C7]/60 rounded-xl border border-[#F5D78E] px-4 py-3">
+              <p className="text-sm text-[#6B5230] leading-relaxed"><span className="font-bold text-[#D97706]">Backup dinner:</span> Mahina &amp; Sun's at the Surfjack Hotel is nearly as good, more relaxed in vibe, and takes reservations further in advance. Either works as your group's best meal.</p>
+            </div>
+            <Places items={["Eggs 'n Things", "Ala Moana Beach Park", "Bishop Museum", "MW Restaurant"]} />
           </DaySection>
 
           {/* Day 7 */}
-          <DaySection num={7} id="day-7" title="Final beach, last meal, clean exit">
-            <p className={`${body} mb-4`}>
-              The final day should not be overpacked. If timing allows, do one last beach stop or one memorable meal, then keep checkout and departure smooth.
-            </p>
-            <p className={body}>Final-day logistics are boring, but they decide how the trip ends.</p>
+          <DaySection num={7} id="day-7" title="Last beach, last meal, clean exit">
+            <p className={`${body} mb-4`}>Keep it simple. One last Leonard's malasada run if the energy is there. An hour at whatever beach the group has liked best all week. Take the photos you forgot to take earlier.</p>
+            <p className={`${body} mb-4`}>For the last meal before the airport: Side Street Inn on Hopaka Street does the best fried rice on the island. It's where Honolulu's chefs go after their own services close. The pork chops and the garlic chicken are the orders.</p>
+            <p className={body}>Build in real buffer for the airport. Honolulu airport security on a Sunday afternoon can take 45 minutes and nobody wants to end the trip in a sprint.</p>
+            <Places items={["Leonard's Bakery", "Side Street Inn", "One last beach hour"]} />
           </DaySection>
 
-          {/* Food strategy */}
-          <section className="mb-14" aria-labelledby="food">
-            <SectionHeading id="food">Food strategy for Oahu group trips</SectionHeading>
-            <p className={`${body} mb-4`}>You do not need every meal booked. You just need a few reliable anchors.</p>
-            <BulletList items={[
-              "One good casual group dinner",
-              "One repeatable breakfast or smoothie stop",
-              "One easy late-night fallback",
-            ]} />
-            <p className={body}>That rhythm works better than trying to make every meal feel like an event.</p>
-          </section>
-
-          {/* What to lock in */}
-          <section className="mb-14" aria-labelledby="plan-ahead">
-            <SectionHeading id="plan-ahead">What to lock in before the trip</SectionHeading>
-            <p className={`${body} mb-4`}>
-              Before the trip starts, lock the accommodation, rough day structure, confirmed headcount, major transport decisions, one or two dinner anchors, and how shared costs will be tracked.
-            </p>
-            <p className={body}>
-              You do not need a military schedule. You do need enough structure that the whole group is not asking the same question every morning.
-            </p>
-          </section>
-
-          {/* What makes it work */}
-          <section className="mb-14" aria-labelledby="why-coordination-matters">
-            <SectionHeading id="why-coordination-matters">What makes an Oahu group trip actually work</SectionHeading>
-            <p className={`${body} mb-4`}>
-              The trip usually does not fail because of the destination. It fails because of coordination, unclear expectations, and scattered planning across chat threads.
-            </p>
-            <p className={`${body} mb-5`}>The best Oahu group trips usually have:</p>
-            <BulletList items={[
-              "2–3 big shared days",
-              "2 easy social or beach days",
-              "1 slower reset day",
-              "Enough spontaneity",
-              "One visible plan the entire group can follow",
-            ]} />
-          </section>
-
-          {/* Takeaway + CTA */}
-          <section className="mb-14" aria-labelledby="cta">
-            <SectionHeading id="cta">Make the fun part spontaneous and the logistics clear</SectionHeading>
-            <p className={`${body} mb-4`}>
-              If you are planning an Oahu trip with friends, keep the fun flexible and the coordination simple.
-            </p>
-            <p className={`${body} mb-6`}>
-              TRYPS helps your group keep dates, itinerary, and shared costs in one place, so the trip feels easy before it even starts.
-            </p>
-            <div className="bg-[#FEF3C7] border-l-4 border-[#D97706] rounded-r-2xl px-6 py-5">
-              <p className="text-[#1C1208] font-semibold text-base leading-relaxed">Keep the plan visible to everyone, lock transport and expenses early, and let the good days happen naturally.</p>
+          {/* Short version summary */}
+          <section className="mb-14" aria-labelledby="short-version">
+            <SectionHeading id="short-version">The short version</SectionHeading>
+            <div className="bg-white rounded-3xl border border-[#F5D78E]/60 divide-y divide-[#F5D78E]/60 overflow-hidden">
+              {[
+                { label: "3 big shared days", value: "North Shore, Kailua split, Chinatown night" },
+                { label: "2 dinners to book ahead", value: "The Pig and the Lady or MW Restaurant" },
+                { label: "1 thing to pre-book online", value: "Hanauma Bay — days in advance, non-negotiable" },
+              ].map((row, i) => (
+                <div key={i} className="flex items-start gap-4 px-5 py-4">
+                  <span className="w-7 h-7 rounded-full bg-[#D97706] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm shadow-[#D97706]/30 mt-0.5">{i + 1}</span>
+                  <div>
+                    <p className="font-bold text-[#1C1208] text-base">{row.label}</p>
+                    <p className="text-[#6B5230] text-sm">{row.value}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -338,10 +282,10 @@ export default function OahuGroupTripItinerary() {
             <div className="space-y-3">
               {[
                 { q: "Is Oahu good for a group trip with friends?", a: "Yes. Oahu works especially well for friend groups because it combines beaches, food, nightlife, and day trips without making logistics overly complicated." },
-                { q: "Where should a group stay in Oahu?", a: "For most friend trips, Waikiki is the easiest base because it is walkable, active, and much easier for group coordination." },
-                { q: "How many days do you need in Oahu with friends?", a: "Seven days is a strong trip length for a group. It gives you enough time for relaxed Waikiki days and a proper North Shore day without rushing." },
-                { q: "What should you plan in advance for a group trip to Oahu?", a: "Lock accommodation, transport approach, rough itinerary structure, and expense tracking before the trip begins." },
-                { q: "What is the best way to organize an Oahu group trip?", a: "Use one shared system for trip details, itinerary, dates, and costs so everyone knows what is happening." },
+                { q: "Where should a group stay in Oahu?", a: "For most friend trips, Waikiki is the easiest base because it is walkable, active, and much easier for group coordination. The Outrigger Waikiki or Alohilani Resort are solid choices; vacation rentals in Ala Moana work well for larger groups." },
+                { q: "How many days do you need in Oahu with friends?", a: "Seven days is a strong trip length for a group. It gives you enough time for relaxed Waikiki days, a proper North Shore day, a windward side excursion, and one or two great dinner nights without rushing." },
+                { q: "What should you plan in advance for a group trip to Oahu?", a: "Lock Hanauma Bay (sells out days ahead), at least one dinner reservation (The Pig and the Lady or MW Restaurant), and your transport approach for the North Shore before the trip begins." },
+                { q: "What is the best way to organize an Oahu group trip?", a: "Use one shared system for the itinerary, dates, and costs so everyone knows what is happening and nobody is managing the plan solo through the group chat." },
               ].map((faq, i) => (
                 <details key={i} className="group bg-white rounded-2xl border border-[#F5D78E]/50 px-5 overflow-hidden open:border-[#D97706] open:shadow-sm transition-all">
                   <summary className="flex justify-between items-center py-4 cursor-pointer list-none select-none gap-4">
