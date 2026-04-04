@@ -194,6 +194,7 @@ export default function Home() {
             <a href="#faq" className="hover:text-[#D97706] transition-colors">FAQ</a>
             <a href="/about" className="hover:text-[#D97706] transition-colors">About</a>
             <a href="/group-trip-planning-guide" className="hover:text-[#D97706] transition-colors">Guide</a>
+            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
           </div>
           <a href="/waitlist" className="bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#D97706]/20 transition-colors">
             Join waitlist
@@ -663,6 +664,7 @@ export default function Home() {
               <a href="/terms" className="hover:text-white transition-colors">Terms</a>
               <a href="/contact" className="hover:text-white transition-colors">Contact</a>
               <a href="/group-trip-planning-guide" className="hover:text-white transition-colors">Guide</a>
+              <a href="/blog" className="hover:text-white transition-colors">Blog</a>
             </nav>
           </div>
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
