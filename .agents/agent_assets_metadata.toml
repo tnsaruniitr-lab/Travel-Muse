@@ -60,6 +60,18 @@ uri = "file://artifacts/tryps-landing/public/images/blog/how-to-plan-group-trip-
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "CIxdXSECORYggW-QBlWGN"
+uri = "file://artifacts/tryps-landing/public/images/blog/oahu-group-trip-hero.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "PxbOpkMAIdh5-v7HBi-E0"
+uri = "file://artifacts/tryps-landing/public/images/blog/oahu-north-shore-day.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "4K7k8a5ug7vwicy0W4a7g"
 uri = "file://tryps-seo-audit.txt"

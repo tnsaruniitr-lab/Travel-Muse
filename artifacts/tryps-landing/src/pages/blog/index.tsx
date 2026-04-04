@@ -11,6 +11,15 @@ export default function BlogIndex() {
       readTime: "8 min read",
       image: "/images/blog/how-to-plan-group-trip-hero.png",
     },
+    {
+      href: "/blog/oahu-group-trip-itinerary",
+      category: "Destination guides",
+      title: "7 Days in Oahu With Friends: The Group Trip Itinerary That Actually Works",
+      excerpt: "One person wants beach days, someone wants nightlife, someone wants food stops every two hours, and nobody has locked the plan. Here's how to fix that.",
+      date: "April 4, 2026",
+      readTime: "10 min read",
+      image: "/images/blog/oahu-group-trip-hero.png",
+    },
   ];
 
   return (
@@ -56,14 +65,13 @@ export default function BlogIndex() {
         </div>
 
         {/* Articles */}
-        <div className="max-w-3xl mx-auto px-6 py-14">
+        <div className="max-w-3xl mx-auto px-6 py-14 space-y-8">
 
-          {/* Featured post */}
           {posts.map((post) => (
             <a
               key={post.href}
               href={post.href}
-              className="group block bg-white rounded-3xl border border-[#F5D78E]/60 overflow-hidden shadow-sm hover:shadow-md hover:border-[#D97706]/40 transition-all mb-8"
+              className="group block bg-white rounded-3xl border border-[#F5D78E]/60 overflow-hidden shadow-sm hover:shadow-md hover:border-[#D97706]/40 transition-all"
             >
               <div className="aspect-[16/7] overflow-hidden">
                 <img
@@ -88,7 +96,7 @@ export default function BlogIndex() {
                 <p className="text-[#6B5230] text-base leading-relaxed mb-5">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 text-sm text-[#9CA3AF]">
-                    <time dateTime="2026-04-04">{post.date}</time>
+                    <time>{post.date}</time>
                     <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
                     <span>{post.readTime}</span>
                   </div>
