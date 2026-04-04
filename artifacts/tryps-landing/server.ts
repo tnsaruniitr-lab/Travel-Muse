@@ -1,4 +1,5 @@
 import express from "express";
+import { createServer as createHttpServer } from "http";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -10,13 +11,14 @@ const port = Number(process.env.PORT) || 3000;
 const base = process.env.BASE_PATH ?? "/";
 
 const app = express();
+const httpServer = createHttpServer(app);
 
 let vite: ViteDevServer | undefined;
 
 if (!isProd) {
   const { createServer } = await import("vite");
   vite = await createServer({
-    server: { middlewareMode: true },
+    server: { middlewareMode: true, hmr: { server: httpServer } },
     appType: "custom",
     base,
   });
@@ -68,6 +70,6 @@ app.use(async (req, res) => {
   }
 });
 
-app.listen(port, "0.0.0.0", () => {
+httpServer.listen(port, "0.0.0.0", () => {
   console.log(`SSR server listening on http://0.0.0.0:${port}`);
 });
