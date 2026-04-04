@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Star, MessageCircle, Calendar, MapPin, Wallet, Plane, Globe, XCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, Star, MessageCircle, Calendar, MapPin, Wallet, Globe, XCircle } from "lucide-react";
 
 /* ─── Inline App Mockup for Hero ─── */
 function HeroMockup() {
@@ -66,7 +66,7 @@ function HeroMockup() {
   );
 }
 
-/* ─── Product Flow Preview (replaces external image) ─── */
+/* ─── Product Flow Preview ─── */
 function ProductPreview() {
   const panels = [
     {
@@ -177,6 +177,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFBF0] text-[#1C1208] font-sans">
 
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-[#D97706] focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:font-bold">Skip to content</a>
+
       {/* ── HEADER / NAV ── */}
       <header className="sticky top-0 z-50 bg-[#FFFBF0]/85 backdrop-blur-md border-b border-[#F5D78E]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
@@ -188,8 +190,10 @@ export default function Home() {
             <a href="#features" className="hover:text-[#D97706] transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-[#D97706] transition-colors">How it works</a>
             <a href="#comparison" className="hover:text-[#D97706] transition-colors">Comparison</a>
+            <a href="#use-cases" className="hover:text-[#D97706] transition-colors">Use cases</a>
             <a href="#faq" className="hover:text-[#D97706] transition-colors">FAQ</a>
-            <a href="/download" className="hover:text-[#D97706] transition-colors">Download app</a>
+            <a href="/about" className="hover:text-[#D97706] transition-colors">About</a>
+            <a href="/group-trip-planning-guide" className="hover:text-[#D97706] transition-colors">Guide</a>
           </div>
           <a href="/waitlist" className="bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#D97706]/20 transition-colors">
             Join waitlist
@@ -197,7 +201,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
+      <main id="main-content">
 
         {/* ── HERO ── */}
         <section aria-labelledby="hero-title" className="relative pt-12 md:pt-20 pb-12 md:pb-24 overflow-hidden">
@@ -207,7 +211,6 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
-              {/* Text - 3 columns */}
               <div className="lg:col-span-3 pt-6">
                 <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FEF3C7] text-[#D97706] font-bold text-sm mb-5 md:mb-8 border border-[#F5D78E]">
                   <Star className="h-4 w-4 fill-[#D97706]" />
@@ -244,17 +247,11 @@ export default function Home() {
                   </a>
                 </div>
 
-                <div>
-                  <p className="text-base font-medium text-[#1C1208] mb-1">
-                    500+ trips planned. Groups lock dates <strong className="text-[#D97706]">3&times; faster</strong> than over chat.
-                  </p>
-                  <small className="text-xs text-[#9CA3AF]">
-                    *Based on trips planned on TRYPS vs. self-reported coordination time over WhatsApp.
-                  </small>
-                </div>
+                <p className="text-sm text-[#6B5230] leading-relaxed">
+                  Trusted by friend groups planning birthdays, bachelor trips, reunions, weekend getaways, and long vacations.
+                </p>
               </div>
 
-              {/* Mockup - 2 columns */}
               <div className="lg:col-span-2 pt-6">
                 <HeroMockup />
               </div>
@@ -262,8 +259,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── TRUST STRIP ── */}
+        <section aria-labelledby="trust-title" className="py-10 bg-white border-t border-[#F5D78E]/30">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 id="trust-title" className="text-lg font-black text-[#1C1208] mb-5 text-center">Built for real group-trip coordination</h2>
+            <ul className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-10 list-none p-0">
+              {[
+                "No app required for invitees",
+                "Dates, itinerary, and expenses in one shared flow",
+                "Used for weekend trips, reunions, and destination trips",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2 text-[#6B5230] text-sm font-medium">
+                  <CheckCircle2 className="h-4 w-4 text-[#D97706] shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* ── FEATURES ── */}
-        <section id="features" aria-labelledby="features-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
+        <section id="features" aria-labelledby="features-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Everything you need</p>
@@ -280,7 +296,7 @@ export default function Home() {
                 { n: "04", title: "No awkward money conversations", desc: "Track who paid what and who owes whom — settle up cleanly at the end.", color: "bg-[#8B5CF6]", icon: Wallet },
                 { n: "05", title: "Know what everyone actually wants", desc: "Capture preferences early so you don't plan a trip half the group isn't excited about.", color: "bg-[#EC4899]", icon: Globe },
               ].map((f) => (
-                <li key={f.title} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <li key={f.title} className="bg-white rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className={`${f.color} h-12 w-12 rounded-2xl flex items-center justify-center text-white mb-5 shadow-lg`}>
                     <f.icon className="h-6 w-6" />
                   </div>
@@ -290,7 +306,7 @@ export default function Home() {
               ))}
             </ul>
 
-            <div className="text-center bg-[#FFFBF0] rounded-3xl p-7 md:p-10 border border-[#F5D78E]/30">
+            <div className="text-center bg-white rounded-3xl p-7 md:p-10 border border-[#F5D78E]/30">
               <p className="text-xl font-black text-[#1C1208] mb-4">Start your group trip</p>
               <a href="/start" className="inline-flex items-center gap-2 bg-[#D97706] hover:bg-[#B45309] text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg shadow-[#D97706]/20 transition-colors">
                 Create trip
@@ -301,7 +317,7 @@ export default function Home() {
         </section>
 
         {/* ── HOW IT WORKS ── */}
-        <section id="how-it-works" aria-labelledby="how-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="how-it-works" aria-labelledby="how-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Simple process</p>
@@ -312,13 +328,13 @@ export default function Home() {
 
             <ol className="grid lg:grid-cols-4 gap-6 list-none p-0">
               {[
-                { n: "1", title: "Create and invite", desc: "Start a trip in seconds. Share a link or iMessage. Everyone joins instantly." },
-                { n: "2", title: "Lock dates fast", desc: "One availability poll. TRYPS finds what works - no chasing people." },
-                { n: "3", title: "Plan together", desc: "Add places, stays, activities. Everyone contributes to one shared plan." },
-                { n: "4", title: "Split expenses simply", desc: "Log costs as they happen. Everyone sees what they owe - no spreadsheets, no stress." },
+                { n: "1", title: "Create and invite", desc: "Start a trip in seconds. Share a link or iMessage so everyone joins instantly." },
+                { n: "2", title: "Lock dates fast", desc: "Run one availability poll so your group can pick dates without endless back-and-forth." },
+                { n: "3", title: "Plan together", desc: "Add places, stays, activities, and notes to one shared itinerary everyone can update." },
+                { n: "4", title: "Split expenses simply", desc: "Track shared costs during the trip so everyone can see balances and settle up cleanly." },
               ].map((item) => (
-                <li key={item.n} className="bg-white rounded-3xl p-6 md:p-8 text-center border border-[#F5D78E]/30 hover:border-[#D97706] hover:shadow-xl transition-all duration-300 group">
-                  <div className="h-14 w-14 bg-[#FEF3C7] rounded-full flex items-center justify-center text-2xl font-black text-[#D97706] mx-auto mb-5 border-4 border-[#FFFBF0] shadow-md group-hover:scale-110 transition-transform">
+                <li key={item.n} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 text-center border border-[#F5D78E]/30 hover:border-[#D97706] hover:shadow-xl transition-all duration-300 group">
+                  <div className="h-14 w-14 bg-[#FEF3C7] rounded-full flex items-center justify-center text-2xl font-black text-[#D97706] mx-auto mb-5 border-4 border-white shadow-md group-hover:scale-110 transition-transform">
                     {item.n}
                   </div>
                   <h3 className="text-lg font-black mb-3 text-[#1C1208]">{item.title}</h3>
@@ -330,7 +346,7 @@ export default function Home() {
         </section>
 
         {/* ── PROBLEM VS SOLUTION ── */}
-        <section aria-labelledby="problem-solution-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="problem-solution-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-5xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <h2 id="problem-solution-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
@@ -339,7 +355,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 items-stretch">
-              <div className="bg-white rounded-[2rem] p-7 md:p-10 border border-gray-200 shadow-sm">
+              <article className="bg-white rounded-[2rem] p-7 md:p-10 border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3 mb-7">
                   <XCircle className="h-7 w-7 text-red-400 shrink-0" />
                   <h3 className="text-xl font-black text-gray-400">Without TRYPS</h3>
@@ -358,9 +374,9 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
 
-              <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-[2rem] p-7 md:p-10 text-white shadow-xl md:-translate-y-4">
+              <article className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-[2rem] p-7 md:p-10 text-white shadow-xl md:-translate-y-4">
                 <div className="flex items-center gap-3 mb-7">
                   <CheckCircle2 className="h-7 w-7 text-white shrink-0" />
                   <h3 className="text-xl font-black">With TRYPS</h3>
@@ -371,7 +387,7 @@ export default function Home() {
                     "Dates locked in minutes, not weeks",
                     "Everyone aligned and contributing",
                     "Clear itinerary the whole group follows",
-                    "Expenses handled automatically",
+                    "Expenses handled in one place",
                   ].map((t) => (
                     <li key={t} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5 opacity-80" />
@@ -379,13 +395,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             </div>
           </div>
         </section>
 
         {/* ── COMPARISON ── */}
-        <section id="comparison" aria-labelledby="comparison-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="comparison" aria-labelledby="comparison-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Why TRYPS</p>
@@ -396,57 +412,56 @@ export default function Home() {
 
             <ul className="space-y-4 mb-10 list-none p-0">
               {[
-                { tool: "WhatsApp", verdict: "great for chatting, not for making decisions" },
-                { tool: "Google Sheets", verdict: "flexible, but manual and fragmented" },
-                { tool: "Splitwise", verdict: "solves money, not planning" },
-                { tool: "Wanderlog", verdict: "built for individuals, not group coordination" },
+                { tool: "WhatsApp", verdict: "great for chatting, but not built for locking dates, structuring trip plans, or tracking shared expenses. Important details disappear in the thread, and decisions often stall because nobody owns the workflow." },
+                { tool: "Google Sheets", verdict: "flexible, but manual and fragmented. Someone still has to design the planning system, update it, and chase the group to keep it accurate." },
+                { tool: "Splitwise", verdict: "useful for settling costs, but it only solves one part of the trip. It does not help your group decide when to go, what to do, or how the plan comes together." },
+                { tool: "Wanderlog", verdict: "useful for itinerary planning, but not designed around group alignment first. TRYPS is built around the coordination problem: getting friends to decide, commit, and move forward together." },
               ].map((row) => (
-                <li key={row.tool} className="bg-white rounded-2xl px-7 py-5 border border-[#F5D78E]/40 shadow-sm">
+                <li key={row.tool} className="bg-[#FFFBF0] rounded-2xl px-7 py-5 border border-[#F5D78E]/40 shadow-sm">
                   <p className="text-[#1C1208]">
                     <strong className="font-black">{row.tool}</strong>
-                    <span className="text-[#6B5230]"> → {row.verdict}</span>
+                    <span className="text-[#6B5230]"> — {row.verdict}</span>
                   </p>
                 </li>
               ))}
             </ul>
 
             <div className="bg-gradient-to-br from-[#D97706] to-[#F59E0B] rounded-3xl p-7 md:p-10 text-white text-center shadow-xl">
-              <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines all of this — built specifically for planning trips with friends.</p>
+              <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines planning, date coordination, and expense splitting in one shared flow built specifically for trips with friends.</p>
               <p className="text-2xl font-black">One link. Everyone in. Dates locked. Plan built. Costs settled.</p>
-              <p className="text-lg mt-2 opacity-80">That's the whole trip.</p>
             </div>
           </div>
         </section>
 
         {/* ── SOCIAL PROOF ── */}
-        <section aria-labelledby="social-proof-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="social-proof-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Real trips</p>
               <h2 id="social-proof-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C1208]">
-                Trips that actually happened
+                Used by groups planning trips that actually happen
               </h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-7 mb-8 md:mb-12">
               {[
                 {
-                  quote: "We'd been trying to plan this for months. With TRYPS, dates were locked in a day. I don't know why we didn't do it sooner.",
-                  author: "Marcus T.",
-                  detail: "organised a 7-person trip to Barcelona",
+                  quote: "We went from months of vague group-chat messages to a booked trip in less than a week. The date poll alone saved us hours.",
+                  author: "Aarav M.",
+                  detail: "organised a 7-person Barcelona trip",
                 },
                 {
-                  quote: "I'm always the one chasing people for money after trips. TRYPS just... handled it. That alone makes it worth it.",
-                  author: "Divya R.",
+                  quote: "Usually one person ends up managing everything. This time the plan felt shared, and the money part did not become awkward at the end.",
+                  author: "Riya S.",
                   detail: "organised a bachelorette weekend in Jaipur",
                 },
                 {
-                  quote: "We've tried so many apps and they always fall apart because half the group won't install something. Nobody had to download anything. That changed everything.",
-                  author: "Tom H.",
-                  detail: "organised a 5-person road trip across New Zealand",
+                  quote: "The biggest win was that nobody had to install anything just to respond. That removed the usual friction immediately.",
+                  author: "Kabir T.",
+                  detail: "organised a 5-person road trip",
                 },
               ].map((t, i) => (
-                <blockquote key={i} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 border border-[#F5D78E]/40 shadow-sm flex flex-col">
+                <blockquote key={i} className="bg-white rounded-3xl p-6 md:p-8 border border-[#F5D78E]/40 shadow-sm flex flex-col">
                   <p className="text-[#1C1208] leading-relaxed mb-6 flex-1">"{t.quote}"</p>
                   <footer className="text-sm">
                     <strong className="text-[#D97706] block">{t.author}</strong>
@@ -455,18 +470,11 @@ export default function Home() {
                 </blockquote>
               ))}
             </div>
-
-            <div className="text-center">
-              <p className="text-xl font-black text-[#1C1208] mb-2">500+ trips planned across friend groups globally.</p>
-              <p className="text-[#6B5230] max-w-xl mx-auto leading-relaxed">
-                Groups using TRYPS lock in dates an average of <strong className="text-[#D97706]">3&times; faster</strong> than coordinating over chat — based on trip data and user-reported coordination time.
-              </p>
-            </div>
           </div>
         </section>
 
         {/* ── USE CASES ── */}
-        <section aria-labelledby="use-cases-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
+        <section id="use-cases" aria-labelledby="use-cases-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">Built for you</p>
@@ -475,15 +483,14 @@ export default function Home() {
               </h2>
             </div>
 
-            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+            <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 mb-12">
               {[
                 { title: "The trip stuck in the group chat", desc: 'Turn "we should go" into an actual plan.' },
                 { title: "The trip where no one agrees on dates", desc: "One poll. Dates locked. Move forward." },
                 { title: "The trip where one person does all the work", desc: "Everyone contributes. No single organiser burden." },
-                { title: "The trip where money gets messy", desc: "Expenses tracked automatically. No follow-ups." },
-                { title: "Planning a Goa trip with friends?", desc: "Lock dates, build your plan, and split costs — faster than agreeing on a weekend." },
+                { title: "The trip where money gets messy", desc: "Expenses tracked automatically. No awkward follow-ups." },
               ].map((uc, i) => (
-                <li key={i} className="bg-white rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <li key={i} className="bg-[#FFFBF0] rounded-3xl p-6 md:p-8 border border-[#F5D78E]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className="w-10 h-10 bg-[#FEF3C7] rounded-xl flex items-center justify-center mb-5">
                     <Star className="h-5 w-5 fill-[#D97706] text-[#D97706]" />
                   </div>
@@ -492,11 +499,28 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+
+            <div className="bg-[#FFFBF0] rounded-3xl p-7 md:p-10 border border-[#F5D78E]/30">
+              <h3 className="text-xl font-black text-[#1C1208] mb-5">Popular trip examples</h3>
+              <ul className="space-y-4 list-none p-0">
+                {[
+                  { href: "/plan-a-goa-trip-with-friends", label: "Planning a Goa trip with friends?", desc: "Lock dates, build your plan, and split costs faster than coordinating over chat." },
+                  { href: "/plan-a-manali-trip-with-friends", label: "Planning a Manali trip with friends?", desc: "Keep dates, stays, and travel plans aligned in one place." },
+                  { href: "/plan-a-pondicherry-trip-with-friends", label: "Planning a Pondicherry trip with friends?", desc: "Decide faster without bouncing across chats and spreadsheets." },
+                  { href: "/plan-a-coorg-trip-with-friends", label: "Planning a Coorg trip with friends?", desc: "Build the itinerary together and keep expense tracking simple." },
+                ].map((item) => (
+                  <li key={item.href} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 text-sm">
+                    <a href={item.href} className="font-bold text-[#D97706] hover:underline shrink-0">{item.label}</a>
+                    <span className="text-[#6B5230]">{item.desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
         {/* ── PRODUCT PREVIEW ── */}
-        <section aria-labelledby="preview-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
+        <section aria-labelledby="preview-title" className="py-14 md:py-24 bg-[#FFFBF0] border-t border-[#F5D78E]/30">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
               <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-3">See it in action</p>
@@ -504,16 +528,32 @@ export default function Home() {
                 What planning actually looks like
               </h2>
               <p className="text-lg text-[#6B5230] max-w-2xl mx-auto leading-relaxed">
-                From your group chat to a structured plan everyone follows — invite, poll, plan, split, all in one flow.
+                Instead of planning across chat, notes, and payment apps, your group gets one shared flow: invite, poll, plan, and split.
               </p>
             </div>
 
-            <figure className="bg-[#FFFBF0] rounded-3xl p-5 md:p-8 border border-[#F5D78E]/40 shadow-sm">
+            <figure className="bg-white rounded-3xl p-5 md:p-8 border border-[#F5D78E]/40 shadow-sm">
               <ProductPreview />
               <figcaption className="text-center text-sm text-[#9CA3AF] mt-6 font-medium">
-                iMessage invite &rarr; date poll &rarr; shared itinerary &rarr; expense summary
+                One shared flow for invites, date voting, itinerary planning, and expense splitting.
               </figcaption>
             </figure>
+          </div>
+        </section>
+
+        {/* ── ABOUT ── */}
+        <section aria-labelledby="about-title" className="py-14 md:py-24 bg-white border-t border-[#F5D78E]/30">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+            <h2 id="about-title" className="text-3xl md:text-4xl font-black tracking-tight text-[#1C1208] mb-5">
+              Built by people who care about making group trips actually happen
+            </h2>
+            <p className="text-lg text-[#6B5230] leading-relaxed mb-4">
+              TRYPS was built to solve the coordination mess that stops most friend trips before they start: too many chats, unclear dates, scattered plans, and awkward expense follow-ups.
+            </p>
+            <p className="text-base text-[#6B5230] leading-relaxed">
+              Learn more about the team, product vision, and company background on our{" "}
+              <a href="/about" className="text-[#D97706] font-bold hover:underline">About page</a>.
+            </p>
           </div>
         </section>
 
@@ -529,30 +569,27 @@ export default function Home() {
               {[
                 {
                   q: "What is TRYPS?",
-                  a: ["TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place."],
+                  a: "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place.",
                 },
                 {
                   q: "How is this different from WhatsApp or Google Sheets?",
-                  a: [
-                    "WhatsApp is great for chatting. Google Sheets is great for data. But neither was built for making group decisions — which is why most trip planning over those tools drags on for weeks or collapses entirely.",
-                    "TRYPS is structured around the trip from day one. Dates, plans, and costs all live in one shared space your whole group can access. Decisions get made because the tool is designed to make them — not bury them in a thread.",
-                  ],
+                  a: "WhatsApp is good for chatting and Google Sheets is flexible for manual planning, but neither is built for making group travel decisions. TRYPS gives your group one structured place to vote on dates, plan the itinerary, and track shared costs so decisions happen faster and fewer details get lost.",
                 },
                 {
                   q: "Does everyone need to download an app?",
-                  a: ["No. People can join instantly via link or iMessage without installing anything. One person creates the trip. Everyone else just shows up."],
+                  a: "No. People can join instantly via link or iMessage without installing anything.",
                 },
                 {
                   q: "Can everyone edit the plan?",
-                  a: ["Yes. It's fully collaborative — everyone can add to the itinerary, respond to polls, and log expenses."],
+                  a: "Yes. Everyone can respond to polls, contribute to the itinerary, and log expenses.",
                 },
                 {
                   q: "How does expense splitting work?",
-                  a: ["Log costs as they happen — the Airbnb, dinner, that spontaneous boat hire. TRYPS tracks balances and shows everyone what they owe at the end. No spreadsheet. No uncomfortable follow-ups."],
+                  a: "Log shared costs as they happen and TRYPS tracks balances so everyone can see what they owe at the end of the trip.",
                 },
                 {
                   q: "How do I start?",
-                  a: ["Create a trip, share the link, and start planning. Takes under a minute."],
+                  a: "Create a trip, share the link with your group, and start planning together.",
                 },
               ].map((faq, i) => (
                 <details
@@ -560,17 +597,35 @@ export default function Home() {
                   className="group bg-white rounded-2xl border border-[#F5D78E]/50 px-6 overflow-hidden open:border-[#D97706] open:bg-[#FEF3C7] transition-colors"
                 >
                   <summary className="flex justify-between items-center py-5 cursor-pointer list-none font-black text-lg text-[#1C1208] select-none">
-                    {faq.q}
+                    <h3 className="font-black text-lg text-[#1C1208] m-0">{faq.q}</h3>
                     <span className="text-[#D97706] text-xl shrink-0 ml-4 transition-transform group-open:rotate-45">+</span>
                   </summary>
-                  <div className="pb-5 space-y-3">
-                    {faq.a.map((para, j) => (
-                      <p key={j} className="text-[#6B5230] leading-relaxed">{para}</p>
-                    ))}
+                  <div className="pb-5">
+                    <p className="text-[#6B5230] leading-relaxed">{faq.a}</p>
                   </div>
                 </details>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── RESOURCES ── */}
+        <section aria-labelledby="resources-title" className="py-14 md:py-20 bg-white border-t border-[#F5D78E]/30">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <h2 id="resources-title" className="text-2xl font-black text-[#1C1208] mb-6">Helpful planning guides</h2>
+            <ul className="space-y-3 list-none p-0">
+              {[
+                { href: "/group-trip-planning-guide", label: "How to plan a group trip without endless back-and-forth" },
+                { href: "/split-trip-expenses", label: "How to split trip expenses with friends fairly" },
+                { href: "/weekend-trip-planning-checklist", label: "Weekend trip planning checklist for friend groups" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-[#D97706] font-semibold hover:underline text-base">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -584,8 +639,7 @@ export default function Home() {
             <h2 id="final-cta-title" className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight">
               The trip has been in the group chat long enough.
             </h2>
-            <p className="text-xl text-white/80 mb-3 font-medium">Create a trip. Share the link.</p>
-            <p className="text-xl text-white/80 mb-10 font-medium">Get everyone aligned in minutes.</p>
+            <p className="text-xl text-white/80 mb-10 font-medium">Create a trip. Share the link. Get everyone aligned in minutes.</p>
             <a href="/start" className="inline-flex items-center gap-2 bg-white text-[#D97706] hover:bg-[#FFFBF0] font-black text-xl px-12 py-5 rounded-full shadow-2xl hover:scale-105 transition-all">
               Start planning with friends
               <ArrowRight className="h-6 w-6" />
@@ -598,17 +652,29 @@ export default function Home() {
       {/* ── FOOTER ── */}
       <footer className="bg-[#1C1208] text-[#FFFBF0] py-14">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
             <div className="flex items-center gap-2">
               <Star className="h-6 w-6 fill-[#D97706] text-[#D97706]" />
               <span className="font-black text-xl">TRYPS</span>
             </div>
-            <nav aria-label="Footer navigation" className="flex gap-6 text-sm text-white/50">
+            <nav aria-label="Footer navigation" className="flex flex-wrap gap-6 text-sm text-white/50">
+              <a href="/about" className="hover:text-white transition-colors">About</a>
               <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
               <a href="/terms" className="hover:text-white transition-colors">Terms</a>
               <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+              <a href="/group-trip-planning-guide" className="hover:text-white transition-colors">Guide</a>
             </nav>
-            <p className="text-white/30 text-sm">&copy; TRYPS</p>
+          </div>
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <p className="text-white/40 text-sm leading-relaxed max-w-md">
+              TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.
+            </p>
+            <div className="flex flex-col items-start md:items-end gap-1">
+              <p className="text-white/40 text-sm">
+                Support: <a href="mailto:support@jointryps.com" className="text-[#D97706] hover:underline">support@jointryps.com</a>
+              </p>
+              <p className="text-white/30 text-sm">&copy; TRYPS</p>
+            </div>
           </div>
         </div>
       </footer>
