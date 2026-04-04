@@ -1,4 +1,7 @@
 export const howToPlanGroupTripHeadTags = `
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
   <title>How to Plan a Group Trip: Step-by-Step Guide | TRYPS</title>
   <meta name="description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
   <link rel="canonical" href="https://jointryps.com/blog/how-to-plan-a-group-trip" />
