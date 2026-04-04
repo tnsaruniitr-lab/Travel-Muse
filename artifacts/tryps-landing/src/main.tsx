@@ -1,5 +1,16 @@
 import { hydrateRoot } from "react-dom/client";
 import Home from "./pages/home";
+import HowToPlanGroupTrip from "./pages/blog/how-to-plan-group-trip";
 import "./index.css";
 
-hydrateRoot(document.getElementById("root")!, <Home />);
+const pathname = window.location.pathname;
+
+let App: React.ComponentType;
+
+if (pathname === "/blog/how-to-plan-a-group-trip") {
+  App = HowToPlanGroupTrip;
+} else {
+  App = Home;
+}
+
+hydrateRoot(document.getElementById("root")!, <App />);

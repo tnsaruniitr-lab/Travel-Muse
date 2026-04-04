@@ -32,7 +32,7 @@ app.use(async (req, res) => {
   try {
     const url = req.originalUrl;
     let template: string;
-    let render: (url: string) => Promise<string>;
+    let render: (url: string) => Promise<{ appHtml: string; headTags: string }>;
 
     if (!isProd) {
       template = fs.readFileSync(
@@ -54,8 +54,10 @@ app.use(async (req, res) => {
       render = (await import(serverEntry)).render;
     }
 
-    const appHtml = await render(url);
-    const fullHtml = template.replace("<!--app-html-->", appHtml);
+    const { appHtml, headTags } = await render(url);
+    const fullHtml = template
+      .replace("<!--head-tags-->", headTags)
+      .replace("<!--app-html-->", appHtml);
 
     res.status(200).set({ "Content-Type": "text/html" }).end(fullHtml);
   } catch (e: unknown) {

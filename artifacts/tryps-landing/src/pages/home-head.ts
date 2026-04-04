@@ -1,0 +1,212 @@
+export const homeHeadTags = `
+  <title>TRYPS — Group Trip Planning App for Friends</title>
+  <meta name="description" content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place." />
+  <link rel="canonical" href="https://jointryps.com/" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TRYPS" />
+  <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
+  <meta property="og:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
+  <meta property="og:url" content="https://jointryps.com/" />
+  <meta property="og:image" content="https://jointryps.com/og/tryps-homepage-og.jpg" />
+  <meta property="og:image:alt" content="TRYPS interface showing date voting, shared itinerary, and expense splitting for a group trip" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
+  <meta name="twitter:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
+  <meta name="twitter:image" content="https://jointryps.com/og/tryps-homepage-og.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TRYPS",
+    "url": "https://jointryps.com/",
+    "logo": "https://jointryps.com/assets/logo.png",
+    "slogan": "Plan group trips together without the chaos.",
+    "foundingDate": "2025-01-01",
+    "sameAs": [
+      "https://www.instagram.com/tryps",
+      "https://www.linkedin.com/company/tryps",
+      "https://x.com/tryps"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@jointryps.com",
+        "url": "https://jointryps.com/contact"
+      }
+    ],
+    "knowsAbout": [
+      "group trip planning",
+      "travel itinerary collaboration",
+      "group date coordination",
+      "trip expense splitting",
+      "friend trip planning"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Jake Stein",
+      "jobTitle": "Founder",
+      "url": "https://jointryps.com/about"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jake Stein",
+    "jobTitle": "Founder",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "TRYPS"
+    },
+    "url": "https://jointryps.com/about",
+    "sameAs": [
+      "https://www.linkedin.com/in/jakestein"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TRYPS",
+    "url": "https://jointryps.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://jointryps.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TRYPS",
+    "applicationCategory": "TravelApplication",
+    "applicationSubCategory": "Group Trip Planning App",
+    "operatingSystem": "Web, iOS, Android",
+    "softwareVersion": "1.0",
+    "url": "https://jointryps.com/",
+    "image": "https://jointryps.com/images/tryps-preview.png",
+    "screenshot": [
+      "https://jointryps.com/images/tryps-date-poll.png",
+      "https://jointryps.com/images/tryps-itinerary.png",
+      "https://jointryps.com/images/tryps-expense-split.png"
+    ],
+    "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TRYPS",
+      "url": "https://jointryps.com/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "url": "https://jointryps.com/start",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": [
+      "Invite friends instantly with one link or iMessage",
+      "Lock dates with a shared availability poll",
+      "Build a collaborative shared itinerary",
+      "Track and split group trip expenses",
+      "Keep plans, dates, and costs in one place"
+    ],
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Aarav M." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "The date poll and shared itinerary made it much easier to get everyone aligned for our trip."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Riya S." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Nobody had to download anything, which removed most of the usual friction for group planning."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Kabir T." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "4", "bestRating": "5" },
+        "reviewBody": "We used it to lock dates, collect ideas, and keep costs clear in one place."
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to plan a group trip with TRYPS",
+    "description": "Plan a group trip by inviting friends, locking dates, building a shared itinerary, and splitting expenses in one place.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Create and invite", "text": "Start a trip in seconds. Share a link or iMessage so everyone joins instantly." },
+      { "@type": "HowToStep", "position": 2, "name": "Lock dates fast", "text": "Run one availability poll so your group can pick dates without endless back-and-forth." },
+      { "@type": "HowToStep", "position": 3, "name": "Plan together", "text": "Add places, stays, activities, and notes to one shared itinerary everyone can update." },
+      { "@type": "HowToStep", "position": 4, "name": "Split expenses simply", "text": "Track shared costs during the trip so everyone can see balances and settle up cleanly." }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is TRYPS?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TRYPS is a group trip planning app for friends that helps you coordinate dates, build a shared itinerary, and split expenses — all in one place." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from WhatsApp or Google Sheets?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WhatsApp is good for chatting and Google Sheets is flexible for manual planning, but neither is built for making group travel decisions. TRYPS gives your group one structured place to vote on dates, plan the itinerary, and track shared costs so decisions happen faster and fewer details get lost." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does everyone need to download an app?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. People can join instantly via link or iMessage without installing anything." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can everyone edit the plan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everyone can respond to polls, contribute to the itinerary, and log expenses." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does expense splitting work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Log shared costs as they happen and TRYPS tracks balances so everyone can see what they owe at the end of the trip." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I start?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Create a trip, share the link with your group, and start planning together." }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jointryps.com/" }
+    ]
+  }
+  </script>
+`;
