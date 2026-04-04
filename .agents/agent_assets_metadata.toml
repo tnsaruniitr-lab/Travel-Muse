@@ -36,6 +36,30 @@ uri = "file://artifacts/mockup-sandbox/public/images/tryps-friends.png"
 type = "image"
 title = "Friends at sunset dinner"
 
+[[generated]]
+id = "KuZ5xCnPmT_qQGDU7oOqM"
+uri = "file://artifacts/tryps-landing/public/images/blog/shared-group-trip-itinerary.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "iDt9SgmjFNi365hoBwAVR"
+uri = "file://artifacts/tryps-landing/public/images/blog/group-trip-date-poll.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "wHMIrONbpiYJWFYT0KuXE"
+uri = "file://artifacts/tryps-landing/public/images/blog/group-trip-expense-tracker.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "tdERm5UZYWMF6XomcZGbi"
+uri = "file://artifacts/tryps-landing/public/images/blog/how-to-plan-group-trip-hero.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "4K7k8a5ug7vwicy0W4a7g"
 uri = "file://tryps-seo-audit.txt"

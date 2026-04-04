@@ -84,7 +84,7 @@ export default function HowToPlanGroupTrip() {
             </p>
 
             <ArticleImage
-              src="/images/blog/how-to-plan-group-trip-hero.jpg"
+              src="/images/blog/how-to-plan-group-trip-hero.png"
               alt="Friends planning a group trip together on their phones"
               width={1200}
               height={675}
@@ -168,7 +168,7 @@ export default function HowToPlanGroupTrip() {
             <p className="text-[#6B5230] leading-relaxed mb-3">In TRYPS, this happens inside the trip itself — no switching tools, no back-and-forth.</p>
             <p className="text-[#6B5230] leading-relaxed mb-5">Once dates are locked, the trip becomes real.</p>
             <ArticleImage
-              src="/images/blog/group-trip-date-poll.jpg"
+              src="/images/blog/group-trip-date-poll.png"
               alt="Group trip date poll showing friends voting on travel dates"
               width={1200}
               height={750}
@@ -204,7 +204,7 @@ export default function HowToPlanGroupTrip() {
             <p className="text-[#6B5230] leading-relaxed mb-3">The goal is alignment, not control.</p>
             <p className="text-[#6B5230] leading-relaxed mb-5">TRYPS lets everyone see and contribute to the same plan, so there's no confusion about what's happening.</p>
             <ArticleImage
-              src="/images/blog/shared-group-trip-itinerary.jpg"
+              src="/images/blog/shared-group-trip-itinerary.png"
               alt="Shared itinerary for a group trip planned with friends"
               width={1200}
               height={750}
@@ -241,7 +241,7 @@ export default function HowToPlanGroupTrip() {
             </ul>
             <p className="text-[#6B5230] leading-relaxed mb-5">TRYPS keeps this inside the same trip flow, so you're not jumping between planning tools and expense apps.</p>
             <ArticleImage
-              src="/images/blog/group-trip-expense-tracker.jpg"
+              src="/images/blog/group-trip-expense-tracker.png"
               alt="Group trip expense tracker showing shared costs and balances"
               width={1200}
               height={750}
