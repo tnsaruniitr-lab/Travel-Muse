@@ -1,0 +1,1065 @@
+Yes. Below is a direct-build blog page package you can hand to engineering.
+
+It includes:
+
+final article HTML
+SEO meta tags
+Open Graph / Twitter tags
+semantic structure
+inline JSON-LD
+image slots
+related articles area
+notes on what to swap before production
+1. Recommended route
+
+Use this route:
+
+/blog/how-to-plan-a-group-trip
+2. Suggested assets
+
+Use these image paths for now:
+
+/images/blog/how-to-plan-group-trip-hero.jpg
+/images/blog/group-trip-date-poll.jpg
+/images/blog/shared-group-trip-itinerary.jpg
+/images/blog/group-trip-expense-tracker.jpg
+
+If images are not ready yet, keep the markup and replace later.
+
+3. Full production HTML
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>How to Plan a Group Trip: Step-by-Step Guide | TRYPS</title>
+    <meta
+      name="description"
+      content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly."
+    />
+    <link rel="canonical" href="https://jointryps.com/blog/how-to-plan-a-group-trip" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="TRYPS" />
+    <meta property="og:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
+    <meta
+      property="og:description"
+      content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly."
+    />
+    <meta property="og:url" content="https://jointryps.com/blog/how-to-plan-a-group-trip" />
+    <meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
+    <meta
+      name="twitter:description"
+      content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly."
+    />
+    <meta name="twitter:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg" />
+
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #111111;
+        --muted: #666666;
+        --border: #e8e8e8;
+        --soft: #f7f7f7;
+        --accent: #111111;
+        --max: 760px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+        border-radius: 18px;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        width: 100%;
+      }
+
+      .article-wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+
+      .eyebrow {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        line-height: 1.05;
+        margin: 0 0 20px;
+        letter-spacing: -0.03em;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+        margin: 56px 0 18px;
+        letter-spacing: -0.02em;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        line-height: 1.35;
+        margin: 28px 0 10px;
+      }
+
+      p {
+        margin: 0 0 18px;
+        font-size: 1.05rem;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 20px 22px;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      .lede {
+        font-size: 1.16rem;
+        color: #222222;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 0 0 28px;
+      }
+
+      .hero-image {
+        margin: 28px 0 10px;
+      }
+
+      figure {
+        margin: 28px 0;
+      }
+
+      figcaption {
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin-top: 10px;
+      }
+
+      .quick-answer {
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 22px 22px 10px;
+        margin: 32px 0 18px;
+      }
+
+      .quick-answer h2 {
+        margin-top: 0;
+      }
+
+      .callout {
+        background: #fafafa;
+        border-left: 4px solid #111111;
+        padding: 16px 18px;
+        border-radius: 10px;
+        margin: 18px 0 24px;
+      }
+
+      .faq-item {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .cta-box {
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 26px;
+        margin-top: 40px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 12px 18px;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .related {
+        margin-top: 56px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      }
+
+      .related ul {
+        margin-left: 18px;
+      }
+
+      @media (max-width: 640px) {
+        .article-wrap {
+          padding: 24px 16px 64px;
+        }
+
+        p,
+        li {
+          font-size: 1rem;
+        }
+
+        .lede {
+          font-size: 1.08rem;
+        }
+
+        .quick-answer,
+        .cta-box {
+          padding: 18px;
+        }
+      }
+    </style>
+
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Plan a Group Trip: Step-by-Step Guide",
+        "description": "Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly.",
+        "image": [
+          "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "TRYPS"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "TRYPS",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://jointryps.com/logo.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://jointryps.com/blog/how-to-plan-a-group-trip"
+        }
+      }
+    </script>
+
+    <!-- HowTo Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Plan a Group Trip",
+        "description": "A step-by-step guide to planning a group trip with friends.",
+        "image": "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Confirm who is actually going",
+            "text": "Separate serious participants from people who are only loosely interested."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Shortlist destination options",
+            "text": "Narrow the discussion to two or three realistic destination choices."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Lock dates with a group poll",
+            "text": "Use a date poll so everyone can vote and the best overlap becomes visible."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Set the budget early",
+            "text": "Agree on a realistic spend range per person before bookings begin."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Build a shared itinerary",
+            "text": "Create a clear shared plan for accommodation, activities, reservations, and logistics."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Assign responsibilities",
+            "text": "Distribute planning tasks so one person is not handling everything."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Track and split expenses clearly",
+            "text": "Log shared costs as they happen and keep balances visible to the group."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Finalize bookings and confirmations",
+            "text": "Confirm transport, accommodation, and important reservations once the group is aligned."
+          }
+        ]
+      }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How far in advance should you plan a group trip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For shorter trips, one to three months usually works. For international or larger groups, three to six months is safer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the easiest way to decide dates for a group trip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use a date poll. It is faster and more reliable than trying to coordinate availability in a group chat."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you split expenses fairly on a group trip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Track expenses as they happen and keep balances visible. That is much clearer than trying to settle everything at the end."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should a group trip itinerary include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A group trip itinerary should include travel dates, accommodation, key activities, reservations, and important logistics the whole group needs to know."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best app for planning group trips?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The best tools combine date coordination, itinerary planning, and expense tracking in one place so the group stays aligned."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Blog",
+            "item": "https://jointryps.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "How to Plan a Group Trip",
+            "item": "https://jointryps.com/blog/how-to-plan-a-group-trip"
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <main class="page">
+      <article class="article-wrap">
+        <header>
+          <div class="eyebrow">TRYPS Blog</div>
+          <h1>How to Plan a Group Trip: Step-by-Step Guide</h1>
+
+          <div class="meta">
+            <span>Group trip planning</span>
+            <span>8 min read</span>
+          </div>
+
+          <p class="lede">
+            Planning a group trip sounds fun until someone says “I’m flexible” and disappears for three days.
+          </p>
+
+          <p>
+            One person is excited. Two reply instantly. A few respond late. Someone never replies but still wants to come.
+            Meanwhile, dates are floating, ideas are scattered across chats, and no one is quite sure what’s actually decided.
+          </p>
+
+          <p>
+            That’s where most group trips get stuck.
+          </p>
+
+          <p>
+            The easiest way to plan a group trip is not more discussion—it’s better structure. Lock the group, align on dates,
+            agree on budget, build the itinerary together, and track expenses clearly in one place.
+          </p>
+
+          <p>
+            Tools like TRYPS are built for exactly this. You share one link, everyone joins, and the planning happens in one
+            shared flow instead of five different apps.
+          </p>
+
+          <figure class="hero-image">
+            <img
+              src="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg"
+              alt="Friends planning a group trip together on their phones"
+              width="1200"
+              height="675"
+              loading="eager"
+            />
+            <figcaption>Group trips work better when everyone plans in one shared place.</figcaption>
+          </figure>
+        </header>
+
+        <section class="quick-answer" aria-labelledby="quick-answer-title">
+          <h2 id="quick-answer-title">Quick answer</h2>
+          <p>To plan a group trip without chaos:</p>
+          <ol>
+            <li>Confirm who is actually going</li>
+            <li>Shortlist 2–3 destination options</li>
+            <li>Lock dates using a group poll</li>
+            <li>Set a realistic budget range</li>
+            <li>Build a shared itinerary</li>
+            <li>Assign simple responsibilities</li>
+            <li>Track and split expenses clearly</li>
+            <li>Finalize bookings quickly</li>
+          </ol>
+          <p>
+            The key is simple: reduce coordination friction. The fewer moving parts, the smoother everything becomes.
+          </p>
+        </section>
+
+        <section aria-labelledby="why-chaotic">
+          <h2 id="why-chaotic">Why group trips become chaotic</h2>
+          <p>
+            Most group trips don’t fail because people disagree.
+          </p>
+          <p>
+            They fail because everything is scattered.
+          </p>
+          <p>
+            One plan lives in WhatsApp. Another in someone’s Notes app. Flights are discussed in one place, stays in another,
+            and expenses somewhere else entirely. By the time you’re ready to decide, no one knows what’s final.
+          </p>
+          <p>
+            Sounds familiar—because it happens every time.
+          </p>
+          <p>
+            Planning a group trip isn’t really about ideas. It’s about keeping everyone aligned at the same time.
+          </p>
+        </section>
+
+        <section aria-labelledby="step-1">
+          <h2 id="step-1">Step 1: Confirm who is actually going</h2>
+          <p>Start here, not with destinations.</p>
+          <p>
+            You don’t need perfect commitment—but you do need clarity on who’s seriously in.
+          </p>
+          <p>
+            There’s a big difference between:
+          </p>
+          <ul>
+            <li>“sounds fun”</li>
+            <li>“I’m in if dates work”</li>
+            <li>“book it, I’m coming”</li>
+          </ul>
+          <p>
+            If you mix all three, planning drags.
+          </p>
+          <p>
+            Keep a working group of people who are actively participating. You can always add others later, but early clarity
+            makes everything faster.
+          </p>
+        </section>
+
+        <section aria-labelledby="step-2">
+          <h2 id="step-2">Step 2: Shortlist destination options</h2>
+          <p>
+            Open-ended questions slow everything down.
+          </p>
+          <p>
+            Instead of “where should we go?”, narrow it to 2–3 solid options.
+          </p>
+          <p>Think in terms of:</p>
+          <ul>
+            <li>budget range</li>
+            <li>travel time</li>
+            <li>visa friction</li>
+            <li>weather</li>
+            <li>overall vibe</li>
+          </ul>
+          <p>
+            For example, a beach weekend and a ski trip aren’t just different locations—they’re completely different trips.
+          </p>
+          <p>
+            Once the options are clear, decisions become much easier.
+          </p>
+        </section>
+
+        <section aria-labelledby="step-3">
+          <h2 id="step-3">Step 3: Lock dates with a group poll</h2>
+          <p>
+            This is where most trips quietly fall apart.
+          </p>
+          <p>
+            Chat-based planning doesn’t work here. People miss messages, reply late, or say “I’m flexible” without actually
+            confirming anything.
+          </p>
+          <p>
+            A date poll fixes this.
+          </p>
+          <p>
+            Everyone votes. You see overlap instantly. No chasing.
+          </p>
+          <p>
+            In TRYPS, this happens inside the trip itself—no switching tools, no back-and-forth.
+          </p>
+          <p>
+            Once dates are locked, the trip becomes real.
+          </p>
+
+          <figure>
+            <img
+              src="https://jointryps.com/images/blog/group-trip-date-poll.jpg"
+              alt="Group trip date poll showing friends voting on travel dates"
+              width="1200"
+              height="750"
+              loading="lazy"
+            />
+            <figcaption>Date polls make it easier to find overlap and lock the trip faster.</figcaption>
+          </figure>
+        </section>
+
+        <section aria-labelledby="step-4">
+          <h2 id="step-4">Step 4: Set the budget early</h2>
+          <p>
+            No one likes talking about money—but avoiding it is worse.
+          </p>
+          <p>
+            Budget misalignment is one of the fastest ways to create friction. One person is thinking premium hotels, another
+            is thinking budget stays, and no one realizes until it’s too late.
+          </p>
+          <p>Set a rough range early:</p>
+          <ul>
+            <li>total spend per person</li>
+            <li>type of stay</li>
+            <li>key activities</li>
+            <li>comfort vs cost trade-offs</li>
+          </ul>
+          <p>
+            It doesn’t need to be perfect. It just needs to be aligned.
+          </p>
+        </section>
+
+        <section aria-labelledby="step-5">
+          <h2 id="step-5">Step 5: Build a shared itinerary</h2>
+          <p>
+            This is where the trip starts taking shape.
+          </p>
+          <p>
+            Not a minute-by-minute schedule—just a clear view of:
+          </p>
+          <ul>
+            <li>where you’re staying</li>
+            <li>what the main plans are</li>
+            <li>what’s optional</li>
+            <li>what’s already booked</li>
+          </ul>
+          <p>
+            The goal is alignment, not control.
+          </p>
+          <p>
+            Because without this, you get the classic mismatch: one person wants nightlife, another wants sightseeing,
+            someone else just wants to relax.
+          </p>
+          <p>
+            A shared itinerary avoids that.
+          </p>
+          <p>
+            TRYPS lets everyone see and contribute to the same plan, so there’s no confusion about what’s happening.
+          </p>
+
+          <figure>
+            <img
+              src="https://jointryps.com/images/blog/shared-group-trip-itinerary.jpg"
+              alt="Shared itinerary for a group trip planned with friends"
+              width="1200"
+              height="750"
+              loading="lazy"
+            />
+            <figcaption>A shared itinerary keeps the group aligned on what the trip actually looks like.</figcaption>
+          </figure>
+        </section>
+
+        <section aria-labelledby="step-6">
+          <h2 id="step-6">Step 6: Assign responsibilities</h2>
+          <p>
+            If one person does everything, things slow down.
+          </p>
+          <p>Instead, split simple roles:</p>
+          <ul>
+            <li>flights</li>
+            <li>accommodation</li>
+            <li>activities</li>
+            <li>local logistics</li>
+          </ul>
+          <p>
+            It’s not about strict ownership—it’s about momentum.
+          </p>
+          <p>
+            People engage more when they have a role, even a small one.
+          </p>
+        </section>
+
+        <section aria-labelledby="step-7">
+          <h2 id="step-7">Step 7: Track and split expenses clearly</h2>
+          <p>
+            This is where things can get awkward if handled badly.
+          </p>
+          <p>
+            Someone pays for dinner. Someone else books the stay. A few costs are forgotten. By the end, no one is sure who
+            owes what.
+          </p>
+          <p>
+            And then comes the “we’ll settle later” phase—which rarely goes well.
+          </p>
+          <p>
+            The fix is simple: track expenses as they happen.
+          </p>
+          <ul>
+            <li>log costs immediately</li>
+            <li>keep everything visible</li>
+            <li>avoid reconstructing later</li>
+          </ul>
+          <p>
+            TRYPS keeps this inside the same trip flow, so you’re not jumping between planning tools and expense apps.
+          </p>
+
+          <figure>
+            <img
+              src="https://jointryps.com/images/blog/group-trip-expense-tracker.jpg"
+              alt="Group trip expense tracker showing shared costs and balances"
+              width="1200"
+              height="750"
+              loading="lazy"
+            />
+            <figcaption>Clear expense tracking reduces awkwardness and confusion during the trip.</figcaption>
+          </figure>
+        </section>
+
+        <section aria-labelledby="step-8">
+          <h2 id="step-8">Step 8: Finalize bookings and move</h2>
+          <p>
+            Once dates, budget, and plans are aligned—don’t wait.
+          </p>
+          <p>
+            This is where momentum matters.
+          </p>
+          <p>Confirm:</p>
+          <ul>
+            <li>flights or transport</li>
+            <li>accommodation</li>
+            <li>key reservations</li>
+            <li>arrival details</li>
+          </ul>
+          <p>
+            The longer you wait, the more things drift again.
+          </p>
+          <p>
+            Decisions lose energy if they’re not followed by action.
+          </p>
+        </section>
+
+        <section aria-labelledby="mistakes">
+          <h2 id="mistakes">Common mistakes to avoid</h2>
+
+          <h3>Starting with too many people</h3>
+          <p>More people means more coordination and slower decisions.</p>
+
+          <h3>Keeping everything in chat</h3>
+          <p>Chats are great for talking, not for organizing.</p>
+
+          <h3>Delaying date decisions</h3>
+          <p>Until dates are locked, nothing else really moves.</p>
+
+          <h3>Skipping the budget conversation</h3>
+          <p>Unspoken assumptions always surface later.</p>
+
+          <h3>Using too many tools</h3>
+          <p>Every extra tool adds friction and confusion.</p>
+        </section>
+
+        <section aria-labelledby="easiest-way">
+          <h2 id="easiest-way">The easiest way to plan a group trip today</h2>
+          <p>
+            The easiest system is the one with the least setup.
+          </p>
+          <ul>
+            <li>one link to invite</li>
+            <li>one place to plan</li>
+            <li>one flow for decisions</li>
+          </ul>
+          <p>
+            TRYPS is designed around this.
+          </p>
+          <p>
+            You send a link. Your friends join. You vote on dates, build the itinerary, and track expenses—all in one place.
+          </p>
+          <p>
+            No downloads. No setup. No switching between tools.
+          </p>
+          <p>
+            For most friend trips, that’s the difference between “we should go” and actually going.
+          </p>
+        </section>
+
+        <section aria-labelledby="takeaway">
+          <h2 id="takeaway">Final takeaway</h2>
+          <p>
+            Group trips don’t fail because they’re complicated.
+          </p>
+          <p>
+            They fail because coordination is messy.
+          </p>
+          <p>
+            Once everything is visible and shared, decisions happen faster, plans stay clear, and the group actually follows
+            through.
+          </p>
+
+          <div class="callout">
+            Keep it simple: define the group, lock the dates, align on budget, build the plan, and track expenses in one place.
+          </div>
+        </section>
+
+        <section aria-labelledby="faq">
+          <h2 id="faq">Frequently asked questions</h2>
+
+          <div class="faq-item">
+            <h3>How far in advance should you plan a group trip?</h3>
+            <p>
+              For shorter trips, one to three months works. For international or larger groups, three to six months is safer.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the easiest way to decide dates for a group trip?</h3>
+            <p>
+              Use a date poll. It’s faster and more reliable than chat discussions.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>How do you split expenses fairly on a group trip?</h3>
+            <p>
+              Track expenses as they happen and keep balances visible. Avoid settling everything at the end.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What should a group trip itinerary include?</h3>
+            <p>
+              Travel dates, accommodation, major activities, and key logistics everyone needs to know.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>What is the best app for planning group trips?</h3>
+            <p>
+              The best tools combine date coordination, itinerary planning, and expense tracking in one place so the group
+              stays aligned.
+            </p>
+          </div>
+        </section>
+
+        <section class="cta-box" aria-labelledby="cta">
+          <h2 id="cta">Plan together without the usual chaos</h2>
+          <p>
+            If your group is tired of chasing messages, spreadsheets, and scattered plans, TRYPS gives you one place to
+            coordinate everything—dates, itinerary, and expenses—without the usual friction.
+          </p>
+          <a class="cta-button" href="https://jointryps.com/start">Start planning with TRYPS</a>
+        </section>
+
+        <section class="related" aria-labelledby="related-articles">
+          <h2 id="related-articles">Related articles</h2>
+          <ul>
+            <li><a href="/blog/how-to-split-expenses-on-a-group-trip">How to Split Expenses on a Group Trip</a></li>
+            <li><a href="/blog/best-group-trip-planning-apps">Best Group Trip Planning Apps</a></li>
+            <li><a href="/blog/thailand-group-trip-itinerary">Thailand Group Trip Itinerary</a></li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+4. What to change before shipping
+
+Replace these with real values:
+
+https://jointryps.com/logo.png
+https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg
+https://jointryps.com/images/blog/group-trip-date-poll.jpg
+https://jointryps.com/images/blog/shared-group-trip-itinerary.jpg
+https://jointryps.com/images/blog/group-trip-expense-tracker.jpg
+
+If the page later has a real publish date and author, add them to Article schema:
+
+"datePublished": "2026-04-04",
+"dateModified": "2026-04-04"
+
+and if needed:
+
+"author": {
+  "@type": "Person",
+  "name": "Author Name"
+}
+5. Recommended file split if using React / Next / Vite
+
+Use this structure:
+
+/src
+  /pages
+    /blog
+      HowToPlanGroupTrip.tsx
+  /components
+    BlogArticle.tsx
+    BlogFAQ.tsx
+    BlogCTA.tsx
+  /data
+    howToPlanGroupTrip.ts
+  /styles
+    blog.css
+/public
+  /images/blog/...
+6. If you want JSON-LD as plain JS objects
+
+Useful if engineering injects schema dynamically.
+
+Article schema object
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "How to Plan a Group Trip: Step-by-Step Guide",
+  description:
+    "Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly.",
+  image: ["https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg"],
+  author: {
+    "@type": "Organization",
+    name: "TRYPS"
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "TRYPS",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://jointryps.com/logo.png"
+    }
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://jointryps.com/blog/how-to-plan-a-group-trip"
+  }
+};
+HowTo schema object
+export const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Plan a Group Trip",
+  description: "A step-by-step guide to planning a group trip with friends.",
+  image: "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.jpg",
+  step: [
+    {
+      "@type": "HowToStep",
+      name: "Confirm who is actually going",
+      text: "Separate serious participants from people who are only loosely interested."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Shortlist destination options",
+      text: "Narrow the discussion to two or three realistic destination choices."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Lock dates with a group poll",
+      text: "Use a date poll so everyone can vote and the best overlap becomes visible."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Set the budget early",
+      text: "Agree on a realistic spend range per person before bookings begin."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Build a shared itinerary",
+      text: "Create a clear shared plan for accommodation, activities, reservations, and logistics."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Assign responsibilities",
+      text: "Distribute planning tasks so one person is not handling everything."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Track and split expenses clearly",
+      text: "Log shared costs as they happen and keep balances visible to the group."
+    },
+    {
+      "@type": "HowToStep",
+      name: "Finalize bookings and confirmations",
+      text: "Confirm transport, accommodation, and important reservations once the group is aligned."
+    }
+  ]
+};
+FAQ schema object
+export const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How far in advance should you plan a group trip?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "For shorter trips, one to three months usually works. For international or larger groups, three to six months is safer."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What is the easiest way to decide dates for a group trip?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Use a date poll. It is faster and more reliable than trying to coordinate availability in a group chat."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How do you split expenses fairly on a group trip?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Track expenses as they happen and keep balances visible. That is much clearer than trying to settle everything at the end."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What should a group trip itinerary include?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A group trip itinerary should include travel dates, accommodation, key activities, reservations, and important logistics the whole group needs to know."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What is the best app for planning group trips?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The best tools combine date coordination, itinerary planning, and expense tracking in one place so the group stays aligned."
+      }
+    }
+  ]
+};
+7. If you want a reusable article data object
+export const howToPlanGroupTripArticle = {
+  slug: "how-to-plan-a-group-trip",
+  title: "How to Plan a Group Trip: Step-by-Step Guide",
+  description:
+    "Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly.",
+  category: "Group trip planning",
+  readingTime: "8 min read",
+  heroImage: {
+    src: "/images/blog/how-to-plan-group-trip-hero.jpg",
+    alt: "Friends planning a group trip together on their phones"
+  }
+};
+8. Minimum SEO checklist for this page
+
+This page should ship with:
+
+unique title
+unique meta description
+canonical
+one H1 only
+Article + HowTo + FAQ + Breadcrumb schema
+crawlable 200 URL
+included in sitemap
+internal links from homepage or blog index
+compressed images
+no lazy loading on hero image
+descriptive alt text
+9. Important implementation notes
+
+Do not:
+
+put the whole article into one giant <div>
+use generic headings like “Section 1”
+hide core article content behind tabs or accordions by default
+use images without alt text
+publish the page but forget to add it to sitemap
+publish with placeholder hero image URLs that 404
+
+Do:
+
+keep the content server-rendered
+include article text directly in HTML
+keep schema in page source, not after user interaction
+link this page from your future blog index
+10. Strong next step
+
+After this, build these two pages next:
+
+/blog/how-to-split-expenses-on-a-group-trip
+/blog/best-group-trip-planning-apps
+
+They will support this page and strengthen internal linking.
