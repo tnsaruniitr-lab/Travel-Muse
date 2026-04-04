@@ -19,12 +19,7 @@ run = "pnpm --filter @workspace/tryps-landing run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/tryps-landing", "run", "build" ]
-publicDir = "artifacts/tryps-landing/dist/public"
-serve = "static"
-
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+run = [ "pnpm", "--filter", "@workspace/tryps-landing", "run", "start" ]
 
 [services.env]
 PORT = "19919"
