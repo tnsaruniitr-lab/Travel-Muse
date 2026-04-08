@@ -9,14 +9,14 @@ export const oahuGroupTripItineraryHeadTags = `
   <meta name="author" content="TRYPS" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://jointryps.com/blog/oahu-group-trip-itinerary" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#FFF9F9" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="7-Day Oahu Group Trip Itinerary (2026): What Actually Works" />
   <meta property="og:description" content="Day-by-day Oahu plan with real places, real food, and honest costs. Covers North Shore, Hanauma Bay, Chinatown, and the best group dinners on the island." />
   <meta property="og:url" content="https://jointryps.com/blog/oahu-group-trip-itinerary" />
-  <meta property="og:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.png" />
+  <meta property="og:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset" />
@@ -34,7 +34,7 @@ export const oahuGroupTripItineraryHeadTags = `
   <meta name="twitter:site" content="@trypsapp" />
   <meta name="twitter:title" content="7-Day Oahu Group Trip Itinerary (2026): What Actually Works" />
   <meta name="twitter:description" content="Day-by-day Oahu plan with real places, real food, and honest costs. North Shore, Hanauma Bay, Chinatown, and the best group dinners on the island." />
-  <meta name="twitter:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.png" />
+  <meta name="twitter:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.webp" />
   <meta name="twitter:image:alt" content="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset" />
 
   <script type="application/ld+json">
@@ -47,7 +47,7 @@ export const oahuGroupTripItineraryHeadTags = `
     "description": "A complete day-by-day Oahu itinerary for groups of friends, with restaurant picks, beach recommendations, booking tips, seasonal guidance, and estimated costs per person.",
     "image": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/images/blog/oahu-group-trip-hero.png",
+      "url": "https://jointryps.com/images/blog/oahu-group-trip-hero.webp",
       "width": 1200,
       "height": 630,
       "caption": "Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset"
@@ -58,13 +58,13 @@ export const oahuGroupTripItineraryHeadTags = `
       "@type": "Organization",
       "name": "TRYPS",
       "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/logo.png" }
+      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/opengraph.jpg", "width": 1200, "height": 630 }
     },
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
       "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/logo.png", "width": 200, "height": 60 }
+      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/opengraph.jpg", "width": 1200, "height": 630 }
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://jointryps.com/blog/oahu-group-trip-itinerary" },
     "articleSection": "Destination Guides",

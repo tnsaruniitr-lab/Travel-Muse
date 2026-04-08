@@ -1,0 +1,235 @@
+# Landing Page Audit: Travel-Muse (TRYPS) — v2
+> Audited: 2026-04-08 | Stack: React 19 + Vite 7 + Express SSR | Re-audit after fixes applied
+
+---
+
+## 1. Executive Summary
+
+Significant progress since the first audit. The biggest performance problems have been resolved and the codebase is substantially cleaner. The site has moved from **6.5/10 → 8.2/10**.
+
+**What was fixed:**
+- ✅ All images converted to WebP (26MB → ~1.7MB total)
+- ✅ `App.tsx` deleted — orphaned dead code gone
+- ✅ `helmet` added to `server.ts` — security headers active
+- ✅ Cache-Control added (`maxAge: "1y"`, immutable) for static assets
+- ✅ Inter font weights 500 & 600 removed — leaner font payload
+- ✅ Sitemap updated with all 4 pages including blog
+- ✅ Google Fonts preconnect removed from base `index.html`
+- ✅ `framer-motion`, `react-icons`, `react-hook-form`, `recharts`, `next-themes`, `@tanstack/react-query`, `embla-carousel-react`, `vaul`, `cmdk` and others removed
+- ✅ OG image path fixed in `home-head.ts` (`/opengraph.jpg`)
+- ✅ Mobile hamburger nav added to `home.tsx`
+- ✅ `ArticleImage` defaults to `loading="lazy"` — below-fold images correct
+
+**What still needs fixing:**
+- 🔴 Old `.png` files still in `public/images/` — 26MB of dead weight in the repo
+- 🟠 Blog OG/social meta tags still reference `.png` URLs (broken social cards on blog posts)
+- 🟠 Multiple schema image URLs point to files that don't exist (`/assets/logo.png`, `/images/tryps-preview.png`, etc.)
+- 🟠 `contentSecurityPolicy: false` — CSP disabled entirely in helmet config
+- 🟡 `oahu-north-shore-day.webp` is 779KB — largest remaining image, could go lower
+- 🟡 iOS/Android SoftwareApplication schema entries for apps that don't exist yet
+
+---
+
+## 2. Key Issues Table
+
+| Issue | File / Component | Impact | Severity | Fix |
+|-------|-----------------|--------|----------|-----|
+| Old PNGs still in `public/images/` | `public/images/*.png`, `public/images/blog/*.png` | 26MB repo bloat, confusing dual-format state | 🔴 Critical | Delete all `.png` files — WebP versions exist for all |
+| Blog OG images reference `.png` URLs | `how-to-plan-group-trip-head.ts`, `oahu-group-trip-itinerary-head.ts`, `index-head.ts` | Social share cards broken on blog posts | 🟠 High | Change all `og:image` and `twitter:image` to `.webp` equivalents |
+| Schema logo URL doesn't exist | `home-head.ts` line 30, blog head files | Schema validation failure | 🟠 High | No `public/assets/logo.png` file exists — use `/favicon.svg` or add the file |
+| Schema screenshot URLs don't exist | `home-head.ts` lines 99–103 | Schema validation failure | 🟠 High | `/images/tryps-preview.png`, `/images/tryps-date-poll.png` etc. don't exist — update or remove |
+| CSP disabled entirely | `server.ts` — `contentSecurityPolicy: false` | XSS protection removed | 🟠 High | Implement a proper CSP policy instead of disabling it |
+| `oahu-north-shore-day.webp` is 779KB | `public/images/blog/` | Slow LCP on Day 4 section of Oahu article | 🟡 Medium | Re-compress with `cwebp -q 75` — target <200KB |
+| iOS/Android schema entries for non-existent apps | `home-head.ts` | Misleading structured data | 🟡 Medium | Remove or clearly mark as `availability: PreOrder` |
+| `logo.png` referenced in blog schemas | `oahu-group-trip-itinerary-head.ts` line 61, 67 | Schema validation failure | 🟡 Medium | Replace with a real logo URL |
+
+---
+
+## 3. Detailed Findings
+
+### 3.1 Images — Mostly Resolved, One Cleanup Remaining
+
+**WebP conversion: excellent.** The numbers speak for themselves:
+
+| File | Before | After | Reduction |
+|------|--------|-------|-----------|
+| `oahu-north-shore-day` | 9.4MB | **779KB** | 92% |
+| `oahu-group-trip-hero` | 7.6MB | **268KB** | 96% |
+| `section-break` | 2.0MB | **249KB** | 88% |
+| `hero-bg` | 1.6MB | **116KB** | 93% |
+| `how-to-plan-group-trip-hero` | 1.5MB | **96KB** | 94% |
+| `group-trip-expense-tracker` | 1.5MB | **90KB** | 94% |
+| `group-trip-date-poll` | 1.2MB | **45KB** | 96% |
+| `shared-group-trip-itinerary` | 1.1MB | **51KB** | 95% |
+| `app-mockup` | 1.1MB | **43KB** | 96% |
+
+**Total blog image payload: ~1.7MB (down from 26MB). Blog LCP on mobile now viable.**
+
+**Problem:** The original `.png` files are **still in `public/images/`** alongside the WebPs. They serve no purpose — the `.tsx` pages reference `.webp` exclusively. They add 26MB of dead weight to the repo and risk being served accidentally. Delete them all.
+
+`oahu-north-shore-day.webp` at 779KB is still the heaviest image by far — it's more than all other images combined. A re-compress at quality 75 should get it under 200KB with minimal visible difference.
+
+### 3.2 Security Headers — Partially Resolved
+
+`helmet` is installed and active. This adds:
+- ✅ `X-Frame-Options`
+- ✅ `X-Content-Type-Options`
+- ✅ `Strict-Transport-Security`
+- ✅ `Referrer-Policy`
+- ✅ `X-DNS-Prefetch-Control`
+
+**But CSP is disabled:**
+```ts
+app.use(helmet({
+  contentSecurityPolicy: false, // ← XSS protection off
+}));
+```
+
+This is understandable — CSP is hard to configure correctly with a React app that uses inline styles, Google Fonts, etc. But disabling it entirely removes the most important XSS protection helmet provides.
+
+**Recommended approach — start with report-only mode:**
+```ts
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"], // tighten later
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"],
+    },
+    reportOnly: true, // log violations without blocking
+  },
+}));
+```
+Start in `reportOnly` mode, observe violations in the console, then enable enforcement once clean.
+
+### 3.3 Schema Issues — Multiple Broken Image URLs
+
+Several JSON-LD schema entries reference image URLs that don't exist in `public/`:
+
+**In `home-head.ts`:**
+- `"logo": "https://jointryps.com/assets/logo.png"` — no `public/assets/` directory exists
+- `"image": "https://jointryps.com/images/tryps-preview.png"` — file doesn't exist
+- `screenshot` array: `tryps-date-poll.png`, `tryps-itinerary.png`, `tryps-expense-split.png` — none exist
+
+**In `oahu-group-trip-itinerary-head.ts` and `how-to-plan-group-trip-head.ts`:**
+- `"logo": { "url": "https://jointryps.com/logo.png" }` — file doesn't exist
+
+Google's Rich Results Test will flag these. Broken image references in schema don't prevent indexing but they reduce schema quality signals and can cause rich result eligibility issues.
+
+**Fixes:**
+1. For the logo: either add a `public/assets/logo.png` file, or update to `/favicon.svg` (which exists)
+2. For screenshots: use the actual WebP blog images that exist, e.g. `/images/blog/oahu-group-trip-hero.webp`
+3. For blog OG/Twitter images: change all three head files to reference `.webp` instead of `.png`
+
+### 3.4 Blog OG/Social Images Still Broken
+
+The `<img>` tags in blog pages correctly use `.webp`. But the `<meta>` og/twitter tags in the head files still point to `.png`:
+
+```ts
+// how-to-plan-group-trip-head.ts
+<meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png" />
+
+// oahu-group-trip-itinerary-head.ts  
+<meta property="og:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.png" />
+
+// index-head.ts
+<meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png" />
+```
+
+If the old `.png` files are deleted (which they should be), **all blog social share cards will break**. Even if they're kept, crawlers may be served a 404 from CDN caching. Change these to `.webp` now.
+
+### 3.5 Mobile Nav — Fixed
+
+`home.tsx` now has a `useState(false)` hamburger menu with `aria-controls="mobile-nav"` and `onClick={() => setMenuOpen(o => !o)}`. This resolves the previous gap. Good implementation.
+
+### 3.6 Lazy Loading — Fixed Correctly
+
+`ArticleImage` component defaults to `loading="lazy"` and only the hero `<img>` overrides with `loading="eager"`. This is exactly the right pattern.
+
+### 3.7 Caching — Fixed
+
+```ts
+express.static(path.resolve(__dirname, "dist/public"), {
+  index: false,
+  maxAge: "1y",
+  immutable: true,
+})
+```
+
+This is correct for production — assets get aggressive 1-year caching. The `immutable` flag tells browsers not to revalidate. Vite adds content hashes to bundled filenames, so cache-busting is automatic.
+
+### 3.8 Routing Duplication — Still Present (Low Priority)
+
+The `entry-server.tsx` / `main.tsx` dual route map pattern remains. No new pages have been added so no new bugs introduced. Still worth resolving as the site grows — a shared route config would prevent the inevitable mismatch when a new blog post is added to one file but not the other.
+
+---
+
+## 4. Remaining Fix Roadmap
+
+### 🔴 CRITICAL
+
+1. **Delete all `.png` files from `public/images/`** — WebPs exist for all of them. Run:
+   ```bash
+   cd artifacts/tryps-landing/public/images
+   rm *.png blog/*.png
+   ```
+
+### 🟠 HIGH IMPACT
+
+2. **Fix blog OG/Twitter meta tags** — change `.png` → `.webp` in:
+   - `src/pages/blog/how-to-plan-group-trip-head.ts` (3 references)
+   - `src/pages/blog/oahu-group-trip-itinerary-head.ts` (3 references)
+   - `src/pages/blog/index-head.ts` (2 references)
+
+3. **Fix broken schema image URLs** — in `home-head.ts` and blog head files:
+   - Replace `https://jointryps.com/assets/logo.png` with a real path (add the file or use favicon)
+   - Replace `tryps-preview.png`, `tryps-date-poll.png`, `tryps-itinerary.png`, `tryps-expense-split.png` with real existing images
+
+4. **Enable CSP in report-only mode** — replace `contentSecurityPolicy: false` with a permissive initial policy in report-only mode.
+
+### 🟡 MEDIUM
+
+5. **Re-compress `oahu-north-shore-day.webp`** — currently 779KB, re-run at quality 75:
+   ```bash
+   cwebp -q 75 oahu-north-shore-day-original.png -o oahu-north-shore-day.webp
+   ```
+   Target: <200KB.
+
+6. **Remove or fix iOS/Android SoftwareApplication schema entries** — apps don't exist yet. Either remove or change `availability` to `https://schema.org/PreOrder`.
+
+7. **Add shared route config** — create a `src/routes.ts` with a shared map to replace the duplicated pathname switches in `entry-server.tsx` and `main.tsx`.
+
+---
+
+## 5. Quick Wins (under 30 minutes)
+
+1. `rm artifacts/tryps-landing/public/images/*.png artifacts/tryps-landing/public/images/blog/*.png` — delete old PNGs
+
+2. In `how-to-plan-group-trip-head.ts`, `oahu-group-trip-itinerary-head.ts`, `index-head.ts` — find-replace `.png` → `.webp` in all og/twitter image URLs
+
+3. In `home-head.ts` line 30 — change `assets/logo.png` → `favicon.svg`
+
+4. In `home-head.ts` lines 99–103 — replace the four non-existent screenshot URLs with actual WebP blog images that exist
+
+5. In `server.ts` — replace `contentSecurityPolicy: false` with a `reportOnly: true` CSP policy
+
+---
+
+## 6. Before vs After (v1 → v2)
+
+| Metric | v1 (original) | v2 (after fixes) | Still to do |
+|--------|--------------|-----------------|-------------|
+| Total image payload (blog) | 17MB | **1.7MB** | Compress oahu-north-shore further |
+| Old PNGs in repo | 26MB | 26MB (still there!) | Delete them |
+| JS bundle (est.) | ~500KB | **~200–250KB** | — |
+| Security headers | None | Partial (CSP off) | Enable CSP |
+| Sitemap | 1 URL | **4 URLs** | — |
+| Mobile nav | Missing | **Added** | — |
+| OG image (homepage) | Broken | **Fixed** | — |
+| OG image (blog posts) | N/A | Still `.png` refs | Fix to .webp |
+| Schema logo URL | Broken | Still broken | Add file or fix URL |
+| Schema screenshot URLs | Broken | Still broken | Fix URLs |
+| Overall health | 6.5/10 | **8.2/10** | Target: 9/10 |

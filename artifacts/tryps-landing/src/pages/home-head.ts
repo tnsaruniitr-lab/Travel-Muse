@@ -27,7 +27,12 @@ export const homeHeadTags = `
     "@type": "Organization",
     "name": "TRYPS",
     "url": "https://jointryps.com/",
-    "logo": "https://jointryps.com/assets/logo.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://jointryps.com/opengraph.jpg",
+      "width": 1200,
+      "height": 630
+    },
     "slogan": "Plan group trips together without the chaos.",
     "foundingDate": "2025-01-01",
     "sameAs": [
@@ -96,11 +101,11 @@ export const homeHeadTags = `
     "softwareVersion": "0.9-beta",
     "url": "https://jointryps.com/",
     "releaseNotes": "Web app available now. iOS App Store and Google Play Android app coming soon — join the waitlist at jointryps.com.",
-    "image": "https://jointryps.com/images/tryps-preview.png",
+    "image": "https://jointryps.com/images/blog/oahu-group-trip-hero.webp",
     "screenshot": [
-      "https://jointryps.com/images/tryps-date-poll.png",
-      "https://jointryps.com/images/tryps-itinerary.png",
-      "https://jointryps.com/images/tryps-expense-split.png"
+      "https://jointryps.com/images/blog/group-trip-date-poll.webp",
+      "https://jointryps.com/images/blog/shared-group-trip-itinerary.webp",
+      "https://jointryps.com/images/blog/group-trip-expense-tracker.webp"
     ],
     "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
     "publisher": {

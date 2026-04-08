@@ -94,13 +94,19 @@ Target domain: `jointryps.com` | Canonical palette: `#9A0514` primary, `#FFF9F9`
 | 20 | Blog image compression (PNG → WebP, 93% reduction) | `public/images/**` | 27MB → ~1.8MB total. All 9 images converted via ffmpeg quality 82. PNGs kept for OG/schema URLs. |
 | 21 | All `<img>` src references updated to WebP | Blog pages, `blog/index.tsx` | OG/Twitter/schema meta tags intentionally kept as `.png` for crawler compatibility |
 | 22 | Mobile hamburger navigation | `home.tsx` | Toggle button (☰/✕), slide-down drawer with all 5 nav links + "Join waitlist" CTA. Full a11y (aria-expanded, aria-controls). |
+| 23 | Old PNG files deleted from repo | `public/images/` | 26MB of dead weight removed — all 9 images now WebP-only |
+| 24 | North Shore image re-compressed | `oahu-north-shore-day.webp` | 779KB → 313KB (quality 40). 96% total reduction from original 9.4MB PNG. |
+| 25 | Blog OG/Twitter meta tags updated to WebP | 3 blog head files | `og:image` + `twitter:image` now point to `.webp` — social cards will work after PNG deletion |
+| 26 | Schema image URLs fixed — all now resolve | `home-head.ts`, blog head files | Org logo → `/opengraph.jpg`; SoftwareApp screenshots → real existing WebP blog images; blog publisher logos → `/opengraph.jpg` |
+| 27 | CSP enabled in report-only mode | `server.ts` | Permissive policy (unsafe-inline allowed) logs violations without blocking. Tighten before launch. |
+| 28 | `theme-color` fixed on all pages | All 3 blog head files | `#ffffff` → `#FFF9F9` consistently across home + all blog pages |
 
 ### ⏳ PENDING
 
 | # | Fix | Priority | Effort | Notes |
 |---|-----|----------|--------|-------|
 | A | Real AggregateRating data | High | Needs data | Replace placeholder 500 ratings / 4.8 with real waitlist/beta counts when available |
-| B | Enable CSP header | Medium | ~1h | Currently disabled — needs careful rule-set to allow inline scripts (JSON-LD schemas) |
-| C | `opengraph.jpg` exists ✓ | — | Done | File confirmed present at `public/opengraph.jpg` |
-| D | Unused shadcn component files cleanup | Low | ~30m | Radix UI deps removed but component files still in `src/components/ui/` — can delete unused ones |
-| E | Blog: `timeRequired` in Article schema | Low | ~20m | Add `timeRequired: "PT8M"` / `"PT10M"` to both blog Article JSON-LD blocks |
+| B | Tighten CSP from report-only to enforced | Medium | ~1h | Remove `reportOnly: true`, remove `unsafe-inline` for scripts once JSON-LD is moved to external files |
+| C | Shared route config (`src/routes.ts`) | Low | ~30m | `entry-server.tsx` and `main.tsx` have duplicated route maps — extract to shared file |
+| D | Unused shadcn component files cleanup | Low | ~30m | `src/components/ui/` has files for removed deps — safe to delete |
+| E | Blog: `timeRequired` in Article schema | Low | ~15m | Add `timeRequired: "PT8M"` / `"PT10M"` to both blog Article JSON-LD blocks |

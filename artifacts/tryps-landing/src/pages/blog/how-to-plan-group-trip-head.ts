@@ -6,14 +6,14 @@ export const howToPlanGroupTripHeadTags = `
   <meta name="description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
   <link rel="canonical" href="https://jointryps.com/blog/how-to-plan-a-group-trip" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#FFF9F9" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
   <meta property="og:description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
   <meta property="og:url" content="https://jointryps.com/blog/how-to-plan-a-group-trip" />
-  <meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png" />
+  <meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:published_time" content="2026-04-04T00:00:00Z" />
@@ -24,7 +24,7 @@ export const howToPlanGroupTripHeadTags = `
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
   <meta name="twitter:description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
-  <meta name="twitter:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png" />
+  <meta name="twitter:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp" />
 
   <script type="application/ld+json">
   {
@@ -32,7 +32,7 @@ export const howToPlanGroupTripHeadTags = `
     "@type": "Article",
     "headline": "How to Plan a Group Trip: Step-by-Step Guide",
     "description": "Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly.",
-    "image": ["https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png"],
+    "image": ["https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp"],
     "datePublished": "2026-04-04",
     "dateModified": "2026-04-04",
     "author": {
@@ -45,7 +45,9 @@ export const howToPlanGroupTripHeadTags = `
       "name": "TRYPS",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://jointryps.com/logo.png"
+        "url": "https://jointryps.com/opengraph.jpg",
+        "width": 1200,
+        "height": 630
       }
     },
     "mainEntityOfPage": {
@@ -61,7 +63,7 @@ export const howToPlanGroupTripHeadTags = `
     "@type": "HowTo",
     "name": "How to Plan a Group Trip",
     "description": "A step-by-step guide to planning a group trip with friends.",
-    "image": "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.png",
+    "image": "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp",
     "step": [
       { "@type": "HowToStep", "name": "Confirm who is actually going", "text": "Separate serious participants from people who are only loosely interested." },
       { "@type": "HowToStep", "name": "Shortlist destination options", "text": "Narrow the discussion to two or three realistic destination choices." },
