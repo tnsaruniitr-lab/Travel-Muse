@@ -51,6 +51,12 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 - **Product preview**: Code-built 4-panel flow mockup (no external image dependency)
 - **Hero mockup**: Code-built app card showing date poll + expense tracker + notification
 
+### Logo
+- **Chosen direction**: Option B from Round 2 — gradient tile (rounded square, deep-to-rose crimson gradient, white "T" inside). Working logo for now.
+- Source: `artifacts/mockup-sandbox/src/components/mockups/tryps-logos/LogoOptions2.tsx` — the `GradientTile` component
+- Not yet implemented on the landing page — to be integrated when ready
+
 ### Mockup Sandbox (`artifacts/mockup-sandbox`)
 - Design variant explorer with 7 variants (Sunshine A1, NightFlight B, Editorial C, Gradient D, Coastal A2, Golden A3, Punchy A4)
 - NightFlight.tsx has a known syntax error (template literal encoding issue) — does not affect the main landing page
+- Logo rounds: LogoOptions.tsx (R1), LogoOptions2.tsx (R2 — **chosen: option B**), LogoOptions3.tsx (R3), LogoOptions4.tsx (R4)
