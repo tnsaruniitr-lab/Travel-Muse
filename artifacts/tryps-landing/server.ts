@@ -5,6 +5,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import type { ViteDevServer } from "vite";
 import helmet from "helmet";
+import pg from "pg";
+
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === "production";
@@ -48,6 +51,27 @@ if (!isProd) {
     }),
   );
 }
+
+app.use(express.json());
+
+app.post(`${base}api/waitlist`.replace(/\/+/g, "/"), async (req, res) => {
+  try {
+    const { countryCode, phoneNumber } = req.body as { countryCode?: string; phoneNumber?: string };
+    if (!countryCode || !phoneNumber || phoneNumber.replace(/\D/g, "").length < 6) {
+      res.status(400).json({ error: "Invalid phone number" });
+      return;
+    }
+    const fullNumber = `${countryCode}${phoneNumber.replace(/\s/g, "")}`;
+    await pool.query(
+      "INSERT INTO waitlist_phones (country_code, phone_number, full_number) VALUES ($1, $2, $3) ON CONFLICT (full_number) DO NOTHING",
+      [countryCode, phoneNumber.trim(), fullNumber],
+    );
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error("Waitlist error:", err);
+    res.status(500).json({ error: "Server error, please try again" });
+  }
+});
 
 app.use(async (req, res) => {
   try {

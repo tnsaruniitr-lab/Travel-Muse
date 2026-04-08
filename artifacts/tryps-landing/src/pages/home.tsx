@@ -22,13 +22,42 @@ function TrypsLogo({ size = 32 }: { size?: number }) {
 function PhoneCaptureHero() {
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (phone.replace(/\D/g, "").length < 6) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ countryCode: "+1", phoneNumber: phone }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await res.json() as { error?: string };
+        setError(data.error ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Could not connect. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (submitted) {
     return (
       <div className="flex flex-col gap-3 mb-10">
-        <div className="flex items-center gap-3 bg-[#FFE4E6] border border-[#FECDD3] rounded-full px-5 py-3.5 max-w-sm">
-          <CheckCircle2 className="h-5 w-5 text-[#9A0514] shrink-0" />
-          <p className="text-sm font-bold text-[#1C0808]">You're on the list! We'll text you soon.</p>
+        <div className="flex items-center gap-3 bg-[#FFE4E6] border border-[#FECDD3] rounded-2xl px-5 py-4 max-w-sm shadow-md shadow-[#9A0514]/10">
+          <CheckCircle2 className="h-6 w-6 text-[#9A0514] shrink-0" />
+          <div>
+            <p className="text-sm font-bold text-[#1C0808]">You're on the list!</p>
+            <p className="text-xs text-[#6B3030] mt-0.5">We'll text you your invite soon.</p>
+          </div>
         </div>
         <p className="text-xs text-[#6B3030] pl-2">Expect your invite within 24 hours.</p>
       </div>
@@ -50,7 +79,7 @@ function PhoneCaptureHero() {
       <form
         role="form"
         aria-label="Join TRYPS early access — enter your mobile number to plan group trips"
-        onSubmit={e => { e.preventDefault(); if (phone.trim().length >= 6) setSubmitted(true); }}
+        onSubmit={handleSubmit}
         className="flex flex-col gap-2 max-w-sm"
       >
         <label htmlFor="hero-phone" className="sr-only">
@@ -58,13 +87,10 @@ function PhoneCaptureHero() {
         </label>
 
         <div className="flex items-stretch bg-white border border-[#FECDD3] rounded-full shadow-md shadow-[#9A0514]/10 overflow-hidden">
-          {/* Country selector — static for now, +91 India */}
-          <div className="flex items-center gap-1.5 px-4 border-r border-[#FECDD3] shrink-0 cursor-pointer select-none">
-            <span className="text-base leading-none">🇮🇳</span>
-            <span className="text-sm font-bold text-[#1C0808]">+91</span>
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-              <path d="M1 1l4 4 4-4" stroke="#6B3030" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          {/* Country selector — US +1 default */}
+          <div className="flex items-center gap-1.5 px-4 border-r border-[#FECDD3] shrink-0 select-none">
+            <span className="text-base leading-none">🇺🇸</span>
+            <span className="text-sm font-bold text-[#1C0808]">+1</span>
           </div>
 
           <input
@@ -72,22 +98,31 @@ function PhoneCaptureHero() {
             type="tel"
             autoComplete="tel"
             inputMode="numeric"
-            placeholder="98765 43210"
+            placeholder="555 123 4567"
             value={phone}
             onChange={e => setPhone(e.target.value)}
             className="flex-1 px-4 py-3.5 text-sm text-[#1C0808] outline-none bg-transparent placeholder-[#FECDD3]"
             required
             minLength={6}
+            disabled={loading}
           />
 
           <button
             type="submit"
             aria-label="Join TRYPS — get your group trip planning invite"
-            className="bg-[#9A0514] hover:bg-[#7B0310] text-white text-sm font-black px-6 py-3 rounded-full m-1 transition-colors shrink-0 shadow-lg shadow-[#9A0514]/25"
+            disabled={loading}
+            className="bg-[#9A0514] hover:bg-[#7B0310] disabled:opacity-60 text-white text-sm font-black px-6 py-3 rounded-full m-1 transition-colors shrink-0 shadow-lg shadow-[#9A0514]/25"
           >
-            Join
+            {loading ? "..." : "Join"}
           </button>
         </div>
+
+        {error && (
+          <p className="text-xs text-[#9A0514] pl-2 flex items-center gap-1.5">
+            <XCircle className="h-3.5 w-3.5 shrink-0" />
+            <span>{error}</span>
+          </p>
+        )}
 
         <p className="text-xs text-[#6B3030] pl-2 flex items-center gap-1.5">
           <span>🔒</span>
