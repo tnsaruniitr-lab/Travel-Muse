@@ -6,7 +6,9 @@ import { fileURLToPath } from "url";
 import type { ViteDevServer } from "vite";
 import helmet from "helmet";
 import compression from "compression";
+import rateLimit from "express-rate-limit";
 import pg from "pg";
+import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
@@ -14,6 +16,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === "production";
 const port = Number(process.env.PORT) || 3000;
 const base = process.env.BASE_PATH ?? "/";
+
+const ALLOWED_COUNTRY_CODES = new Set([
+  "+1", "+44", "+91", "+61", "+64", "+353", "+27", "+65", "+60",
+  "+49", "+33", "+34", "+39", "+31", "+46", "+47", "+45", "+358",
+  "+55", "+52", "+54", "+57", "+51", "+56", "+58", "+593", "+595",
+  "+81", "+82", "+86", "+852", "+853", "+886", "+66", "+62",
+  "+92", "+880", "+94", "+977", "+63", "+84", "+66",
+  "+971", "+966", "+20", "+234", "+254", "+233", "+212",
+]);
+
+const waitlistLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests. Please try again in 15 minutes." },
+});
 
 const app = express();
 const httpServer = createHttpServer(app);
@@ -54,24 +73,54 @@ if (!isProd) {
 }
 
 app.use(compression());
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
 
-app.post(`${base}api/waitlist`.replace(/\/+/g, "/"), async (req, res) => {
+const waitlistPath = `${base}api/waitlist`.replace(/\/+/g, "/");
+
+app.post(waitlistPath, waitlistLimiter, async (req, res) => {
   try {
     const { countryCode, phoneNumber } = req.body as { countryCode?: string; phoneNumber?: string };
-    if (!countryCode || !phoneNumber || phoneNumber.replace(/\D/g, "").length < 6) {
-      res.status(400).json({ error: "Invalid phone number" });
+
+    if (!countryCode || !phoneNumber) {
+      res.status(400).json({ error: "Country code and phone number are required." });
       return;
     }
-    const fullNumber = `${countryCode}${phoneNumber.replace(/\s/g, "")}`;
+
+    if (!ALLOWED_COUNTRY_CODES.has(countryCode)) {
+      res.status(400).json({ error: "Unsupported country code." });
+      return;
+    }
+
+    const combined = `${countryCode}${phoneNumber.replace(/\s/g, "")}`;
+
+    let isValid = false;
+    try {
+      isValid = isValidPhoneNumber(combined);
+    } catch {
+      isValid = false;
+    }
+
+    if (!isValid) {
+      res.status(400).json({ error: "Please enter a valid phone number." });
+      return;
+    }
+
+    let normalized = combined;
+    try {
+      normalized = parsePhoneNumber(combined).number;
+    } catch {
+      normalized = combined;
+    }
+
     await pool.query(
       "INSERT INTO waitlist_phones (country_code, phone_number, full_number) VALUES ($1, $2, $3) ON CONFLICT (full_number) DO NOTHING",
-      [countryCode, phoneNumber.trim(), fullNumber],
+      [countryCode, phoneNumber.trim(), normalized],
     );
+
     res.status(200).json({ success: true });
   } catch (err) {
     console.error("Waitlist error:", err);
-    res.status(500).json({ error: "Server error, please try again" });
+    res.status(500).json({ error: "Server error, please try again." });
   }
 });
 
