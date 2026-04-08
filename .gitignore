@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Audit export (generated on demand, not committed)
+audit-snapshot.txt

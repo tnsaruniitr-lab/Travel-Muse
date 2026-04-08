@@ -16,6 +16,18 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## External Audit Workflow
+
+Before sharing the codebase with any external auditor (AI tool, consultant, or reviewer), run:
+
+```
+pnpm audit:export
+```
+
+This generates `audit-snapshot.txt` in the repo root — a single flat file containing every source file in the project. Hand that file to the external auditor. It is gitignored and disposable; regenerate it fresh each time.
+
+**Note for this AI (Replit Agent):** Direct file access is available — no need to run this before internal audits. This workflow is only for external auditors who cannot navigate the monorepo directory structure.
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages
