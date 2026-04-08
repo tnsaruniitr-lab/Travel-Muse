@@ -486,24 +486,24 @@ export default function Home() {
             <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
               <div className="lg:col-span-3 pt-6">
-                <p className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFE4E6] text-[#9A0514] font-bold text-sm mb-5 md:mb-8 border border-[#FECDD3]">
+                <p className="flex w-fit mx-auto lg:mx-0 items-center gap-2 px-4 py-2 rounded-full bg-[#FFE4E6] text-[#9A0514] font-bold text-sm mb-5 md:mb-8 border border-[#FECDD3]">
                   <Star className="h-4 w-4 fill-[#9A0514]" />
                   Group trip planning app
                 </p>
 
-                <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-5 md:mb-6">
+                <h1 id="hero-title" className="text-[2.15rem] md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-5 md:mb-6 max-w-sm md:max-w-none text-balance">
                   A group trip planning app{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#9A0514] via-[#BE123C] to-[#FB7185]">
                     your friends actually use.
                   </span>
                 </h1>
 
-                <p className="text-xl text-[#6B3030] mb-4 leading-relaxed max-w-xl">
+                <p className="text-lg text-[#6B3030] mb-4 leading-relaxed max-w-lg pr-2">
                   TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
                 </p>
 
-                <p className="text-base text-[#6B3030] mb-4 leading-relaxed max-w-xl flex items-start gap-3">
-                  <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0 mt-0.5" />
+                <p className="text-base text-[#6B3030] mb-8 leading-relaxed max-w-lg flex items-center gap-3 pr-2">
+                  <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0" />
                   <span>No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.</span>
                 </p>
 
