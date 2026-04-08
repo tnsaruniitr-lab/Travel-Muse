@@ -137,7 +137,7 @@ function PhoneCaptureHero() {
             <div key={i}
               style={{ background: bg, border: "2px solid #FFF9F9", zIndex: 5 - i }}
               className="relative w-7 h-7 rounded-full flex items-center justify-center">
-              <span className="text-white text-[10px] font-bold">
+              <span className="text-white text-xs font-bold">
                 {["A","R","K","S","M"][i]}
               </span>
             </div>
@@ -176,7 +176,7 @@ function PhoneCaptureHero() {
               <path d="M12.72 4.28c.62-.75 1.03-1.79.92-2.83-.89.04-1.97.59-2.6 1.33-.57.66-1.07 1.71-.94 2.72.99.08 2-.5 2.62-1.22z" fill="white"/>
             </svg>
             <div className="text-left">
-              <p className="text-white text-[9px] font-medium leading-none mb-0.5">Download on the</p>
+              <p className="text-white text-xs font-medium leading-none mb-0.5">Download on the</p>
               <p className="text-white text-sm font-bold leading-none">App Store</p>
             </div>
           </a>
@@ -199,7 +199,7 @@ function PhoneCaptureHero() {
               <path d="M16.5 8.5c.83.46.83 1.54 0 2L13.5 12.2 10.08 10l3.42-3.2 3 1.7z" fill="white"/>
             </svg>
             <div className="text-left">
-              <p className="text-white text-[9px] font-medium leading-none mb-0.5 uppercase tracking-wide">Get it on</p>
+              <p className="text-white text-xs font-medium leading-none mb-0.5 uppercase tracking-wide">Get it on</p>
               <p className="text-white text-sm font-bold leading-none">Google Play</p>
             </div>
           </a>
@@ -227,7 +227,7 @@ function HeroMockup() {
         <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-5">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-red-200 text-[10px] font-bold uppercase tracking-widest mb-0.5">Active trip</p>
+              <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-0.5">Active trip</p>
               <h3 className="font-black text-white text-xl">Amalfi Coast</h3>
             </div>
             <div className="flex -space-x-2">
@@ -241,7 +241,7 @@ function HeroMockup() {
         </div>
         <div className="p-5 space-y-4">
           <div className="bg-[#FFF9F9] rounded-2xl p-4 border border-[#FECDD3]/50">
-            <p className="text-[10px] font-black text-[#9A0514] uppercase tracking-widest mb-3 flex items-center gap-1.5">
+            <p className="text-xs font-black text-[#9A0514] uppercase tracking-widest mb-3 flex items-center gap-1.5">
               <Calendar className="h-3 w-3" /> Date poll
             </p>
             {[
@@ -259,7 +259,7 @@ function HeroMockup() {
             ))}
           </div>
           <div className="bg-[#FFF9F9] rounded-2xl p-4 border border-[#FECDD3]/50">
-            <p className="text-[10px] font-black text-[#9A0514] uppercase tracking-widest mb-2">Expenses</p>
+            <p className="text-xs font-black text-[#9A0514] uppercase tracking-widest mb-2">Expenses</p>
             <div className="flex justify-between items-center mb-1.5">
               <span className="text-sm text-[#6B3030]">Group total</span>
               <span className="text-lg font-black text-[#1C0808]">$2,400</span>
@@ -267,7 +267,7 @@ function HeroMockup() {
             <div className="h-2 bg-[#FFE4E6] rounded-full overflow-hidden">
               <div className="h-full w-3/5 bg-gradient-to-r from-[#9A0514] to-[#BE123C] rounded-full" />
             </div>
-            <p className="text-[10px] text-[#9CA3AF] mt-1.5">60% of budget allocated</p>
+            <p className="text-xs text-[#9CA3AF] mt-1.5">60% of budget allocated</p>
           </div>
         </div>
       </div>
@@ -276,7 +276,7 @@ function HeroMockup() {
           <CheckCircle2 className="h-4 w-4 text-[#9A0514]" />
         </div>
         <div>
-          <p className="text-[10px] text-[#9CA3AF]">Sarah just voted</p>
+          <p className="text-xs text-[#9CA3AF]">Sarah just voted</p>
           <p className="text-sm font-black text-[#1C0808]">Jun 14–18</p>
         </div>
       </div>
@@ -295,13 +295,13 @@ function ProductPreview() {
         <div className="space-y-2 mt-3">
           <div className="bg-[#FFE4E6] rounded-xl p-3 text-left">
             <p className="text-xs font-semibold text-[#1C0808]">Hey! Join our Amalfi trip</p>
-            <p className="text-[10px] text-[#6B3030] mt-0.5">jointryps.com/amalfi-2025</p>
+            <p className="text-xs text-[#6B3030] mt-0.5">jointryps.com/amalfi-2025</p>
           </div>
           <div className="flex items-center gap-2 mt-2">
-            <div className="w-6 h-6 rounded-full bg-[#9A0514] flex items-center justify-center text-[9px] font-black text-white">A</div>
-            <div className="w-6 h-6 rounded-full bg-[#BE123C] flex items-center justify-center text-[9px] font-black text-white">B</div>
-            <div className="w-6 h-6 rounded-full bg-[#4ECDC4] flex items-center justify-center text-[9px] font-black text-white">C</div>
-            <span className="text-[10px] text-[#9CA3AF]">6 joined</span>
+            <div className="w-6 h-6 rounded-full bg-[#9A0514] flex items-center justify-center text-xs font-black text-white">A</div>
+            <div className="w-6 h-6 rounded-full bg-[#BE123C] flex items-center justify-center text-xs font-black text-white">B</div>
+            <div className="w-6 h-6 rounded-full bg-[#4ECDC4] flex items-center justify-center text-xs font-black text-white">C</div>
+            <span className="text-xs text-[#9CA3AF]">6 joined</span>
           </div>
         </div>
       ),
@@ -318,7 +318,7 @@ function ProductPreview() {
             { date: "Jul 5–9", w: "30%", best: false },
           ].map((d, i) => (
             <div key={i}>
-              <div className="flex justify-between text-[10px] mb-0.5">
+              <div className="flex justify-between text-xs mb-0.5">
                 <span className={d.best ? "font-bold text-[#9A0514]" : "text-[#6B3030]"}>{d.date}</span>
               </div>
               <div className="h-1.5 bg-[#FFE4E6] rounded-full overflow-hidden">
@@ -342,8 +342,8 @@ function ProductPreview() {
             { time: "20:00", item: "Group dinner" },
           ].map((e, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className="text-[9px] text-[#9CA3AF] w-8 shrink-0">{e.time}</span>
-              <span className="text-[10px] text-[#1C0808] font-medium">{e.item}</span>
+              <span className="text-xs text-[#9CA3AF] w-8 shrink-0">{e.time}</span>
+              <span className="text-xs text-[#1C0808] font-medium">{e.item}</span>
             </div>
           ))}
         </div>
@@ -361,13 +361,13 @@ function ProductPreview() {
             { label: "Activities", amt: "$220" },
           ].map((e, i) => (
             <div key={i} className="flex justify-between">
-              <span className="text-[10px] text-[#6B3030]">{e.label}</span>
-              <span className="text-[10px] font-bold text-[#1C0808]">{e.amt}</span>
+              <span className="text-xs text-[#6B3030]">{e.label}</span>
+              <span className="text-xs font-bold text-[#1C0808]">{e.amt}</span>
             </div>
           ))}
           <div className="border-t border-[#FECDD3] pt-1.5 flex justify-between">
-            <span className="text-[10px] font-bold text-[#9A0514]">All settled</span>
-            <span className="text-[10px] font-black text-[#1C0808]">$1,680</span>
+            <span className="text-xs font-bold text-[#9A0514]">All settled</span>
+            <span className="text-xs font-black text-[#1C0808]">$1,680</span>
           </div>
         </div>
       ),
@@ -382,7 +382,7 @@ function ProductPreview() {
             <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${p.color}22` }}>
               <p.icon className="h-3.5 w-3.5" style={{ color: p.color }} />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-wider" style={{ color: p.color }}>{p.label}</span>
+            <span className="text-xs font-black uppercase tracking-wider" style={{ color: p.color }}>{p.label}</span>
           </div>
           {p.content}
         </div>
@@ -485,31 +485,33 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
-              <div className="lg:col-span-3 pt-6">
+              <div className="lg:col-span-3 pt-6 text-center lg:text-left">
                 <p className="flex w-fit mx-auto lg:mx-0 items-center gap-2 px-4 py-2 rounded-full bg-[#FFE4E6] text-[#9A0514] font-bold text-sm mb-5 md:mb-8 border border-[#FECDD3]">
                   <Star className="h-4 w-4 fill-[#9A0514]" />
                   Group trip planning app
                 </p>
 
-                <h1 id="hero-title" className="text-[2.15rem] md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-5 md:mb-6 max-w-sm md:max-w-none text-balance">
+                <h1 id="hero-title" className="text-[2.7rem] md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-5 md:mb-6 text-balance">
                   A group trip planning app{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#9A0514] via-[#BE123C] to-[#FB7185]">
                     your friends actually use.
                   </span>
                 </h1>
 
-                <p className="text-lg text-[#6B3030] mb-4 leading-relaxed max-w-lg pr-2">
+                <p className="text-base md:text-lg text-[#6B3030] mb-4 leading-relaxed max-w-lg mx-auto lg:mx-0">
                   TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
                 </p>
 
-                <p className="text-base text-[#6B3030] mb-8 leading-relaxed max-w-lg flex items-center gap-3 pr-2">
+                <p className="text-base text-[#6B3030] mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 flex items-center justify-center lg:justify-start gap-3">
                   <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0" />
                   <span>No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.</span>
                 </p>
 
-                <PhoneCaptureHero />
+                <div className="flex justify-center lg:justify-start">
+                  <PhoneCaptureHero />
+                </div>
 
-                <p className="text-sm text-[#6B3030] leading-relaxed">
+                <p className="text-sm text-[#6B3030] leading-relaxed text-center lg:text-left">
                   Trusted by friend groups planning birthdays, bachelor trips, reunions, weekend getaways, and long vacations.
                 </p>
               </div>
@@ -609,7 +611,7 @@ export default function Home() {
 
         {/* ── PROBLEM VS SOLUTION ── */}
         <section aria-labelledby="problem-solution-title" className="py-14 md:py-24 bg-[#FFF9F9] border-t border-[#FECDD3]/30">
-          <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <h2 id="problem-solution-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808]">
                 Why most group trips never happen
@@ -697,7 +699,7 @@ export default function Home() {
 
         {/* ── SOCIAL PROOF ── */}
         <section aria-labelledby="social-proof-title" className="py-14 md:py-24 bg-[#FFF9F9] border-t border-[#FECDD3]/30">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-3">Real trips</p>
               <h2 id="social-proof-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808]">
@@ -737,7 +739,7 @@ export default function Home() {
 
         {/* ── USE CASES ── */}
         <section id="use-cases" aria-labelledby="use-cases-title" className="py-14 md:py-24 bg-white border-t border-[#FECDD3]/30">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-3">Built for you</p>
               <h2 id="use-cases-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808]">
@@ -783,7 +785,7 @@ export default function Home() {
 
         {/* ── PRODUCT PREVIEW ── */}
         <section aria-labelledby="preview-title" className="py-14 md:py-24 bg-[#FFF9F9] border-t border-[#FECDD3]/30">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
               <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-3">See it in action</p>
               <h2 id="preview-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808] mb-4">
@@ -805,7 +807,7 @@ export default function Home() {
 
         {/* ── ABOUT ── */}
         <section aria-labelledby="about-title" className="py-14 md:py-24 bg-white border-t border-[#FECDD3]/30">
-          <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 id="about-title" className="text-3xl md:text-4xl font-black tracking-tight text-[#1C0808] mb-5">
               Built by people who care about making group trips actually happen
             </h2>
@@ -821,7 +823,7 @@ export default function Home() {
 
         {/* ── FAQ ── */}
         <section id="faq" aria-labelledby="faq-title" className="py-14 md:py-24 bg-[#FFF9F9] border-t border-[#FECDD3]/30">
-          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-12">
               <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-3">FAQ</p>
               <h2 id="faq-title" className="text-4xl font-black text-[#1C0808]">Frequently asked questions</h2>
@@ -873,7 +875,7 @@ export default function Home() {
 
         {/* ── RESOURCES ── */}
         <section aria-labelledby="resources-title" className="py-14 md:py-20 bg-white border-t border-[#FECDD3]/30">
-          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 id="resources-title" className="text-2xl font-black text-[#1C0808] mb-6">Helpful planning guides</h2>
             <ul className="space-y-3 list-none p-0">
               {[
