@@ -77,3 +77,9 @@ id = "4K7k8a5ug7vwicy0W4a7g"
 uri = "file://tryps-seo-audit.txt"
 type = "text"
 title = "TRYPS - HTML & JSON-LD Schemas (index.html)"
+
+[[outputs]]
+id = "YQbl7W95PfvfU5S-W3Pde"
+uri = "file://tryps-tech-stack.pdf"
+type = "pdf"
+title = "TRYPS — Tech Stack & Architecture"
