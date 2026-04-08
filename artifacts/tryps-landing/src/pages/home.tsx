@@ -369,13 +369,10 @@ export default function Home() {
             <TrypsLogo size={34} />
             TRYPS
           </a>
-          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
+          <div className="hidden md:flex items-center gap-6 font-medium text-[#6B3030] text-sm">
             <a href="#features" className="hover:text-[#9A0514] transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-[#9A0514] transition-colors">How it works</a>
-            <a href="#comparison" className="hover:text-[#9A0514] transition-colors">Comparison</a>
-            <a href="#use-cases" className="hover:text-[#9A0514] transition-colors">Use cases</a>
             <a href="#faq" className="hover:text-[#9A0514] transition-colors">FAQ</a>
-            <a href="/about" className="hover:text-[#9A0514] transition-colors">About</a>
             <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
             <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
           </div>
@@ -829,8 +826,8 @@ export default function Home() {
       <footer className="bg-[#1C0808] text-[#FFF9F9] py-14">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
-            <div className="flex items-center gap-2">
-              <Star className="h-6 w-6 fill-[#9A0514] text-[#9A0514]" />
+            <div className="flex items-center gap-2.5">
+              <TrypsLogo size={28} />
               <span className="font-black text-xl">TRYPS</span>
             </div>
             <nav aria-label="Footer navigation" className="flex flex-wrap gap-6 text-sm text-white/50">

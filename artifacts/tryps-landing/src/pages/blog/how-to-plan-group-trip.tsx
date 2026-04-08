@@ -1,5 +1,21 @@
 import { ArrowRight, Star } from "lucide-react";
 
+function TrypsLogo({ size = 30 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="blog1-logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#9A0514" />
+          <stop offset="100%" stopColor="#FB7185" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="8" fill="url(#blog1-logo-grad)" />
+      <rect x="8" y="10" width="16" height="3.5" rx="1.75" fill="white" />
+      <rect x="13.25" y="13.5" width="5.5" height="10" rx="2.75" fill="white" />
+    </svg>
+  );
+}
+
 function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
   src: string; alt: string; width: number; height: number; loading?: "eager" | "lazy";
 }) {
@@ -76,8 +92,8 @@ export default function HowToPlanGroupTrip() {
       {/* ── HEADER ── */}
       <header className="sticky top-0 z-50 bg-[#FFF9F9]/90 backdrop-blur-md border-b border-[#FECDD3]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
-            <Star className="h-7 w-7 fill-[#9A0514] text-[#9A0514]" />
+          <a href="/" className="flex items-center gap-2.5 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
+            <TrypsLogo size={32} />
             TRYPS
           </a>
           <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
@@ -399,7 +415,7 @@ export default function HowToPlanGroupTrip() {
       <footer className="border-t border-[#FECDD3]/40 bg-[#FFF9F9]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9CA3AF]">
           <a href="/" className="flex items-center gap-2 font-black text-base text-[#9A0514]">
-            <Star className="h-5 w-5 fill-[#9A0514] text-[#9A0514]" />
+            <TrypsLogo size={22} />
             TRYPS
           </a>
           <nav aria-label="Blog footer navigation" className="flex flex-wrap gap-5 text-xs">
