@@ -1,0 +1,67 @@
+🔴 Critical — Design token system defined but completely unused
+index.css has a full, well-structured CSS custom property system:
+css--primary: 25 95% 53%;   /* amber/orange */
+--background: 0 0% 100%;
+--foreground: 222 47% 11%;
+Zero of these are used in any page. Every page ignores the token system entirely and uses raw hex values instead. Worse — the tokens define an amber/orange palette but the actual brand is crimson (#9A0514). The token system is from a previous design iteration and was never updated or adopted.
+Result: 16 unique hardcoded hex values scattered across 1,830 lines of page code with no single source of truth. If the brand colour changes, it needs updating in hundreds of places.
+
+🔴 Critical — TrypsLogo duplicated 3 times
+The TrypsLogo SVG component is copy-pasted into every page file — home.tsx, oahu-group-trip-itinerary.tsx, and how-to-plan-group-trip.tsx — with only the gradient ID changed (logo-grad, blog2-logo-grad, etc.) to avoid SVG ID collisions. Any logo change requires updating 3 files. This should be a shared component in src/components/.
+
+🟠 High — No shared component primitives
+Five patterns repeated with no abstraction:
+PatternTimes duplicatedShould beCTA button bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold rounded-full5× in home.tsx alone<Button /> componentEyebrow label font-bold text-sm uppercase tracking-widest text-[#9A0514]7×<Eyebrow /> componentSection card bg-white rounded-3xl border border-[#FECDD3]/30 shadow-sm5×<Card /> componentBlog body text text-[17px] leading-[1.85] text-[#2D1A0A]defined in both blog files as const body = "..."Shared blog layoutserif = { fontFamily: "'Playfair Display'..." }inline style in both blog filesCSS class or shared const
+
+🟠 High — Inconsistent content width
+8 different max-width values used across sections with no clear system:
+max-w-sm, max-w-xl, max-w-2xl, max-w-3xl, max-w-4xl, max-w-5xl, max-w-6xl, max-w-7xl
+Most marketing sections use max-w-7xl but several sections use max-w-4xl or max-w-3xl — meaning content width visually jumps as users scroll. A clear 3-width system (full: max-w-7xl, content: max-w-4xl, text: max-w-2xl) would fix this.
+
+🟠 High — Border radius scale is undefined
+6 different radius values with no clear scale or rule:
+rounded-full      → pills/avatars
+rounded-3xl       → large cards
+rounded-2xl       → medium cards
+rounded-xl        → small elements
+rounded-[2rem]    → hero mockup (magic number)
+rounded-[2.5rem]  → hero mockup outer (another magic number)
+The two arbitrary [2rem] / [2.5rem] values should be on the Tailwind scale. A clear rule (full = pills, 3xl = large cards, 2xl = standard cards, xl = inputs) would prevent this drifting further.
+
+🟡 Medium — Blog palette diverges from homepage
+Blog pages introduce 2 colours not in the homepage palette at all:
+
+#2D1A0A — dark warm brown for body text
+#D5C4A8 — light sand for accents
+
+The homepage uses #1C0808 for dark text. The different brown tones between blog and homepage create a subtle but noticeable inconsistency when navigating between them. Should be unified.
+
+🟡 Medium — Dark mode defined, never used
+index.css has a complete .dark theme with full token overrides — but 0 dark mode classes (dark:) appear in any page. The dark mode CSS adds ~40 lines of dead weight and implies a feature that doesn't exist. Either implement it or remove it and the next-themes dependency (already removed from package.json but the CSS remains).
+
+🟡 Medium — Arbitrary small text sizes
+text-[10px] used 15 times and text-[9px] used 6 times in home.tsx for small labels inside the hero mockup. These are below Tailwind's text-xs (12px). Values below 12px are also likely to fail WCAG AA contrast at those sizes. Consider text-xs (12px) as the minimum.
+
+🟡 Medium — home.tsx is 951 lines
+The entire homepage — hero, trust strip, features, how-it-works, problem/solution, comparison, social proof, use cases, product preview, about, FAQ, resources, CTA, footer — lives in a single 951-line file. The two inline sub-components (HeroMockup, ProductPreview) help but the file is still hard to navigate and will become unmaintainable as sections are added.
+
+🟢 Low — What's actually good
+
+Colour palette is cohesive — the 6 core crimson values (#9A0514, #BE123C, #7B0310, #FFE4E6, #FECDD3, #FFF9F9) are used consistently and tell a clear visual story
+Typography weights — only 4 weights used (medium, semibold, bold, black), appropriate restraint
+Responsive breakpoints — only md: and lg: used meaningfully, no over-engineering with xl: and 2xl:
+Tailwind spacing scale — no arbitrary spacing values, all spacing on the standard scale
+No arbitrary font sizes in Tailwind — all headings use the Tailwind type scale except the blog body text-[17px]
+Shadow system — consistent use of shadow-sm / md / xl / 2xl from the design token set
+Image aspect ratios — blog images consistently 1200×675 (16:9), homepage mockup is pure JSX
+
+
+Priority fix list
+
+Create src/styles/tokens.ts — export brand colours as typed constants. Update index.css --primary to match the actual crimson brand.
+Create src/components/TrypsLogo.tsx — single source, used in all 3 pages.
+Create src/components/ui/Button.tsx — wrap the CTA pattern once.
+Standardise content widths — pick 3 values and stick to them throughout home.tsx.
+Remove dark mode CSS — or implement it. Not both.
+Unify blog body text colour — align #2D1A0A to #1C0808.
+Split home.tsx — extract each major section into its own component file.
