@@ -516,7 +516,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="lg:col-span-2 pt-6">
+              <div className="hidden lg:block lg:col-span-2 pt-6">
                 <HeroMockup />
               </div>
             </div>
