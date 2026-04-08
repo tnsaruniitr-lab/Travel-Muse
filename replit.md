@@ -91,14 +91,16 @@ Target domain: `jointryps.com` | Canonical palette: `#9A0514` primary, `#FFF9F9`
 | 18 | Orphaned `App.tsx` deleted | `src/App.tsx` | Was not imported by `main.tsx` |
 | 19 | Unused deps removed | `package.json` | framer-motion, react-icons, next-themes, @tanstack/react-query, wouter, sonner, recharts, embla-carousel-react, vaul, cmdk, input-otp, react-day-picker, react-hook-form, react-resizable-panels, date-fns, @hookform/resolvers |
 
+| 20 | Blog image compression (PNG → WebP, 93% reduction) | `public/images/**` | 27MB → ~1.8MB total. All 9 images converted via ffmpeg quality 82. PNGs kept for OG/schema URLs. |
+| 21 | All `<img>` src references updated to WebP | Blog pages, `blog/index.tsx` | OG/Twitter/schema meta tags intentionally kept as `.png` for crawler compatibility |
+| 22 | Mobile hamburger navigation | `home.tsx` | Toggle button (☰/✕), slide-down drawer with all 5 nav links + "Join waitlist" CTA. Full a11y (aria-expanded, aria-controls). |
+
 ### ⏳ PENDING
 
 | # | Fix | Priority | Effort | Notes |
 |---|-----|----------|--------|-------|
-| A | Blog image compression (PNG → WebP) | **Critical** | ~2–3h | 9.4MB + 7.6MB PNGs. Target: ~200–400KB WebP. Biggest UX impact. |
-| B | Mobile hamburger navigation | High | ~1–2h | No mobile nav currently; desktop-only menu. High conversion impact. |
-| C | Real AggregateRating data | High | Needs data | Replace placeholder 500/4.8 with real waitlist/beta counts when available |
-| D | Enable CSP header | Medium | ~1h | Needs careful config; currently disabled to avoid blocking inline scripts/schemas |
-| E | `opengraph.jpg` image | Medium | Design | `/opengraph.jpg` path is now correct but verify the actual file exists at `public/opengraph.jpg` |
-| F | Unused shadcn UI components cleanup | Low | ~30m | Many Radix UI deps remain for unused shadcn files — audit & delete component files not used in any page |
-| G | Blog: estimated read time | Low | ~20m | Add `timeRequired` to Article schema on both blog posts |
+| A | Real AggregateRating data | High | Needs data | Replace placeholder 500 ratings / 4.8 with real waitlist/beta counts when available |
+| B | Enable CSP header | Medium | ~1h | Currently disabled — needs careful rule-set to allow inline scripts (JSON-LD schemas) |
+| C | `opengraph.jpg` exists ✓ | — | Done | File confirmed present at `public/opengraph.jpg` |
+| D | Unused shadcn component files cleanup | Low | ~30m | Radix UI deps removed but component files still in `src/components/ui/` — can delete unused ones |
+| E | Blog: `timeRequired` in Article schema | Low | ~20m | Add `timeRequired: "PT8M"` / `"PT10M"` to both blog Article JSON-LD blocks |

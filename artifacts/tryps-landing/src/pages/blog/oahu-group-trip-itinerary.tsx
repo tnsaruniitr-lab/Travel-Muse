@@ -166,7 +166,7 @@ export default function OahuGroupTripItinerary() {
             </p>
             <p className={`${body} mb-8`}>Here's a day-by-day Oahu plan with real places, real food, and enough structure that the group chat can finally go quiet.</p>
             <ArticleImage
-              src="/images/blog/oahu-group-trip-hero.png"
+              src="/images/blog/oahu-group-trip-hero.webp"
               alt="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset"
               width={1200} height={675} loading="eager"
             />
@@ -308,7 +308,7 @@ export default function OahuGroupTripItinerary() {
             <p className={`${body} mb-4`}>Dinner back in town: <strong>Rainbow Drive-In</strong> on Kapahulu. Open since 1961, cash only, cheap, perfect for a long day. The mixed plate is the move.</p>
             <TipBox label="Transport">Rent a car for this day. Uber surges badly on the North Shore and you want the flexibility to stop when you see turtles. Budget $50–$80 for a day rental split between the group.</TipBox>
             <ArticleImage
-              src="/images/blog/oahu-north-shore-day.png"
+              src="/images/blog/oahu-north-shore-day.webp"
               alt="Friends on scooters along Kamehameha Highway toward North Shore and Turtle Bay"
               width={1200} height={675}
             />

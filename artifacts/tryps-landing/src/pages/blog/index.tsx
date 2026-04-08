@@ -9,7 +9,7 @@ export default function BlogIndex() {
       excerpt: "Planning a group trip sounds fun until someone says \"I'm flexible\" and disappears for three days. Here's a clear system that actually works.",
       date: "April 4, 2026",
       readTime: "8 min read",
-      image: "/images/blog/how-to-plan-group-trip-hero.png",
+      image: "/images/blog/how-to-plan-group-trip-hero.webp",
     },
     {
       href: "/blog/oahu-group-trip-itinerary",
@@ -18,7 +18,7 @@ export default function BlogIndex() {
       excerpt: "One person wants beach days. Someone wants to eat every two hours. Nobody has booked anything. Here's a day-by-day plan with real places, real food, and enough structure to keep the group chat quiet.",
       date: "April 4, 2026",
       readTime: "10 min read",
-      image: "/images/blog/oahu-group-trip-hero.png",
+      image: "/images/blog/oahu-group-trip-hero.webp",
     },
   ];
 

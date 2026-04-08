@@ -357,14 +357,16 @@ function ProductPreview() {
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#FFF9F9] text-[#1C0808] font-sans">
 
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-[#9A0514] focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:font-bold">Skip to content</a>
 
       {/* ── HEADER / NAV ── */}
-      <header className="sticky top-0 z-50 bg-[#FFF9F9]/85 backdrop-blur-md border-b border-[#FECDD3]/40">
-        <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
+      <header className="sticky top-0 z-50 bg-[#FFF9F9]/95 backdrop-blur-md border-b border-[#FECDD3]/40">
+        <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-16 md:h-20">
           <a href="/" className="flex items-center gap-2.5 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
             <TrypsLogo size={34} />
             TRYPS
@@ -376,10 +378,67 @@ export default function Home() {
             <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
             <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
           </div>
-          <a href="#waitlist" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
-            Join waitlist
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#waitlist" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
+              Join waitlist
+            </a>
+            <button
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-[#FFE4E6] transition-colors"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setMenuOpen(o => !o)}
+            >
+              {menuOpen ? (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M4 4L16 16M16 4L4 16" stroke="#9A0514" strokeWidth="2.5" strokeLinecap="round"/>
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M3 5h14M3 10h14M3 15h14" stroke="#9A0514" strokeWidth="2.5" strokeLinecap="round"/>
+                </svg>
+              )}
+            </button>
+          </div>
         </nav>
+
+        {/* ── MOBILE DRAWER ── */}
+        {menuOpen && (
+          <div
+            id="mobile-nav"
+            className="md:hidden border-t border-[#FECDD3]/60 bg-[#FFF9F9]"
+            role="dialog"
+            aria-label="Navigation menu"
+          >
+            <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-1">
+              {[
+                { href: "#features", label: "Features" },
+                { href: "#how-it-works", label: "How it works" },
+                { href: "#faq", label: "FAQ" },
+                { href: "/group-trip-planning-guide", label: "Guide" },
+                { href: "/blog", label: "Blog" },
+              ].map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="flex items-center px-4 py-3.5 rounded-2xl font-semibold text-[#6B3030] hover:bg-[#FFE4E6] hover:text-[#9A0514] transition-colors text-base"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </a>
+              ))}
+              <div className="mt-3 pt-4 border-t border-[#FECDD3]/60">
+                <a
+                  href="#waitlist"
+                  className="flex justify-center w-full bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-base px-5 py-3.5 rounded-2xl shadow-md shadow-[#9A0514]/20 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Join waitlist →
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       <main id="main-content">
