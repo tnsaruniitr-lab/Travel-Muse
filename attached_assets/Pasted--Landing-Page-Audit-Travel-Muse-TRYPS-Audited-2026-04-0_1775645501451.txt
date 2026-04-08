@@ -1,0 +1,314 @@
+# Landing Page Audit: Travel-Muse (TRYPS)
+> Audited: 2026-04-08 | Stack: React 19 + Vite 7 + Express SSR | Renderer: SSR (custom entry-server pattern) | Monorepo: pnpm workspaces
+
+---
+
+## 1. Executive Summary
+
+TRYPS is a React 19 SSR landing page with strong SEO foundations, good semantic HTML, and a clean design system. However, it carries significant performance risks from unoptimized images, dead dependencies, a duplicated/orphaned routing system, and missing security headers. The blog images in particular are catastrophically oversized (up to 9.4MB for a single PNG), and several schema entries reference URLs that don't exist in the codebase.
+
+**Overall health rating: 6.5 / 10**
+
+Top critical issues:
+- Blog images up to 9.4MB — single largest performance problem in the repo
+- framer-motion and react-icons installed but never imported anywhere in `src/`
+- `App.tsx` is orphaned — `main.tsx` bypasses it entirely, yet its imports (QueryClient, Toaster, Wouter Router) are still bundled
+- OG image path in `home-head.ts` references `/og/tryps-homepage-og.jpg` — file doesn't exist (actual file is `/opengraph.jpg`)
+- No security headers anywhere in the Express server
+- Sitemap only includes the homepage — blog pages are invisible to crawlers
+
+---
+
+## 2. Key Issues Table
+
+| Issue | File / Component | Impact | Severity | Fix |
+|-------|-----------------|--------|----------|-----|
+| Unoptimized PNGs (up to 9.4MB) | `public/images/blog/*.png` | LCP, bandwidth | 🔴 Critical | Convert to WebP/AVIF, resize to display dimensions |
+| OG image path mismatch | `src/pages/home-head.ts` | Social share cards broken | 🔴 Critical | Change to `/opengraph.jpg` or add missing file |
+| Orphaned `App.tsx` — dead QueryClient/Toaster/Router bundle | `src/App.tsx`, `src/main.tsx` | ~30–50KB wasted JS | 🔴 Critical | Remove App.tsx or wire it into the SSR flow |
+| framer-motion installed but unused | `package.json` | ~80–130KB bundle bloat | 🟠 High | Remove from dependencies |
+| react-icons installed but unused | `package.json` | ~5MB tree (even tree-shaken adds overhead) | 🟠 High | Remove from dependencies |
+| No security headers in Express | `server.ts` | XSS, clickjacking exposure | 🟠 High | Add helmet or manual header middleware |
+| Blog pages missing from sitemap | `public/sitemap.xml` | Blog posts not indexed | 🟠 High | Add all blog URLs with lastmod |
+| 5 Inter font weights loaded | `src/index.css` | ~200KB+ extra font payload | 🟡 Medium | Drop weights 500 and 600 (400/700/900 covers most needs) |
+| Dead preconnect hints in index.html | `index.html` | Wasted preconnect to Google Fonts (not used at root level) | 🟡 Medium | Remove or move to blog-specific head |
+| SearchAction schema points to non-existent `/search` | `src/pages/home-head.ts` | Schema validation warning | 🟡 Medium | Remove SearchAction or build the route |
+| No mobile navigation | `src/pages/home.tsx` | Nav hidden on mobile, no hamburger | 🟡 Medium | Add mobile drawer/hamburger menu |
+| Missing `loading="lazy"` on blog images (below fold) | `src/pages/blog/*.tsx` | LCP competitor loads early | 🟡 Medium | Add `loading="lazy"` to all non-hero images |
+| hero-bg.png and section-break.png are PNGs (1.6MB / 2.0MB) | `public/images/` | LCP delay on home page | 🟡 Medium | Convert to WebP, add preload link in head |
+| `dangerouslySetInnerHTML` in chart.tsx | `src/components/ui/chart.tsx` | Low risk (no user content), but note it | 🟢 Low | Add code comment documenting the risk boundary |
+| Unused shadcn components (30+) installed | `src/components/ui/` | Minimal direct impact (Tailwind v4 purges CSS) | 🟢 Low | No action needed — tree shaking handles it |
+
+---
+
+## 3. Deep Analysis
+
+### 3.1 Stack & Architecture
+
+The project is a **pnpm monorepo** with four workspaces:
+- `artifacts/tryps-landing` — the main SSR marketing site (this audit's focus)
+- `artifacts/mockup-sandbox` — design exploration environment
+- `artifacts/api-server` — Express API backend (minimal, health route only)
+- `lib/*` — shared libraries (api-client-react, api-spec, api-zod, db)
+
+The landing site uses a **custom SSR pattern**: Express runs `server.ts`, which calls `entry-server.tsx` (React `renderToString`) server-side and hydrates via `main.tsx` client-side. This is a solid approach, but it has created a routing divergence problem.
+
+**Critical architecture issue — two routing systems in conflict:**
+
+`main.tsx` (the actual hydration entry) does manual `window.location.pathname` switching to pick a React component:
+
+```tsx
+// main.tsx
+if (pathname === "/blog") { App = BlogIndex; }
+else if (pathname === "/blog/how-to-plan-a-group-trip") { App = HowToPlanGroupTrip; }
+// ...
+```
+
+Meanwhile, `App.tsx` sets up a full Wouter SPA with `QueryClientProvider`, `TooltipProvider`, a `<Router>`, and `<Toaster>` — but `main.tsx` never imports or renders `App.tsx`. The entire `App.tsx` file is a dead code path. However, because Vite bundles from `src/main.tsx`, and `App.tsx` isn't imported there, its dependencies (react-query, wouter router, toaster) **shouldn't be bundled** — but this needs verification after build. The presence of `@tanstack/react-query` as a devDependency with a client wrapper that's never called is architectural dead weight.
+
+### 3.2 JavaScript
+
+**Estimated bundle size (uncompressed):** ~400–600KB JS
+
+Heavy devDependencies that appear unused in actual page components:
+- **framer-motion** (`catalog:` → ^12.23.24): ~130KB gzipped. Zero `import` statements from `framer-motion` found anywhere in `src/`. Safe to remove.
+- **react-icons** (`^5.4.0`): Zero usages found in `src/`. Remove immediately.
+- **recharts** (`^2.15.2`): Only referenced inside `src/components/ui/chart.tsx` (a shadcn component). The `chart.tsx` component is never imported by any page. Likely safe to remove unless planned.
+- **@tanstack/react-query**: Referenced in `App.tsx` (orphaned). Not used by any live page.
+- **next-themes** (`^0.4.6`): No dark mode toggle visible anywhere. Unused.
+- **embla-carousel-react**, **react-day-picker**, **react-hook-form**, **input-otp**, **vaul**, **react-resizable-panels**, **cmdk**: All installed as devDependencies, used only in shadcn UI components that aren't imported by any live page.
+
+The page itself (home.tsx) is efficiently written: pure JSX, no client-side data fetching, no `useEffect`. Good.
+
+### 3.3 CSS
+
+Using **Tailwind CSS v4 via @tailwindcss/vite** — this is the correct modern setup. Tailwind v4 scans imports automatically and purges unused classes at build time. The ~30+ unused shadcn components in `src/components/ui/` won't bloat the CSS bundle since their classes aren't used in live pages.
+
+`tw-animate-css` is included — this is a small utility (~10KB), acceptable.
+
+**Five Inter font weights are imported in `index.css`:**
+```css
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/900.css";
+```
+Each weight adds ~30–50KB of font data. Weights 500 and 600 are rarely distinguishable from 400 and 700 respectively. Dropping them saves ~60–100KB.
+
+### 3.4 Images & Media
+
+This is the biggest performance problem in the codebase.
+
+| File | Size | Issue |
+|------|------|-------|
+| `blog/oahu-north-shore-day.png` | **9.4MB** | Should be <150KB in WebP at 1200px wide |
+| `blog/oahu-group-trip-hero.png` | **7.6MB** | Should be <200KB in WebP at 1200px wide |
+| `images/section-break.png` | **2.0MB** | Should be <50KB in WebP |
+| `images/hero-bg.png` | **1.6MB** | Should be <100KB in WebP |
+| `blog/how-to-plan-group-trip-hero.png` | **1.5MB** | Should be <150KB in WebP |
+| `blog/group-trip-expense-tracker.png` | **1.5MB** | Should be <80KB in WebP |
+| `blog/group-trip-date-poll.png` | **1.2MB** | Should be <80KB in WebP |
+| `blog/shared-group-trip-itinerary.png` | **1.1MB** | Should be <80KB in WebP |
+| `images/app-mockup.png` | **1.1MB** | Should be <100KB in WebP |
+
+**Total image payload: ~26MB.** A blog page with oahu images loads over **17MB in images alone** before compression.
+
+The hero of the home page is a JSX mockup (no `<img>` tags) — LCP is likely the hero text itself, which is good. However, `hero-bg.png` and `section-break.png` are referenced as CSS background or `<img>` elements in blog pages and should be converted.
+
+Blog pages (`oahu-group-trip-itinerary.tsx`) do include `width` and `height` attributes (good for CLS), and the hero loads `eager` (correct). Below-fold images need `loading="lazy"`.
+
+### 3.5 Fonts
+
+**@fontsource/inter** is used — this serves fonts from npm rather than Google Fonts CDN, which is excellent for privacy and avoids a third-party connection. No `font-display: swap` override was spotted in the CSS; @fontsource defaults vary by version — confirm it's set.
+
+**Blog pages (oahu-head.ts) additionally load Playfair Display via Google Fonts CDN:**
+```html
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:..." rel="stylesheet" />
+```
+This adds a render-blocking external stylesheet. The preconnect hints in `index.html` (`fonts.googleapis.com`, `fonts.gstatic.com`) are correctly positioned for this — but they're in the base `index.html` and will fire on every page, even the homepage which doesn't use Google Fonts.
+
+**Fix:** Move the `<link rel="preconnect">` hints to the blog-specific head files only.
+
+### 3.6 Core Web Vitals
+
+**LCP (Largest Contentful Paint):**
+- Home page: LCP is likely the `<h1>` hero text or the hero mockup container — both are server-rendered, which is excellent. Estimated LCP: **1.2–2.0s** on fast connections. Risk: hero-bg.png if it's the LCP element.
+- Blog pages: LCP is the hero `<img>` (loaded `eager` with correct dimensions). However, at 7.6–9.4MB PNG, even with browser decoding this will be **4–8s+ on mobile**. This is a critical failure.
+
+**CLS (Cumulative Layout Shift):**
+- Blog images have `width` and `height` set — good, CLS risk is low.
+- Home page hero uses JSX-only mockup — no CLS risk.
+- 5 font weights loading may cause FOUT if `font-display: swap` isn't set. Minor CLS risk.
+
+**INP (Interaction to Next Paint):**
+- Home page is mostly static HTML with no heavy event handlers.
+- No `useEffect` data fetching on any page — hydration cost is minimal.
+- Risk: if unused deps (framer-motion, react-query) end up in bundle, they increase parse time on low-end devices.
+
+### 3.7 Network & Loading
+
+**Preconnect analysis:**
+```html
+<!-- index.html — fires on ALL pages including home -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+```
+The home page uses @fontsource (npm), not Google Fonts CDN. These preconnect hints are wasted DNS lookups on the homepage. Move them to blog-specific head strings.
+
+**Missing preloads:**
+- No `<link rel="preload">` for the LCP hero image on blog pages
+- No preload for Inter font files (above-the-fold text could flash)
+
+**Caching:**
+- No `Cache-Control` headers set in `server.ts` for static assets
+- Express static middleware uses defaults — no explicit max-age for `public/` assets
+- Add aggressive caching for images/fonts: `Cache-Control: public, max-age=31536000, immutable`
+
+### 3.8 Code Quality
+
+- **home.tsx is 686 lines** — getting large but functional. Two inline components (`HeroMockup`, `ProductPreview`) could be extracted into separate files for maintainability.
+- **No `useMemo` / `useCallback` needed** — all components are stateless and server-rendered. Clean.
+- **Routing duplication**: SSR (`entry-server.tsx`), hydration (`main.tsx`), and the dead SPA router (`App.tsx`) all implement routing independently. This will cause maintenance pain as pages are added — a route added to `entry-server.tsx` must also be added to `main.tsx` manually. Consider a shared route config object.
+- **No TypeScript errors visible** in the files reviewed.
+- **`App.tsx` is a dead file.** It sets up QueryClient, TooltipProvider, Wouter Router, and Toaster, but is never imported by `main.tsx`. It should either be wired in or deleted.
+
+### 3.9 Security
+
+**No security headers in `server.ts`:**
+
+The Express server sends responses with no HTTP security headers. Missing:
+- `Content-Security-Policy`
+- `X-Frame-Options` (clickjacking protection)
+- `Strict-Transport-Security` (HSTS)
+- `X-Content-Type-Options`
+- `Referrer-Policy`
+- `Permissions-Policy`
+
+**Fix:** Add `helmet` middleware:
+```bash
+pnpm add helmet
+```
+```ts
+// server.ts
+import helmet from "helmet";
+app.use(helmet());
+```
+
+**`dangerouslySetInnerHTML` in `chart.tsx`**: Used in the shadcn Chart component for SVG gradient IDs. This is a known pattern in the shadcn source and the input is not user-controlled. Low risk, but document it.
+
+**No hardcoded secrets found** in the reviewed files. Good.
+
+### 3.10 SEO / AEO
+
+**Strengths:**
+- Rich JSON-LD schema: Organization, Person, WebSite, SoftwareApplication, HowTo, FAQPage, BreadcrumbList — excellent coverage
+- Correct `<title>`, `<meta description>`, canonical, og:*, twitter:* on homepage
+- SSR ensures crawlers see full HTML immediately
+- `robots.txt` and `sitemap.xml` present
+- Heading hierarchy is clean (one `<h1>` per page)
+- Skip-to-content link for accessibility
+- `aria-label` on nav, `aria-labelledby` on sections
+
+**Issues:**
+
+1. **OG image broken**: `home-head.ts` references `https://jointryps.com/og/tryps-homepage-og.jpg` but the actual file is `public/opengraph.jpg` (served at `/opengraph.jpg`). Social share cards will show no image.
+
+2. **Sitemap missing blog pages**: `sitemap.xml` only contains the homepage. The two blog posts are invisible to Google Search Console.
+
+3. **SearchAction schema points to non-existent route**: `/search?q={search_term_string}` is not implemented. Remove this until it's built.
+
+4. **SoftwareApplication schema says `operatingSystem: "Web, iOS, Android"`** but only the web product exists. Remove iOS/Android until apps ship to avoid misleading rich results.
+
+5. **Schema reviews use `ratingValue: "5"` for all but one** — pattern looks fabricated. Google may distrust aggregated reviews with no `aggregateRating`. Either add an `AggregateRating` with `ratingCount` or remove individual reviews from schema.
+
+6. **Blog pages need their own canonical URLs** — confirm oahu and how-to-plan head files include correct canonicals (not checked fully).
+
+7. **`theme-color` is `#ffffff`** in home-head but the site background is `#FFFBF0`. Minor branding inconsistency for mobile browser chrome.
+
+---
+
+## 4. Prioritized Fix Roadmap
+
+### 🔴 CRITICAL (fix immediately)
+
+1. **Convert all images to WebP** — 9.4MB and 7.6MB PNGs in blog are site-breaking on mobile. Use `cwebp` or Squoosh to convert and resize. Target: <200KB per image at max 1200px width.
+2. **Fix OG image path** in `src/pages/home-head.ts` — change to `/opengraph.jpg` or add the missing file.
+3. **Delete or wire in `App.tsx`** — it's orphaned dead code that creates confusion. If QueryClient/routing are not needed, delete it. If SSR needs a unified router, build it.
+
+### 🟠 HIGH IMPACT
+
+4. **Remove `framer-motion` from `package.json`** — not imported anywhere in `src/`. Run `pnpm remove framer-motion` from `artifacts/tryps-landing`.
+5. **Remove `react-icons` from `package.json`** — not imported anywhere. Run `pnpm remove react-icons`.
+6. **Add security headers** — install `helmet` and add to `server.ts`. One-hour fix, critical for production.
+7. **Update sitemap.xml** to include both blog pages with `<lastmod>` dates.
+
+### 🟡 MEDIUM
+
+8. **Drop Inter font weights 500 and 600** from `src/index.css` — saves ~60–100KB.
+9. **Move Google Fonts preconnect hints** from base `index.html` to blog-specific head strings only.
+10. **Fix SearchAction schema** — remove it or build the route.
+11. **Fix SoftwareApplication schema** — remove `iOS, Android` from `operatingSystem` until apps exist.
+12. **Add mobile navigation** — the main nav is `hidden md:flex` with no mobile hamburger or drawer.
+13. **Add `loading="lazy"` to all non-hero blog images** in `src/pages/blog/*.tsx`.
+14. **Add `Cache-Control` headers** for static assets in `server.ts`.
+
+### 🟢 LOW
+
+15. **Extract `HeroMockup` and `ProductPreview`** into separate component files for maintainability.
+16. **Create a shared route config** to avoid the `entry-server.tsx` / `main.tsx` route duplication.
+17. **Add `AggregateRating` to SoftwareApplication schema** or remove individual reviews.
+18. **Correct `theme-color`** from `#ffffff` to `#FFFBF0` in home-head.
+19. **Add `preload` for blog hero images** in the blog head files.
+
+---
+
+## 5. Quick Wins (under 1 day)
+
+1. **`src/pages/home-head.ts` line with OG image** — change `https://jointryps.com/og/tryps-homepage-og.jpg` → `https://jointryps.com/opengraph.jpg`. 30 seconds.
+
+2. **`artifacts/tryps-landing/package.json`** — remove `framer-motion`, `react-icons`, `next-themes` from devDependencies. Run `pnpm install`. Removes ~200KB+ from the install.
+
+3. **`public/sitemap.xml`** — add the two blog URLs:
+   ```xml
+   <url><loc>https://jointryps.com/blog/how-to-plan-a-group-trip</loc><lastmod>2026-04-03</lastmod><priority>0.8</priority></url>
+   <url><loc>https://jointryps.com/blog/oahu-group-trip-itinerary</loc><lastmod>2026-04-03</lastmod><priority>0.8</priority></url>
+   ```
+
+4. **`server.ts`** — add `import helmet from "helmet"; app.use(helmet());` before route handlers.
+
+5. **`src/index.css`** — remove the `@import "@fontsource/inter/500.css"` and `@import "@fontsource/inter/600.css"` lines.
+
+6. **`index.html`** — remove the two `<link rel="preconnect">` lines for Google Fonts (they're irrelevant to the homepage).
+
+7. **Blog image compression** — run this bash script on the blog images:
+   ```bash
+   cd artifacts/tryps-landing/public/images/blog
+   for f in *.png; do
+     cwebp -q 82 "$f" -o "${f%.png}.webp"
+   done
+   ```
+   Then update `<img src>` references to `.webp`.
+
+8. **`src/pages/home-head.ts`** — remove the `SearchAction` block from the WebSite schema.
+
+9. **Delete `src/App.tsx`** — it's never imported by `main.tsx`. Verify nothing imports it first: `grep -r "from.*App" src/main.tsx`.
+
+10. **`src/pages/blog/oahu-group-trip-itinerary.tsx`** — add `loading="lazy"` to all `<img>` elements that aren't the first hero.
+
+---
+
+## 6. Before vs After Estimate
+
+| Metric | Current (est.) | After Fixes (est.) | Improvement |
+|--------|---------------|-------------------|-------------|
+| Blog page image payload | ~17MB (raw PNGs) | ~350KB (WebP) | **98% reduction** |
+| Home page JS bundle | ~400–550KB | ~280–350KB | ~30–35% reduction |
+| Home page LCP | 1.5–2.5s | 1.0–1.5s | ~40% improvement |
+| Blog page LCP (mobile 4G) | 8–15s (image decode) | 1.5–3s | **~75% improvement** |
+| Lighthouse Performance (blog) | ~25–40 | ~75–90 | +50 points |
+| Lighthouse Performance (home) | ~65–75 | ~80–90 | +15 points |
+| JS install size (node_modules) | Current | ~15MB smaller | framer-motion + react-icons removed |
+| Security headers score | F (none) | A- | Full headers via helmet |
+
+> *All estimates are based on static analysis. Live profiling via Lighthouse CI is recommended after implementing fixes.*
