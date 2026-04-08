@@ -507,10 +507,6 @@ export default function Home() {
                   <span>No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.</span>
                 </p>
 
-                <p className="text-base text-[#6B3030] mb-10 leading-relaxed max-w-lg italic">
-                  Because the hardest part of any group trip isn't the destination. It's getting everyone in the same place.
-                </p>
-
                 <PhoneCaptureHero />
 
                 <p className="text-sm text-[#6B3030] leading-relaxed">
