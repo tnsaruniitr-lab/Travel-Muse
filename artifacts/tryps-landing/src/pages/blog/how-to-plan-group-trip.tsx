@@ -12,7 +12,7 @@ function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
         height={height}
         loading={loading}
         className="w-full rounded-2xl shadow-md"
-        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FEF3C7,#FDE68A,#FEF3C7)" }}
+        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FFE4E6,#FDE68A,#FFE4E6)" }}
       />
       <figcaption className="text-sm text-[#9CA3AF] mt-3 text-center italic">{alt}</figcaption>
     </figure>
@@ -23,7 +23,7 @@ function SectionHeading({ id, children }: { id: string; children: React.ReactNod
   return (
     <h2
       id={id}
-      className="text-2xl md:text-3xl font-bold text-[#1C1208] mb-5 pl-5 border-l-4 border-[#D97706] leading-snug"
+      className="text-2xl md:text-3xl font-bold text-[#1C0808] mb-5 pl-5 border-l-4 border-[#9A0514] leading-snug"
       style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
     >
       {children}
@@ -37,13 +37,13 @@ function StepSection({ num, id, title, children }: {
   return (
     <section className="mb-14" aria-labelledby={id}>
       <div className="flex items-start gap-5 mb-5">
-        <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#D97706] flex flex-col items-center justify-center shadow-sm shadow-[#D97706]/30">
+        <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#9A0514] flex flex-col items-center justify-center shadow-sm shadow-[#9A0514]/30">
           <span className="text-white/60 text-[9px] font-black uppercase tracking-widest leading-none">STEP</span>
           <span className="text-white text-2xl font-black leading-tight">{num}</span>
         </div>
         <h2
           id={id}
-          className="text-2xl md:text-3xl font-bold text-[#1C1208] leading-snug pt-2"
+          className="text-2xl md:text-3xl font-bold text-[#1C0808] leading-snug pt-2"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
           {title}
@@ -59,7 +59,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-2 mb-5 list-none p-0">
       {items.map((t, i) => (
         <li key={i} className="flex items-start gap-3 text-[#2D1A0A]">
-          <span className="mt-[5px] w-2 h-2 rounded-full bg-[#D97706] shrink-0" />
+          <span className="mt-[5px] w-2 h-2 rounded-full bg-[#9A0514] shrink-0" />
           <span className="text-[17px] leading-relaxed">{t}</span>
         </li>
       ))}
@@ -71,21 +71,21 @@ const body = "text-[17px] leading-[1.85] text-[#2D1A0A]";
 
 export default function HowToPlanGroupTrip() {
   return (
-    <div className="min-h-screen bg-[#FFFBF0] text-[#1C1208] font-sans">
+    <div className="min-h-screen bg-[#FFF9F9] text-[#1C0808] font-sans">
 
       {/* ── HEADER ── */}
-      <header className="sticky top-0 z-50 bg-[#FFFBF0]/90 backdrop-blur-md border-b border-[#F5D78E]/40">
+      <header className="sticky top-0 z-50 bg-[#FFF9F9]/90 backdrop-blur-md border-b border-[#FECDD3]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#D97706]" aria-label="TRYPS home">
-            <Star className="h-7 w-7 fill-[#D97706] text-[#D97706]" />
+          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
+            <Star className="h-7 w-7 fill-[#9A0514] text-[#9A0514]" />
             TRYPS
           </a>
-          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B5230] text-sm">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="text-[#D97706] font-bold">Blog</a>
-            <a href="/group-trip-planning-guide" className="hover:text-[#D97706] transition-colors">Guide</a>
+          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="text-[#9A0514] font-bold">Blog</a>
+            <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
           </div>
-          <a href="/start" className="bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#D97706]/20 transition-colors">
+          <a href="/start" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
             Start planning
           </a>
         </nav>
@@ -96,36 +96,36 @@ export default function HowToPlanGroupTrip() {
 
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="text-sm text-[#9CA3AF] mb-8 flex items-center gap-2">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
             <span>/</span>
-            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
+            <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
             <span>/</span>
-            <span className="text-[#6B5230]">How to Plan a Group Trip</span>
+            <span className="text-[#6B3030]">How to Plan a Group Trip</span>
           </nav>
 
           {/* Article header */}
           <header className="mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] border border-[#F5D78E] text-[#D97706] text-xs font-bold uppercase tracking-widest mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFE4E6] border border-[#FECDD3] text-[#9A0514] text-xs font-bold uppercase tracking-widest mb-5">
               Group trip planning
             </div>
 
             <h1
-              className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] text-[#1C1208] mb-5"
+              className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] text-[#1C0808] mb-5"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               How to Plan a Group Trip:{" "}
-              <em className="text-[#D97706] not-italic">Step-by-Step</em>
+              <em className="text-[#9A0514] not-italic">Step-by-Step</em>
             </h1>
 
             <div className="flex flex-wrap items-center gap-3 text-sm text-[#9CA3AF] mb-7">
-              <span className="font-medium text-[#6B5230]">TRYPS Blog</span>
+              <span className="font-medium text-[#6B3030]">TRYPS Blog</span>
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
               <time dateTime="2026-04-04">April 4, 2026</time>
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
               <span>8 min read</span>
             </div>
 
-            <p className="text-xl md:text-2xl text-[#1C1208] font-semibold leading-snug mb-5 border-l-4 border-[#D97706] pl-5">
+            <p className="text-xl md:text-2xl text-[#1C0808] font-semibold leading-snug mb-5 border-l-4 border-[#9A0514] pl-5">
               Planning a group trip sounds fun until someone says "I'm flexible" and disappears for three days.
             </p>
 
@@ -150,8 +150,8 @@ export default function HowToPlanGroupTrip() {
           </header>
 
           {/* Quick Answer */}
-          <section className="mb-14 rounded-3xl overflow-hidden border border-[#F5D78E] shadow-sm" aria-labelledby="quick-answer-title">
-            <div className="bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-6 py-4 flex items-center gap-3">
+          <section className="mb-14 rounded-3xl overflow-hidden border border-[#FECDD3] shadow-sm" aria-labelledby="quick-answer-title">
+            <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-4 flex items-center gap-3">
               <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-black">✓</div>
               <h2
                 id="quick-answer-title"
@@ -162,7 +162,7 @@ export default function HowToPlanGroupTrip() {
               </h2>
             </div>
             <div className="bg-white px-6 py-5">
-              <p className="text-[#6B5230] mb-4 text-sm font-medium">To plan a group trip without chaos:</p>
+              <p className="text-[#6B3030] mb-4 text-sm font-medium">To plan a group trip without chaos:</p>
               <ol className="space-y-3 list-none p-0">
                 {[
                   "Confirm who is actually going",
@@ -175,12 +175,12 @@ export default function HowToPlanGroupTrip() {
                   "Finalize bookings quickly",
                 ].map((step, i) => (
                   <li key={i} className="flex items-center gap-4">
-                    <span className="w-7 h-7 rounded-full bg-[#D97706] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm shadow-[#D97706]/30">{i + 1}</span>
-                    <span className="text-[#1C1208] text-base font-medium">{step}</span>
+                    <span className="w-7 h-7 rounded-full bg-[#9A0514] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-sm shadow-[#9A0514]/30">{i + 1}</span>
+                    <span className="text-[#1C0808] text-base font-medium">{step}</span>
                   </li>
                 ))}
               </ol>
-              <p className="text-[#6B5230] text-sm mt-5 pt-4 border-t border-[#F5D78E]/60">The key is simple: reduce coordination friction. The fewer moving parts, the smoother everything becomes.</p>
+              <p className="text-[#6B3030] text-sm mt-5 pt-4 border-t border-[#FECDD3]/60">The key is simple: reduce coordination friction. The fewer moving parts, the smoother everything becomes.</p>
             </div>
           </section>
 
@@ -298,11 +298,11 @@ export default function HowToPlanGroupTrip() {
                 { h: "Skipping the budget conversation", p: "Unspoken assumptions always surface later." },
                 { h: "Using too many tools", p: "Every extra tool adds friction and confusion." },
               ].map((m, i) => (
-                <div key={i} className="flex gap-4 p-5 bg-white rounded-2xl border border-[#F5D78E]/60 shadow-sm">
+                <div key={i} className="flex gap-4 p-5 bg-white rounded-2xl border border-[#FECDD3]/60 shadow-sm">
                   <div className="w-8 h-8 rounded-full bg-red-50 border border-red-100 flex items-center justify-center shrink-0 mt-0.5 text-red-400 font-black text-sm">✕</div>
                   <div>
-                    <h3 className="font-bold text-[#1C1208] text-base mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{m.h}</h3>
-                    <p className="text-[#6B5230] text-[15px] leading-relaxed">{m.p}</p>
+                    <h3 className="font-bold text-[#1C0808] text-base mb-1" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{m.h}</h3>
+                    <p className="text-[#6B3030] text-[15px] leading-relaxed">{m.p}</p>
                   </div>
                 </div>
               ))}
@@ -325,8 +325,8 @@ export default function HowToPlanGroupTrip() {
             <p className={`${body} mb-4`}>Group trips don't fail because they're complicated.</p>
             <p className={`${body} mb-4`}>They fail because coordination is messy.</p>
             <p className={`${body} mb-6`}>Once everything is visible and shared, decisions happen faster, plans stay clear, and the group actually follows through.</p>
-            <div className="bg-[#FEF3C7] border-l-4 border-[#D97706] rounded-r-2xl px-6 py-5">
-              <p className="text-[#1C1208] font-semibold text-base leading-relaxed">Keep it simple: define the group, lock the dates, align on budget, build the plan, and track expenses in one place.</p>
+            <div className="bg-[#FFE4E6] border-l-4 border-[#9A0514] rounded-r-2xl px-6 py-5">
+              <p className="text-[#1C0808] font-semibold text-base leading-relaxed">Keep it simple: define the group, lock the dates, align on budget, build the plan, and track expenses in one place.</p>
             </div>
           </section>
 
@@ -341,13 +341,13 @@ export default function HowToPlanGroupTrip() {
                 { q: "What should a group trip itinerary include?", a: "Travel dates, accommodation, major activities, and key logistics everyone needs to know." },
                 { q: "What is the best app for planning group trips?", a: "The best tools combine date coordination, itinerary planning, and expense tracking in one place so the group stays aligned." },
               ].map((faq, i) => (
-                <details key={i} className="group bg-white rounded-2xl border border-[#F5D78E]/50 px-5 overflow-hidden open:border-[#D97706] open:shadow-sm transition-all">
+                <details key={i} className="group bg-white rounded-2xl border border-[#FECDD3]/50 px-5 overflow-hidden open:border-[#9A0514] open:shadow-sm transition-all">
                   <summary className="flex justify-between items-center py-4 cursor-pointer list-none select-none gap-4">
-                    <h3 className="font-semibold text-base text-[#1C1208] m-0" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{faq.q}</h3>
-                    <span className="text-[#D97706] text-xl shrink-0 group-open:rotate-45 transition-transform duration-200">+</span>
+                    <h3 className="font-semibold text-base text-[#1C0808] m-0" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{faq.q}</h3>
+                    <span className="text-[#9A0514] text-xl shrink-0 group-open:rotate-45 transition-transform duration-200">+</span>
                   </summary>
-                  <div className="pb-5 pt-1 border-t border-[#F5D78E]/60">
-                    <p className="text-[#6B5230] text-[15px] leading-relaxed">{faq.a}</p>
+                  <div className="pb-5 pt-1 border-t border-[#FECDD3]/60">
+                    <p className="text-[#6B3030] text-[15px] leading-relaxed">{faq.a}</p>
                   </div>
                 </details>
               ))}
@@ -355,7 +355,7 @@ export default function HowToPlanGroupTrip() {
           </section>
 
           {/* CTA */}
-          <section className="bg-gradient-to-br from-[#B45309] via-[#D97706] to-[#F59E0B] rounded-3xl p-10 mb-12 text-white text-center shadow-xl shadow-[#D97706]/20" aria-labelledby="cta">
+          <section className="bg-gradient-to-br from-[#7B0310] via-[#9A0514] to-[#BE123C] rounded-3xl p-10 mb-12 text-white text-center shadow-xl shadow-[#9A0514]/20" aria-labelledby="cta">
             <h2
               id="cta"
               className="text-3xl font-bold mb-3"
@@ -364,17 +364,17 @@ export default function HowToPlanGroupTrip() {
               Plan together without the usual chaos
             </h2>
             <p className="text-white/80 leading-relaxed mb-6 text-base max-w-lg mx-auto">If your group is tired of chasing messages, spreadsheets, and scattered plans, TRYPS gives you one place to coordinate everything — dates, itinerary, and expenses — without the friction.</p>
-            <a href="/start" className="inline-flex items-center gap-2 bg-white text-[#D97706] font-black px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform text-sm">
+            <a href="/start" className="inline-flex items-center gap-2 bg-white text-[#9A0514] font-black px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform text-sm">
               Start planning with TRYPS
               <ArrowRight className="h-4 w-4" />
             </a>
           </section>
 
           {/* Related articles */}
-          <section className="border-t border-[#F5D78E]/60 pt-10" aria-labelledby="related-articles">
+          <section className="border-t border-[#FECDD3]/60 pt-10" aria-labelledby="related-articles">
             <h2
               id="related-articles"
-              className="text-lg font-bold text-[#1C1208] mb-6"
+              className="text-lg font-bold text-[#1C0808] mb-6"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               Related articles
@@ -384,9 +384,9 @@ export default function HowToPlanGroupTrip() {
                 { href: "/blog/group-trip-itinerary-template", label: "Group trip itinerary template", desc: "A practical starting point for building a shared plan your whole group can follow." },
                 { href: "/blog/how-to-split-expenses-group-trip", label: "How to split expenses on a group trip", desc: "Track shared costs fairly and avoid the awkward money conversations at the end." },
               ].map((r, i) => (
-                <a key={i} href={r.href} className="block bg-white rounded-2xl border border-[#F5D78E]/50 p-5 hover:border-[#D97706] hover:shadow-sm transition-all group">
-                  <p className="font-bold text-[#1C1208] text-base mb-1 group-hover:text-[#D97706] transition-colors" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{r.label}</p>
-                  <p className="text-[#6B5230] text-sm leading-relaxed">{r.desc}</p>
+                <a key={i} href={r.href} className="block bg-white rounded-2xl border border-[#FECDD3]/50 p-5 hover:border-[#9A0514] hover:shadow-sm transition-all group">
+                  <p className="font-bold text-[#1C0808] text-base mb-1 group-hover:text-[#9A0514] transition-colors" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>{r.label}</p>
+                  <p className="text-[#6B3030] text-sm leading-relaxed">{r.desc}</p>
                 </a>
               ))}
             </div>
@@ -396,17 +396,17 @@ export default function HowToPlanGroupTrip() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#F5D78E]/40 bg-[#FFFBF0]">
+      <footer className="border-t border-[#FECDD3]/40 bg-[#FFF9F9]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9CA3AF]">
-          <a href="/" className="flex items-center gap-2 font-black text-base text-[#D97706]">
-            <Star className="h-5 w-5 fill-[#D97706] text-[#D97706]" />
+          <a href="/" className="flex items-center gap-2 font-black text-base text-[#9A0514]">
+            <Star className="h-5 w-5 fill-[#9A0514] text-[#9A0514]" />
             TRYPS
           </a>
           <nav aria-label="Blog footer navigation" className="flex flex-wrap gap-5 text-xs">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
-            <a href="/about" className="hover:text-[#D97706] transition-colors">About</a>
-            <a href="/privacy" className="hover:text-[#D97706] transition-colors">Privacy</a>
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
+            <a href="/about" className="hover:text-[#9A0514] transition-colors">About</a>
+            <a href="/privacy" className="hover:text-[#9A0514] transition-colors">Privacy</a>
           </nav>
           <p className="text-xs">© 2026 TRYPS</p>
         </div>

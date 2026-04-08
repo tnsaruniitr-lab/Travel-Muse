@@ -23,21 +23,21 @@ export default function BlogIndex() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FFFBF0] text-[#1C1208] font-sans">
+    <div className="min-h-screen bg-[#FFF9F9] text-[#1C0808] font-sans">
 
       {/* ── HEADER ── */}
-      <header className="sticky top-0 z-50 bg-[#FFFBF0]/90 backdrop-blur-md border-b border-[#F5D78E]/40">
+      <header className="sticky top-0 z-50 bg-[#FFF9F9]/90 backdrop-blur-md border-b border-[#FECDD3]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#D97706]" aria-label="TRYPS home">
-            <Star className="h-7 w-7 fill-[#D97706] text-[#D97706]" />
+          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
+            <Star className="h-7 w-7 fill-[#9A0514] text-[#9A0514]" />
             TRYPS
           </a>
-          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B5230] text-sm">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="text-[#D97706] font-bold">Blog</a>
-            <a href="/group-trip-planning-guide" className="hover:text-[#D97706] transition-colors">Guide</a>
+          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="text-[#9A0514] font-bold">Blog</a>
+            <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
           </div>
-          <a href="/start" className="bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#D97706]/20 transition-colors">
+          <a href="/start" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
             Start planning
           </a>
         </nav>
@@ -46,19 +46,19 @@ export default function BlogIndex() {
       <main id="main-content">
 
         {/* Hero banner */}
-        <div className="bg-gradient-to-br from-[#FEF3C7] to-[#FFFBF0] border-b border-[#F5D78E]/40 py-14 px-6">
+        <div className="bg-gradient-to-br from-[#FFE4E6] to-[#FFF9F9] border-b border-[#FECDD3]/40 py-14 px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D97706]/10 border border-[#D97706]/20 text-[#D97706] text-xs font-bold uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#9A0514]/10 border border-[#9A0514]/20 text-[#9A0514] text-xs font-bold uppercase tracking-widest mb-4">
               TRYPS Blog
             </div>
             <h1
-              className="text-4xl md:text-5xl font-bold text-[#1C1208] mb-4 leading-tight"
+              className="text-4xl md:text-5xl font-bold text-[#1C0808] mb-4 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               Group trip planning,{" "}
-              <em className="text-[#D97706] not-italic">made clear</em>
+              <em className="text-[#9A0514] not-italic">made clear</em>
             </h1>
-            <p className="text-[#6B5230] text-lg leading-relaxed max-w-xl mx-auto">
+            <p className="text-[#6B3030] text-lg leading-relaxed max-w-xl mx-auto">
               Practical guides on planning trips with friends — without the chaos.
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function BlogIndex() {
             <a
               key={post.href}
               href={post.href}
-              className="group block bg-white rounded-3xl border border-[#F5D78E]/60 overflow-hidden shadow-sm hover:shadow-md hover:border-[#D97706]/40 transition-all"
+              className="group block bg-white rounded-3xl border border-[#FECDD3]/60 overflow-hidden shadow-sm hover:shadow-md hover:border-[#9A0514]/40 transition-all"
             >
               <div className="aspect-[16/7] overflow-hidden">
                 <img
@@ -84,23 +84,23 @@ export default function BlogIndex() {
                 />
               </div>
               <div className="p-7">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] border border-[#F5D78E] text-[#D97706] text-xs font-bold uppercase tracking-widest mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFE4E6] border border-[#FECDD3] text-[#9A0514] text-xs font-bold uppercase tracking-widest mb-4">
                   {post.category}
                 </div>
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-[#1C1208] mb-3 leading-snug group-hover:text-[#D97706] transition-colors"
+                  className="text-2xl md:text-3xl font-bold text-[#1C0808] mb-3 leading-snug group-hover:text-[#9A0514] transition-colors"
                   style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                 >
                   {post.title}
                 </h2>
-                <p className="text-[#6B5230] text-base leading-relaxed mb-5">{post.excerpt}</p>
+                <p className="text-[#6B3030] text-base leading-relaxed mb-5">{post.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 text-sm text-[#9CA3AF]">
                     <time>{post.date}</time>
                     <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
                     <span>{post.readTime}</span>
                   </div>
-                  <span className="flex items-center gap-1.5 text-[#D97706] font-bold text-sm group-hover:gap-2.5 transition-all">
+                  <span className="flex items-center gap-1.5 text-[#9A0514] font-bold text-sm group-hover:gap-2.5 transition-all">
                     Read article <ArrowRight className="h-4 w-4" />
                   </span>
                 </div>
@@ -109,26 +109,26 @@ export default function BlogIndex() {
           ))}
 
           {/* Coming soon placeholder */}
-          <div className="bg-[#FEF3C7]/50 rounded-3xl border border-[#F5D78E]/60 border-dashed p-10 text-center">
-            <p className="text-[#D97706] font-bold text-sm uppercase tracking-widest mb-2">More coming soon</p>
-            <p className="text-[#6B5230] text-base">New guides on group trip itineraries, budgeting, and more — dropping regularly.</p>
+          <div className="bg-[#FFE4E6]/50 rounded-3xl border border-[#FECDD3]/60 border-dashed p-10 text-center">
+            <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-2">More coming soon</p>
+            <p className="text-[#6B3030] text-base">New guides on group trip itineraries, budgeting, and more — dropping regularly.</p>
           </div>
 
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#F5D78E]/40 bg-[#FFFBF0]">
+      <footer className="border-t border-[#FECDD3]/40 bg-[#FFF9F9]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9CA3AF]">
-          <a href="/" className="flex items-center gap-2 font-black text-base text-[#D97706]">
-            <Star className="h-5 w-5 fill-[#D97706] text-[#D97706]" />
+          <a href="/" className="flex items-center gap-2 font-black text-base text-[#9A0514]">
+            <Star className="h-5 w-5 fill-[#9A0514] text-[#9A0514]" />
             TRYPS
           </a>
           <nav aria-label="Blog footer navigation" className="flex flex-wrap gap-5 text-xs">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
-            <a href="/about" className="hover:text-[#D97706] transition-colors">About</a>
-            <a href="/privacy" className="hover:text-[#D97706] transition-colors">Privacy</a>
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
+            <a href="/about" className="hover:text-[#9A0514] transition-colors">About</a>
+            <a href="/privacy" className="hover:text-[#9A0514] transition-colors">Privacy</a>
           </nav>
           <p className="text-xs">© 2026 TRYPS</p>
         </div>

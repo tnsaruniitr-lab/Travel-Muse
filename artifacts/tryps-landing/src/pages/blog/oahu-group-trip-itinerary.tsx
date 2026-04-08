@@ -10,7 +10,7 @@ function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
     <figure className="my-10">
       <img src={src} alt={alt} width={width} height={height} loading={loading}
         className="w-full rounded-2xl shadow-md"
-        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }} />
+        style={{ aspectRatio: `${width}/${height}`, background: "linear-gradient(135deg,#FFE4E6,#FDE68A)" }} />
       <figcaption className="text-sm text-[#9CA3AF] mt-3 text-center italic">{alt}</figcaption>
     </figure>
   );
@@ -18,7 +18,7 @@ function ArticleImage({ src, alt, width, height, loading = "lazy" }: {
 
 function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="text-2xl md:text-3xl font-bold text-[#1C1208] mb-5 pl-5 border-l-4 border-[#D97706] leading-snug" style={serif}>
+    <h2 id={id} className="text-2xl md:text-3xl font-bold text-[#1C0808] mb-5 pl-5 border-l-4 border-[#9A0514] leading-snug" style={serif}>
       {children}
     </h2>
   );
@@ -28,11 +28,11 @@ function DaySection({ num, id, title, children }: { num: number; id: string; tit
   return (
     <article className="mb-14" id={id} aria-labelledby={`${id}-title`}>
       <div className="flex items-start gap-5 mb-5">
-        <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#D97706] flex flex-col items-center justify-center shadow-sm shadow-[#D97706]/30">
+        <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#9A0514] flex flex-col items-center justify-center shadow-sm shadow-[#9A0514]/30">
           <span className="text-white/60 text-[9px] font-black uppercase tracking-widest leading-none">DAY</span>
           <span className="text-white text-2xl font-black leading-tight">{num}</span>
         </div>
-        <h3 id={`${id}-title`} className="text-2xl md:text-3xl font-bold text-[#1C1208] leading-snug pt-2" style={serif}>{title}</h3>
+        <h3 id={`${id}-title`} className="text-2xl md:text-3xl font-bold text-[#1C0808] leading-snug pt-2" style={serif}>{title}</h3>
       </div>
       {children}
     </article>
@@ -41,9 +41,9 @@ function DaySection({ num, id, title, children }: { num: number; id: string; tit
 
 function TipBox({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="my-5 bg-[#FEF3C7]/60 rounded-xl border border-[#F5D78E] px-5 py-4">
-      <p className="text-[15px] text-[#6B5230] leading-relaxed">
-        <span className="font-bold text-[#D97706]">{label}: </span>{children}
+    <div className="my-5 bg-[#FFE4E6]/60 rounded-xl border border-[#FECDD3] px-5 py-4">
+      <p className="text-[15px] text-[#6B3030] leading-relaxed">
+        <span className="font-bold text-[#9A0514]">{label}: </span>{children}
       </p>
     </div>
   );
@@ -51,9 +51,9 @@ function TipBox({ label, children }: { label: string; children: React.ReactNode 
 
 function Places({ items }: { items: string[] }) {
   return (
-    <div className="mt-5 pt-4 border-t border-[#F5D78E]/60 flex flex-wrap gap-2">
+    <div className="mt-5 pt-4 border-t border-[#FECDD3]/60 flex flex-wrap gap-2">
       {items.map((item, i) => (
-        <span key={i} className="inline-flex items-center px-3 py-1 rounded-full bg-[#FEF3C7] border border-[#F5D78E] text-[#D97706] text-xs font-semibold">
+        <span key={i} className="inline-flex items-center px-3 py-1 rounded-full bg-[#FFE4E6] border border-[#FECDD3] text-[#9A0514] text-xs font-semibold">
           {item}
         </span>
       ))}
@@ -66,7 +66,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-2 mb-5 list-none p-0">
       {items.map((t, i) => (
         <li key={i} className="flex items-start gap-3">
-          <span className="mt-[7px] w-2 h-2 rounded-full bg-[#D97706] shrink-0" />
+          <span className="mt-[7px] w-2 h-2 rounded-full bg-[#9A0514] shrink-0" />
           <span className="text-[17px] leading-relaxed text-[#2D1A0A]">{t}</span>
         </li>
       ))}
@@ -91,24 +91,24 @@ const costRows = [
 
 export default function OahuGroupTripItinerary() {
   return (
-    <div className="min-h-screen bg-[#FFFBF0] text-[#1C1208] font-sans">
+    <div className="min-h-screen bg-[#FFF9F9] text-[#1C0808] font-sans">
 
-      <a className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-[#D97706] text-white px-4 py-2 z-50" href="#main-content">
+      <a className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-[#9A0514] text-white px-4 py-2 z-50" href="#main-content">
         Skip to main content
       </a>
 
       {/* NAV */}
-      <header className="sticky top-0 z-50 bg-[#FFFBF0]/90 backdrop-blur-md border-b border-[#F5D78E]/40">
+      <header className="sticky top-0 z-50 bg-[#FFF9F9]/90 backdrop-blur-md border-b border-[#FECDD3]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#D97706]" aria-label="TRYPS home">
-            <Star className="h-7 w-7 fill-[#D97706] text-[#D97706]" />TRYPS
+          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
+            <Star className="h-7 w-7 fill-[#9A0514] text-[#9A0514]" />TRYPS
           </a>
-          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B5230] text-sm">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="text-[#D97706] font-bold">Blog</a>
-            <a href="/group-trip-planning-guide" className="hover:text-[#D97706] transition-colors">Guide</a>
+          <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="text-[#9A0514] font-bold">Blog</a>
+            <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
           </div>
-          <a href="/start" className="bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#D97706]/20 transition-colors">
+          <a href="/start" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
             Start planning
           </a>
         </nav>
@@ -119,32 +119,32 @@ export default function OahuGroupTripItinerary() {
 
           {/* Breadcrumb — 4 levels */}
           <nav aria-label="Breadcrumb" className="text-sm text-[#9CA3AF] mb-8 flex flex-wrap items-center gap-2">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
             <span>/</span>
-            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
+            <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
             <span>/</span>
-            <a href="/blog/hawaii" className="hover:text-[#D97706] transition-colors">Hawaii</a>
+            <a href="/blog/hawaii" className="hover:text-[#9A0514] transition-colors">Hawaii</a>
             <span>/</span>
-            <span className="text-[#6B5230]">Oahu Group Trip Itinerary</span>
+            <span className="text-[#6B3030]">Oahu Group Trip Itinerary</span>
           </nav>
 
           {/* Header */}
           <header className="mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] border border-[#F5D78E] text-[#D97706] text-xs font-bold uppercase tracking-widest mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFE4E6] border border-[#FECDD3] text-[#9A0514] text-xs font-bold uppercase tracking-widest mb-5">
               Destination guides · Hawaii · Group travel
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] text-[#1C1208] mb-5" style={serif}>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] text-[#1C0808] mb-5" style={serif}>
               7-Day Oahu Group Trip Itinerary (2026):{" "}
-              <em className="text-[#D97706] not-italic">What Actually Works</em>
+              <em className="text-[#9A0514] not-italic">What Actually Works</em>
             </h1>
             <div className="flex flex-wrap items-center gap-3 text-sm text-[#9CA3AF] mb-7">
-              <span className="font-medium text-[#6B5230]">TRYPS Blog</span>
+              <span className="font-medium text-[#6B3030]">TRYPS Blog</span>
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
               <time dateTime="2026-04-04">Updated April 2026</time>
               <span className="w-1 h-1 rounded-full bg-[#D5C4A8]" />
               <span>8 min read</span>
             </div>
-            <p className="text-xl md:text-2xl text-[#1C1208] font-semibold leading-snug mb-5 border-l-4 border-[#D97706] pl-5">
+            <p className="text-xl md:text-2xl text-[#1C0808] font-semibold leading-snug mb-5 border-l-4 border-[#9A0514] pl-5">
               One person wants beach days. Someone wants to eat every two hours. Nobody has booked anything.
             </p>
             <p className={`${body} mb-8`}>Here's a day-by-day Oahu plan with real places, real food, and enough structure that the group chat can finally go quiet.</p>
@@ -156,21 +156,21 @@ export default function OahuGroupTripItinerary() {
           </header>
 
           {/* Quick Answer */}
-          <div className="quick-answer mb-14 rounded-3xl overflow-hidden border border-[#F5D78E] shadow-sm" role="note" aria-label="Quick summary">
-            <div className="bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-6 py-4 flex items-center gap-3">
+          <div className="quick-answer mb-14 rounded-3xl overflow-hidden border border-[#FECDD3] shadow-sm" role="note" aria-label="Quick summary">
+            <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-4 flex items-center gap-3">
               <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-black">✓</div>
               <h2 className="text-lg font-bold text-white" style={serif}>The short answer</h2>
             </div>
             <div className="bg-white px-6 py-5">
-              <p className="text-[#6B5230] text-[15px] leading-relaxed mb-4">
-                A 7-day Oahu trip for a friend group costs roughly <strong className="text-[#1C1208]">$1,050–$1,750 per person</strong> excluding flights. Pre-book three things before you land: <strong className="text-[#1C1208]">Hanauma Bay tickets</strong> (sell out days ahead), <strong className="text-[#1C1208]">one dinner reservation</strong> at The Pig and the Lady or MW Restaurant, and <strong className="text-[#1C1208]">transport for the North Shore day</strong>. Everything else can be sorted as you go.
+              <p className="text-[#6B3030] text-[15px] leading-relaxed mb-4">
+                A 7-day Oahu trip for a friend group costs roughly <strong className="text-[#1C0808]">$1,050–$1,750 per person</strong> excluding flights. Pre-book three things before you land: <strong className="text-[#1C0808]">Hanauma Bay tickets</strong> (sell out days ahead), <strong className="text-[#1C0808]">one dinner reservation</strong> at The Pig and the Lady or MW Restaurant, and <strong className="text-[#1C0808]">transport for the North Shore day</strong>. Everything else can be sorted as you go.
               </p>
             </div>
           </div>
 
           {/* Pre-arrival checklist */}
-          <section className="mb-14 rounded-3xl overflow-hidden border border-[#F5D78E] shadow-sm" aria-labelledby="pre-arrival-heading">
-            <div className="bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-6 py-4 flex items-center gap-3">
+          <section className="mb-14 rounded-3xl overflow-hidden border border-[#FECDD3] shadow-sm" aria-labelledby="pre-arrival-heading">
+            <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-4 flex items-center gap-3">
               <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-black">!</div>
               <h2 id="pre-arrival-heading" className="text-lg font-bold text-white" style={serif}>Book these before you leave home</h2>
             </div>
@@ -181,8 +181,8 @@ export default function OahuGroupTripItinerary() {
                 { bold: "North Shore transport", rest: " — rent a car for the day ($50–$80 split between the group) or book a shuttle through Roberts Hawaii. Don't rely on rideshare for this route." },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <ArrowRight className="h-4 w-4 text-[#D97706] mt-1 shrink-0" />
-                  <p className="text-[15px] text-[#1C1208] leading-relaxed">
+                  <ArrowRight className="h-4 w-4 text-[#9A0514] mt-1 shrink-0" />
+                  <p className="text-[15px] text-[#1C0808] leading-relaxed">
                     <strong>{item.bold}</strong>{item.rest}
                   </p>
                 </div>
@@ -196,12 +196,12 @@ export default function OahuGroupTripItinerary() {
             <p className={`${body} mb-6`}>The best months for a group trip to Oahu are <strong>April–June</strong> and <strong>September–October</strong>. Shoulder season means lighter crowds, accommodation prices 15–25% lower than peak summer, and consistently sunny weather with water temperatures around 78°F.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2" role="list" aria-label="Oahu seasons overview">
               {seasons.map((s, i) => (
-                <div key={i} role="listitem" className={`rounded-2xl border p-5 ${s.good ? "border-[#D97706]/30 bg-[#FEF3C7]/40" : "border-[#F5D78E]/60 bg-white"}`}>
+                <div key={i} role="listitem" className={`rounded-2xl border p-5 ${s.good ? "border-[#9A0514]/30 bg-[#FFE4E6]/40" : "border-[#FECDD3]/60 bg-white"}`}>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${s.good ? "bg-[#D97706] text-white" : "bg-[#F5D78E] text-[#6B5230]"}`}>{s.tag}</span>
-                    <span className="font-bold text-[#1C1208] text-sm" style={serif}>{s.label}</span>
+                    <span className={`text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${s.good ? "bg-[#9A0514] text-white" : "bg-[#FECDD3] text-[#6B3030]"}`}>{s.tag}</span>
+                    <span className="font-bold text-[#1C0808] text-sm" style={serif}>{s.label}</span>
                   </div>
-                  <p className="text-[13px] text-[#6B5230] leading-relaxed">{s.desc}</p>
+                  <p className="text-[13px] text-[#6B3030] leading-relaxed">{s.desc}</p>
                 </div>
               ))}
             </div>
@@ -211,10 +211,10 @@ export default function OahuGroupTripItinerary() {
           <section className="mb-14" aria-labelledby="cost-heading">
             <SectionHeading id="cost-heading">How much does a week in Oahu cost per person?</SectionHeading>
             <p className={`${body} mb-5`}>Here is a realistic per-person budget for a group of 4–6 sharing accommodation, based on 2026 prices.</p>
-            <div className="overflow-x-auto rounded-2xl border border-[#F5D78E]/60 shadow-sm">
+            <div className="overflow-x-auto rounded-2xl border border-[#FECDD3]/60 shadow-sm">
               <table className="w-full text-sm border-collapse" aria-label="Oahu trip cost breakdown per person for 7 days">
                 <thead>
-                  <tr className="bg-[#D97706] text-white">
+                  <tr className="bg-[#9A0514] text-white">
                     <th className="text-left px-4 py-3 font-bold rounded-tl-2xl">Category</th>
                     <th className="text-left px-4 py-3 font-bold">Budget</th>
                     <th className="text-left px-4 py-3 font-bold">Mid-range</th>
@@ -223,27 +223,27 @@ export default function OahuGroupTripItinerary() {
                 </thead>
                 <tbody>
                   {costRows.map((r, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#FFFBF0]"}>
-                      <td className="px-4 py-3 text-[#1C1208] font-medium">{r.cat}</td>
-                      <td className="px-4 py-3 text-[#1C1208]">{r.budget}</td>
-                      <td className="px-4 py-3 text-[#1C1208]">{r.mid}</td>
-                      <td className="px-4 py-3 text-[#6B5230] text-xs leading-relaxed hidden md:table-cell">{r.note}</td>
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#FFF9F9]"}>
+                      <td className="px-4 py-3 text-[#1C0808] font-medium">{r.cat}</td>
+                      <td className="px-4 py-3 text-[#1C0808]">{r.budget}</td>
+                      <td className="px-4 py-3 text-[#1C0808]">{r.mid}</td>
+                      <td className="px-4 py-3 text-[#6B3030] text-xs leading-relaxed hidden md:table-cell">{r.note}</td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="bg-[#FEF3C7] border-t-2 border-[#D97706]">
-                    <td className="px-4 py-3 font-black text-[#1C1208]">Total (excl. flights)</td>
-                    <td className="px-4 py-3 font-black text-[#1C1208]">$810</td>
-                    <td className="px-4 py-3 font-black text-[#1C1208]">$1,420</td>
-                    <td className="px-4 py-3 text-[#6B5230] text-xs hidden md:table-cell">Flights from US mainland typically add $300–$600 per person.</td>
+                  <tr className="bg-[#FFE4E6] border-t-2 border-[#9A0514]">
+                    <td className="px-4 py-3 font-black text-[#1C0808]">Total (excl. flights)</td>
+                    <td className="px-4 py-3 font-black text-[#1C0808]">$810</td>
+                    <td className="px-4 py-3 font-black text-[#1C0808]">$1,420</td>
+                    <td className="px-4 py-3 text-[#6B3030] text-xs hidden md:table-cell">Flights from US mainland typically add $300–$600 per person.</td>
                   </tr>
                 </tfoot>
               </table>
             </div>
           </section>
 
-          <hr className="border-[#F5D78E]/60 mb-14" />
+          <hr className="border-[#FECDD3]/60 mb-14" />
 
           {/* Itinerary heading */}
           <section aria-labelledby="itinerary-heading" className="mb-4">
@@ -330,7 +330,7 @@ export default function OahuGroupTripItinerary() {
           {/* Short version / summary */}
           <section className="mb-14">
             <SectionHeading id="short-version">The short version</SectionHeading>
-            <div className="summary-box bg-gradient-to-br from-[#B45309] via-[#D97706] to-[#F59E0B] rounded-3xl p-8 text-white shadow-xl shadow-[#D97706]/20">
+            <div className="summary-box bg-gradient-to-br from-[#7B0310] via-[#9A0514] to-[#BE123C] rounded-3xl p-8 text-white shadow-xl shadow-[#9A0514]/20">
               <div className="space-y-4">
                 {[
                   { n: "3", label: "Big shared days", val: "North Shore, Kailua split, Chinatown night" },
@@ -365,13 +365,13 @@ export default function OahuGroupTripItinerary() {
                 { q: "What should you book before arriving in Oahu?", a: "Three things are non-negotiable: (1) Hanauma Bay snorkeling tickets at hawaii.gowaiver.com — they sell out 2–5 days ahead and walk-ins are not allowed; (2) at least one dinner reservation at The Pig and the Lady or MW Restaurant — both fill up a week or more out for groups; (3) transport for the North Shore day trip — either a rental car ($50–$80/day) or a shuttle through Roberts Hawaii." },
                 { q: "How long does the Diamond Head hike take?", a: "The Diamond Head hike takes approximately 1.5 to 2 hours round trip for most groups. The trail is 1.6 miles round trip with an elevation gain of about 560 feet. It is not technically difficult but does involve some stairs and a tunnel section. Go before 7:30am to beat the heat and the crowds. Entry is $5 per person." },
               ].map((faq, i) => (
-                <details key={i} className="group bg-white rounded-2xl border border-[#F5D78E]/50 px-5 overflow-hidden open:border-[#D97706] open:shadow-sm transition-all">
+                <details key={i} className="group bg-white rounded-2xl border border-[#FECDD3]/50 px-5 overflow-hidden open:border-[#9A0514] open:shadow-sm transition-all">
                   <summary className="flex justify-between items-center py-4 cursor-pointer list-none select-none gap-4">
-                    <h3 className="font-semibold text-base text-[#1C1208] m-0" style={serif}>{faq.q}</h3>
-                    <span className="text-[#D97706] text-xl shrink-0 group-open:rotate-45 transition-transform duration-200">+</span>
+                    <h3 className="font-semibold text-base text-[#1C0808] m-0" style={serif}>{faq.q}</h3>
+                    <span className="text-[#9A0514] text-xl shrink-0 group-open:rotate-45 transition-transform duration-200">+</span>
                   </summary>
-                  <div className="pb-5 pt-1 border-t border-[#F5D78E]/60">
-                    <p className="faq-a text-[#6B5230] text-[15px] leading-relaxed">{faq.a}</p>
+                  <div className="pb-5 pt-1 border-t border-[#FECDD3]/60">
+                    <p className="faq-a text-[#6B3030] text-[15px] leading-relaxed">{faq.a}</p>
                   </div>
                 </details>
               ))}
@@ -379,26 +379,26 @@ export default function OahuGroupTripItinerary() {
           </section>
 
           {/* CTA banner */}
-          <section className="bg-gradient-to-br from-[#B45309] via-[#D97706] to-[#F59E0B] rounded-3xl p-10 mb-12 text-white text-center shadow-xl shadow-[#D97706]/20">
+          <section className="bg-gradient-to-br from-[#7B0310] via-[#9A0514] to-[#BE123C] rounded-3xl p-10 mb-12 text-white text-center shadow-xl shadow-[#9A0514]/20">
             <h2 className="text-3xl font-bold mb-3" style={serif}>Plan your Oahu trip without the usual chaos</h2>
             <p className="text-white/80 leading-relaxed mb-6 text-base max-w-lg mx-auto">Keep dates, itinerary, and shared costs in one place so the whole group stays aligned — before and during the trip.</p>
-            <a href="/start" className="inline-flex items-center gap-2 bg-white text-[#D97706] font-black px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform text-sm">
+            <a href="/start" className="inline-flex items-center gap-2 bg-white text-[#9A0514] font-black px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform text-sm">
               Start planning with TRYPS
               <ArrowRight className="h-4 w-4" />
             </a>
           </section>
 
           {/* Related */}
-          <section className="border-t border-[#F5D78E]/60 pt-10">
-            <h2 className="text-lg font-bold text-[#1C1208] mb-6" style={serif}>Related articles</h2>
+          <section className="border-t border-[#FECDD3]/60 pt-10">
+            <h2 className="text-lg font-bold text-[#1C0808] mb-6" style={serif}>Related articles</h2>
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 { href: "/blog/how-to-plan-a-group-trip", label: "How to plan a group trip: step-by-step guide", desc: "A full coordination system for any friend group trip, from locking dates to splitting expenses." },
                 { href: "/blog/how-to-split-expenses-group-trip", label: "How to split expenses on a group trip", desc: "Track shared costs fairly and avoid the awkward money conversations at the end." },
               ].map((r, i) => (
-                <a key={i} href={r.href} className="block bg-white rounded-2xl border border-[#F5D78E]/50 p-5 hover:border-[#D97706] hover:shadow-sm transition-all group">
-                  <p className="font-bold text-[#1C1208] text-base mb-1 group-hover:text-[#D97706] transition-colors" style={serif}>{r.label}</p>
-                  <p className="text-[#6B5230] text-sm leading-relaxed">{r.desc}</p>
+                <a key={i} href={r.href} className="block bg-white rounded-2xl border border-[#FECDD3]/50 p-5 hover:border-[#9A0514] hover:shadow-sm transition-all group">
+                  <p className="font-bold text-[#1C0808] text-base mb-1 group-hover:text-[#9A0514] transition-colors" style={serif}>{r.label}</p>
+                  <p className="text-[#6B3030] text-sm leading-relaxed">{r.desc}</p>
                 </a>
               ))}
             </div>
@@ -408,16 +408,16 @@ export default function OahuGroupTripItinerary() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#F5D78E]/40 bg-[#FFFBF0]">
+      <footer className="border-t border-[#FECDD3]/40 bg-[#FFF9F9]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#9CA3AF]">
-          <a href="/" className="flex items-center gap-2 font-black text-base text-[#D97706]">
-            <Star className="h-5 w-5 fill-[#D97706] text-[#D97706]" />TRYPS
+          <a href="/" className="flex items-center gap-2 font-black text-base text-[#9A0514]">
+            <Star className="h-5 w-5 fill-[#9A0514] text-[#9A0514]" />TRYPS
           </a>
           <nav aria-label="Footer navigation" className="flex flex-wrap gap-5 text-xs">
-            <a href="/" className="hover:text-[#D97706] transition-colors">Home</a>
-            <a href="/blog" className="hover:text-[#D97706] transition-colors">Blog</a>
-            <a href="/about" className="hover:text-[#D97706] transition-colors">About</a>
-            <a href="/privacy" className="hover:text-[#D97706] transition-colors">Privacy</a>
+            <a href="/" className="hover:text-[#9A0514] transition-colors">Home</a>
+            <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
+            <a href="/about" className="hover:text-[#9A0514] transition-colors">About</a>
+            <a href="/privacy" className="hover:text-[#9A0514] transition-colors">Privacy</a>
           </nav>
           <p className="text-xs">© 2026 TRYPS</p>
         </div>

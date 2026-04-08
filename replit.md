@@ -42,7 +42,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ### TRYPS Landing Page (`artifacts/tryps-landing`)
 - **Framework**: React + Vite (TypeScript)
-- **Design**: Golden Hour — warm amber/honey palette (#D97706, #F59E0B, #FFFBF0, #1C1208, #6B5230)
+- **Design**: Crimson — deep red palette (#9A0514 primary, #BE123C accent, #FFF9F9 bg, #1C0808 dark text, #6B3030 muted text, #FFE4E6 tint, #FECDD3 border)
 - **Styling**: Tailwind CSS v4 with inline custom values (no shadcn components — uses native HTML + Tailwind)
 - **SEO**: Full JSON-LD schemas in `index.html` (Organization, WebSite, SoftwareApplication, FAQPage, BreadcrumbList), OG + Twitter meta tags, canonical URL
 - **Semantic HTML**: `<header>`, `<main>`, `<section aria-labelledby>`, `<ol>` for steps, `<ul>` for features/use cases, `<blockquote>` for testimonials, `<details>/<summary>` for FAQ, `<figure>/<figcaption>` for product preview
