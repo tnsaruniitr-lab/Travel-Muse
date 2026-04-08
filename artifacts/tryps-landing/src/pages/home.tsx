@@ -221,8 +221,8 @@ function PhoneCaptureHero() {
 /* ─── Inline App Mockup for Hero ─── */
 function HeroMockup() {
   return (
-    <div className="relative w-full max-w-sm mx-auto">
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#9A0514] to-[#FB7185] rounded-[2.5rem] opacity-15 blur-2xl scale-110 pointer-events-none" />
+    <div className="relative w-full max-w-sm mx-auto pb-6">
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#9A0514] to-[#FB7185] rounded-[2.5rem] opacity-15 blur-2xl pointer-events-none" />
       <div className="relative bg-white rounded-[2rem] shadow-2xl border border-[#FECDD3]/40 overflow-hidden">
         <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-5">
           <div className="flex justify-between items-center">
@@ -271,7 +271,7 @@ function HeroMockup() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl border border-[#FECDD3]/40 px-4 py-3 flex items-center gap-2.5">
+      <div className="absolute bottom-2 left-2 bg-white rounded-2xl shadow-xl border border-[#FECDD3]/40 px-4 py-3 flex items-center gap-2.5">
         <div className="w-9 h-9 rounded-full bg-[#FFE4E6] flex items-center justify-center shrink-0">
           <CheckCircle2 className="h-4 w-4 text-[#9A0514]" />
         </div>
@@ -516,7 +516,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="hidden lg:block lg:col-span-2 pt-6">
+              <div className="lg:col-span-2 pt-8 lg:pt-6">
                 <HeroMockup />
               </div>
             </div>
