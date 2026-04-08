@@ -51,6 +51,8 @@ app.use(helmet({
   },
 }));
 
+app.use(compression());
+
 let vite: ViteDevServer | undefined;
 
 if (!isProd) {
@@ -72,7 +74,6 @@ if (!isProd) {
   );
 }
 
-app.use(compression());
 app.use(express.json({ limit: "10kb" }));
 
 const waitlistPath = `${base}api/waitlist`.replace(/\/+/g, "/");
