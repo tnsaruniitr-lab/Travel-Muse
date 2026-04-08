@@ -94,9 +94,10 @@ export const homeHeadTags = `
     "name": "TRYPS",
     "applicationCategory": "TravelApplication",
     "applicationSubCategory": "Group Trip Planning App",
-    "operatingSystem": "Web, iOS, Android",
-    "softwareVersion": "1.0",
+    "operatingSystem": "Web",
+    "softwareVersion": "0.9-beta",
     "url": "https://jointryps.com/",
+    "releaseNotes": "Web app available now. iOS App Store and Google Play Android app coming soon — join the waitlist at jointryps.com.",
     "image": "https://jointryps.com/images/tryps-preview.png",
     "screenshot": [
       "https://jointryps.com/images/tryps-date-poll.png",
@@ -203,6 +204,43 @@ export const homeHeadTags = `
       }
     ]
   }
+  </script>
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "TRYPS — Group Trip Planning",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "iOS",
+      "description": "TRYPS is a group trip planning app for iPhone coming soon to the Apple App Store. Plan group trips, vote on dates, share itineraries, and split expenses with friends.",
+      "url": "https://jointryps.com/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder"
+      },
+      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://jointryps.com/" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "TRYPS — Group Trip Planning",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Android",
+      "description": "TRYPS is a group trip planning app for Android coming soon to Google Play. Plan group trips, vote on dates, share itineraries, and split expenses with friends.",
+      "url": "https://jointryps.com/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder"
+      },
+      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://jointryps.com/" }
+    }
+  ]
   </script>
 
   <script type="application/ld+json">

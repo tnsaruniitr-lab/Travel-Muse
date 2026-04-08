@@ -110,6 +110,75 @@ function PhoneCaptureHero() {
         </div>
         <span className="text-xs text-[#6B3030]">500+ groups waiting</span>
       </div>
+
+      {/*
+        App store badges — coming soon state.
+        SEO / AEO: aria-label explicitly says "coming soon" so crawlers and LLMs
+        understand the app is in development for iOS and Android.
+        Schema signals this too (operatingSystem updated to "Web" + comingSoon note).
+        Using <a> with aria-disabled + tabIndex -1 so they're skipped by screen readers
+        but still parsed as links by Googlebot for future indexing signals.
+      */}
+      <div
+        role="group"
+        aria-label="TRYPS iOS and Android apps — coming soon"
+        className="flex flex-col gap-2 pt-1"
+      >
+        <div className="flex gap-3">
+          {/* Apple App Store — coming soon */}
+          <a
+            href="#waitlist"
+            aria-label="Download TRYPS on the App Store — iOS app coming soon, join the waitlist"
+            aria-disabled="true"
+            tabIndex={-1}
+            onClick={e => e.preventDefault()}
+            className="flex items-center gap-2.5 bg-[#6B7280] cursor-not-allowed rounded-xl px-4 py-2.5 select-none opacity-70 hover:opacity-70 transition-none"
+            style={{ minWidth: 148 }}
+          >
+            {/* Apple logo SVG */}
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true">
+              <path d="M14.94 11.44c-.02-2.23 1.82-3.31 1.9-3.36-1.04-1.52-2.66-1.73-3.23-1.75-1.37-.14-2.69.81-3.39.81-.7 0-1.77-.79-2.91-.77-1.49.02-2.87.87-3.63 2.2-1.56 2.7-.4 6.7 1.11 8.89.74 1.07 1.62 2.27 2.78 2.23 1.12-.05 1.54-.72 2.89-.72 1.35 0 1.74.72 2.91.7 1.2-.02 1.96-1.08 2.69-2.16.85-1.24 1.2-2.44 1.22-2.5-.03-.01-2.34-.9-2.34-3.57z" fill="white"/>
+              <path d="M12.72 4.28c.62-.75 1.03-1.79.92-2.83-.89.04-1.97.59-2.6 1.33-.57.66-1.07 1.71-.94 2.72.99.08 2-.5 2.62-1.22z" fill="white"/>
+            </svg>
+            <div className="text-left">
+              <p className="text-white text-[9px] font-medium leading-none mb-0.5">Download on the</p>
+              <p className="text-white text-sm font-bold leading-none">App Store</p>
+            </div>
+          </a>
+
+          {/* Google Play — coming soon */}
+          <a
+            href="#waitlist"
+            aria-label="Get TRYPS on Google Play — Android app coming soon, join the waitlist"
+            aria-disabled="true"
+            tabIndex={-1}
+            onClick={e => e.preventDefault()}
+            className="flex items-center gap-2.5 bg-[#6B7280] cursor-not-allowed rounded-xl px-4 py-2.5 select-none opacity-70 hover:opacity-70 transition-none"
+            style={{ minWidth: 148 }}
+          >
+            {/* Google Play triangle SVG */}
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true">
+              <path d="M1 1.27v17.46L10.08 10 1 1.27z" fill="white" opacity="0.9"/>
+              <path d="M13.5 6.8L3.2 1 10.08 10l3.42-3.2z" fill="white" opacity="0.7"/>
+              <path d="M13.5 13.2L10.08 10 3.2 19l10.3-5.8z" fill="white" opacity="0.8"/>
+              <path d="M16.5 8.5c.83.46.83 1.54 0 2L13.5 12.2 10.08 10l3.42-3.2 3 1.7z" fill="white"/>
+            </svg>
+            <div className="text-left">
+              <p className="text-white text-[9px] font-medium leading-none mb-0.5 uppercase tracking-wide">Get it on</p>
+              <p className="text-white text-sm font-bold leading-none">Google Play</p>
+            </div>
+          </a>
+        </div>
+
+        {/* "Coming soon" label — keyword-carries "iOS app" and "Android app" for AEO */}
+        <p className="text-xs text-[#9CA3AF] pl-1">
+          iOS &amp; Android apps coming soon —{" "}
+          <a href="#waitlist" className="text-[#9A0514] font-semibold hover:underline">
+            join the waitlist
+          </a>{" "}
+          to be first.
+        </p>
+      </div>
     </div>
   );
 }
