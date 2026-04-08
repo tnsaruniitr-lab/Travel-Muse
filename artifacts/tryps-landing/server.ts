@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import type { ViteDevServer } from "vite";
 import helmet from "helmet";
+import compression from "compression";
 import pg from "pg";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -52,6 +53,7 @@ if (!isProd) {
   );
 }
 
+app.use(compression());
 app.use(express.json());
 
 app.post(`${base}api/waitlist`.replace(/\/+/g, "/"), async (req, res) => {
@@ -104,7 +106,10 @@ app.use(async (req, res) => {
       .replace("<!--head-tags-->", headTags)
       .replace("<!--app-html-->", appHtml);
 
-    res.status(200).set({ "Content-Type": "text/html" }).end(fullHtml);
+    res.status(200).set({
+      "Content-Type": "text/html",
+      "Cache-Control": "no-cache, must-revalidate",
+    }).end(fullHtml);
   } catch (e: unknown) {
     const err = e as Error;
     vite?.ssrFixStacktrace(err);

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
+    "compression": "^1.8.1",
     "express": "^5",
     "helmet": "^8.1.0",
     "pg": "^8.20.0",
@@ -49,6 +50,7 @@
     "@replit/vite-plugin-runtime-error-modal": "catalog:",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "catalog:",
+    "@types/compression": "^1.8.1",
     "@types/express": "^5",
     "@types/node": "catalog:",
     "@types/pg": "^8.18.0",

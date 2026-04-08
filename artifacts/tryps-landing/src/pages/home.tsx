@@ -437,14 +437,14 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* ── MOBILE DRAWER ── */}
-        {menuOpen && (
-          <div
-            id="mobile-nav"
-            className="md:hidden border-t border-[#FECDD3]/60 bg-[#FFF9F9]"
-            role="dialog"
-            aria-label="Navigation menu"
-          >
+        {/* ── MOBILE DRAWER ── always in DOM so aria-controls reference is valid */}
+        <div
+          id="mobile-nav"
+          className="md:hidden border-t border-[#FECDD3]/60 bg-[#FFF9F9]"
+          role="dialog"
+          aria-label="Navigation menu"
+          hidden={!menuOpen}
+        >
             <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-1">
               {[
                 { href: "#features", label: "Features" },
@@ -473,7 +473,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        )}
       </header>
 
       <main id="main-content">
