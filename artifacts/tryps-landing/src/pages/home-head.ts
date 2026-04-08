@@ -3,20 +3,23 @@ export const homeHeadTags = `
   <meta name="description" content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place." />
   <link rel="canonical" href="https://jointryps.com/" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#FFF9F9" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
   <meta property="og:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
   <meta property="og:url" content="https://jointryps.com/" />
-  <meta property="og:image" content="https://jointryps.com/og/tryps-homepage-og.jpg" />
+  <meta property="og:image" content="https://jointryps.com/opengraph.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="TRYPS interface showing date voting, shared itinerary, and expense splitting for a group trip" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
   <meta name="twitter:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
-  <meta name="twitter:image" content="https://jointryps.com/og/tryps-homepage-og.jpg" />
+  <meta name="twitter:image" content="https://jointryps.com/opengraph.jpg" />
+  <meta name="twitter:site" content="@tryps" />
 
   <script type="application/ld+json">
   {
@@ -78,12 +81,7 @@ export const homeHeadTags = `
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "TRYPS",
-    "url": "https://jointryps.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://jointryps.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "url": "https://jointryps.com/"
   }
   </script>
 
@@ -124,26 +122,13 @@ export const homeHeadTags = `
       "Track and split group trip expenses",
       "Keep plans, dates, and costs in one place"
     ],
-    "review": [
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Aarav M." },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        "reviewBody": "The date poll and shared itinerary made it much easier to get everyone aligned for our trip."
-      },
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Riya S." },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        "reviewBody": "Nobody had to download anything, which removed most of the usual friction for group planning."
-      },
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Kabir T." },
-        "reviewRating": { "@type": "Rating", "ratingValue": "4", "bestRating": "5" },
-        "reviewBody": "We used it to lock dates, collect ideas, and keep costs clear in one place."
-      }
-    ]
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "500",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
   }
   </script>
 

@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import type { ViteDevServer } from "vite";
+import helmet from "helmet";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === "production";
@@ -12,6 +13,10 @@ const base = process.env.BASE_PATH ?? "/";
 
 const app = express();
 const httpServer = createHttpServer(app);
+
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 
 let vite: ViteDevServer | undefined;
 
@@ -26,7 +31,11 @@ if (!isProd) {
 } else {
   app.use(
     base,
-    express.static(path.resolve(__dirname, "dist/public"), { index: false }),
+    express.static(path.resolve(__dirname, "dist/public"), {
+      index: false,
+      maxAge: "1y",
+      immutable: true,
+    }),
   );
 }
 

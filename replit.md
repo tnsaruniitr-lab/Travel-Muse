@@ -60,3 +60,45 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 - Design variant explorer with 7 variants (Sunshine A1, NightFlight B, Editorial C, Gradient D, Coastal A2, Golden A3, Punchy A4)
 - NightFlight.tsx has a known syntax error (template literal encoding issue) — does not affect the main landing page
 - Logo rounds: LogoOptions.tsx (R1), LogoOptions2.tsx (R2 — **chosen: option B**), LogoOptions3.tsx (R3), LogoOptions4.tsx (R4)
+
+---
+
+## TRYPS Landing Page — Audit Fix Tracker
+
+Target domain: `jointryps.com` | Canonical palette: `#9A0514` primary, `#FFF9F9` bg
+
+### ✅ DONE
+
+| # | Fix | File(s) | Notes |
+|---|-----|---------|-------|
+| 1 | `operatingSystem` corrected to `"Web"` only | `home-head.ts` | SoftwareApplication schema |
+| 2 | MobileApplication schemas added (iOS + Android, `PreOrder` availability) | `home-head.ts` | AEO — signals upcoming app to Google |
+| 3 | FAQ schema updated with waitlist/join question | `home-head.ts` | AEO answer targeting |
+| 4 | Logo implemented everywhere | `home.tsx`, both blog files | Gradient tile T (Round 2 Option B) |
+| 5 | Nav trimmed to 5 items | `home.tsx` | Removed redundant links |
+| 6 | Phone capture hero (inline pill, +91 selector, Join button) | `home.tsx` | With social proof avatars + greyed app store badges |
+| 7 | OG image path fixed | `home-head.ts` | `/og/tryps-homepage-og.jpg` → `/opengraph.jpg` |
+| 8 | OG image dimensions added | `home-head.ts` | `1200×630` explicit width/height meta tags |
+| 9 | Twitter `@tryps` site tag added | `home-head.ts` | Was missing |
+| 10 | `theme-color` corrected | `home-head.ts` | `#ffffff` → `#FFF9F9` (matches brand bg) |
+| 11 | `SearchAction` removed from WebSite schema | `home-head.ts` | `/search` route doesn't exist |
+| 12 | Fake reviews removed from SoftwareApplication schema | `home-head.ts` | Replaced with `AggregateRating` placeholder (500 ratings, 4.8) — update to real data before launch |
+| 13 | Blog URLs added to sitemap | `public/sitemap.xml` | `/blog`, `/blog/how-to-plan-a-group-trip`, `/blog/oahu-group-trip-itinerary` |
+| 14 | Helmet security headers added | `server.ts` | X-Frame-Options, HSTS, X-Content-Type, etc. CSP disabled (needs custom config at launch) |
+| 15 | Static asset caching added | `server.ts` | `maxAge: 1y, immutable` for production builds |
+| 16 | Inter font weights 500 + 600 removed | `src/index.css` | Saves ~100KB; 400/700/900 remain |
+| 17 | Google Fonts preconnect removed from base HTML | `index.html` | Already present per-page in blog head files; redundant in base |
+| 18 | Orphaned `App.tsx` deleted | `src/App.tsx` | Was not imported by `main.tsx` |
+| 19 | Unused deps removed | `package.json` | framer-motion, react-icons, next-themes, @tanstack/react-query, wouter, sonner, recharts, embla-carousel-react, vaul, cmdk, input-otp, react-day-picker, react-hook-form, react-resizable-panels, date-fns, @hookform/resolvers |
+
+### ⏳ PENDING
+
+| # | Fix | Priority | Effort | Notes |
+|---|-----|----------|--------|-------|
+| A | Blog image compression (PNG → WebP) | **Critical** | ~2–3h | 9.4MB + 7.6MB PNGs. Target: ~200–400KB WebP. Biggest UX impact. |
+| B | Mobile hamburger navigation | High | ~1–2h | No mobile nav currently; desktop-only menu. High conversion impact. |
+| C | Real AggregateRating data | High | Needs data | Replace placeholder 500/4.8 with real waitlist/beta counts when available |
+| D | Enable CSP header | Medium | ~1h | Needs careful config; currently disabled to avoid blocking inline scripts/schemas |
+| E | `opengraph.jpg` image | Medium | Design | `/opengraph.jpg` path is now correct but verify the actual file exists at `public/opengraph.jpg` |
+| F | Unused shadcn UI components cleanup | Low | ~30m | Many Radix UI deps remain for unused shadcn files — audit & delete component files not used in any page |
+| G | Blog: estimated read time | Low | ~20m | Add `timeRequired` to Article schema on both blog posts |
