@@ -65,7 +65,7 @@ function PhoneCaptureHero() {
   }
 
   return (
-    <div className="flex flex-col gap-3 mb-10" id="waitlist">
+    <div className="flex flex-col gap-3 mb-10 w-full max-w-sm" id="waitlist">
       {/* Social proof above form — answers "how popular is TRYPS" for AEO */}
       <p className="text-sm font-bold text-[#1C0808]">
         Join <span className="text-[#9A0514]">500+</span> groups already planning trips
@@ -159,7 +159,7 @@ function PhoneCaptureHero() {
         aria-label="TRYPS iOS and Android apps — coming soon"
         className="flex flex-col gap-2 pt-1"
       >
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           {/* Apple App Store — coming soon */}
           <a
             href="#waitlist"
@@ -168,7 +168,7 @@ function PhoneCaptureHero() {
             tabIndex={-1}
             onClick={e => e.preventDefault()}
             className="flex items-center gap-2.5 bg-[#6B7280] cursor-not-allowed rounded-xl px-4 py-2.5 select-none opacity-70 hover:opacity-70 transition-none"
-            style={{ minWidth: 148 }}
+            style={{ minWidth: 130 }}
           >
             {/* Apple logo SVG */}
             <svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true">
@@ -189,7 +189,7 @@ function PhoneCaptureHero() {
             tabIndex={-1}
             onClick={e => e.preventDefault()}
             className="flex items-center gap-2.5 bg-[#6B7280] cursor-not-allowed rounded-xl px-4 py-2.5 select-none opacity-70 hover:opacity-70 transition-none"
-            style={{ minWidth: 148 }}
+            style={{ minWidth: 130 }}
           >
             {/* Google Play triangle SVG */}
             <svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true">
@@ -502,10 +502,12 @@ export default function Home() {
                   TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
                 </p>
 
-                <p className="text-base text-[#6B3030] mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 flex items-center justify-center lg:justify-start gap-3">
-                  <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0" />
-                  <span>No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.</span>
-                </p>
+                <div className="flex items-start justify-center lg:justify-start gap-3 max-w-lg mx-auto lg:mx-0 mb-8">
+                  <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0 mt-0.5" />
+                  <p className="text-base text-[#6B3030] leading-relaxed">
+                    No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.
+                  </p>
+                </div>
 
                 <div className="flex justify-center lg:justify-start">
                   <PhoneCaptureHero />

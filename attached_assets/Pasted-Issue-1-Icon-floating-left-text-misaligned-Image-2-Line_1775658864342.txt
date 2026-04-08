@@ -1,0 +1,34 @@
+Issue 1 — Icon floating left, text misaligned (Image 2)
+Line ~505 in home.tsx:
+tsx<p className="...flex items-center justify-center lg:justify-start gap-3">
+  <MessageCircle className="h-5 w-5 ... shrink-0" />
+  <span>No downloads. No sign-ups...</span>
+</p>
+flex items-center vertically centres the icon to the middle of the multi-line text, but justify-center centres the whole row. On mobile the text wraps to 3 lines so the icon hangs at the vertical midpoint, appearing detached from the left. Using <p> as a flex container with wrapping text always breaks like this.
+Fix — replace that <p> block with:
+tsx<div className="flex items-start justify-center lg:justify-start gap-3 max-w-lg mx-auto lg:mx-0 mb-8">
+  <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0 mt-0.5" />
+  <p className="text-base text-[#6B3030] leading-relaxed">
+    No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.
+  </p>
+</div>
+Key changes: div instead of p, items-start so icon pins to top of text, mt-0.5 nudges icon down to align with first line cap height.
+
+Issue 2 — App store buttons + "coming soon" text overflowing right (Image 1)
+The PhoneCaptureHero component's root div has no width constraint, and the two minWidth: 148 buttons in flex gap-3 = minimum 308px + gap with no wrapping allowed. On narrow phones this pushes outside the container. The "coming soon" text also has no max-width so it runs off screen.
+Fix 1 — add w-full max-w-sm to the PhoneCaptureHero root div (line ~68):
+tsx// BEFORE:
+<div className="flex flex-col gap-3 mb-10" id="waitlist">
+
+// AFTER:
+<div className="flex flex-col gap-3 mb-10 w-full max-w-sm" id="waitlist">
+Fix 2 — allow buttons to wrap on very small screens (line ~162):
+tsx// BEFORE:
+<div className="flex gap-3">
+
+// AFTER:
+<div className="flex flex-wrap gap-3">
+Fix 3 — remove the style={{ minWidth: 148 }} from both <a> tags, or change it to style={{ minWidth: 130 }} to give more breathing room on 375px phones.
+
+Summary — 3 lines to change:
+LineChangeHero <p> with MessageCircleChange to <div>, use items-start not items-center, add mt-0.5 to iconPhoneCaptureHero root <div>Add w-full max-w-smApp store buttons container <div>Add flex-wrap
