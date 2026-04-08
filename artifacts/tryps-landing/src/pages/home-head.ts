@@ -29,9 +29,9 @@ export const homeHeadTags = `
     "url": "https://jointryps.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/opengraph.jpg",
-      "width": 1200,
-      "height": 630
+      "url": "https://jointryps.com/favicon.svg",
+      "width": 512,
+      "height": 512
     },
     "slogan": "Plan group trips together without the chaos.",
     "foundingDate": "2025-01-01",

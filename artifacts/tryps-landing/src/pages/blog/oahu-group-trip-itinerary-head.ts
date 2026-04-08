@@ -58,13 +58,13 @@ export const oahuGroupTripItineraryHeadTags = `
       "@type": "Organization",
       "name": "TRYPS",
       "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/opengraph.jpg", "width": 1200, "height": 630 }
+      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/favicon.svg", "width": 512, "height": 512 }
     },
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
       "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/opengraph.jpg", "width": 1200, "height": 630 }
+      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/favicon.svg", "width": 512, "height": 512 }
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://jointryps.com/blog/oahu-group-trip-itinerary" },
     "articleSection": "Destination Guides",

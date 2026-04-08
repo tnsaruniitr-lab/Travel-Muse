@@ -45,9 +45,9 @@ export const howToPlanGroupTripHeadTags = `
       "name": "TRYPS",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://jointryps.com/opengraph.jpg",
-        "width": 1200,
-        "height": 630
+        "url": "https://jointryps.com/favicon.svg",
+        "width": 512,
+        "height": 512
       }
     },
     "mainEntityOfPage": {
