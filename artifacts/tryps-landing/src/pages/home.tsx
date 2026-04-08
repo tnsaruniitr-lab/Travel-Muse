@@ -1,4 +1,118 @@
 import { ArrowRight, CheckCircle2, Star, MessageCircle, Calendar, MapPin, Wallet, Globe, XCircle } from "lucide-react";
+import { useState } from "react";
+
+/* ─── Gradient Tile Logo (chosen brand mark) ─── */
+function TrypsLogo({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#9A0514" />
+          <stop offset="100%" stopColor="#FB7185" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="8" fill="url(#logo-grad)" />
+      <rect x="8" y="10" width="16" height="3.5" rx="1.75" fill="white" />
+      <rect x="13.25" y="13.5" width="5.5" height="10" rx="2.75" fill="white" />
+    </svg>
+  );
+}
+
+/* ─── Inline Phone Capture (Variant A) ─── */
+function PhoneCaptureHero() {
+  const [phone, setPhone] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col gap-3 mb-10">
+        <div className="flex items-center gap-3 bg-[#FFE4E6] border border-[#FECDD3] rounded-full px-5 py-3.5 max-w-sm">
+          <CheckCircle2 className="h-5 w-5 text-[#9A0514] shrink-0" />
+          <p className="text-sm font-bold text-[#1C0808]">You're on the list! We'll text you soon.</p>
+        </div>
+        <p className="text-xs text-[#6B3030] pl-2">Expect your invite within 24 hours.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3 mb-10" id="waitlist">
+      {/* Social proof above form — answers "how popular is TRYPS" for AEO */}
+      <p className="text-sm font-bold text-[#1C0808]">
+        Join <span className="text-[#9A0514]">500+</span> groups already planning trips
+      </p>
+
+      {/*
+        SEO / AEO: form with type="tel", explicit label (sr-only with keywords),
+        aria-label describes the action in natural language,
+        inputMode="numeric" triggers numeric keyboard on mobile.
+      */}
+      <form
+        role="form"
+        aria-label="Join TRYPS early access — enter your mobile number to plan group trips"
+        onSubmit={e => { e.preventDefault(); if (phone.trim().length >= 6) setSubmitted(true); }}
+        className="flex flex-col gap-2 max-w-sm"
+      >
+        <label htmlFor="hero-phone" className="sr-only">
+          Your mobile number to join the TRYPS group trip planning app waitlist
+        </label>
+
+        <div className="flex items-stretch bg-white border border-[#FECDD3] rounded-full shadow-md shadow-[#9A0514]/10 overflow-hidden">
+          {/* Country selector — static for now, +91 India */}
+          <div className="flex items-center gap-1.5 px-4 border-r border-[#FECDD3] shrink-0 cursor-pointer select-none">
+            <span className="text-base leading-none">🇮🇳</span>
+            <span className="text-sm font-bold text-[#1C0808]">+91</span>
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="#6B3030" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+
+          <input
+            id="hero-phone"
+            type="tel"
+            autoComplete="tel"
+            inputMode="numeric"
+            placeholder="98765 43210"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+            className="flex-1 px-4 py-3.5 text-sm text-[#1C0808] outline-none bg-transparent placeholder-[#FECDD3]"
+            required
+            minLength={6}
+          />
+
+          <button
+            type="submit"
+            aria-label="Join TRYPS — get your group trip planning invite"
+            className="bg-[#9A0514] hover:bg-[#7B0310] text-white text-sm font-black px-6 py-3 rounded-full m-1 transition-colors shrink-0 shadow-lg shadow-[#9A0514]/25"
+          >
+            Join
+          </button>
+        </div>
+
+        <p className="text-xs text-[#6B3030] pl-2 flex items-center gap-1.5">
+          <span>🔒</span>
+          <span>We'll send you an SMS invite. No spam, ever.</span>
+        </p>
+      </form>
+
+      {/* Avatars — visual social proof */}
+      <div className="flex items-center gap-2 pl-1">
+        <div className="flex -space-x-2">
+          {["#9A0514","#BE123C","#7B0310","#4C0412","#FB7185"].map((bg, i) => (
+            <div key={i}
+              style={{ background: bg, border: "2px solid #FFF9F9", zIndex: 5 - i }}
+              className="relative w-7 h-7 rounded-full flex items-center justify-center">
+              <span className="text-white text-[10px] font-bold">
+                {["A","R","K","S","M"][i]}
+              </span>
+            </div>
+          ))}
+        </div>
+        <span className="text-xs text-[#6B3030]">500+ groups waiting</span>
+      </div>
+    </div>
+  );
+}
 
 /* ─── Inline App Mockup for Hero ─── */
 function HeroMockup() {
@@ -182,8 +296,8 @@ export default function Home() {
       {/* ── HEADER / NAV ── */}
       <header className="sticky top-0 z-50 bg-[#FFF9F9]/85 backdrop-blur-md border-b border-[#FECDD3]/40">
         <nav aria-label="Primary navigation" className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
-            <Star className="h-7 w-7 fill-[#9A0514] text-[#9A0514]" />
+          <a href="/" className="flex items-center gap-2.5 font-black text-2xl tracking-tighter text-[#9A0514]" aria-label="TRYPS home">
+            <TrypsLogo size={34} />
             TRYPS
           </a>
           <div className="hidden md:flex items-center gap-7 font-medium text-[#6B3030] text-sm">
@@ -196,7 +310,7 @@ export default function Home() {
             <a href="/group-trip-planning-guide" className="hover:text-[#9A0514] transition-colors">Guide</a>
             <a href="/blog" className="hover:text-[#9A0514] transition-colors">Blog</a>
           </div>
-          <a href="/waitlist" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
+          <a href="#waitlist" className="bg-[#9A0514] hover:bg-[#7B0310] text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-md shadow-[#9A0514]/20 transition-colors">
             Join waitlist
           </a>
         </nav>
@@ -238,15 +352,7 @@ export default function Home() {
                   Because the hardest part of any group trip isn't the destination. It's getting everyone in the same place.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                  <a href="/start" className="inline-flex items-center justify-center gap-2 bg-[#9A0514] hover:bg-[#7B0310] text-white h-14 px-8 rounded-full text-lg font-black shadow-xl shadow-[#9A0514]/25 transition-all hover:-translate-y-0.5 group">
-                    Start planning
-                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                  <a href="/waitlist" className="inline-flex items-center justify-center h-14 px-8 rounded-full text-lg font-bold border-2 border-[#9A0514] text-[#9A0514] hover:bg-[#FFE4E6] transition-colors">
-                    Join waitlist
-                  </a>
-                </div>
+                <PhoneCaptureHero />
 
                 <p className="text-sm text-[#6B3030] leading-relaxed">
                   Trusted by friend groups planning birthdays, bachelor trips, reunions, weekend getaways, and long vacations.

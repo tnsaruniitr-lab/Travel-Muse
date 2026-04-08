@@ -195,6 +195,11 @@ export const homeHeadTags = `
         "@type": "Question",
         "name": "How do I start?",
         "acceptedAnswer": { "@type": "Answer", "text": "Create a trip, share the link with your group, and start planning together." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I join the TRYPS waitlist?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter your mobile number on the TRYPS homepage and tap Join. We will send you an SMS invite to join the beta. No app download or email sign-up required." }
       }
     ]
   }
