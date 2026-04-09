@@ -498,6 +498,18 @@ export default function Home() {
                   </span>
                 </h1>
 
+                {/* Quick-answer box — primary AI snippet target for "what is TRYPS" queries */}
+                <div
+                  className="quick-answer bg-[#FFE4E6] border border-[#FECDD3] rounded-2xl px-5 py-4 mb-4 max-w-lg mx-auto lg:mx-0 text-left"
+                  role="note"
+                  aria-label="What is TRYPS"
+                >
+                  <p className="text-sm font-black text-[#9A0514] uppercase tracking-widest mb-1">What is TRYPS?</p>
+                  <p className="text-base text-[#1C0808] leading-relaxed">
+                    TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place. No app download or sign-up required for anyone in the group.
+                  </p>
+                </div>
+
                 <p className="text-base md:text-lg text-[#6B3030] mb-4 leading-relaxed max-w-lg mx-auto lg:mx-0">
                   TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
                 </p>
@@ -528,7 +540,7 @@ export default function Home() {
         {/* ── TRUST STRIP ── */}
         <section aria-labelledby="trust-title" className="py-10 bg-white border-t border-[#FECDD3]/30">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 id="trust-title" className="text-lg font-black text-[#1C0808] mb-5 text-center">Built for real group-trip coordination</h2>
+            <h2 id="trust-title" className="text-lg font-black text-[#1C0808] mb-5 text-center">How does TRYPS make group trip coordination actually work?</h2>
             <ul className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-10 list-none p-0">
               {[
                 "No app required for invitees",
@@ -616,8 +628,20 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8 md:mb-14">
               <h2 id="problem-solution-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808]">
-                Why most group trips never happen
+                Why do most group trips fail before they start?
               </h2>
+              <p className="mt-4 text-[#6B3030] text-base max-w-2xl mx-auto leading-relaxed">
+                According to{" "}
+                <a
+                  href="https://www.ustravel.org/research"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9A0514] font-semibold hover:underline"
+                >
+                  U.S. Travel Association research
+                </a>
+                , group travel is among the most planned and most often postponed category of leisure trips — coordination, not desire, is what stops them.
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 items-stretch">
@@ -745,7 +769,7 @@ export default function Home() {
             <div className="text-center mb-8 md:mb-14">
               <p className="text-[#9A0514] font-bold text-sm uppercase tracking-widest mb-3">Built for you</p>
               <h2 id="use-cases-title" className="text-4xl md:text-5xl font-black tracking-tight text-[#1C0808]">
-                Built for the trip that never gets planned
+                What types of group trips is TRYPS built for?
               </h2>
             </div>
 

@@ -1,0 +1,131 @@
+
+<h2 class="sr-only">Priority to-do list for fixing trypsagent.com SEO and AEO issues</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:0.5rem 0 1.5rem;font-family:var(--font-sans)}
+.group{margin-bottom:1.25rem}
+.group-label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:8px;padding-left:2px}
+.item{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);margin-bottom:6px;cursor:pointer;transition:background .15s}
+.item:hover{background:var(--color-background-secondary)}
+.item.done{opacity:.5}
+.item.done .check-box{background:var(--color-background-success);border-color:var(--color-border-success)}
+.item.done .check-box svg{display:block}
+.item.done .item-title{text-decoration:line-through;color:var(--color-text-secondary)}
+.check-box{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--color-border-secondary);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.check-box svg{display:none;width:10px;height:10px}
+.item-body{flex:1}
+.item-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.item-sub{font-size:12px;color:var(--color-text-secondary);line-height:1.4}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.b-red{background:#FCEBEB;color:#A32D2D}
+.b-amber{background:#FAEEDA;color:#633806}
+.b-green{background:#EAF3DE;color:#27500A}
+.effort{font-size:11px;color:var(--color-text-tertiary);margin-top:3px}
+</style>
+<div class="wrap">
+
+<div class="group">
+  <div class="group-label">Do first — highest impact</div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Add FAQPage JSON-LD schema <span class="badge b-red">critical</span></div>
+      <div class="item-sub">Wrap the existing 6 FAQ pairs in a &lt;script type="application/ld+json"&gt; FAQPage block. Unlocks Google "People also ask" and AI answer citations immediately.</div>
+      <div class="effort">~30 min · Section C9</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Add WebSite + Organization + SoftwareApplication schema <span class="badge b-red">critical</span></div>
+      <div class="item-sub">Single JSON-LD @graph block with all three types. Needed for sitelinks, knowledge panel, and brand trust signals.</div>
+      <div class="effort">~45 min · Section C1–C8</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Add a quick-answer box below the H1 <span class="badge b-red">critical</span></div>
+      <div class="item-sub">A styled &lt;div class="quick-answer"&gt; with a 2-sentence product definition. Primary AI snippet target for "what is TRYPS" queries.</div>
+      <div class="effort">~15 min · Section D2</div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-label">Verify immediately — may already be broken</div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Confirm head tags render in raw HTML source <span class="badge b-amber">urgent</span></div>
+      <div class="item-sub">Open Chrome → View Source (not Inspect). Check that canonical, lang="en", meta description, and OG tags actually appear — JS frameworks often omit them without SSR.</div>
+      <div class="effort">~10 min · Sections A3, A4, A9, E1–E5</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Check OG / Twitter card tags at opengraph.xyz <span class="badge b-amber">urgent</span></div>
+      <div class="item-sub">Paste trypsagent.com into opengraph.xyz. Confirm og:title, og:description, og:image (1200×630px), og:type, and twitter:card are all present and correct.</div>
+      <div class="effort">~10 min · Section E1–E5</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Confirm FAQ accordion is crawlable without JS <span class="badge b-amber">urgent</span></div>
+      <div class="item-sub">Use &lt;details&gt;/&lt;summary&gt; tags instead of JS-driven accordion. FAQ answers hidden behind JS may not be indexed by Google or read by AI crawlers.</div>
+      <div class="effort">~1 hr dev · Section D4</div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-label">Do next — meaningful AEO gains</div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Rewrite 3–4 H2s as questions <span class="badge b-green">medium</span></div>
+      <div class="item-sub">"Built for real group-trip coordination" → "How does TRYPS handle group trip coordination?" · "Why most group trips never happen" → "Why do most group trips fail before they start?"</div>
+      <div class="effort">~20 min · Section D6</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Create /sitemap.xml and reference in robots.txt <span class="badge b-green">medium</span></div>
+      <div class="item-sub">Add Sitemap: https://trypsagent.com/sitemap.xml to robots.txt. Include all key pages: homepage, /blog, /guide, /about, destination landing pages.</div>
+      <div class="effort">~30 min · Section A10</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Add speakable schema to WebPage <span class="badge b-green">medium</span></div>
+      <div class="item-sub">Add "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".quick-answer", "h1"]} once the quick-answer box exists.</div>
+      <div class="effort">~15 min · Section C12, D9</div>
+    </div>
+  </div>
+
+  <div class="item" onclick="this.classList.toggle('done')">
+    <div class="check-box"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="item-body">
+      <div class="item-title">Add 1–2 outbound links to authoritative sources <span class="badge b-green">low</span></div>
+      <div class="item-sub">Link to a relevant travel stat or research source in the body copy. Signals topical authority to crawlers.</div>
+      <div class="effort">~10 min · Section B8</div>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+</script>

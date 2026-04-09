@@ -242,4 +242,23 @@ export const homeHeadTags = `
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "TRYPS — Group Trip Planning App for Friends",
+    "url": "https://jointryps.com/",
+    "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".quick-answer", "h1", "#faq-title"]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TRYPS",
+      "url": "https://jointryps.com/"
+    }
+  }
+  </script>
 `;
