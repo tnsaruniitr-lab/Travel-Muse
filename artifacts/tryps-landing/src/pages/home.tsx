@@ -510,10 +510,6 @@ export default function Home() {
                   </p>
                 </div>
 
-                <p className="text-base md:text-lg text-[#6B3030] mb-4 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                  TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.
-                </p>
-
                 <div className="flex items-start justify-center lg:justify-start gap-3 max-w-lg mx-auto lg:mx-0 mb-8">
                   <MessageCircle className="h-5 w-5 text-[#9A0514] shrink-0 mt-0.5" />
                   <p className="text-base text-[#6B3030] leading-relaxed">
