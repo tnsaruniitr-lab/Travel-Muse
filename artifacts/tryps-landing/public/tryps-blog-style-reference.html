@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRYPS Blog — Style Reference for External Writers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TRYPS BLOG — DESIGN TOKENS
+       All values come directly from the live site.
+    ═══════════════════════════════════════════ */
+
+    :root {
+      /* Brand palette */
+      --color-primary:       #9A0514;  /* crimson — main brand colour */
+      --color-primary-hover: #7B0310;  /* darker crimson — hover states */
+      --color-accent:        #BE123C;  /* rose — gradient partner */
+
+      /* Text */
+      --color-text-darkest:  #1C0808;  /* headings */
+      --color-text-body:     #2D1A0A;  /* article body copy */
+      --color-text-muted:    #6B3030;  /* secondary text, captions */
+      --color-text-faint:    #9CA3AF;  /* meta, bylines, timestamps */
+      --color-text-divider:  #D5C4A8;  /* dot separators */
+
+      /* Surfaces */
+      --color-page-bg:       #FFF9F9;  /* page background */
+      --color-card-bg:       #FFFFFF;  /* card / box background */
+      --color-tint-bg:       #FFE4E6;  /* light rose tint — badges, highlights */
+
+      /* Borders */
+      --color-border:        #FECDD3;  /* main border colour */
+      --color-border-strong: #9A0514;  /* accent border, h2 left-bar */
+
+      /* Typography */
+      --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+      --font-serif:  'Playfair Display', Georgia, serif;
+
+      /* Sizing */
+      --body-size:      17px;
+      --body-lh:        1.85;
+      --content-width:  720px;
+      --border-radius:  1rem;       /* 16px — general cards */
+      --border-radius-lg: 1.5rem;   /* 24px — prominent cards */
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE RESET
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--body-size);
+      line-height: var(--body-lh);
+      color: var(--color-text-body);
+      background-color: var(--color-page-bg);
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT — article container
+    ═══════════════════════════════════════════ */
+    .tryps-article {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       BREADCRUMB
+    ═══════════════════════════════════════════ */
+    .tryps-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;       /* 14px */
+      color: var(--color-text-faint);
+      margin-bottom: 2rem;
+    }
+    .tryps-breadcrumb a { color: var(--color-text-faint); }
+    .tryps-breadcrumb a:hover { color: var(--color-primary); }
+    .tryps-breadcrumb .current { color: var(--color-text-muted); }
+
+    /* ═══════════════════════════════════════════
+       CATEGORY BADGE
+    ═══════════════════════════════════════════ */
+    .tryps-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--color-tint-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-primary);
+      font-size: 0.6875rem;      /* 11px */
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       ARTICLE HEADER
+    ═══════════════════════════════════════════ */
+    .tryps-article-header { margin-bottom: 2.5rem; }
+
+    .tryps-h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.25rem, 5vw, 3.5rem);  /* 36–56px */
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--color-text-darkest);
+      margin-bottom: 1.25rem;
+    }
+    .tryps-h1 em {
+      font-style: normal;
+      color: var(--color-primary);
+    }
+
+    /* Byline / meta row */
+    .tryps-byline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--color-text-faint);
+      margin-bottom: 1.75rem;
+    }
+    .tryps-byline .source { font-weight: 500; color: var(--color-text-muted); }
+    .tryps-byline .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--color-text-divider);
+      flex-shrink: 0;
+    }
+
+    /* Lede / opening pull quote */
+    .tryps-lede {
+      font-size: 1.25rem;        /* 20px */
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--color-text-darkest);
+      border-left: 4px solid var(--color-primary);
+      padding-left: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       BODY PARAGRAPHS
+    ═══════════════════════════════════════════ */
+    .tryps-p {
+      font-size: var(--body-size);
+      line-height: var(--body-lh);
+      color: var(--color-text-body);
+      margin-bottom: 1.25rem;
+    }
+    .tryps-p strong { color: var(--color-text-darkest); font-weight: 700; }
+
+    /* ═══════════════════════════════════════════
+       SECTION HEADINGS (H2)  — two variants
+    ═══════════════════════════════════════════ */
+
+    /* Variant A — left red border (plain sections) */
+    .tryps-h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.375rem, 3vw, 1.75rem);  /* 22–28px */
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--color-text-darkest);
+      border-left: 4px solid var(--color-primary);
+      padding-left: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Variant B — numbered step (how-to sections) */
+    .tryps-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .tryps-step-num {
+      flex-shrink: 0;
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 0.75rem;
+      background: var(--color-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(154,5,20,0.3);
+    }
+    .tryps-step-num .step-label {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.5625rem;    /* 9px */
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+    .tryps-step-num .step-n {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .tryps-step-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.375rem, 3vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--color-text-darkest);
+      padding-top: 0.375rem;
+    }
+
+    /* H3 subheadings */
+    .tryps-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.125rem;     /* 18px */
+      font-weight: 900;
+      color: var(--color-text-darkest);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION WRAPPER  (adds bottom spacing)
+    ═══════════════════════════════════════════ */
+    .tryps-section { margin-bottom: 3.5rem; }
+
+    /* ═══════════════════════════════════════════
+       QUICK-ANSWER / SUMMARY BOX
+       Red header bar + white body
+    ═══════════════════════════════════════════ */
+    .tryps-answer-box {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 3.5rem;
+    }
+    .tryps-answer-box__header {
+      background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tryps-answer-box__icon {
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .tryps-answer-box__title {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .tryps-answer-box__body {
+      background: #fff;
+      padding: 1.25rem 1.5rem;
+    }
+    .tryps-answer-box__body p {
+      font-size: 0.9375rem;    /* 15px */
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .tryps-answer-box__body p:last-child { margin-bottom: 0; }
+    .tryps-answer-box__body strong { color: var(--color-text-darkest); }
+
+    /* Numbered list inside answer box */
+    .tryps-answer-box .tryps-ol {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .tryps-answer-box .tryps-ol li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text-darkest);
+    }
+    .tryps-answer-box .tryps-ol .n {
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(154,5,20,0.3);
+    }
+    .tryps-answer-box .footer-note {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       CALLOUT / TIP BOX
+       Used for "Where to stay", "Pro tip", etc.
+    ═══════════════════════════════════════════ */
+    .tryps-tip {
+      background: var(--color-tint-bg);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-primary);
+      border-radius: var(--border-radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .tryps-tip__label {
+      font-size: 0.6875rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+      margin-bottom: 0.375rem;
+    }
+    .tryps-tip p {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       BULLET LIST  (red dot)
+    ═══════════════════════════════════════════ */
+    .tryps-ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .tryps-ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: var(--body-size);
+      line-height: var(--body-lh);
+      color: var(--color-text-body);
+    }
+    .tryps-ul li::before {
+      content: '';
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      flex-shrink: 0;
+      margin-top: 0.55em;
+    }
+
+    /* Arrow list (inside answer box or checklist) */
+    .tryps-arrow-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .tryps-arrow-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--color-text-darkest);
+    }
+    .tryps-arrow-list li::before {
+      content: '→';
+      color: var(--color-primary);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ═══════════════════════════════════════════
+       DATA TABLE
+    ═══════════════════════════════════════════ */
+    .tryps-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem;
+    }
+    .tryps-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .tryps-table thead tr {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .tryps-table thead th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+    }
+    .tryps-table tbody tr:nth-child(odd)  { background: #fff; }
+    .tryps-table tbody tr:nth-child(even) { background: var(--color-page-bg); }
+    .tryps-table tbody td {
+      padding: 0.75rem 1rem;
+      color: var(--color-text-darkest);
+      vertical-align: top;
+    }
+    .tryps-table tbody td.note {
+      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+    .tryps-table tfoot tr {
+      background: var(--color-tint-bg);
+      border-top: 2px solid var(--color-primary);
+    }
+    .tryps-table tfoot td {
+      padding: 0.75rem 1rem;
+      font-weight: 900;
+      color: var(--color-text-darkest);
+    }
+
+    /* ═══════════════════════════════════════════
+       IMAGE + CAPTION
+    ═══════════════════════════════════════════ */
+    .tryps-figure {
+      margin: 2.5rem 0;
+    }
+    .tryps-figure img {
+      width: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .tryps-figure figcaption {
+      font-size: 0.875rem;
+      color: var(--color-text-faint);
+      text-align: center;
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════
+       PLACES / TAG LIST  (inline chips)
+    ═══════════════════════════════════════════ */
+    .tryps-places {
+      margin-bottom: 1.5rem;
+    }
+    .tryps-places__label {
+      font-size: 0.6875rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-faint);
+      margin-bottom: 0.5rem;
+    }
+    .tryps-places__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+      padding: 0;
+    }
+    .tryps-places__list li {
+      padding: 0.25rem 0.75rem;
+      background: var(--color-tint-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════════ */
+    .tryps-hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 3.5rem 0;
+      opacity: 0.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       END-OF-ARTICLE CTA BOX
+       Red background, white text
+    ═══════════════════════════════════════════ */
+    .tryps-cta-box {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      border-radius: var(--border-radius-lg);
+      padding: 2rem 2rem 2.25rem;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+    .tryps-cta-box h2 {
+      font-family: var(--font-serif);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .tryps-cta-box p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .tryps-cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--color-primary);
+      font-weight: 900;
+      font-size: 0.9375rem;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .tryps-cta-btn:hover { opacity: 0.9; text-decoration: none; }
+
+    /* ═══════════════════════════════════════════
+       REFERENCE SHEET CHROME  (remove for production)
+       These styles only style the reference document
+       itself — not the blog components above.
+    ═══════════════════════════════════════════ */
+    .ref-page { background: #f3f3f3; padding: 2rem 1rem; }
+    .ref-section {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ref-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .ref-token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .ref-token {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.75rem;
+    }
+    .ref-token__swatch {
+      height: 40px;
+    }
+    .ref-token__info {
+      padding: 0.4rem 0.6rem;
+      background: #fafafa;
+    }
+    .ref-token__name  { font-weight: 700; color: #333; display: block; }
+    .ref-token__value { color: #888; font-family: monospace; display: block; }
+    .ref-page h1 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #111;
+      text-align: center;
+      margin-bottom: 0.375rem;
+    }
+    .ref-page .subtitle {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #777;
+      margin-bottom: 2rem;
+    }
+    code {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.8em;
+      background: #f1f1f1;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      color: #c0392b;
+    }
+  </style>
+</head>
+<body class="ref-page">
+
+  <h1>TRYPS Blog — Style Reference</h1>
+  <p class="subtitle">Share this file with your blog writer. All CSS classes are defined above. Examples below.</p>
+
+  <!-- ══════════════════════════════════
+       1. COLOUR TOKENS
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">1 — Colour Tokens</div>
+    <div class="ref-token-grid">
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#9A0514"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Primary / Brand</span>
+          <span class="ref-token__value">#9A0514</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#7B0310"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Primary Hover</span>
+          <span class="ref-token__value">#7B0310</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#BE123C"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Accent</span>
+          <span class="ref-token__value">#BE123C</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#1C0808"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Text Darkest</span>
+          <span class="ref-token__value">#1C0808</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#2D1A0A"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Text Body</span>
+          <span class="ref-token__value">#2D1A0A</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#6B3030"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Text Muted</span>
+          <span class="ref-token__value">#6B3030</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#9CA3AF"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Text Faint</span>
+          <span class="ref-token__value">#9CA3AF</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#FFF9F9; border:1px solid #eee"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Page Background</span>
+          <span class="ref-token__value">#FFF9F9</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#FFE4E6"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Tint / Badge BG</span>
+          <span class="ref-token__value">#FFE4E6</span>
+        </div>
+      </div>
+      <div class="ref-token">
+        <div class="ref-token__swatch" style="background:#FECDD3"></div>
+        <div class="ref-token__info">
+          <span class="ref-token__name">Border</span>
+          <span class="ref-token__value">#FECDD3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       2. FONTS
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">2 — Typography Scale</div>
+
+    <p style="font-size:0.8rem;color:#888;margin-bottom:1.5rem">
+      Two fonts only. <strong>Inter</strong> for all UI / body copy. <strong>Playfair Display</strong> for H1 and H2 headings only.
+      Import via Google Fonts:
+      <code>Inter:wght@400;500;600;700;900</code> and <code>Playfair+Display:ital,wght@0,700;1,700</code>
+    </p>
+
+    <div style="margin-bottom:1.5rem">
+      <div class="tryps-badge">Category Label</div>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-badge</code> — 11px / Inter 700 / uppercase / #9A0514 on #FFE4E6
+      </p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <h1 class="tryps-h1">How to Plan a Group Trip: <em>Step-by-Step</em></h1>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-h1</code> — Playfair Display 700 / clamp(36–56px) / #1C0808. <code>&lt;em&gt;</code> = #9A0514 non-italic
+      </p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <p class="tryps-lede">Planning a group trip sounds fun until someone says "I'm flexible" and disappears for three days.</p>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-lede</code> — Inter 600 / 20px / left border 4px #9A0514
+      </p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <h2 class="tryps-h2">Why group trips become chaotic</h2>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-h2</code> — Playfair Display 700 / clamp(22–28px) / left border 4px #9A0514
+      </p>
+    </div>
+
+    <div style="margin-bottom:1.5rem">
+      <h3 class="tryps-h3">Sub-section heading</h3>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-h3</code> — Inter 900 / 18px / #1C0808
+      </p>
+    </div>
+
+    <div style="margin-bottom:0">
+      <p class="tryps-p">This is standard body copy. TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses. <strong>Bold words</strong> use #1C0808 for contrast against the warmer body colour.</p>
+      <p style="font-size:0.75rem;color:#999;margin-top:0.25rem">
+        <code>.tryps-p</code> — Inter 400 / 17px / line-height 1.85 / #2D1A0A
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       3. ARTICLE HEADER
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">3 — Article Header</div>
+    <div class="tryps-article-header">
+      <div class="tryps-badge">Group trip planning</div>
+      <h1 class="tryps-h1">How to Plan a Group Trip: <em>Step-by-Step</em></h1>
+      <div class="tryps-byline">
+        <span class="source">TRYPS Blog</span>
+        <span class="dot"></span>
+        <time datetime="2026-04-04">April 4, 2026</time>
+        <span class="dot"></span>
+        <span>8 min read</span>
+      </div>
+      <p class="tryps-lede">Planning a group trip sounds fun until someone says "I'm flexible" and disappears for three days.</p>
+    </div>
+
+    <p style="font-size:0.75rem;color:#999">
+      Order: <code>.tryps-badge</code> → <code>.tryps-h1</code> → <code>.tryps-byline</code> → <code>.tryps-lede</code> → hero image → quick-answer box
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       4. QUICK-ANSWER / SUMMARY BOX
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">4 — Quick-Answer / Summary Box</div>
+
+    <div class="tryps-answer-box">
+      <div class="tryps-answer-box__header">
+        <div class="tryps-answer-box__icon">✓</div>
+        <span class="tryps-answer-box__title">Quick answer</span>
+      </div>
+      <div class="tryps-answer-box__body">
+        <p style="font-size:0.875rem;font-weight:500;color:#6B3030;margin-bottom:0.75rem">To plan a group trip without chaos:</p>
+        <ol class="tryps-ol">
+          <li><span class="n">1</span> Confirm who is actually going</li>
+          <li><span class="n">2</span> Lock dates with a group poll</li>
+          <li><span class="n">3</span> Set a realistic budget range</li>
+          <li><span class="n">4</span> Build the itinerary together</li>
+        </ol>
+        <p class="footer-note">The key is simple: reduce coordination friction. The fewer moving parts, the smoother everything becomes.</p>
+      </div>
+    </div>
+
+    <p style="font-size:0.75rem;color:#999">
+      Use <code>.tryps-answer-box</code> once per article, near the top after the hero image. This is the primary AI snippet target.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       5. NUMBERED STEP SECTION (H2 Variant B)
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">5 — Numbered Step Section (H2 variant for how-to articles)</div>
+
+    <div class="tryps-step">
+      <div class="tryps-step-num">
+        <span class="step-label">Step</span>
+        <span class="step-n">1</span>
+      </div>
+      <h2 class="tryps-step-title">Confirm who is actually going</h2>
+    </div>
+    <p class="tryps-p">Start here, not with destinations. There's a big difference between "sounds fun", "I'm in if dates work", and "book it, I'm coming."</p>
+
+    <p style="font-size:0.75rem;color:#999;margin-top:1rem">
+      Use <code>.tryps-step</code> + <code>.tryps-step-num</code> + <code>.tryps-step-title</code> for step headings. Use plain <code>.tryps-h2</code> for non-step sections.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       6. BULLET LIST + ARROW LIST
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">6 — Lists</div>
+
+    <p style="font-size:0.75rem;color:#888;margin-bottom:1rem"><strong>Red dot bullet list</strong> — general body bullets</p>
+    <ul class="tryps-ul">
+      <li>Dates that never get locked</li>
+      <li>Plans scattered across notes, chats, and spreadsheets</li>
+      <li>One person stuck organising everything</li>
+      <li>Awkward money follow-ups after the trip</li>
+    </ul>
+
+    <p style="font-size:0.75rem;color:#888;margin-bottom:1rem;margin-top:1.5rem"><strong>Arrow list</strong> — inside answer box / pre-trip checklists</p>
+    <ul class="tryps-arrow-list">
+      <li><strong>Hanauma Bay tickets</strong> — book two days before, they sell out.</li>
+      <li><strong>One restaurant reservation</strong> — fills up a week out for groups.</li>
+      <li><strong>North Shore transport</strong> — rent a car or book a shuttle.</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════
+       7. TIP / CALLOUT BOX
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">7 — Tip / Callout Box</div>
+
+    <div class="tryps-tip">
+      <div class="tryps-tip__label">Where to stay</div>
+      <p>The Outrigger Waikiki or Alohilani Resort hits the right balance of location and price. For groups of 6+, vacation rentals in the Ala Moana area give you shared living space and a kitchen.</p>
+    </div>
+
+    <p style="font-size:0.75rem;color:#999">
+      Label options: "Where to stay", "Pro tip", "Key info", "Watch out", "Cost note" — keep it short.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       8. DATA TABLE
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">8 — Data Table</div>
+
+    <div class="tryps-table-wrap">
+      <table class="tryps-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Budget</th>
+            <th>Mid-range</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accommodation (7 nights)</td>
+            <td>$280</td>
+            <td>$560</td>
+            <td class="note">Per person sharing a 4-bed vacation rental vs. hotel</td>
+          </tr>
+          <tr>
+            <td>Food &amp; drink</td>
+            <td>$280</td>
+            <td>$420</td>
+            <td class="note">$40–$60/day including one group dinner out</td>
+          </tr>
+          <tr>
+            <td>Activities</td>
+            <td>$140</td>
+            <td>$280</td>
+            <td class="note">Hanauma Bay, snorkelling, North Shore day</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total (excl. flights)</td>
+            <td>$700</td>
+            <td>$1,260</td>
+            <td class="note" style="font-weight:400;font-size:0.8125rem">Flights from US mainland add $300–$600 per person.</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       9. IMAGE + CAPTION
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">9 — Image + Caption</div>
+    <figure class="tryps-figure">
+      <div style="width:100%;padding-top:56.25%;border-radius:1rem;background:linear-gradient(135deg,#FFE4E6,#FECDD3,#FFE4E6);box-shadow:0 4px 16px rgba(0,0,0,0.1)"></div>
+      <figcaption>Friends watching the sunset from a Waikiki balcony overlooking Diamond Head</figcaption>
+    </figure>
+    <p style="font-size:0.75rem;color:#999">
+      Use <code>&lt;figure class="tryps-figure"&gt;</code> + <code>&lt;figcaption&gt;</code>. Add <code>loading="eager"</code> on the hero image only; all others use <code>loading="lazy"</code>.
+      16:9 aspect ratio preferred (1200×675px).
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       10. PLACES / TAG LIST
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">10 — Places / Tag List</div>
+
+    <div class="tryps-places">
+      <p class="tryps-places__label">Mentioned in this section</p>
+      <ul class="tryps-places__list">
+        <li>Duke's Waikiki</li>
+        <li>Kalakaua Avenue</li>
+        <li>Waikiki Beach</li>
+        <li>Alohilani Resort</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       11. END-OF-ARTICLE CTA
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">11 — End-of-Article CTA Box</div>
+
+    <div class="tryps-cta-box">
+      <h2>Ready to stop planning in group chats?</h2>
+      <p>TRYPS gives your group one place to lock dates, build a shared itinerary, and split expenses — no app download required.</p>
+      <a href="https://jointryps.com" class="tryps-cta-btn">Start planning free</a>
+    </div>
+
+    <p style="font-size:0.75rem;color:#999;margin-top:1rem">
+      Include exactly one CTA box per article, always at the end. Link always points to <code>https://jointryps.com</code>.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════
+       12. FULL ARTICLE SKELETON (copy/paste template)
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">12 — Copy-Paste Article Skeleton</div>
+    <pre style="font-size:0.7rem;line-height:1.6;overflow-x:auto;background:#f7f7f7;padding:1.25rem;border-radius:8px;color:#333"><code>&lt;!-- Wrap all article content in this container --&gt;
+&lt;main&gt;
+&lt;article class="tryps-article"&gt;
+
+  &lt;!-- Breadcrumb --&gt;
+  &lt;nav class="tryps-breadcrumb"&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt; &lt;span&gt;/&lt;/span&gt;
+    &lt;a href="/blog"&gt;Blog&lt;/a&gt; &lt;span&gt;/&lt;/span&gt;
+    &lt;span class="current"&gt;Article title&lt;/span&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Article header --&gt;
+  &lt;header class="tryps-article-header"&gt;
+    &lt;div class="tryps-badge"&gt;Category name&lt;/div&gt;
+    &lt;h1 class="tryps-h1"&gt;Title: &lt;em&gt;Keyword part&lt;/em&gt;&lt;/h1&gt;
+    &lt;div class="tryps-byline"&gt;
+      &lt;span class="source"&gt;TRYPS Blog&lt;/span&gt;
+      &lt;span class="dot"&gt;&lt;/span&gt;
+      &lt;time datetime="YYYY-MM-DD"&gt;Month D, YYYY&lt;/time&gt;
+      &lt;span class="dot"&gt;&lt;/span&gt;
+      &lt;span&gt;X min read&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p class="tryps-lede"&gt;Hook sentence goes here.&lt;/p&gt;
+    &lt;!-- Hero image: 1200x675px --&gt;
+    &lt;figure class="tryps-figure"&gt;
+      &lt;img src="hero.jpg" alt="..." width="1200" height="675" loading="eager" /&gt;
+      &lt;figcaption&gt;Caption text&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/header&gt;
+
+  &lt;!-- Quick-answer box (required, near top) --&gt;
+  &lt;div class="tryps-answer-box"&gt;
+    &lt;div class="tryps-answer-box__header"&gt;
+      &lt;div class="tryps-answer-box__icon"&gt;✓&lt;/div&gt;
+      &lt;span class="tryps-answer-box__title"&gt;Quick answer&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="tryps-answer-box__body"&gt;
+      &lt;p&gt;2–3 sentence summary of the article's key answer.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Body sections --&gt;
+  &lt;section class="tryps-section"&gt;
+    &lt;h2 class="tryps-h2"&gt;Section heading as a question?&lt;/h2&gt;
+    &lt;p class="tryps-p"&gt;Body copy...&lt;/p&gt;
+    &lt;ul class="tryps-ul"&gt;
+      &lt;li&gt;Bullet item&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="tryps-tip"&gt;
+      &lt;div class="tryps-tip__label"&gt;Pro tip&lt;/div&gt;
+      &lt;p&gt;Tip text here.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;hr class="tryps-hr" /&gt;
+
+  &lt;!-- End CTA (required, every article) --&gt;
+  &lt;div class="tryps-cta-box"&gt;
+    &lt;h2&gt;Ready to stop planning in group chats?&lt;/h2&gt;
+    &lt;p&gt;TRYPS gives your group one place to lock dates, build an itinerary, and split expenses.&lt;/p&gt;
+    &lt;a href="https://jointryps.com" class="tryps-cta-btn"&gt;Start planning free&lt;/a&gt;
+  &lt;/div&gt;
+
+&lt;/article&gt;
+&lt;/main&gt;</code></pre>
+  </div>
+
+  <!-- ══════════════════════════════════
+       13. WRITING RULES (quick reference)
+  ══════════════════════════════════ -->
+  <div class="ref-section">
+    <div class="ref-label">13 — Editorial Rules (quick reference)</div>
+    <ul style="font-size:0.875rem;line-height:2;color:#444;padding-left:1.25rem">
+      <li><strong>H2s should be questions</strong> — "How does X work?" not "How X works"</li>
+      <li><strong>One quick-answer box per article</strong> — place it directly after the hero image</li>
+      <li><strong>H1 always uses Playfair Display</strong> — set <code>font-family: 'Playfair Display', Georgia, serif</code></li>
+      <li><strong>Body copy minimum font size: 17px</strong> — never go below</li>
+      <li><strong>No inline colour hex values</strong> — use the CSS variables defined at the top of this sheet</li>
+      <li><strong>Every article ends with the CTA box</strong> — link always to <code>https://jointryps.com</code></li>
+      <li><strong>Hero image aspect ratio: 16:9</strong> — preferred dimensions 1200×675px</li>
+      <li><strong>Image captions: italic, centred, #9CA3AF</strong> — use <code>&lt;figcaption&gt;</code></li>
+      <li><strong>Tables: always wrapped in .tryps-table-wrap</strong> for horizontal scroll on mobile</li>
+      <li><strong>TRYPS is always all-caps</strong> — never "Tryps" or "tryps"</li>
+    </ul>
+  </div>
+
+</body>
+</html>
