@@ -2,13 +2,6 @@
 type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/blog/HowToPlanGroupTrip.tsx": () => import("../components/mockups/blog/HowToPlanGroupTrip.tsx"),
-  "./components/mockups/tryps-logos/DotUpA.tsx": () => import("../components/mockups/tryps-logos/DotUpA.tsx"),
-  "./components/mockups/tryps-logos/DotUpB.tsx": () => import("../components/mockups/tryps-logos/DotUpB.tsx"),
-  "./components/mockups/tryps-logos/DotUpC.tsx": () => import("../components/mockups/tryps-logos/DotUpC.tsx"),
-  "./components/mockups/tryps-logos/LogoOptions.tsx": () => import("../components/mockups/tryps-logos/LogoOptions.tsx"),
-  "./components/mockups/tryps-logos/LogoOptions2.tsx": () => import("../components/mockups/tryps-logos/LogoOptions2.tsx"),
-  "./components/mockups/tryps-logos/LogoOptions3.tsx": () => import("../components/mockups/tryps-logos/LogoOptions3.tsx"),
-  "./components/mockups/tryps-logos/LogoOptions4.tsx": () => import("../components/mockups/tryps-logos/LogoOptions4.tsx"),
   "./components/mockups/tryps-variants/Coastal.tsx": () => import("../components/mockups/tryps-variants/Coastal.tsx"),
   "./components/mockups/tryps-variants/Crimson.tsx": () => import("../components/mockups/tryps-variants/Crimson.tsx"),
   "./components/mockups/tryps-variants/Editorial.tsx": () => import("../components/mockups/tryps-variants/Editorial.tsx"),
@@ -17,5 +10,12 @@ export const modules: ModuleMap = {
   "./components/mockups/tryps-variants/NightFlight.tsx": () => import("../components/mockups/tryps-variants/NightFlight.tsx"),
   "./components/mockups/tryps-variants/PhoneCapture.tsx": () => import("../components/mockups/tryps-variants/PhoneCapture.tsx"),
   "./components/mockups/tryps-variants/Punchy.tsx": () => import("../components/mockups/tryps-variants/Punchy.tsx"),
-  "./components/mockups/tryps-variants/Sunshine.tsx": () => import("../components/mockups/tryps-variants/Sunshine.tsx")
+  "./components/mockups/tryps-variants/Sunshine.tsx": () => import("../components/mockups/tryps-variants/Sunshine.tsx"),
+  "./components/mockups/tryps-logos/DotUpA.tsx": () => import("../components/mockups/tryps-logos/DotUpA.tsx"),
+  "./components/mockups/tryps-logos/DotUpB.tsx": () => import("../components/mockups/tryps-logos/DotUpB.tsx"),
+  "./components/mockups/tryps-logos/DotUpC.tsx": () => import("../components/mockups/tryps-logos/DotUpC.tsx"),
+  "./components/mockups/tryps-logos/LogoOptions.tsx": () => import("../components/mockups/tryps-logos/LogoOptions.tsx"),
+  "./components/mockups/tryps-logos/LogoOptions2.tsx": () => import("../components/mockups/tryps-logos/LogoOptions2.tsx"),
+  "./components/mockups/tryps-logos/LogoOptions3.tsx": () => import("../components/mockups/tryps-logos/LogoOptions3.tsx"),
+  "./components/mockups/tryps-logos/LogoOptions4.tsx": () => import("../components/mockups/tryps-logos/LogoOptions4.tsx")
 };
