@@ -1,6 +1,6 @@
 # TRYPS Blog — HTML & JSON-LD Specification
 
-> **For external blog writers.** This document defines the exact HTML structure and JSON-LD schemas required for every article published on jointryps.com. Follow it precisely so new posts are visually consistent and crawlers can index them correctly.
+> **For external blog writers.** This document defines the exact HTML structure and JSON-LD schemas required for every article published on trypsagent.com. Follow it precisely so new posts are visually consistent and crawlers can index them correctly.
 
 ---
 
@@ -78,7 +78,7 @@ Replace the `[PLACEHOLDERS]` for each article. Everything else is fixed.
 <!-- Primary meta -->
 <title>[ARTICLE TITLE] | TRYPS</title>
 <meta name="description" content="[150–160 character description]" />
-<link rel="canonical" href="https://jointryps.com/blog/[SLUG]" />
+<link rel="canonical" href="https://trypsagent.com/blog/[SLUG]" />
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 <meta name="theme-color" content="#FFF9F9" />
 
@@ -87,15 +87,15 @@ Replace the `[PLACEHOLDERS]` for each article. Everything else is fixed.
 <meta property="og:site_name" content="TRYPS" />
 <meta property="og:title" content="[ARTICLE TITLE]" />
 <meta property="og:description" content="[OG description — can match meta description]" />
-<meta property="og:url" content="https://jointryps.com/blog/[SLUG]" />
-<meta property="og:image" content="https://jointryps.com/images/blog/[HERO-IMAGE].webp" />
+<meta property="og:url" content="https://trypsagent.com/blog/[SLUG]" />
+<meta property="og:image" content="https://trypsagent.com/images/blog/[HERO-IMAGE].webp" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="[Image alt text]" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="[YYYY-MM-DDT00:00:00Z]" />
 <meta property="article:modified_time" content="[YYYY-MM-DDT00:00:00Z]" />
-<meta property="article:author" content="https://jointryps.com/about" />
+<meta property="article:author" content="https://trypsagent.com/about" />
 <meta property="article:section" content="[Category name]" />
 
 <!-- Twitter -->
@@ -103,14 +103,14 @@ Replace the `[PLACEHOLDERS]` for each article. Everything else is fixed.
 <meta name="twitter:site" content="@trypsapp" />
 <meta name="twitter:title" content="[ARTICLE TITLE]" />
 <meta name="twitter:description" content="[Twitter description]" />
-<meta name="twitter:image" content="https://jointryps.com/images/blog/[HERO-IMAGE].webp" />
+<meta name="twitter:image" content="https://trypsagent.com/images/blog/[HERO-IMAGE].webp" />
 <meta name="twitter:image:alt" content="[Image alt text]" />
 ```
 
 **Image requirements:**
 - Format: `.webp` preferred, `.jpg` acceptable
 - Dimensions: 1200 × 630 px (16:9 for hero, used for OG + Twitter card)
-- File location: `https://jointryps.com/images/blog/[filename]`
+- File location: `https://trypsagent.com/images/blog/[filename]`
 
 ---
 
@@ -382,7 +382,7 @@ Use at the end of each day section in destination guides.
     TRYPS gives your group one place to lock dates, build a shared itinerary,
     and split expenses — no app download required.
   </p>
-  <a href="https://jointryps.com" class="tryps-cta-btn">Start planning free</a>
+  <a href="https://trypsagent.com" class="tryps-cta-btn">Start planning free</a>
 </div>
 ```
 
@@ -407,7 +407,7 @@ Use at the end of each day section in destination guides.
   <!-- Primary meta -->
   <title>[TITLE] | TRYPS</title>
   <meta name="description" content="[DESCRIPTION]" />
-  <link rel="canonical" href="https://jointryps.com/blog/[SLUG]" />
+  <link rel="canonical" href="https://trypsagent.com/blog/[SLUG]" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#FFF9F9" />
 
@@ -416,15 +416,15 @@ Use at the end of each day section in destination guides.
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="[TITLE]" />
   <meta property="og:description" content="[DESCRIPTION]" />
-  <meta property="og:url" content="https://jointryps.com/blog/[SLUG]" />
-  <meta property="og:image" content="https://jointryps.com/images/blog/[HERO].webp" />
+  <meta property="og:url" content="https://trypsagent.com/blog/[SLUG]" />
+  <meta property="og:image" content="https://trypsagent.com/images/blog/[HERO].webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="[ALT]" />
   <meta property="og:locale" content="en_US" />
   <meta property="article:published_time" content="[YYYY-MM-DDT00:00:00Z]" />
   <meta property="article:modified_time" content="[YYYY-MM-DDT00:00:00Z]" />
-  <meta property="article:author" content="https://jointryps.com/about" />
+  <meta property="article:author" content="https://trypsagent.com/about" />
   <meta property="article:section" content="[CATEGORY]" />
 
   <!-- Twitter -->
@@ -432,7 +432,7 @@ Use at the end of each day section in destination guides.
   <meta name="twitter:site" content="@trypsapp" />
   <meta name="twitter:title" content="[TITLE]" />
   <meta name="twitter:description" content="[DESCRIPTION]" />
-  <meta name="twitter:image" content="https://jointryps.com/images/blog/[HERO].webp" />
+  <meta name="twitter:image" content="https://trypsagent.com/images/blog/[HERO].webp" />
   <meta name="twitter:image:alt" content="[ALT]" />
 
   <!-- JSON-LD: paste blocks from sections 5–7 here -->
@@ -491,7 +491,7 @@ Use at the end of each day section in destination guides.
       <div class="tryps-cta-box">
         <h2>Ready to stop planning in group chats?</h2>
         <p>TRYPS gives your group one place to lock dates, build a shared itinerary, and split expenses.</p>
-        <a href="https://jointryps.com" class="tryps-cta-btn">Start planning free</a>
+        <a href="https://trypsagent.com" class="tryps-cta-btn">Start planning free</a>
       </div>
 
     </article>
@@ -515,13 +515,13 @@ These two blocks go in `<head>` for **every** blog post, regardless of type.
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "@id": "https://jointryps.com/blog/[SLUG]#article",
+  "@id": "https://trypsagent.com/blog/[SLUG]#article",
   "headline": "[Full article title — matches <title> tag minus ' | TRYPS']",
   "alternativeHeadline": "[Optional shorter title]",
   "description": "[Matches meta description]",
   "image": {
     "@type": "ImageObject",
-    "url": "https://jointryps.com/images/blog/[HERO].webp",
+    "url": "https://trypsagent.com/images/blog/[HERO].webp",
     "width": 1200,
     "height": 630,
     "caption": "[Image caption]"
@@ -531,10 +531,10 @@ These two blocks go in `<head>` for **every** blog post, regardless of type.
   "author": {
     "@type": "Organization",
     "name": "TRYPS",
-    "url": "https://jointryps.com",
+    "url": "https://trypsagent.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/favicon.svg",
+      "url": "https://trypsagent.com/favicon.svg",
       "width": 512,
       "height": 512
     }
@@ -542,17 +542,17 @@ These two blocks go in `<head>` for **every** blog post, regardless of type.
   "publisher": {
     "@type": "Organization",
     "name": "TRYPS",
-    "url": "https://jointryps.com",
+    "url": "https://trypsagent.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/favicon.svg",
+      "url": "https://trypsagent.com/favicon.svg",
       "width": 512,
       "height": 512
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://jointryps.com/blog/[SLUG]"
+    "@id": "https://trypsagent.com/blog/[SLUG]"
   },
   "articleSection": "[Category — e.g. 'Destination Guides' or 'Group trip planning']",
   "keywords": ["[keyword 1]", "[keyword 2]", "[keyword 3]"],
@@ -572,9 +572,9 @@ Adjust `itemListElement` depth to match the actual URL hierarchy.
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jointryps.com" },
-    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://jointryps.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": "[Article title]", "item": "https://jointryps.com/blog/[SLUG]" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trypsagent.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trypsagent.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "[Article title]", "item": "https://trypsagent.com/blog/[SLUG]" }
   ]
 }
 ```
@@ -586,10 +586,10 @@ For destination guides with a category level (e.g. `/blog/hawaii/`):
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home",    "item": "https://jointryps.com" },
-    { "@type": "ListItem", "position": 2, "name": "Blog",    "item": "https://jointryps.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": "[Region]","item": "https://jointryps.com/blog/[region]" },
-    { "@type": "ListItem", "position": 4, "name": "[Article title]", "item": "https://jointryps.com/blog/[SLUG]" }
+    { "@type": "ListItem", "position": 1, "name": "Home",    "item": "https://trypsagent.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog",    "item": "https://trypsagent.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "[Region]","item": "https://trypsagent.com/blog/[region]" },
+    { "@type": "ListItem", "position": 4, "name": "[Article title]", "item": "https://trypsagent.com/blog/[SLUG]" }
   ]
 }
 ```
@@ -610,7 +610,7 @@ Add these **in addition** to the Article + BreadcrumbList above.
   "@type": "HowTo",
   "name": "[How to … — matches H1 without the hook em]",
   "description": "[One sentence summary of what the guide teaches]",
-  "image": "https://jointryps.com/images/blog/[HERO].webp",
+  "image": "https://trypsagent.com/images/blog/[HERO].webp",
   "step": [
     {
       "@type": "HowToStep",
@@ -675,10 +675,10 @@ Destination guides (e.g. Oahu itinerary) get additional schemas on top of sectio
 {
   "@context": "https://schema.org",
   "@type": "TouristDestination",
-  "@id": "https://jointryps.com/destinations/[DESTINATION-SLUG]",
+  "@id": "https://trypsagent.com/destinations/[DESTINATION-SLUG]",
   "name": "[Destination name, e.g. Oahu, Hawaii]",
   "description": "[2–3 sentence description of the destination]",
-  "url": "https://jointryps.com/destinations/[DESTINATION-SLUG]",
+  "url": "https://trypsagent.com/destinations/[DESTINATION-SLUG]",
   "touristType": [
     { "@type": "Audience", "audienceType": "Groups of friends" },
     { "@type": "Audience", "audienceType": "Adventure travelers" }
@@ -767,7 +767,7 @@ For destination guides, add a `HowTo` describing the planning actions (not the i
       "position": 1,
       "name": "[Booking/planning action]",
       "text": "[What to do and why]",
-      "url": "https://jointryps.com/blog/[SLUG]#[section-anchor]"
+      "url": "https://trypsagent.com/blog/[SLUG]#[section-anchor]"
     }
   ]
 }
@@ -789,8 +789,8 @@ Add this to tell voice assistants and AI search which sections to read aloud. Th
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://jointryps.com/blog/[SLUG]",
-  "url": "https://jointryps.com/blog/[SLUG]",
+  "@id": "https://trypsagent.com/blog/[SLUG]",
+  "url": "https://trypsagent.com/blog/[SLUG]",
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": [".tryps-answer-box", ".tryps-lede", "h1"]
@@ -828,7 +828,7 @@ Blog `FAQPage` schemas must only contain **content-specific** questions (about t
 | **H2s are questions** | "How does X work?" not "How X works" — phrased as if answering a search query |
 | **One quick-answer box per article** | Placed immediately after the hero image — never skipped |
 | **Body font minimum 17px** | `font-size: 17px` on `.tryps-p` — never reduce |
-| **CTA box in every article** | Always the last element. Link always points to `https://jointryps.com` |
+| **CTA box in every article** | Always the last element. Link always points to `https://trypsagent.com` |
 | **Hero image: 1200×630 px** | Used for OG + Twitter card. `loading="eager"` on hero only — all others `loading="lazy"` |
 | **Image format: `.webp`** | Fall back to `.jpg` only if WebP is not available |
 | **No inline colour values** | Use CSS custom properties from the style reference — never hardcode hex in `style=""` attributes |

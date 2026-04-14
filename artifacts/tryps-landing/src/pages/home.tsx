@@ -295,7 +295,7 @@ function ProductPreview() {
         <div className="space-y-2 mt-3">
           <div className="bg-[#FFE4E6] rounded-xl p-3 text-left">
             <p className="text-xs font-semibold text-[#1C0808]">Hey! Join our Amalfi trip</p>
-            <p className="text-xs text-[#6B3030] mt-0.5">jointryps.com/amalfi-2025</p>
+            <p className="text-xs text-[#6B3030] mt-0.5">trypsagent.com/amalfi-2025</p>
           </div>
           <div className="flex items-center gap-2 mt-2">
             <div className="w-6 h-6 rounded-full bg-[#9A0514] flex items-center justify-center text-xs font-black text-white">A</div>
@@ -958,7 +958,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col items-start md:items-end gap-1">
               <p className="text-white/40 text-sm">
-                Support: <a href="mailto:support@jointryps.com" className="text-[#9A0514] hover:underline">support@jointryps.com</a>
+                Support: <a href="mailto:support@trypsagent.com" className="text-[#9A0514] hover:underline">support@trypsagent.com</a>
               </p>
               <p className="text-white/30 text-sm">&copy; TRYPS</p>
             </div>

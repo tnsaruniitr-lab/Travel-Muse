@@ -194,7 +194,7 @@ One person wants beach days. Someone wants to eat every two hours. Nobody has bo
 | **Description** | Practical guides on planning group trips with friends. Date coordination, shared itineraries, expense splitting, and more. |
 | **OG image** | `/images/blog/how-to-plan-group-trip-hero.webp` |
 
-**JSON-LD schema used:** `Blog` (publisher: TRYPS, url: `https://jointryps.com/blog`)
+**JSON-LD schema used:** `Blog` (publisher: TRYPS, url: `https://trypsagent.com/blog`)
 
 **Code files**
 

@@ -19,7 +19,7 @@
 
 ## 1. Homepage FAQs
 
-**URL:** `https://jointryps.com/`  
+**URL:** `https://trypsagent.com/`  
 **Section anchor:** `#faq`  
 **Section heading:** "Frequently asked questions"
 
@@ -59,7 +59,7 @@ The schema in `home-head.ts` contains the same 6 questions above plus one additi
 
 ## 2. Blog post — How to Plan a Group Trip
 
-**URL:** `https://jointryps.com/blog/how-to-plan-a-group-trip`  
+**URL:** `https://trypsagent.com/blog/how-to-plan-a-group-trip`  
 **Section anchor:** `#faq`  
 **These are content-specific FAQs — not product FAQs. Do not repeat homepage product questions here.**
 
@@ -86,7 +86,7 @@ The schema in `home-head.ts` contains the same 6 questions above plus one additi
 
 ## 3. Blog post — 7-Day Oahu Itinerary
 
-**URL:** `https://jointryps.com/blog/oahu-group-trip-itinerary`  
+**URL:** `https://trypsagent.com/blog/oahu-group-trip-itinerary`  
 **Section anchor:** `#faqs`  
 **These are destination-specific FAQs. Do not repeat homepage product questions here.**
 

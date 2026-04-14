@@ -8,22 +8,22 @@ export const oahuGroupTripItineraryHeadTags = `
   <meta name="keywords" content="Oahu group trip itinerary, 7 days in Oahu, Oahu trip with friends, Oahu travel guide 2026, things to do in Oahu, North Shore day trip, Hanauma Bay, best restaurants Oahu" />
   <meta name="author" content="TRYPS" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <link rel="canonical" href="https://jointryps.com/blog/oahu-group-trip-itinerary" />
+  <link rel="canonical" href="https://trypsagent.com/blog/oahu-group-trip-itinerary" />
   <meta name="theme-color" content="#FFF9F9" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="7-Day Oahu Group Trip Itinerary (2026): What Actually Works" />
   <meta property="og:description" content="Day-by-day Oahu plan with real places, real food, and honest costs. Covers North Shore, Hanauma Bay, Chinatown, and the best group dinners on the island." />
-  <meta property="og:url" content="https://jointryps.com/blog/oahu-group-trip-itinerary" />
-  <meta property="og:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.webp" />
+  <meta property="og:url" content="https://trypsagent.com/blog/oahu-group-trip-itinerary" />
+  <meta property="og:image" content="https://trypsagent.com/images/blog/oahu-group-trip-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset" />
   <meta property="og:locale" content="en_US" />
   <meta property="article:published_time" content="2026-04-04T00:00:00+00:00" />
   <meta property="article:modified_time" content="2026-04-04T00:00:00+00:00" />
-  <meta property="article:author" content="https://jointryps.com/about" />
+  <meta property="article:author" content="https://trypsagent.com/about" />
   <meta property="article:section" content="Destination Guides" />
   <meta property="article:tag" content="Oahu" />
   <meta property="article:tag" content="Hawaii" />
@@ -34,20 +34,20 @@ export const oahuGroupTripItineraryHeadTags = `
   <meta name="twitter:site" content="@trypsapp" />
   <meta name="twitter:title" content="7-Day Oahu Group Trip Itinerary (2026): What Actually Works" />
   <meta name="twitter:description" content="Day-by-day Oahu plan with real places, real food, and honest costs. North Shore, Hanauma Bay, Chinatown, and the best group dinners on the island." />
-  <meta name="twitter:image" content="https://jointryps.com/images/blog/oahu-group-trip-hero.webp" />
+  <meta name="twitter:image" content="https://trypsagent.com/images/blog/oahu-group-trip-hero.webp" />
   <meta name="twitter:image:alt" content="Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "@id": "https://jointryps.com/blog/oahu-group-trip-itinerary#article",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#article",
     "headline": "7-Day Oahu Group Trip Itinerary (2026): What Actually Works",
     "alternativeHeadline": "The Complete Oahu Itinerary for Friend Groups",
     "description": "A complete day-by-day Oahu itinerary for groups of friends, with restaurant picks, beach recommendations, booking tips, seasonal guidance, and estimated costs per person.",
     "image": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/images/blog/oahu-group-trip-hero.webp",
+      "url": "https://trypsagent.com/images/blog/oahu-group-trip-hero.webp",
       "width": 1200,
       "height": 630,
       "caption": "Friends watching fireworks from a Waikiki balcony overlooking Diamond Head at sunset"
@@ -57,21 +57,21 @@ export const oahuGroupTripItineraryHeadTags = `
     "author": {
       "@type": "Organization",
       "name": "TRYPS",
-      "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/favicon.svg", "width": 512, "height": 512 }
+      "url": "https://trypsagent.com",
+      "logo": { "@type": "ImageObject", "url": "https://trypsagent.com/favicon.svg", "width": 512, "height": 512 }
     },
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
-      "url": "https://jointryps.com",
-      "logo": { "@type": "ImageObject", "url": "https://jointryps.com/favicon.svg", "width": 512, "height": 512 }
+      "url": "https://trypsagent.com",
+      "logo": { "@type": "ImageObject", "url": "https://trypsagent.com/favicon.svg", "width": 512, "height": 512 }
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://jointryps.com/blog/oahu-group-trip-itinerary" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary" },
     "articleSection": "Destination Guides",
     "keywords": ["Oahu itinerary", "group trip Hawaii", "7 days Oahu", "North Shore day trip", "Hanauma Bay", "things to do Oahu"],
     "wordCount": 2800,
     "inLanguage": "en-US",
-    "about": { "@type": "TouristDestination", "name": "Oahu, Hawaii", "url": "https://jointryps.com/destinations/oahu" },
+    "about": { "@type": "TouristDestination", "name": "Oahu, Hawaii", "url": "https://trypsagent.com/destinations/oahu" },
     "mentions": [
       {"@type": "Restaurant", "name": "Duke's Waikiki", "address": {"@type": "PostalAddress", "addressLocality": "Honolulu", "addressRegion": "HI"}},
       {"@type": "Restaurant", "name": "The Pig and the Lady", "address": {"@type": "PostalAddress", "addressLocality": "Honolulu", "addressRegion": "HI"}},
@@ -96,10 +96,10 @@ export const oahuGroupTripItineraryHeadTags = `
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://jointryps.com"},
-      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://jointryps.com/blog"},
-      {"@type": "ListItem", "position": 3, "name": "Hawaii", "item": "https://jointryps.com/blog/hawaii"},
-      {"@type": "ListItem", "position": 4, "name": "7-Day Oahu Group Trip Itinerary", "item": "https://jointryps.com/blog/oahu-group-trip-itinerary"}
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://trypsagent.com"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trypsagent.com/blog"},
+      {"@type": "ListItem", "position": 3, "name": "Hawaii", "item": "https://trypsagent.com/blog/hawaii"},
+      {"@type": "ListItem", "position": 4, "name": "7-Day Oahu Group Trip Itinerary", "item": "https://trypsagent.com/blog/oahu-group-trip-itinerary"}
     ]
   }
   </script>
@@ -162,10 +162,10 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
-    "@id": "https://jointryps.com/destinations/oahu",
+    "@id": "https://trypsagent.com/destinations/oahu",
     "name": "Oahu, Hawaii",
     "description": "Oahu is Hawaii's most visited island, home to Waikiki Beach, Diamond Head, the North Shore surf scene, and some of the best food in the Pacific. It offers the widest range of activities for group travel.",
-    "url": "https://jointryps.com/destinations/oahu",
+    "url": "https://trypsagent.com/destinations/oahu",
     "touristType": [
       {"@type": "Audience", "audienceType": "Groups of friends"},
       {"@type": "Audience", "audienceType": "Adventure travelers"},
@@ -253,28 +253,28 @@ export const oahuGroupTripItineraryHeadTags = `
         "position": 1,
         "name": "Book Hanauma Bay tickets",
         "text": "Go to hawaii.gowaiver.com and book Hanauma Bay snorkeling tickets at 7am Hawaii time, two days before your planned visit. Tickets cost $25 per person for non-residents and sell out days in advance.",
-        "url": "https://jointryps.com/blog/oahu-group-trip-itinerary#day-5"
+        "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary#day-5"
       },
       {
         "@type": "HowToStep",
         "position": 2,
         "name": "Reserve a dinner table",
         "text": "Book a table at The Pig and the Lady or MW Restaurant at least one week in advance for groups. If you miss both, Livestock Tavern on the same Chinatown block is an excellent backup.",
-        "url": "https://jointryps.com/blog/oahu-group-trip-itinerary#faqs"
+        "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary#faqs"
       },
       {
         "@type": "HowToStep",
         "position": 3,
         "name": "Arrange North Shore transport",
         "text": "Book a rental car for the North Shore day trip ($50–$80) or reserve a shuttle through Roberts Hawaii. Do not rely on rideshare for this route.",
-        "url": "https://jointryps.com/blog/oahu-group-trip-itinerary#day-4"
+        "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary#day-4"
       },
       {
         "@type": "HowToStep",
         "position": 4,
         "name": "Book accommodation",
         "text": "For groups of 4–6, book a vacation rental in the Ala Moana area for shared living space and a kitchen. For smaller groups, the Outrigger Waikiki or Alohilani Resort offer good value and central location.",
-        "url": "https://jointryps.com/blog/oahu-group-trip-itinerary#day-1"
+        "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary#day-1"
       }
     ]
   }
@@ -284,12 +284,12 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://jointryps.com/blog/oahu-group-trip-itinerary",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [".quick-answer", ".summary-box", ".faq-a"]
     },
-    "url": "https://jointryps.com/blog/oahu-group-trip-itinerary"
+    "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary"
   }
   </script>
 `;

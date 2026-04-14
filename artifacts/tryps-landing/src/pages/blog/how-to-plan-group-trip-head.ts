@@ -4,7 +4,7 @@ export const howToPlanGroupTripHeadTags = `
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
   <title>How to Plan a Group Trip: Step-by-Step Guide | TRYPS</title>
   <meta name="description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
-  <link rel="canonical" href="https://jointryps.com/blog/how-to-plan-a-group-trip" />
+  <link rel="canonical" href="https://trypsagent.com/blog/how-to-plan-a-group-trip" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#FFF9F9" />
 
@@ -12,8 +12,8 @@ export const howToPlanGroupTripHeadTags = `
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
   <meta property="og:description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
-  <meta property="og:url" content="https://jointryps.com/blog/how-to-plan-a-group-trip" />
-  <meta property="og:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp" />
+  <meta property="og:url" content="https://trypsagent.com/blog/how-to-plan-a-group-trip" />
+  <meta property="og:image" content="https://trypsagent.com/images/blog/how-to-plan-group-trip-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:published_time" content="2026-04-04T00:00:00Z" />
@@ -24,7 +24,7 @@ export const howToPlanGroupTripHeadTags = `
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How to Plan a Group Trip: Step-by-Step Guide | TRYPS" />
   <meta name="twitter:description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
-  <meta name="twitter:image" content="https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp" />
+  <meta name="twitter:image" content="https://trypsagent.com/images/blog/how-to-plan-group-trip-hero.webp" />
 
   <script type="application/ld+json">
   {
@@ -32,27 +32,27 @@ export const howToPlanGroupTripHeadTags = `
     "@type": "Article",
     "headline": "How to Plan a Group Trip: Step-by-Step Guide",
     "description": "Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly.",
-    "image": ["https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp"],
+    "image": ["https://trypsagent.com/images/blog/how-to-plan-group-trip-hero.webp"],
     "datePublished": "2026-04-04",
     "dateModified": "2026-04-04",
     "author": {
       "@type": "Person",
       "name": "Jake Stein",
-      "url": "https://jointryps.com/about"
+      "url": "https://trypsagent.com/about"
     },
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://jointryps.com/favicon.svg",
+        "url": "https://trypsagent.com/favicon.svg",
         "width": 512,
         "height": 512
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://jointryps.com/blog/how-to-plan-a-group-trip"
+      "@id": "https://trypsagent.com/blog/how-to-plan-a-group-trip"
     }
   }
   </script>
@@ -63,7 +63,7 @@ export const howToPlanGroupTripHeadTags = `
     "@type": "HowTo",
     "name": "How to Plan a Group Trip",
     "description": "A step-by-step guide to planning a group trip with friends.",
-    "image": "https://jointryps.com/images/blog/how-to-plan-group-trip-hero.webp",
+    "image": "https://trypsagent.com/images/blog/how-to-plan-group-trip-hero.webp",
     "step": [
       { "@type": "HowToStep", "name": "Confirm who is actually going", "text": "Separate serious participants from people who are only loosely interested." },
       { "@type": "HowToStep", "name": "Shortlist destination options", "text": "Narrow the discussion to two or three realistic destination choices." },
@@ -116,8 +116,8 @@ export const howToPlanGroupTripHeadTags = `
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://jointryps.com/blog" },
-      { "@type": "ListItem", "position": 2, "name": "How to Plan a Group Trip", "item": "https://jointryps.com/blog/how-to-plan-a-group-trip" }
+      { "@type": "ListItem", "position": 1, "name": "Blog", "item": "https://trypsagent.com/blog" },
+      { "@type": "ListItem", "position": 2, "name": "How to Plan a Group Trip", "item": "https://trypsagent.com/blog/how-to-plan-a-group-trip" }
     ]
   }
   </script>

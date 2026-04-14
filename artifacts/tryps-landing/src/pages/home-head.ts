@@ -1,7 +1,7 @@
 export const homeHeadTags = `
   <title>TRYPS — Group Trip Planning App for Friends</title>
   <meta name="description" content="TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place." />
-  <link rel="canonical" href="https://jointryps.com/" />
+  <link rel="canonical" href="https://trypsagent.com/" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#FFF9F9" />
 
@@ -9,8 +9,8 @@ export const homeHeadTags = `
   <meta property="og:site_name" content="TRYPS" />
   <meta property="og:title" content="TRYPS — Group Trip Planning App for Friends" />
   <meta property="og:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
-  <meta property="og:url" content="https://jointryps.com/" />
-  <meta property="og:image" content="https://jointryps.com/opengraph.jpg" />
+  <meta property="og:url" content="https://trypsagent.com/" />
+  <meta property="og:image" content="https://trypsagent.com/opengraph.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="TRYPS interface showing date voting, shared itinerary, and expense splitting for a group trip" />
@@ -18,7 +18,7 @@ export const homeHeadTags = `
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TRYPS — Group Trip Planning App for Friends" />
   <meta name="twitter:description" content="TRYPS helps friends choose dates, build a shared itinerary, and split expenses — all in one place." />
-  <meta name="twitter:image" content="https://jointryps.com/opengraph.jpg" />
+  <meta name="twitter:image" content="https://trypsagent.com/opengraph.jpg" />
   <meta name="twitter:site" content="@tryps" />
 
   <script type="application/ld+json">
@@ -26,10 +26,10 @@ export const homeHeadTags = `
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "TRYPS",
-    "url": "https://jointryps.com/",
+    "url": "https://trypsagent.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://jointryps.com/favicon.svg",
+      "url": "https://trypsagent.com/favicon.svg",
       "width": 512,
       "height": 512
     },
@@ -44,8 +44,8 @@ export const homeHeadTags = `
       {
         "@type": "ContactPoint",
         "contactType": "customer support",
-        "email": "support@jointryps.com",
-        "url": "https://jointryps.com/contact"
+        "email": "support@trypsagent.com",
+        "url": "https://trypsagent.com/contact"
       }
     ],
     "knowsAbout": [
@@ -59,7 +59,7 @@ export const homeHeadTags = `
       "@type": "Person",
       "name": "Jake Stein",
       "jobTitle": "Founder",
-      "url": "https://jointryps.com/about"
+      "url": "https://trypsagent.com/about"
     }
   }
   </script>
@@ -74,7 +74,7 @@ export const homeHeadTags = `
       "@type": "Organization",
       "name": "TRYPS"
     },
-    "url": "https://jointryps.com/about",
+    "url": "https://trypsagent.com/about",
     "sameAs": [
       "https://www.linkedin.com/in/jakestein"
     ]
@@ -86,7 +86,7 @@ export const homeHeadTags = `
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "TRYPS",
-    "url": "https://jointryps.com/"
+    "url": "https://trypsagent.com/"
   }
   </script>
 
@@ -99,25 +99,25 @@ export const homeHeadTags = `
     "applicationSubCategory": "Group Trip Planning App",
     "operatingSystem": "Web",
     "softwareVersion": "0.9-beta",
-    "url": "https://jointryps.com/",
-    "releaseNotes": "Web app available now. iOS App Store and Google Play Android app coming soon — join the waitlist at jointryps.com.",
-    "image": "https://jointryps.com/images/blog/oahu-group-trip-hero.webp",
+    "url": "https://trypsagent.com/",
+    "releaseNotes": "Web app available now. iOS App Store and Google Play Android app coming soon — join the waitlist at trypsagent.com.",
+    "image": "https://trypsagent.com/images/blog/oahu-group-trip-hero.webp",
     "screenshot": [
-      "https://jointryps.com/images/blog/group-trip-date-poll.webp",
-      "https://jointryps.com/images/blog/shared-group-trip-itinerary.webp",
-      "https://jointryps.com/images/blog/group-trip-expense-tracker.webp"
+      "https://trypsagent.com/images/blog/group-trip-date-poll.webp",
+      "https://trypsagent.com/images/blog/shared-group-trip-itinerary.webp",
+      "https://trypsagent.com/images/blog/group-trip-expense-tracker.webp"
     ],
     "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
-      "url": "https://jointryps.com/"
+      "url": "https://trypsagent.com/"
     },
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
-      "url": "https://jointryps.com/start",
+      "url": "https://trypsagent.com/start",
       "availability": "https://schema.org/InStock"
     },
     "featureList": [
@@ -205,14 +205,14 @@ export const homeHeadTags = `
       "applicationCategory": "TravelApplication",
       "operatingSystem": "iOS",
       "description": "TRYPS is a group trip planning app for iPhone coming soon to the Apple App Store. Plan group trips, vote on dates, share itineraries, and split expenses with friends.",
-      "url": "https://jointryps.com/",
+      "url": "https://trypsagent.com/",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
         "availability": "https://schema.org/PreOrder"
       },
-      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://jointryps.com/" }
+      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
     },
     {
       "@context": "https://schema.org",
@@ -221,14 +221,14 @@ export const homeHeadTags = `
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Android",
       "description": "TRYPS is a group trip planning app for Android coming soon to Google Play. Plan group trips, vote on dates, share itineraries, and split expenses with friends.",
-      "url": "https://jointryps.com/",
+      "url": "https://trypsagent.com/",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
         "availability": "https://schema.org/PreOrder"
       },
-      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://jointryps.com/" }
+      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
     }
   ]
   </script>
@@ -238,7 +238,7 @@ export const homeHeadTags = `
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jointryps.com/" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trypsagent.com/" }
     ]
   }
   </script>
@@ -248,7 +248,7 @@ export const homeHeadTags = `
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "TRYPS — Group Trip Planning App for Friends",
-    "url": "https://jointryps.com/",
+    "url": "https://trypsagent.com/",
     "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
     "speakable": {
       "@type": "SpeakableSpecification",
@@ -257,7 +257,7 @@ export const homeHeadTags = `
     "publisher": {
       "@type": "Organization",
       "name": "TRYPS",
-      "url": "https://jointryps.com/"
+      "url": "https://trypsagent.com/"
     }
   }
   </script>
