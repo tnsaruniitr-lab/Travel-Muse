@@ -194,9 +194,7 @@ These Terms are governed by and construed in accordance with the laws of the Sta
 For questions about these Terms:
 
 **TRYPS**  
+[Company legal name and mailing address — provide before final publication]  
 Email: support@trypsagent.com  
 DMCA: dmca@trypsagent.com  
 Website: trypsagent.com
-
----
-*One item still needed before final publication: company physical mailing address (add to this contact section).*

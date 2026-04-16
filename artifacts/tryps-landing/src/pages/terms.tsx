@@ -237,6 +237,7 @@ export default function TermsOfService() {
             <p>For questions about these Terms:</p>
             <div className="bg-white rounded-xl border border-[#FECDD3]/60 px-5 py-4 mt-3 text-[15px]">
               <p className="font-bold text-[#1C0808] mb-1">TRYPS</p>
+              <p className="text-[#6B3030] text-sm mb-2">[Company legal name and mailing address — add before final publication]</p>
               <p>Email: <a href="mailto:support@trypsagent.com" className="text-[#9A0514] underline">support@trypsagent.com</a></p>
               <p>DMCA: <a href="mailto:dmca@trypsagent.com" className="text-[#9A0514] underline">dmca@trypsagent.com</a></p>
               <p>Website: <a href="https://trypsagent.com" className="text-[#9A0514] underline">trypsagent.com</a></p>

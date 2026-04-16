@@ -101,7 +101,7 @@ export default function PrivacyPolicy() {
                     { cat: "Contact Info", type: "Phone number", linked: "Yes", tracking: "No" },
                     { cat: "Contact Info", type: "Name (display name, optional)", linked: "Yes", tracking: "No" },
                     { cat: "Identifiers", type: "User ID (account identifier)", linked: "Yes", tracking: "No" },
-                    { cat: "Identifiers", type: "Firebase installation ID (pseudonymous)", linked: "No", tracking: "No" },
+                    { cat: "Identifiers", type: "Device ID — Firebase installation ID (pseudonymous, not the advertising IDFA)", linked: "No", tracking: "No" },
                     { cat: "User Content", type: "Trip plans, itineraries, expenses, notes", linked: "Yes", tracking: "No" },
                     { cat: "User Content", type: "Photos added to trips", linked: "Yes", tracking: "No" },
                     { cat: "Location", type: "Coarse location (when permission granted)", linked: "Yes", tracking: "No" },
@@ -144,8 +144,8 @@ export default function PrivacyPolicy() {
 
             <Sub title="1.3 Device permissions (collected only when you grant access)">
               <Ul items={[
-                "Contacts — to let you invite friends to trips by selecting from your address book. We do not store your full contact list; only identifiers for contacts you explicitly invite are processed.",
-                "Location — to suggest nearby destinations, activities, and places relevant to your trip planning. Collected only while you use the relevant feature.",
+                "Contacts — to let you select friends from your address book when sending trip invitations. Your contact list is read locally on your device only. We never upload, store, or transmit your contacts to our servers. Only the phone number of a contact you explicitly tap to invite is used, solely to send that invitation.",
+                "Location — to suggest nearby destinations and places when you use the destination search feature. Location access is not required to use TRYPS. You can create trips, plan itineraries, split expenses, and invite friends with full functionality without granting location access. Location is only accessed while you are actively using the search feature.",
                 "Camera — to let you add photos to a trip plan or itinerary item.",
                 "Photo library — to let you choose existing photos from your device to add to a trip.",
                 "Notifications — to send you reminders about trips, votes, and group activity within the app.",
@@ -244,7 +244,8 @@ export default function PrivacyPolicy() {
                     { provider: "Twilio (US)", purpose: "SMS delivery — verification and invitations", data: "Phone number, message content" },
                     { provider: "Google Firebase (US)", purpose: "Analytics, crash reporting, performance monitoring", data: "Pseudonymous usage events, crash logs, device info" },
                     { provider: "Google Tag Manager (US)", purpose: "Website tag management and measurement", data: "Pseudonymous website session and event data" },
-                    { provider: "Hosting provider (US)", purpose: "App and database hosting", data: "Encrypted trip and account data" },
+                    { provider: "Cloudflare (US)", purpose: "CDN, DNS, and SSL — serves the website and handles domain routing", data: "Anonymised request logs; IP addresses processed per Cloudflare's privacy policy" },
+                    { provider: "Railway (US)", purpose: "Node.js app hosting and PostgreSQL database", data: "Encrypted trip and account data" },
                   ].map((row, i) => (
                     <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#FFF9F9]"}>
                       <td className="px-4 py-3 font-medium text-[#1C0808]">{row.provider}</td>
@@ -324,8 +325,8 @@ export default function PrivacyPolicy() {
           <Section id="permissions" title="8. Device permissions">
             <p>TRYPS requests the following permissions on your device. Each is optional and only requested when you use the relevant feature. You can manage all permissions at any time in your device Settings.</p>
             <Ul items={[
-              "Contacts — so you can invite friends to trips by selecting from your address book. We do not upload or store your contact list.",
-              "Location (while using the app) — so we can suggest nearby places and destinations during active trip planning sessions.",
+              "Contacts — so you can select friends from your address book to invite to a trip. Your contact list is read locally on your device only and is never uploaded or transmitted to our servers. Only the phone number of a contact you explicitly choose to invite is used, solely to send that invitation.",
+              "Location (while using the app) — so we can suggest nearby places and destinations when you use the destination search feature. This permission is optional. All core TRYPS features — creating trips, date polling, building itineraries, tracking expenses, and inviting friends — work fully without granting location access.",
               "Camera — so you can take photos and attach them to itinerary items.",
               "Photos / media library — so you can choose existing photos from your device to add to a trip.",
               "Notifications — so we can send you reminders about trips, date polls, and group activity.",
@@ -363,7 +364,8 @@ export default function PrivacyPolicy() {
           <Section id="contact" title="12. Contact us">
             <p>For privacy questions, data access requests, or account deletion requests, contact our privacy team:</p>
             <div className="bg-white rounded-xl border border-[#FECDD3]/60 px-5 py-4 mt-3 text-[15px]">
-              <p className="font-bold text-[#1C0808] mb-1">TRYPS — Privacy</p>
+              <p className="font-bold text-[#1C0808] mb-1">TRYPS</p>
+              <p className="text-[#6B3030] text-sm mb-2">[Company legal name and mailing address — add before final publication]</p>
               <p>Email: <a href="mailto:support@trypsagent.com" className="text-[#9A0514] underline">support@trypsagent.com</a></p>
               <p>Website: <a href="https://trypsagent.com" className="text-[#9A0514] underline">trypsagent.com</a></p>
             </div>

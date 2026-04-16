@@ -44,8 +44,8 @@ When you use the app to plan trips we collect and store:
 - Group membership — the phone numbers or identifiers of people you invite to a trip
 
 ### 1.3 Device permissions (collected only when you grant access)
-- **Contacts** — to let you invite friends to trips by selecting from your address book. We do not store your full contact list; only identifiers for contacts you explicitly invite are processed.
-- **Location** — to suggest nearby destinations, activities, and places relevant to your trip planning. Collected only while you use the relevant feature.
+- **Contacts** — to let you select friends from your address book when sending trip invitations. Your contact list is read locally on your device only. We never upload, store, or transmit your contacts to our servers. Only the phone number of a contact you explicitly tap to invite is used, solely to send that invitation.
+- **Location** — to suggest nearby destinations and places when you use the destination search feature. Location access is not required to use TRYPS. You can create trips, plan itineraries, split expenses, and invite friends with full functionality without granting location access. Location is only accessed while you are actively using the search feature.
 - **Camera** — to let you add photos to a trip plan or itinerary item.
 - **Photo library** — to let you choose existing photos from your device to add to a trip.
 - **Notifications** — to send you reminders about trips, votes, and group activity within the app.
@@ -118,7 +118,8 @@ We do not sell your personal data. We share data only with the service providers
 | Twilio (US) | SMS delivery — verification and invitations | Phone number, message content |
 | Google Firebase (US) | Analytics, crash reporting, performance monitoring | Pseudonymous usage events, crash logs, device info |
 | Google Tag Manager (US) | Website tag management and measurement | Pseudonymous website session and event data |
-| Hosting provider (US) | App and database hosting | Encrypted trip and account data |
+| Cloudflare (US) | CDN, DNS, and SSL — serves the website and handles domain routing | Anonymised request logs; IP addresses processed per Cloudflare's privacy policy |
+| Railway (US) | Node.js app hosting and PostgreSQL database | Encrypted trip and account data |
 
 We may also disclose data if required by law, court order, or to protect the rights and safety of users or the public.
 
@@ -185,8 +186,8 @@ To exercise your California rights, email support@trypsagent.com with "Californi
 
 TRYPS requests the following permissions on your device. Each is optional and only requested when you use the relevant feature. You can manage all permissions at any time in your device Settings.
 
-- **Contacts** — so you can invite friends to trips by selecting from your address book. We do not upload or store your contact list.
-- **Location (while using the app)** — so we can suggest nearby places and destinations during active trip planning sessions.
+- **Contacts** — so you can select friends from your address book to invite to a trip. Your contact list is read locally on your device only and is never uploaded or transmitted to our servers. Only the phone number of a contact you explicitly choose to invite is used, solely to send that invitation.
+- **Location (while using the app)** — so we can suggest nearby places and destinations when you use the destination search feature. This permission is optional. All core TRYPS features — creating trips, date polling, building itineraries, tracking expenses, and inviting friends — work fully without granting location access.
 - **Camera** — so you can take photos and attach them to itinerary items.
 - **Photos / media library** — so you can choose existing photos from your device to add to a trip.
 - **Notifications** — so we can send you reminders about trips, date polls, and group activity.
@@ -228,9 +229,7 @@ We may update this Privacy Policy from time to time. When we make material chang
 
 For privacy questions, data access requests, or account deletion requests:
 
-**TRYPS — Privacy**  
+**TRYPS**  
+[Company legal name and mailing address — provide before final publication]  
 Email: support@trypsagent.com  
 Website: trypsagent.com
-
----
-*One item still needed before final publication: company physical mailing address (add to this contact section).*
