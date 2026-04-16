@@ -148,8 +148,25 @@ export default function TermsOfService() {
           {/* 9. Third-party platforms and services */}
           <Section id="third-party" title="9. Third-party platforms and services">
             <p>TRYPS integrates third-party services including Twilio (SMS) and Google Firebase (analytics and crash reporting). Your use of TRYPS is also subject to the relevant terms of those providers. We are not responsible for third-party service availability, accuracy, or practices.</p>
-            <p>If you download TRYPS from the Apple App Store, your use is also subject to Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" className="text-[#9A0514] underline" target="_blank" rel="noopener noreferrer">Standard End User License Agreement (EULA)</a>. Apple is not a party to these Terms and bears no responsibility for the TRYPS app or its content. Any claims relating to the app (including product liability, legal compliance, or consumer protection claims) are our responsibility, not Apple's.</p>
-            <p>If you download TRYPS from Google Play, your use is also subject to Google's terms of service. Google is not a party to these Terms and bears no responsibility for the app.</p>
+            <p>If you download TRYPS from the Apple App Store, your use is also subject to Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" className="text-[#9A0514] underline" target="_blank" rel="noopener noreferrer">Standard End User License Agreement (EULA)</a>. The following terms apply specifically to your use of TRYPS obtained via the App Store, as required by Apple:</p>
+            <ul className="space-y-2 mt-3 text-[15px] text-[#2D1A0A] list-none p-0">
+              {[
+                "License scope. The license granted to you to use TRYPS is limited to a non-transferable right to use the app on any Apple-branded devices that you own or control, subject to the Usage Rules set out in Apple's Media Services Terms and Conditions.",
+                "Parties. This agreement is between you and TRYPS only — not with Apple, Inc. TRYPS, not Apple, is solely responsible for the app and its content.",
+                "Maintenance and support. TRYPS is solely responsible for providing maintenance and support services for the app. Apple has no obligation to provide any maintenance or support services for TRYPS.",
+                "Warranty. To the maximum extent permitted by law, Apple has no warranty obligations for TRYPS. Any warranty failure that is not excludable under law is our responsibility, not Apple's. To contact us about a warranty issue, email support@trypsagent.com.",
+                "Product liability and legal compliance. TRYPS is solely responsible for addressing any claims by you or any third party relating to the app, including product liability claims, consumer protection claims, and claims that the app fails to conform to applicable legal requirements.",
+                "Intellectual property. If a third party claims that the app infringes their intellectual property rights, TRYPS — not Apple — is solely responsible for the investigation, defence, settlement, and discharge of any such claim.",
+                "Third-party terms. You must comply with applicable third-party terms of service when using the app (for example, your wireless carrier agreement).",
+                "Apple as third-party beneficiary. Apple and its subsidiaries are third-party beneficiaries of these Terms. Upon your acceptance of these Terms, Apple will have the right (and will be deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary.",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5">
+                  <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#9A0514] shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3">If you download TRYPS from Google Play, your use is also subject to Google's terms of service. Google is not a party to these Terms and bears no responsibility for the app.</p>
           </Section>
 
           {/* 10. DMCA */}

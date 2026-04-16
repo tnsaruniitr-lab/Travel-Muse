@@ -1,9 +1,10 @@
 # TRYPS Legal Document Audit
 **Audited:** April 16, 2026  
+**Last updated:** April 16, 2026  
 **Documents:** `/privacy` · `/terms`  
 **URLs:** https://trypsagent.com/privacy · https://trypsagent.com/terms  
-**App stack:** iOS, phone-number auth, Twilio SMS, Firebase analytics/crashlytics, Google Tag Manager, user accounts with trip/expense/itinerary data  
-**Frameworks checked:** Apple App Store Guidelines 5.1.1, GDPR (EU), CCPA (California), CAN-SPAM/TCPA (SMS), COPPA (children)
+**App stack:** iOS App Store, phone-number auth, Twilio SMS, Firebase analytics/crashlytics, Google Tag Manager, user accounts with trip/expense/itinerary data  
+**Frameworks checked:** Apple App Store Guidelines 5.1.1 + Standard EULA minimum terms, GDPR (EU), CCPA (California), CAN-SPAM/TCPA (SMS), COPPA (children)
 
 ---
 
@@ -11,23 +12,28 @@
 
 | Area | Privacy Policy | Terms of Service |
 |---|---|---|
-| Apple 5.1.1(v) account deletion | ✅ Pass | ✅ Pass |
-| Apple permission disclosures | ✅ Pass | n/a |
-| GDPR — data collection disclosure | ✅ Pass | n/a |
-| GDPR — legal basis for processing | ❌ Missing | n/a |
-| GDPR — international data transfers | ❌ Missing | n/a |
-| GDPR — right to complain to supervisory authority | ❌ Missing | n/a |
-| GDPR — data breach notification commitment | ❌ Missing | n/a |
-| CCPA — California-specific rights | ❌ Missing | n/a |
-| GTM / website tracking disclosure | ❌ Missing | n/a |
-| Cookies & web tracking | ❌ Missing | n/a |
-| Severability clause | n/a | ❌ Missing |
-| Entire agreement clause | n/a | ❌ Missing |
-| App Store / Play Store terms reference | n/a | ❌ Missing |
-| DMCA / copyright infringement | n/a | ❌ Missing |
-| Dispute resolution / arbitration | n/a | ⚠️ Weak |
-| Physical mailing address | ❌ Missing | ❌ Missing |
-| Paid features / billing terms | n/a | ⚠️ Not addressed |
+| Apple 5.1.1(v) account deletion | ✅ Fixed | ✅ Fixed |
+| Apple permission disclosures (plain language) | ✅ Fixed | n/a |
+| **Apple nutrition label data type mapping** | ✅ Fixed | n/a |
+| **Apple ATT status disclosed (not triggered)** | ✅ Fixed | n/a |
+| **Apple Standard EULA — all 8 minimum terms** | n/a | ✅ Fixed |
+| **Apple as third-party beneficiary** | n/a | ✅ Fixed |
+| Policy accessible in-app (Settings → Privacy Policy) | ✅ Fixed | n/a |
+| GDPR — data collection disclosure | ✅ Fixed | n/a |
+| GDPR — legal basis for processing | ✅ Fixed | n/a |
+| GDPR — international data transfers | ✅ Fixed | n/a |
+| GDPR — right to complain to supervisory authority | ✅ Fixed | n/a |
+| GDPR — data breach notification commitment | ✅ Fixed | n/a |
+| CCPA — California-specific rights | ✅ Fixed | n/a |
+| GTM / website tracking disclosure | ✅ Fixed | n/a |
+| Severability clause | n/a | ✅ Fixed |
+| Entire agreement clause | n/a | ✅ Fixed |
+| App Store / Play Store terms reference | n/a | ✅ Fixed |
+| DMCA / copyright infringement | n/a | ✅ Fixed |
+| Billing / currently-free terms | n/a | ✅ Fixed |
+| Waiver, assignment, force majeure | n/a | ✅ Fixed |
+| Physical mailing address | ❌ Still missing | ❌ Still missing |
+| Dispute resolution / arbitration | n/a | ⚠️ Courts only (no arbitration) |
 
 ---
 

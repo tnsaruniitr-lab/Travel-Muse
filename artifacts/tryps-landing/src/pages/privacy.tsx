@@ -75,8 +75,51 @@ export default function PrivacyPolicy() {
           </div>
 
           {/* Intro */}
-          <div className="bg-white rounded-2xl border border-[#FECDD3]/60 px-6 py-5 mb-10 text-[15px] text-[#6B3030] leading-relaxed">
-            TRYPS ("we", "our", or "us") operates the TRYPS mobile application and website at trypsagent.com. This Privacy Policy explains what personal data we collect, why we collect it, who we share it with, and what rights you have over it. We are the data controller for all personal data described in this policy. By creating an account or using TRYPS you acknowledge that you have read this policy.
+          <div className="bg-white rounded-2xl border border-[#FECDD3]/60 px-6 py-5 mb-6 text-[15px] text-[#6B3030] leading-relaxed">
+            TRYPS ("we", "our", or "us") operates the TRYPS mobile application and website at trypsagent.com. This Privacy Policy explains what personal data we collect, why we collect it, who we share it with, and what rights you have over it. We are the data controller for all personal data described in this policy. By creating an account or using TRYPS you acknowledge that you have read this policy. This policy is accessible within the TRYPS app under Settings → Privacy Policy.
+          </div>
+
+          {/* Apple App Store — Privacy Nutrition Label Summary */}
+          <div className="bg-[#FFE4E6] rounded-2xl border border-[#FECDD3] px-6 py-5 mb-10">
+            <div className="flex items-center gap-2 mb-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 5c.552 0 1 .448 1 1v5a1 1 0 1 1-2 0v-5c0-.552.448-1 1-1z" fill="#9A0514"/></svg>
+              <span className="font-black text-[#9A0514] text-sm uppercase tracking-widest">Apple App Store — Privacy data types</span>
+            </div>
+            <p className="text-[13px] text-[#6B3030] mb-4">The following table maps TRYPS data to Apple's App Store privacy nutrition label categories, as declared in App Store Connect. All detail is in the numbered sections below.</p>
+            <div className="overflow-x-auto rounded-xl border border-[#FECDD3]">
+              <table className="w-full text-[13px] border-collapse bg-white">
+                <thead>
+                  <tr className="bg-[#9A0514] text-white">
+                    <th className="text-left px-3 py-2.5 font-bold rounded-tl-xl">Apple category</th>
+                    <th className="text-left px-3 py-2.5 font-bold">Data type</th>
+                    <th className="text-left px-3 py-2.5 font-bold">Linked to you?</th>
+                    <th className="text-left px-3 py-2.5 font-bold rounded-tr-xl">Used for tracking?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { cat: "Contact Info", type: "Phone number", linked: "Yes", tracking: "No" },
+                    { cat: "Contact Info", type: "Name (display name, optional)", linked: "Yes", tracking: "No" },
+                    { cat: "Identifiers", type: "User ID (account identifier)", linked: "Yes", tracking: "No" },
+                    { cat: "Identifiers", type: "Firebase installation ID (pseudonymous)", linked: "No", tracking: "No" },
+                    { cat: "User Content", type: "Trip plans, itineraries, expenses, notes", linked: "Yes", tracking: "No" },
+                    { cat: "User Content", type: "Photos added to trips", linked: "Yes", tracking: "No" },
+                    { cat: "Location", type: "Coarse location (when permission granted)", linked: "Yes", tracking: "No" },
+                    { cat: "Contacts", type: "Invited contacts only (not full address book)", linked: "No", tracking: "No" },
+                    { cat: "Usage Data", type: "App interaction events (Firebase Analytics)", linked: "No", tracking: "No" },
+                    { cat: "Diagnostics", type: "Crash data, performance data (Firebase Crashlytics)", linked: "No", tracking: "No" },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#FFF9F9]"}>
+                      <td className="px-3 py-2 font-medium text-[#1C0808]">{row.cat}</td>
+                      <td className="px-3 py-2 text-[#2D1A0A]">{row.type}</td>
+                      <td className="px-3 py-2">{row.linked === "Yes" ? <span className="text-[#9A0514] font-bold">Yes</span> : <span className="text-[#6B3030]">No</span>}</td>
+                      <td className="px-3 py-2"><span className="text-[#6B3030]">No</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[12px] text-[#6B3030] mt-3">TRYPS does not collect: Health &amp; Fitness, Financial Info, Sensitive Info, Browsing History, Search History, or Purchases data. No data is used for tracking across third-party apps or websites. ATT prompt is not shown.</p>
           </div>
 
           {/* 1. Data we collect */}
@@ -118,6 +161,7 @@ export default function PrivacyPolicy() {
                 "Device type, operating system version, and approximate geographic region",
                 "Firebase installation ID — a pseudonymous identifier assigned by Firebase",
               ]} />
+              <p className="mt-2">We use Firebase for <strong>first-party analytics only</strong>. Firebase Analytics is configured without advertising features, and we do not use Firebase to track you across other apps or websites. As a result, TRYPS does not trigger Apple's App Tracking Transparency (ATT) framework — you will not see an ATT permission prompt.</p>
               <p className="mt-2">Firebase data is governed by <a href="https://policies.google.com/privacy" className="text-[#9A0514] underline" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>. Firebase does not receive your phone number or trip content.</p>
             </Sub>
 
