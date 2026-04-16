@@ -67,7 +67,7 @@ export default function TermsOfService() {
 
           {/* Intro */}
           <div className="bg-white rounded-2xl border border-[#FECDD3]/60 px-6 py-5 mb-10 text-[15px] text-[#6B3030] leading-relaxed">
-            These Terms of Service ("Terms") form a binding agreement between you and TRYPS ("we", "our", or "us") governing your use of the TRYPS mobile application and website at trypsagent.com. By creating an account or using TRYPS you agree to these Terms. If you do not agree, do not use the service.
+            These Terms of Service ("Terms") form a binding agreement between you and TRYPS ("we", "our", or "us") governing your use of the TRYPS mobile application and website at trypsagent.com. By creating an account or using TRYPS you agree to these Terms. If you do not agree, do not use the service. These Terms should be read together with our <a href="/privacy" className="text-[#9A0514] underline">Privacy Policy</a>, which is incorporated by reference.
           </div>
 
           {/* 1. Eligibility */}
@@ -91,7 +91,7 @@ export default function TermsOfService() {
           <Section id="account-deletion" title="3. Account deletion">
             <p>You may delete your account at any time from within the app:</p>
             <p className="font-medium text-[#1C0808]">Settings → Account → Delete Account</p>
-            <p>Account deletion is permanent. Once deleted, your account and personal profile cannot be recovered. Trip content you contributed to shared trips may be retained in anonymised form to preserve the record for other group members. See our <a href="/privacy#account-deletion" className="text-[#9A0514] underline">Privacy Policy §5</a> for full details of what is deleted and what is retained.</p>
+            <p>Account deletion is permanent. Once deleted, your account and personal profile cannot be recovered. Trip content you contributed to shared trips may be retained in anonymised form to preserve the record for other group members. See our <a href="/privacy#account-deletion" className="text-[#9A0514] underline">Privacy Policy §6</a> for full details of what is deleted and what is retained.</p>
           </Section>
 
           {/* 4. Acceptable use */}
@@ -128,19 +128,46 @@ export default function TermsOfService() {
             <p>Standard SMS and data rates may apply to recipients depending on their carrier and plan. TRYPS is not responsible for carrier charges incurred by recipients.</p>
           </Section>
 
-          {/* 7. Intellectual property */}
-          <Section id="ip" title="7. Intellectual property">
+          {/* 7. Pricing and billing */}
+          <Section id="billing" title="7. Pricing and billing">
+            <p>The core TRYPS app is currently free to use. If we introduce paid features, subscriptions, or in-app purchases in the future, we will:</p>
+            <Ul items={[
+              "Provide clear pricing information before any charge is incurred",
+              "Notify existing users in advance of any changes that affect free functionality",
+              "Publish updated billing terms alongside any paid features",
+            ]} />
+            <p>Any in-app purchases made through the Apple App Store or Google Play are subject to the respective platform's billing terms and refund policies. TRYPS does not control platform billing or issue refunds for App Store or Play Store purchases — contact Apple or Google support for refund requests on those transactions.</p>
+          </Section>
+
+          {/* 8. Intellectual property */}
+          <Section id="ip" title="8. Intellectual property">
             <p>All TRYPS branding, design, software, and content (excluding Your Content) is owned by us or our licensors and is protected by copyright, trademark, and other intellectual property laws. Nothing in these Terms transfers ownership of our intellectual property to you.</p>
             <p>We grant you a limited, non-exclusive, non-transferable, revocable licence to use TRYPS for personal, non-commercial trip planning purposes in accordance with these Terms.</p>
           </Section>
 
-          {/* 8. Third-party services */}
-          <Section id="third-party" title="8. Third-party services">
+          {/* 9. Third-party platforms and services */}
+          <Section id="third-party" title="9. Third-party platforms and services">
             <p>TRYPS integrates third-party services including Twilio (SMS) and Google Firebase (analytics and crash reporting). Your use of TRYPS is also subject to the relevant terms of those providers. We are not responsible for third-party service availability, accuracy, or practices.</p>
+            <p>If you download TRYPS from the Apple App Store, your use is also subject to Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" className="text-[#9A0514] underline" target="_blank" rel="noopener noreferrer">Standard End User License Agreement (EULA)</a>. Apple is not a party to these Terms and bears no responsibility for the TRYPS app or its content. Any claims relating to the app (including product liability, legal compliance, or consumer protection claims) are our responsibility, not Apple's.</p>
+            <p>If you download TRYPS from Google Play, your use is also subject to Google's terms of service. Google is not a party to these Terms and bears no responsibility for the app.</p>
           </Section>
 
-          {/* 9. Disclaimers */}
-          <Section id="disclaimers" title="9. Disclaimers">
+          {/* 10. DMCA */}
+          <Section id="dmca" title="10. Copyright infringement (DMCA)">
+            <p>We respect intellectual property rights. If you believe that content on TRYPS infringes your copyright, send a notice to our designated copyright agent with the following information:</p>
+            <Ul items={[
+              "A description of the copyrighted work you claim has been infringed",
+              "A description of where the allegedly infringing content is located in the app or website",
+              "Your contact information (name, address, email, phone number)",
+              "A statement that you have a good-faith belief the use is not authorised by the copyright owner, its agent, or the law",
+              "A statement, made under penalty of perjury, that the information in your notice is accurate and that you are the copyright owner or authorised to act on their behalf",
+              "Your physical or electronic signature",
+            ]} />
+            <p>Send DMCA notices to: <a href="mailto:dmca@trypsagent.com" className="text-[#9A0514] underline">dmca@trypsagent.com</a></p>
+          </Section>
+
+          {/* 11. Disclaimers */}
+          <Section id="disclaimers" title="11. Disclaimers">
             <p>TRYPS is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
             <p>We do not warrant that:</p>
             <Ul items={[
@@ -151,40 +178,50 @@ export default function TermsOfService() {
             <p>TRYPS is a planning tool. We are not responsible for the outcome of any trip, booking, expense agreement, or arrangement made using the app.</p>
           </Section>
 
-          {/* 10. Limitation of liability */}
-          <Section id="liability" title="10. Limitation of liability">
+          {/* 12. Limitation of liability */}
+          <Section id="liability" title="12. Limitation of liability">
             <p>To the maximum extent permitted by applicable law, TRYPS and its officers, directors, employees, and agents will not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data, revenue, or goodwill, arising from your use of or inability to use the service.</p>
             <p>Our total liability to you for any claim arising under these Terms will not exceed the greater of (a) the amount you paid us in the 12 months preceding the claim, or (b) USD $100.</p>
             <p>Some jurisdictions do not allow certain limitations of liability. In those jurisdictions our liability is limited to the maximum extent permitted by law.</p>
           </Section>
 
-          {/* 11. Indemnity */}
-          <Section id="indemnity" title="11. Indemnity">
+          {/* 13. Indemnity */}
+          <Section id="indemnity" title="13. Indemnity">
             <p>You agree to indemnify and hold harmless TRYPS and its officers, directors, employees, and agents from any claims, damages, losses, or expenses (including reasonable legal fees) arising from your use of TRYPS, Your Content, or your violation of these Terms.</p>
           </Section>
 
-          {/* 12. Termination */}
-          <Section id="termination" title="12. Termination">
+          {/* 14. Termination */}
+          <Section id="termination" title="14. Termination">
             <p>We may suspend or terminate your access to TRYPS at any time, with or without notice, if we believe you have violated these Terms or if required by law.</p>
             <p>You may stop using TRYPS and delete your account at any time (see Section 3). Termination does not affect any rights or obligations that arose before termination.</p>
           </Section>
 
-          {/* 13. Changes to Terms */}
-          <Section id="changes" title="13. Changes to these Terms">
+          {/* 15. Changes to Terms */}
+          <Section id="changes" title="15. Changes to these Terms">
             <p>We may update these Terms from time to time. When we make material changes we will notify you via the app or by SMS and update the "Last updated" date at the top of this page. Continued use of TRYPS after the effective date of changes constitutes acceptance of the updated Terms.</p>
           </Section>
 
-          {/* 14. Governing law */}
-          <Section id="governing-law" title="14. Governing law">
-            <p>These Terms are governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to conflict of law principles. Any dispute arising under these Terms will be subject to the exclusive jurisdiction of the courts located in Delaware.</p>
+          {/* 16. Governing law */}
+          <Section id="governing-law" title="16. Governing law">
+            <p>These Terms are governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to conflict of law principles. Any dispute arising under these Terms will be subject to the exclusive jurisdiction of the courts located in Delaware, except where applicable consumer protection laws in your jurisdiction require otherwise.</p>
           </Section>
 
-          {/* 15. Contact */}
-          <Section id="contact" title="15. Contact us">
+          {/* 17. General */}
+          <Section id="general" title="17. General">
+            <p><strong>Entire agreement.</strong> These Terms, together with the Privacy Policy, constitute the entire agreement between you and TRYPS regarding the service and supersede all prior agreements, representations, or understandings relating to the subject matter.</p>
+            <p><strong>Severability.</strong> If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will continue in full force and effect.</p>
+            <p><strong>Waiver.</strong> Failure to enforce any provision of these Terms on one occasion will not be deemed a waiver of our right to enforce it on any other occasion.</p>
+            <p><strong>Assignment.</strong> We may assign these Terms to a successor entity in the event of a merger, acquisition, or sale of all or substantially all of our assets. You may not assign your rights under these Terms without our prior written consent.</p>
+            <p><strong>Force majeure.</strong> We will not be liable for any failure or delay in performance resulting from causes beyond our reasonable control, including acts of God, war, terrorism, pandemics, strikes, or internet or infrastructure outages.</p>
+          </Section>
+
+          {/* 18. Contact */}
+          <Section id="contact" title="18. Contact us">
             <p>For questions about these Terms:</p>
             <div className="bg-white rounded-xl border border-[#FECDD3]/60 px-5 py-4 mt-3 text-[15px]">
               <p className="font-bold text-[#1C0808] mb-1">TRYPS</p>
               <p>Email: <a href="mailto:support@trypsagent.com" className="text-[#9A0514] underline">support@trypsagent.com</a></p>
+              <p>DMCA: <a href="mailto:dmca@trypsagent.com" className="text-[#9A0514] underline">dmca@trypsagent.com</a></p>
               <p>Website: <a href="https://trypsagent.com" className="text-[#9A0514] underline">trypsagent.com</a></p>
             </div>
           </Section>

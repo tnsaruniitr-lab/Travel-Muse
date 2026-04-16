@@ -83,3 +83,9 @@ id = "YQbl7W95PfvfU5S-W3Pde"
 uri = "file://tryps-tech-stack.pdf"
 type = "pdf"
 title = "TRYPS — Tech Stack & Architecture (Fixed)"
+
+[[outputs]]
+id = "I4eDDYY4S_q0NZN3jo9hF"
+uri = "file://artifacts/tryps-landing/docs/legal-audit.md"
+type = "text"
+title = "TRYPS Legal Audit — Privacy Policy & Terms of Service"
