@@ -41,11 +41,12 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:", "https://www.googletagmanager.com"],
+      connectSrc: ["'self'", "https://www.googletagmanager.com", "https://region1.google-analytics.com", "https://analytics.google.com"],
+      frameSrc: ["https://www.googletagmanager.com"],
     },
     reportOnly: true,
   },
