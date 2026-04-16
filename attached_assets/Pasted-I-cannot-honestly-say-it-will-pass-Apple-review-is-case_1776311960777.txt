@@ -1,0 +1,50 @@
+I cannot honestly say it “will pass.” Apple review is case-specific and also depends on the app binary, SDKs, permissions, and App Privacy answers. But based on what is publicly visible, your current website/privacy setup is not sufficient yet and carries a real rejection risk.
+
+What Apple requires:
+
+a public privacy policy URL in App Store Connect, and it must be a real policy page, not a placeholder; Apple says all apps must include the privacy policy link in App Store Connect metadata and within the app in an easily accessible way.
+the policy must clearly state what data is collected, how it is collected, all uses of that data, third parties that receive it, and retention/deletion policy.
+your App Privacy answers must include data collected by your app and third-party SDKs/partners, and they must stay accurate.
+
+What I found on trypsagent.com:
+
+the homepage publicly says you collect a mobile number for the waitlist and may send an SMS invite.
+the homepage also describes core product features that would likely involve user-submitted trip data such as dates, itineraries, expenses, and group contributions.
+the footer has links labeled Privacy and Terms, but when opened, the “Privacy” page resolves to the same homepage-style content rather than an actual privacy policy, and the “Terms” page appears the same as well. That is the biggest obvious issue.
+
+So the current status is:
+
+No, not ready yet for Apple on the privacy-policy part.
+The site does not currently show a real privacy policy page that explains collection, sharing, retention, deletion, or user rights.
+
+One more Apple point that may matter:
+
+if the app supports account creation, Apple requires in-app account deletion. Apple also says that if your app doesn’t include significant account-based features, people should be able to use it without a login. I cannot verify from the website alone whether your app creates accounts internally.
+
+My practical verdict:
+
+Website/privacy policy requirement: currently fails
+Possible App Review outcome overall: unknown until app behavior/SDKs/permissions are checked
+Main immediate fix: publish a real /privacy page and make sure the in-app Settings/About screen links to it.
+
+Minimum policy sections you need before submission:
+
+what data you collect: phone number, trip content, user-generated itinerary/expense data, device/usage data if any
+how you collect it: form entry, app usage, invitations, analytics SDKs if present
+why you use it: app functionality, invites/SMS, support, security, analytics
+who gets it: hosting, SMS provider, analytics vendors, auth vendors, etc.
+retention and deletion
+how users request deletion or revoke consent
+children statement
+contact details
+
+What I still cannot verify from the website:
+
+whether the app uses Firebase, Mixpanel, Segment, Sentry, RevenueCat, Twilio, Branch, AppsFlyer, or ad SDKs
+whether the app requests contacts, location, notifications, camera, photos, microphone
+whether accounts are created in-app
+whether deletion exists in-app
+
+That means even a perfect website policy can still fail if the app’s actual behavior or App Privacy questionnaire does not match.
+
+If you want, I can now draft the final Apple-ready privacy policy for TRYPS based on the product and also give you the exact App Store Connect privacy label answers you should use.
