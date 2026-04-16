@@ -89,3 +89,15 @@ id = "I4eDDYY4S_q0NZN3jo9hF"
 uri = "file://artifacts/tryps-landing/docs/legal-audit.md"
 type = "text"
 title = "TRYPS Legal Audit — Updated for Apple App Store"
+
+[[outputs]]
+id = "M1x-SOnyhjgHoYRIppz6V"
+uri = "file://artifacts/tryps-landing/docs/privacy-policy-text.md"
+type = "text"
+title = "Privacy Policy — Review Copy"
+
+[[outputs]]
+id = "o3gTux9nLiY4z0b7uzsnT"
+uri = "file://artifacts/tryps-landing/docs/terms-of-service-text.md"
+type = "text"
+title = "Terms of Service — Review Copy"
