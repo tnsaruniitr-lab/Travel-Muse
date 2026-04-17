@@ -229,7 +229,8 @@ We may update this Privacy Policy from time to time. When we make material chang
 
 For privacy questions, data access requests, or account deletion requests:
 
-**TRYPS**  
-[Company legal name and mailing address — provide before final publication]  
+**Tryps Inc.**  
+1536 University Club Drive  
+Austin, TX 78732  
 Email: support@trypsagent.com  
 Website: trypsagent.com

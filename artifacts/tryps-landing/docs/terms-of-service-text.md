@@ -193,8 +193,9 @@ These Terms are governed by and construed in accordance with the laws of the Sta
 
 For questions about these Terms:
 
-**TRYPS**  
-[Company legal name and mailing address — provide before final publication]  
+**Tryps Inc.**  
+1536 University Club Drive  
+Austin, TX 78732  
 Email: support@trypsagent.com  
 DMCA: dmca@trypsagent.com  
 Website: trypsagent.com
