@@ -54,6 +54,12 @@ app.use(helmet({
 
 app.use(compression());
 
+// Serve app screenshot images with cross-origin headers so canvas and external embeds can load them
+app.use("/images/app", (req, res, next) => {
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+}, express.static(path.resolve(__dirname, "public/images/app"), { maxAge: "1d" }));
+
 let vite: ViteDevServer | undefined;
 
 if (!isProd) {
