@@ -1,0 +1,85 @@
+
+Your trial expires in 14 days. Add a payment method to ensure uninterrupted service when your trial expires.
+Deployments
+GHwuUcFHn
+Deployment
+Logs
+Resources
+Source
+Open Graph
+Deployment Details
+Build Failed
+artifacts/tryps-landing/server.ts(64,7): error TS2339: Property 'setHeader' does not exist on type 'Response<any, Record<string, any>>'. artifacts/tryps-landing/server.ts(65,3): error TS2349: This expression is not callable. Type 'NextFunction' has no call signatures. artifacts/tryps-landing/server.ts(95,46): error TS2339: Property 'body' does not exist on type 'Request<core.ParamsDictionary, any, any, core.Query, Record<string, any>>'. artifacts/tryps-landing/server.ts(98,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'. artifacts/tryps-landing/server.ts(103,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'. artifacts/tryps-landing/server.ts(117,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'. artifacts/tryps-landing/server.ts(133,9): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'. artifacts/tryps
+Created
+gtm-9435 Avatar
+Deploy Hook
+52s ago
+Status
+Error
+Latest
+Duration
+16s
+Just now
+Environment
+Production
+Domains
+travel-muse-tryps-landing-git-main-tryps1.vercel.app
+travel-muse-tryps-landing-buzaj6277-tryps1.vercel.app
+Source
+main
+9ccbde3
+Add explicit type definitions for Express parameters in server code
+
+Deployment Settings
+3 Recommendations
+Build Logs
+16s
+110 lines
+Find in logs
+⌘F
+15:47:29.217 
+Using pnpm@10.x based on project creation date
+15:47:29.217 
+To use pnpm@9.x, manually opt in using corepack (https://vercel.com/docs/deployments/configure-a-build#corepack)
+15:47:29.442 
+Using TypeScript 5.9.3 (local user-provided)
+15:47:30.554 
+Error: artifacts/tryps-landing/server.ts(64,7): error TS2339: Property 'setHeader' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(65,3): error TS2349: This expression is not callable.
+15:47:30.554 
+  Type 'NextFunction' has no call signatures.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(95,46): error TS2339: Property 'body' does not exist on type 'Request<core.ParamsDictionary, any, any, core.Query, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(98,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(103,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(117,11): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(133,9): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(136,9): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(142,21): error TS2339: Property 'originalUrl' does not exist on type 'Request<core.ParamsDictionary, any, any, core.Query, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(171,9): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+artifacts/tryps-landing/server.ts(179,9): error TS2339: Property 'status' does not exist on type 'Response<any, Record<string, any>>'.
+15:47:30.554 
+Deployment Summary
+Deployment Checks
+Assigning Custom Domains
+Runtime Logs
+
+View and debug runtime logs & errors
+
+Observability
+
+Monitor app health & performance
+
+Speed Insights
+
+Not Enabled
+Performance metrics from real users

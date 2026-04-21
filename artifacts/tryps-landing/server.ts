@@ -1,5 +1,4 @@
 import express from "express";
-import type { Request, Response, NextFunction } from "express";
 import { createServer as createHttpServer } from "http";
 import fs from "fs";
 import path from "path";
@@ -60,7 +59,7 @@ app.use(helmet({
 app.use(compression());
 
 // Serve app screenshot images with cross-origin headers so canvas and external embeds can load them
-app.use("/images/app", (req: Request, res: Response, next: NextFunction) => {
+app.use("/images/app", (req: any, res: any, next: any) => {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 }, express.static(path.resolve(__dirname, "public/images/app"), { maxAge: "1d" }));
@@ -90,7 +89,7 @@ app.use(express.json({ limit: "10kb" }));
 
 const waitlistPath = `${base}api/waitlist`.replace(/\/+/g, "/");
 
-app.post(waitlistPath, waitlistLimiter, async (req: Request, res: Response) => {
+app.post(waitlistPath, waitlistLimiter, async (req: any, res: any) => {
   try {
     const { countryCode, phoneNumber } = req.body as { countryCode?: string; phoneNumber?: string };
 
@@ -137,7 +136,7 @@ app.post(waitlistPath, waitlistLimiter, async (req: Request, res: Response) => {
   }
 });
 
-app.use(async (req: Request, res: Response) => {
+app.use(async (req: any, res: any) => {
   try {
     const url = req.originalUrl;
     let template: string;
