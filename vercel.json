@@ -2,11 +2,11 @@
   "version": 2,
   "buildCommand": "pnpm --filter @workspace/tryps-landing run build",
   "functions": {
-    "artifacts/tryps-landing/server.ts": {
+    "api/index.ts": {
       "includeFiles": "artifacts/tryps-landing/dist/**,artifacts/tryps-landing/public/**"
     }
   },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/artifacts/tryps-landing/server.ts" }
+    { "source": "/(.*)", "destination": "/api/index" }
   ]
 }
