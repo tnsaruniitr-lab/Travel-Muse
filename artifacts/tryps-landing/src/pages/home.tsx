@@ -221,65 +221,16 @@ function PhoneCaptureHero() {
 /* ─── Inline App Mockup for Hero ─── */
 function HeroMockup() {
   return (
-    <div className="relative w-full max-w-sm mx-auto pb-6">
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#9A0514] to-[#FB7185] rounded-[2.5rem] opacity-15 blur-2xl pointer-events-none" />
-      <div className="relative bg-white rounded-[2rem] shadow-2xl border border-[#FECDD3]/40 overflow-hidden">
-        <div className="bg-gradient-to-r from-[#9A0514] to-[#BE123C] px-6 py-5">
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-0.5">Active trip</p>
-              <h3 className="font-black text-white text-xl">Amalfi Coast</h3>
-            </div>
-            <div className="flex -space-x-2">
-              {["#fff3","#fff4","#fff2"].map((c, i) => (
-                <div key={i} className="w-9 h-9 rounded-full border-2 border-white/50 flex items-center justify-center text-xs font-black text-white" style={{ background: c }}>
-                  {["A","B","C"][i]}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="p-5 space-y-4">
-          <div className="bg-[#FFF9F9] rounded-2xl p-4 border border-[#FECDD3]/50">
-            <p className="text-xs font-black text-[#9A0514] uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <Calendar className="h-3 w-3" /> Date poll
-            </p>
-            {[
-              { date: "Jun 14–18", votes: 4, best: true },
-              { date: "Jun 21–25", votes: 2, best: false },
-              { date: "Jul 5–9", votes: 1, best: false },
-            ].map((d, i) => (
-              <div key={i} className={`flex items-center justify-between p-3 rounded-xl mb-2 last:mb-0 ${d.best ? "bg-white border border-[#9A0514] shadow-sm" : "bg-white/50"}`}>
-                <span className={`text-sm font-semibold ${d.best ? "text-[#9A0514]" : "text-[#6B3030]"}`}>{d.date}</span>
-                <div className="flex items-center gap-1.5">
-                  <span className={`text-xs font-bold ${d.best ? "text-[#9A0514]" : "text-[#9CA3AF]"}`}>{d.votes} votes</span>
-                  {d.best && <CheckCircle2 className="h-4 w-4 text-[#9A0514]" />}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="bg-[#FFF9F9] rounded-2xl p-4 border border-[#FECDD3]/50">
-            <p className="text-xs font-black text-[#9A0514] uppercase tracking-widest mb-2">Expenses</p>
-            <div className="flex justify-between items-center mb-1.5">
-              <span className="text-sm text-[#6B3030]">Group total</span>
-              <span className="text-lg font-black text-[#1C0808]">$2,400</span>
-            </div>
-            <div className="h-2 bg-[#FFE4E6] rounded-full overflow-hidden">
-              <div className="h-full w-3/5 bg-gradient-to-r from-[#9A0514] to-[#BE123C] rounded-full" />
-            </div>
-            <p className="text-xs text-[#9CA3AF] mt-1.5">60% of budget allocated</p>
-          </div>
-        </div>
-      </div>
-      <div className="absolute bottom-2 left-2 bg-white rounded-2xl shadow-xl border border-[#FECDD3]/40 px-4 py-3 flex items-center gap-2.5">
-        <div className="w-9 h-9 rounded-full bg-[#FFE4E6] flex items-center justify-center shrink-0">
-          <CheckCircle2 className="h-4 w-4 text-[#9A0514]" />
-        </div>
-        <div>
-          <p className="text-xs text-[#9CA3AF]">Sarah just voted</p>
-          <p className="text-sm font-black text-[#1C0808]">Jun 14–18</p>
-        </div>
-      </div>
+    <div className="relative w-full max-w-[300px] mx-auto">
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#9A0514] to-[#FB7185] rounded-[3rem] opacity-20 blur-3xl pointer-events-none scale-90 translate-y-4" />
+      <img
+        src="/images/app/screen-trip-created.png"
+        alt="TRYPS app — trip created confirmation screen showing New York Adventure with Text Friends button"
+        width={300}
+        height={650}
+        className="relative w-full drop-shadow-2xl"
+        loading="eager"
+      />
     </div>
   );
 }
