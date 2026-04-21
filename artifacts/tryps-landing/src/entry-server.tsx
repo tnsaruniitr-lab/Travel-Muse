@@ -11,6 +11,8 @@ import HowTrypsWorks from "./pages/blog/how-tryps-works";
 import { howTrypsWorksHeadTags } from "./pages/blog/how-tryps-works-head";
 import NashvilleBacheloretteTrip from "./pages/blog/nashville-bachelorette-trip";
 import { nashvilleBacheloretteTripHeadTags } from "./pages/blog/nashville-bachelorette-trip-head";
+import BestGroupTripPlanningApps from "./pages/blog/best-group-trip-planning-apps";
+import { bestGroupTripPlanningAppsHeadTags } from "./pages/blog/best-group-trip-planning-apps-head";
 import PrivacyPolicy from "./pages/privacy";
 import { privacyHeadTags } from "./pages/privacy-head";
 import TermsOfService from "./pages/terms";
@@ -60,6 +62,13 @@ export async function render(url: string): Promise<{ appHtml: string; headTags: 
     return {
       appHtml: renderToString(<NashvilleBacheloretteTrip />),
       headTags: nashvilleBacheloretteTripHeadTags,
+    };
+  }
+
+  if (pathname === "/blog/best-group-trip-planning-apps-2026") {
+    return {
+      appHtml: renderToString(<BestGroupTripPlanningApps />),
+      headTags: bestGroupTripPlanningAppsHeadTags,
     };
   }
 

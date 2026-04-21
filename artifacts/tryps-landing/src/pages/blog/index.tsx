@@ -3,6 +3,15 @@ import { ArrowRight, Star } from "lucide-react";
 export default function BlogIndex() {
   const posts = [
     {
+      href: "/blog/best-group-trip-planning-apps-2026",
+      category: "Travel Planning",
+      title: "Best Group Trip Planning App for Friends (2026 Comparison)",
+      excerpt: "TRYPS vs Wanderlog, Splitwise, Troupe, and SquadTrip. One place to lock dates, build the plan, and split expenses — no downloads or sign-ups required.",
+      date: "April 21, 2026",
+      readTime: "6 min read",
+      image: "/images/blog/best-group-trip-planning-apps-2026-hero.webp",
+    },
+    {
       href: "/blog/nashville-bachelorette-trip",
       category: "Destination guides",
       title: "Group Bachelorette Trip to Nashville: Plan, Book & Split",
