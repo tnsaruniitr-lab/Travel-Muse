@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import BlogIndex from "./pages/blog/index";
 import HowToPlanGroupTrip from "./pages/blog/how-to-plan-group-trip";
 import OahuGroupTripItinerary from "./pages/blog/oahu-group-trip-itinerary";
+import HowTrypsWorks from "./pages/blog/how-tryps-works";
 import PrivacyPolicy from "./pages/privacy";
 import TermsOfService from "./pages/terms";
 import "./index.css";
@@ -17,6 +18,8 @@ if (pathname === "/blog") {
   App = HowToPlanGroupTrip;
 } else if (pathname === "/blog/oahu-group-trip-itinerary") {
   App = OahuGroupTripItinerary;
+} else if (pathname === "/blog/how-tryps-works") {
+  App = HowTrypsWorks;
 } else if (pathname === "/privacy") {
   App = PrivacyPolicy;
 } else if (pathname === "/terms") {

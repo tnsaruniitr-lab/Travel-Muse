@@ -3,6 +3,15 @@ import { ArrowRight, Star } from "lucide-react";
 export default function BlogIndex() {
   const posts = [
     {
+      href: "/blog/how-tryps-works",
+      category: "Product guides",
+      title: "How TRYPS Works: Plan a Group Trip From Invite to Settle-Up",
+      excerpt: "Five steps, one app, no spreadsheets. From the moment you create a trip to the final expense settle-up — the full walkthrough.",
+      date: "April 21, 2026",
+      readTime: "6 min read",
+      image: "/images/app/screen-activities.png",
+    },
+    {
       href: "/blog/how-to-plan-a-group-trip",
       category: "Group trip planning",
       title: "How to Plan a Group Trip: Step-by-Step Guide",
