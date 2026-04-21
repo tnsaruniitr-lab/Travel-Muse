@@ -1,0 +1,95 @@
+
+Your trial expires in 14 days. Add a payment method to ensure uninterrupted service when your trial expires.
+Deployments
+ASMVaJXqD
+Logs
+Deployment
+Logs
+Resources
+Source
+Open Graph
+
+
+Search logs...
+15:42:00
+15:52:40
+16:12:00
+Time
+Status
+Host
+Request
+Messages
+Apr 21 16:11:43.89
+GET
+---
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/favicon.ico
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:11:43.24
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/blog
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:26.19
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/favicon.ico
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:25.65
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/blog
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:21.84
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/favicon.ico
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:21.32
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/blog
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:12.23
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/favicon.ico
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:04:11.68
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/blog
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:03:50.48
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/favicon.ico
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Apr 21 16:03:49.68
+GET
+500
+travel-muse-tryps-landing-hc1rge21g-tryps1.vercel.app
+/blog
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported. Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules. at /opt/rust/nodejs.js:2:13531 at Module.hn (/opt/rust/nodejs.js:2:13909) at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501) at s (/opt/rust/bytecode.js:2:1110) { code: 'ERR_REQUIRE_ESM' } Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+No more logs to show within selected timeline
+
+Logs
+1 Error
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /var/task/artifacts/tryps-landing/server.js from /var/task/api/index.js not supported.
+Instead change the require of server.js in /var/task/api/index.js to a dynamic import() which is available in all CommonJS modules.
+    at /opt/rust/nodejs.js:2:13531
+    at Module.hn (/opt/rust/nodejs.js:2:13909)
+    at Xe.e.<computed>.Ye._load (/opt/rust/nodejs.js:2:13501)
+    at s (/opt/rust/bytecode.js:2:1110) {
+  code: 'ERR_REQUIRE_ESM'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
