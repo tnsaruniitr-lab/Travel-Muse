@@ -207,7 +207,7 @@ export const homeHeadTags = `
       {
         "@type": "Question",
         "name": "How do I join the TRYPS waitlist?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Enter your mobile number on the TRYPS homepage and tap Join. We will send you an SMS invite to join the beta. No app download or email sign-up required." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter your mobile number on the TRYPS homepage and tap Join. Your Messages app (iMessage on iPhone, Messages on Mac) opens a new chat to our TRYPS AI planner at +1 (917) 745-3624 with Hey Tryps ready to send. Hit send and TRYPS replies straight back. No app download or email sign-up required." }
       }
     ]
   }
