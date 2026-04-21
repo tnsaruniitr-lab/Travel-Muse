@@ -2,6 +2,8 @@ export const privacyHeadTags = `
   <title>Privacy Policy | TRYPS</title>
   <meta name="description" content="TRYPS Privacy Policy — how we collect, use, and protect your data including phone number, trip content, and device permissions." />
   <link rel="canonical" href="https://trypsagent.com/privacy" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/privacy" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/privacy" />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#FFF9F9" />
 

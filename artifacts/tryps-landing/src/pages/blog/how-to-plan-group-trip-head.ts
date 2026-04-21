@@ -5,6 +5,8 @@ export const howToPlanGroupTripHeadTags = `
   <title>How to Plan a Group Trip: Step-by-Step Guide | TRYPS</title>
   <meta name="description" content="Learn how to plan a group trip without chaos. Lock dates, align on budget, build a shared itinerary, and split expenses clearly." />
   <link rel="canonical" href="https://trypsagent.com/blog/how-to-plan-a-group-trip" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/blog/how-to-plan-a-group-trip" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/blog/how-to-plan-a-group-trip" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#FFF9F9" />
 
@@ -47,7 +49,8 @@ export const howToPlanGroupTripHeadTags = `
       "@type": "Person",
       "@id": "https://trypsagent.com/about#jake-stein",
       "name": "Jake Stein",
-      "url": "https://trypsagent.com/about"
+      "url": "https://trypsagent.com/about",
+      "sameAs": ["https://www.linkedin.com/in/jakestein", "https://twitter.com/jakestein"]
     },
     "publisher": {
       "@type": "Organization",

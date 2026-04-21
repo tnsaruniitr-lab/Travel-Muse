@@ -5,6 +5,8 @@ export const blogIndexHeadTags = `
   <title>Blog — Group Trip Planning Guides | TRYPS</title>
   <meta name="description" content="Practical guides on planning group trips with friends. Date coordination, shared itineraries, expense splitting, and destination guides." />
   <link rel="canonical" href="https://trypsagent.com/blog" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/blog" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/blog" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
   <meta name="theme-color" content="#FFF9F9" />
 

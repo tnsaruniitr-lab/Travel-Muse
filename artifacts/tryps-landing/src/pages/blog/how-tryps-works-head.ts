@@ -5,6 +5,8 @@ export const howTrypsWorksHeadTags = `
   <title>How TRYPS Works: From Invite to Settle-Up | TRYPS</title>
   <meta name="description" content="Step-by-step guide to using TRYPS: invite friends via iMessage, set group vibe, vote on activities, plan day-by-day, and split expenses — all in one app." />
   <link rel="canonical" href="https://trypsagent.com/blog/how-tryps-works" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/blog/how-tryps-works" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/blog/how-tryps-works" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#FFF9F9" />
 

@@ -825,6 +825,10 @@ export default function Home() {
                   a: "Log shared costs as they happen and TRYPS tracks balances so everyone can see what they owe at the end of the trip.",
                 },
                 {
+                  q: "How do I join the TRYPS waitlist?",
+                  a: "Enter your mobile number on the TRYPS homepage and tap Join. We'll send you an SMS invite to join the beta. No app download or email sign-up required.",
+                },
+                {
                   q: "How do I start?",
                   a: "Create a trip, share the link with your group, and start planning together.",
                 },

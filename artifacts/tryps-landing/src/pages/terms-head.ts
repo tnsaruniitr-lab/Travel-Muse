@@ -2,6 +2,8 @@ export const termsHeadTags = `
   <title>Terms of Service | TRYPS</title>
   <meta name="description" content="TRYPS Terms of Service — the rules and conditions that govern your use of the TRYPS app and website." />
   <link rel="canonical" href="https://trypsagent.com/terms" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/terms" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/terms" />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#FFF9F9" />
 

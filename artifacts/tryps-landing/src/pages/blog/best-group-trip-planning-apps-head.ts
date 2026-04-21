@@ -6,6 +6,8 @@ export const bestGroupTripPlanningAppsHeadTags = `
   <title>Best Group Trip Planning App for Friends (2026 Comparison) | TRYPS</title>
   <meta name="description" content="TRYPS vs Wanderlog, Splitwise, Troupe, and SquadTrip. The best group trip planning app for friends in 2026 — date polling, shared itinerary, and expense splitting in one place." />
   <link rel="canonical" href="https://trypsagent.com/blog/best-group-trip-planning-apps-2026" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/blog/best-group-trip-planning-apps-2026" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/blog/best-group-trip-planning-apps-2026" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="theme-color" content="#FFF9F9" />
 

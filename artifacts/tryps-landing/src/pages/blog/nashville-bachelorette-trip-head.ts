@@ -9,6 +9,8 @@ export const nashvilleBacheloretteTripHeadTags = `
   <meta name="author" content="Jake Stein" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://trypsagent.com/blog/nashville-bachelorette-trip" />
+  <link rel="alternate" hreflang="en" href="https://trypsagent.com/blog/nashville-bachelorette-trip" />
+  <link rel="alternate" hreflang="x-default" href="https://trypsagent.com/blog/nashville-bachelorette-trip" />
   <meta name="theme-color" content="#FFF9F9" />
 
   <meta property="og:type" content="article" />
