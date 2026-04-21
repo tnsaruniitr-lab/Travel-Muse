@@ -37,7 +37,7 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname),
   ssr: {
-    noExternal: true,
+    noExternal: process.env.NODE_ENV === "production" ? true : [],
   },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
