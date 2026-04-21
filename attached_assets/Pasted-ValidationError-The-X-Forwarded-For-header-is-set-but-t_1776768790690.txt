@@ -1,0 +1,29 @@
+ValidationError: The 'X-Forwarded-For' header is set but the Express 'trust proxy' setting is false (default). This could indicate a misconfiguration which would prevent express-rate-limit from accurately identifying users. See https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.
+    at Object.xForwardedForHeader (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:342:13)
+    at wrappedValidations.<computed> [as xForwardedForHeader] (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:656:22)
+    at Object.keyGenerator (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:759:20)
+    at file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:823:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:801:5 {
+  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',
+  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'
+}
+ValidationError: The 'Forwarded' header (standardized X-Forwarded-For) is set but currently being ignored. Add a custom keyGenerator to use a value from this header. See https://express-rate-limit.github.io/ERR_ERL_FORWARDED_HEADER/ for more information.
+    at Object.forwardedHeader (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:357:13)
+    at wrappedValidations.<computed> [as forwardedHeader] (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:656:22)
+    at Object.keyGenerator (file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:760:20)
+    at file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:823:32
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///var/task/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs:801:5 {
+  code: 'ERR_ERL_FORWARDED_HEADER',
+  help: 'https://express-rate-limit.github.io/ERR_ERL_FORWARDED_HEADER/'
+}
+Waitlist error: Error: getaddrinfo ENOTFOUND db.qwrrhxvpiizedhfwxfto.supabase.co
+    at /var/task/node_modules/.pnpm/pg-pool@3.13.0_pg@8.20.0/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (/vercel/path0/artifacts/tryps-landing/server.ts:131:5) {
+  errno: -3007,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'db.qwrrhxvpiizedhfwxfto.supabase.co'
+}

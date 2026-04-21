@@ -45,6 +45,8 @@ const waitlistLimiter = rateLimit({
 const app = express();
 const httpServer = createHttpServer(app);
 
+app.set("trust proxy", 1);
+
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
