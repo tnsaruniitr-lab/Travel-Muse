@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm run build",
+  "functions": {
+    "server.ts": {
+      "includeFiles": "dist/**,public/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/server.ts" }
+  ]
+}

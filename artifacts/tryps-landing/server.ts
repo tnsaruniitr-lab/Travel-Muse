@@ -10,7 +10,11 @@ import rateLimit from "express-rate-limit";
 import pg from "pg";
 import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
 
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const connectionString = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
+const pool = new pg.Pool({
+  connectionString,
+  ssl: process.env.SUPABASE_DATABASE_URL ? { rejectUnauthorized: false } : undefined,
+});
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === "production";
@@ -175,6 +179,10 @@ app.use(async (req, res) => {
   }
 });
 
-httpServer.listen(port, "0.0.0.0", () => {
-  console.log(`SSR server listening on http://0.0.0.0:${port}`);
-});
+if (!process.env.VERCEL) {
+  httpServer.listen(port, "0.0.0.0", () => {
+    console.log(`SSR server listening on http://0.0.0.0:${port}`);
+  });
+}
+
+export default app;
