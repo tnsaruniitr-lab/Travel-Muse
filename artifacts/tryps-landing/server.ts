@@ -17,10 +17,9 @@ const pool = new pg.Pool({
 });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// When bundled by @vercel/node, __dirname points to /var/task/api/ not artifacts/tryps-landing/
-// Use appRoot to correctly resolve paths to dist and public files in both environments
+// process.cwd() is always /var/task in Vercel Lambda, regardless of where server.js is loaded from
 const appRoot = process.env.VERCEL
-  ? path.resolve(__dirname, "../artifacts/tryps-landing")
+  ? path.join(process.cwd(), "artifacts/tryps-landing")
   : __dirname;
 const isProd = process.env.NODE_ENV === "production";
 const port = Number(process.env.PORT) || 3000;
