@@ -3,6 +3,15 @@ import { ArrowRight, Star } from "lucide-react";
 export default function BlogIndex() {
   const posts = [
     {
+      href: "/blog/nashville-bachelorette-trip",
+      category: "Destination guides",
+      title: "Group Bachelorette Trip to Nashville: Plan, Book & Split",
+      excerpt: "What to pre-book, real 2026 costs, and a day-by-day itinerary for a Nashville bachelorette weekend. The city does most of the work — you just need to lock the dates.",
+      date: "April 21, 2026",
+      readTime: "11 min read",
+      image: "/images/blog/nashville-bachelorette-trip-hero.png",
+    },
+    {
       href: "/blog/how-tryps-works",
       category: "Product guides",
       title: "How TRYPS Works: Plan a Group Trip From Invite to Settle-Up",

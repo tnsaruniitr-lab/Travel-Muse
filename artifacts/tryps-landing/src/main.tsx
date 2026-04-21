@@ -4,6 +4,7 @@ import BlogIndex from "./pages/blog/index";
 import HowToPlanGroupTrip from "./pages/blog/how-to-plan-group-trip";
 import OahuGroupTripItinerary from "./pages/blog/oahu-group-trip-itinerary";
 import HowTrypsWorks from "./pages/blog/how-tryps-works";
+import NashvilleBacheloretteTrip from "./pages/blog/nashville-bachelorette-trip";
 import PrivacyPolicy from "./pages/privacy";
 import TermsOfService from "./pages/terms";
 import "./index.css";
@@ -20,6 +21,8 @@ if (pathname === "/blog") {
   App = OahuGroupTripItinerary;
 } else if (pathname === "/blog/how-tryps-works") {
   App = HowTrypsWorks;
+} else if (pathname === "/blog/nashville-bachelorette-trip") {
+  App = NashvilleBacheloretteTrip;
 } else if (pathname === "/privacy") {
   App = PrivacyPolicy;
 } else if (pathname === "/terms") {

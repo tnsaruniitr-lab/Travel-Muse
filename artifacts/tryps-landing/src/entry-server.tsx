@@ -9,6 +9,8 @@ import OahuGroupTripItinerary from "./pages/blog/oahu-group-trip-itinerary";
 import { oahuGroupTripItineraryHeadTags } from "./pages/blog/oahu-group-trip-itinerary-head";
 import HowTrypsWorks from "./pages/blog/how-tryps-works";
 import { howTrypsWorksHeadTags } from "./pages/blog/how-tryps-works-head";
+import NashvilleBacheloretteTrip from "./pages/blog/nashville-bachelorette-trip";
+import { nashvilleBacheloretteTripHeadTags } from "./pages/blog/nashville-bachelorette-trip-head";
 import PrivacyPolicy from "./pages/privacy";
 import { privacyHeadTags } from "./pages/privacy-head";
 import TermsOfService from "./pages/terms";
@@ -42,6 +44,13 @@ export async function render(url: string): Promise<{ appHtml: string; headTags: 
     return {
       appHtml: renderToString(<HowTrypsWorks />),
       headTags: howTrypsWorksHeadTags,
+    };
+  }
+
+  if (pathname === "/blog/nashville-bachelorette-trip") {
+    return {
+      appHtml: renderToString(<NashvilleBacheloretteTrip />),
+      headTags: nashvilleBacheloretteTripHeadTags,
     };
   }
 
