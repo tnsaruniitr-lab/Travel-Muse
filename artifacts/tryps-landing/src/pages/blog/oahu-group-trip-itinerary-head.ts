@@ -4,7 +4,7 @@ export const oahuGroupTripItineraryHeadTags = `
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
 
   <title>7-Day Oahu Group Trip Itinerary (2026): What Actually Works | TRYPS</title>
-  <meta name="description" content="The complete 7-day Oahu itinerary for friend groups in 2026. Day-by-day plan with real restaurants, beaches, honest costs, and what to book before you land — from Diamond Head to the North Shore." />
+  <meta name="description" content="7-day Oahu group trip itinerary. Real restaurants, beaches, honest costs, and what to book before landing — from Diamond Head to the North Shore." />
   <meta name="keywords" content="Oahu group trip itinerary, 7 days in Oahu, Oahu trip with friends, Oahu travel guide 2026, things to do in Oahu, North Shore day trip, Hanauma Bay, best restaurants Oahu" />
   <meta name="author" content="TRYPS" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -55,18 +55,18 @@ export const oahuGroupTripItineraryHeadTags = `
     "datePublished": "2026-04-04T00:00:00+00:00",
     "dateModified": "2026-04-04T00:00:00+00:00",
     "author": {
-      "@type": "Organization",
-      "name": "TRYPS",
-      "url": "https://trypsagent.com",
-      "logo": { "@type": "ImageObject", "url": "https://trypsagent.com/favicon.svg", "width": 512, "height": 512 }
+      "@type": "Person",
+      "@id": "https://trypsagent.com/about#jake-stein",
+      "name": "Jake Stein",
+      "url": "https://trypsagent.com/about"
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
       "name": "TRYPS",
-      "url": "https://trypsagent.com",
       "logo": { "@type": "ImageObject", "url": "https://trypsagent.com/favicon.svg", "width": 512, "height": 512 }
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#webpage" },
     "articleSection": "Destination Guides",
     "keywords": ["Oahu itinerary", "group trip Hawaii", "7 days Oahu", "North Shore day trip", "Hanauma Bay", "things to do Oahu"],
     "wordCount": 2800,
@@ -95,11 +95,11 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#breadcrumb",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://trypsagent.com"},
       {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trypsagent.com/blog"},
-      {"@type": "ListItem", "position": 3, "name": "Hawaii", "item": "https://trypsagent.com/blog/hawaii"},
-      {"@type": "ListItem", "position": 4, "name": "7-Day Oahu Group Trip Itinerary", "item": "https://trypsagent.com/blog/oahu-group-trip-itinerary"}
+      {"@type": "ListItem", "position": 3, "name": "7-Day Oahu Group Trip Itinerary", "item": "https://trypsagent.com/blog/oahu-group-trip-itinerary"}
     ]
   }
   </script>
@@ -108,6 +108,7 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#faqpage",
     "mainEntity": [
       {
         "@type": "Question",
@@ -223,6 +224,7 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#itemlist",
     "name": "7-Day Oahu Group Trip Itinerary",
     "description": "A complete day-by-day itinerary for a group of friends visiting Oahu, Hawaii for 7 days.",
     "numberOfItems": 7,
@@ -243,6 +245,7 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#howto",
     "name": "How to Plan a Group Trip to Oahu",
     "description": "Step-by-step guide to planning a 7-day group trip to Oahu, Hawaii, including what to book in advance, transport, accommodation, and budget.",
     "totalTime": "PT7D",
@@ -284,12 +287,13 @@ export const oahuGroupTripItineraryHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary",
+    "@id": "https://trypsagent.com/blog/oahu-group-trip-itinerary#webpage",
+    "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary",
+    "isPartOf": { "@id": "https://trypsagent.com/#website" },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [".quick-answer", ".summary-box", ".faq-a"]
-    },
-    "url": "https://trypsagent.com/blog/oahu-group-trip-itinerary"
+    }
   }
   </script>
 `;

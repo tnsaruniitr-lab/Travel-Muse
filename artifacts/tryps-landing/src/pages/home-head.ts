@@ -25,6 +25,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://trypsagent.com/#organization",
     "name": "TRYPS",
     "url": "https://trypsagent.com/",
     "logo": {
@@ -57,6 +58,7 @@ export const homeHeadTags = `
     ],
     "founder": {
       "@type": "Person",
+      "@id": "https://trypsagent.com/about#jake-stein",
       "name": "Jake Stein",
       "jobTitle": "Founder",
       "url": "https://trypsagent.com/about"
@@ -68,10 +70,12 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://trypsagent.com/about#jake-stein",
     "name": "Jake Stein",
     "jobTitle": "Founder",
     "worksFor": {
       "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
       "name": "TRYPS"
     },
     "url": "https://trypsagent.com/about",
@@ -85,6 +89,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://trypsagent.com/#website",
     "name": "TRYPS",
     "url": "https://trypsagent.com/"
   }
@@ -94,6 +99,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://trypsagent.com/#softwareapplication",
     "name": "TRYPS",
     "applicationCategory": "TravelApplication",
     "applicationSubCategory": "Group Trip Planning App",
@@ -110,6 +116,7 @@ export const homeHeadTags = `
     "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
     "publisher": {
       "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
       "name": "TRYPS",
       "url": "https://trypsagent.com/"
     },
@@ -141,6 +148,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
+    "@id": "https://trypsagent.com/#howto",
     "name": "How to plan a group trip with TRYPS",
     "description": "Plan a group trip by inviting friends, locking dates, building a shared itinerary, and splitting expenses in one place.",
     "step": [
@@ -156,6 +164,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": "https://trypsagent.com/#faqpage",
     "mainEntity": [
       {
         "@type": "Question",
@@ -201,6 +210,7 @@ export const homeHeadTags = `
     {
       "@context": "https://schema.org",
       "@type": "MobileApplication",
+      "@id": "https://trypsagent.com/#mobileapplication-ios",
       "name": "TRYPS — Group Trip Planning",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "iOS",
@@ -212,11 +222,12 @@ export const homeHeadTags = `
         "priceCurrency": "USD",
         "availability": "https://schema.org/PreOrder"
       },
-      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
+      "publisher": { "@type": "Organization", "@id": "https://trypsagent.com/#organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
     },
     {
       "@context": "https://schema.org",
       "@type": "MobileApplication",
+      "@id": "https://trypsagent.com/#mobileapplication-android",
       "name": "TRYPS — Group Trip Planning",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Android",
@@ -228,7 +239,7 @@ export const homeHeadTags = `
         "priceCurrency": "USD",
         "availability": "https://schema.org/PreOrder"
       },
-      "publisher": { "@type": "Organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
+      "publisher": { "@type": "Organization", "@id": "https://trypsagent.com/#organization", "name": "TRYPS", "url": "https://trypsagent.com/" }
     }
   ]
   </script>
@@ -237,6 +248,7 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": "https://trypsagent.com/#breadcrumb",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trypsagent.com/" }
     ]
@@ -247,8 +259,10 @@ export const homeHeadTags = `
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://trypsagent.com/#webpage",
     "name": "TRYPS — Group Trip Planning App for Friends",
     "url": "https://trypsagent.com/",
+    "isPartOf": { "@id": "https://trypsagent.com/#website" },
     "description": "TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place.",
     "speakable": {
       "@type": "SpeakableSpecification",
@@ -256,6 +270,7 @@ export const homeHeadTags = `
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
       "name": "TRYPS",
       "url": "https://trypsagent.com/"
     }

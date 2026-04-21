@@ -15,9 +15,18 @@ import PrivacyPolicy from "./pages/privacy";
 import { privacyHeadTags } from "./pages/privacy-head";
 import TermsOfService from "./pages/terms";
 import { termsHeadTags } from "./pages/terms-head";
+import NotFound from "./pages/not-found";
+import { notFoundHeadTags } from "./pages/not-found-head";
 
-export async function render(url: string): Promise<{ appHtml: string; headTags: string }> {
+export async function render(url: string): Promise<{ appHtml: string; headTags: string; status?: number }> {
   const pathname = url.split("?")[0].split("#")[0];
+
+  if (pathname === "/") {
+    return {
+      appHtml: renderToString(<Home />),
+      headTags: homeHeadTags,
+    };
+  }
 
   if (pathname === "/blog") {
     return {
@@ -69,7 +78,8 @@ export async function render(url: string): Promise<{ appHtml: string; headTags: 
   }
 
   return {
-    appHtml: renderToString(<Home />),
-    headTags: homeHeadTags,
+    appHtml: renderToString(<NotFound />),
+    headTags: notFoundHeadTags,
+    status: 404,
   };
 }

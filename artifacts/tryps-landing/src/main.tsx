@@ -7,13 +7,16 @@ import HowTrypsWorks from "./pages/blog/how-tryps-works";
 import NashvilleBacheloretteTrip from "./pages/blog/nashville-bachelorette-trip";
 import PrivacyPolicy from "./pages/privacy";
 import TermsOfService from "./pages/terms";
+import NotFound from "./pages/not-found";
 import "./index.css";
 
 const pathname = window.location.pathname;
 
 let App: React.ComponentType;
 
-if (pathname === "/blog") {
+if (pathname === "/") {
+  App = Home;
+} else if (pathname === "/blog") {
   App = BlogIndex;
 } else if (pathname === "/blog/how-to-plan-a-group-trip") {
   App = HowToPlanGroupTrip;
@@ -28,7 +31,7 @@ if (pathname === "/blog") {
 } else if (pathname === "/terms") {
   App = TermsOfService;
 } else {
-  App = Home;
+  App = NotFound;
 }
 
 hydrateRoot(document.getElementById("root")!, <App />);

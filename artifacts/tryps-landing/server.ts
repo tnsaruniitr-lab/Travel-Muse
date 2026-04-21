@@ -146,7 +146,7 @@ app.use(async (req: any, res: any) => {
   try {
     const url = req.originalUrl;
     let template: string;
-    let render: (url: string) => Promise<{ appHtml: string; headTags: string }>;
+    let render: (url: string) => Promise<{ appHtml: string; headTags: string; status?: number }>;
 
     if (!isProd) {
       template = fs.readFileSync(
@@ -168,12 +168,12 @@ app.use(async (req: any, res: any) => {
       render = (await import(serverEntry)).render;
     }
 
-    const { appHtml, headTags } = await render(url);
+    const { appHtml, headTags, status = 200 } = await render(url);
     const fullHtml = template
       .replace("<!--head-tags-->", headTags)
       .replace("<!--app-html-->", appHtml);
 
-    res.status(200).set({
+    res.status(status).set({
       "Content-Type": "text/html",
       "Cache-Control": "no-cache, must-revalidate",
     }).end(fullHtml);
