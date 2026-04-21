@@ -17,6 +17,11 @@ const pool = new pg.Pool({
 });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// When bundled by @vercel/node, __dirname points to /var/task/api/ not artifacts/tryps-landing/
+// Use appRoot to correctly resolve paths to dist and public files in both environments
+const appRoot = process.env.VERCEL
+  ? path.resolve(__dirname, "../artifacts/tryps-landing")
+  : __dirname;
 const isProd = process.env.NODE_ENV === "production";
 const port = Number(process.env.PORT) || 3000;
 const base = process.env.BASE_PATH ?? "/";
@@ -62,7 +67,7 @@ app.use(compression());
 app.use("/images/app", (req: any, res: any, next: any) => {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   next();
-}, express.static(path.resolve(__dirname, "public/images/app"), { maxAge: "1d" }));
+}, express.static(path.resolve(appRoot, "public/images/app"), { maxAge: "1d" }));
 
 let vite: ViteDevServer | undefined;
 
@@ -77,7 +82,7 @@ if (!isProd) {
 } else {
   app.use(
     base,
-    express.static(path.resolve(__dirname, "dist/public"), {
+    express.static(path.resolve(appRoot, "dist/public"), {
       index: false,
       maxAge: "1y",
       immutable: true,
@@ -144,7 +149,7 @@ app.use(async (req: any, res: any) => {
 
     if (!isProd) {
       template = fs.readFileSync(
-        path.resolve(__dirname, "index.html"),
+        path.resolve(appRoot, "index.html"),
         "utf-8",
       );
       template = await vite!.transformIndexHtml(url, template);
@@ -152,11 +157,11 @@ app.use(async (req: any, res: any) => {
       render = mod.render;
     } else {
       template = fs.readFileSync(
-        path.resolve(__dirname, "dist/public/index.html"),
+        path.resolve(appRoot, "dist/public/index.html"),
         "utf-8",
       );
       const serverEntry = path.resolve(
-        __dirname,
+        appRoot,
         "dist/server/entry-server.js",
       );
       render = (await import(serverEntry)).render;
