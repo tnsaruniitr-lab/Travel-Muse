@@ -101,3 +101,9 @@ id = "o3gTux9nLiY4z0b7uzsnT"
 uri = "file://artifacts/tryps-landing/docs/terms-of-service-text.md"
 type = "text"
 title = "Terms of Service — Review Copy"
+
+[[outputs]]
+id = "eef2Ts_l0R8POeW2epFXc"
+uri = "file://tryps-seo-aeo-handover.md"
+type = "text"
+title = "TRYPS SEO/AEO Handover Rules"
