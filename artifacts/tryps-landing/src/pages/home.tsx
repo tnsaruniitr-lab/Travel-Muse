@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   CheckCircle2,
-  Star,
   MessageCircle,
   Calendar,
   MapPin,
@@ -23,8 +22,18 @@ import {
   Users as UsersIcon,
   ChevronDown,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode, CSSProperties, FormEvent } from "react";
+import {
+  AsYouType,
+  getCountries,
+  getCountryCallingCode,
+  getExampleNumber,
+  parsePhoneNumberFromString,
+  validatePhoneNumberLength,
+} from "libphonenumber-js";
+import type { CountryCode } from "libphonenumber-js";
+import phoneExamples from "libphonenumber-js/examples.mobile.json";
 
 /* ─── Tryps DS tokens (inline hex — aligned to design.md) ────────────────
    Primary:      #D9071C   Primary dark:  #B00618   Primary light:  #E85050
@@ -277,28 +286,285 @@ const CalendarPage = ({ month = "JUN", day = "14", tilt = "-6deg", className = "
   </div>
 );
 
-/* ─── US Flag SVG ─── */
-const USFlagSVG = ({ size = 22 }: { size?: number }) => {
-  const width = size;
-  const height = Math.round((size * 11) / 16);
+/* ─── International phone helpers (libphonenumber-js) ─── */
+type CountryInfo = {
+  code: CountryCode;
+  name: string;
+  dialCode: string;
+  flag: string;
+};
+
+const countryCodeToFlag = (code: string): string =>
+  code
+    .toUpperCase()
+    .replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
+
+const COUNTRIES: CountryInfo[] = (() => {
+  const displayNames =
+    typeof Intl !== "undefined" && "DisplayNames" in Intl
+      ? new Intl.DisplayNames(["en"], { type: "region" })
+      : null;
+  return getCountries()
+    .map<CountryInfo>((code) => ({
+      code,
+      name: displayNames?.of(code) ?? code,
+      dialCode: `+${getCountryCallingCode(code)}`,
+      flag: countryCodeToFlag(code),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+})();
+
+const COUNTRY_BY_CODE: Record<string, CountryInfo> = Object.fromEntries(
+  COUNTRIES.map((c) => [c.code, c]),
+);
+
+const detectDefaultCountry = (): CountryCode => {
+  if (typeof navigator === "undefined") return "US";
+  const langs =
+    navigator.languages && navigator.languages.length > 0
+      ? navigator.languages
+      : [navigator.language || ""];
+  for (const lang of langs) {
+    const region = lang.split("-")[1]?.toUpperCase();
+    if (region && COUNTRY_BY_CODE[region]) return region as CountryCode;
+  }
+  return "US";
+};
+
+const formatPhoneForCountry = (value: string, country: CountryCode): string =>
+  new AsYouType(country).input(value);
+
+const getPlaceholderForCountry = (country: CountryCode): string => {
+  try {
+    const example = getExampleNumber(country, phoneExamples);
+    return example?.formatNational() ?? "Mobile number";
+  } catch {
+    return "Mobile number";
+  }
+};
+
+// Trim trailing digits until libphonenumber-js no longer considers the number
+// TOO_LONG for the selected country. This is the authoritative per-country cap
+// — works for countries with fixed or variable valid lengths.
+const clampDigitsToCountry = (
+  digits: string,
+  country: CountryCode,
+  hasLeadingPlus: boolean,
+): string => {
+  let trimmed = digits;
+  while (trimmed.length > 0) {
+    const candidate = hasLeadingPlus ? `+${trimmed}` : trimmed;
+    if (validatePhoneNumberLength(candidate, country) !== "TOO_LONG") break;
+    trimmed = trimmed.slice(0, -1);
+  }
+  return trimmed;
+};
+
+// Loose <input maxLength> — first line of defense against paste/autofill.
+// The JS clamp above is the authoritative cap, so this just needs to be a
+// comfortable upper bound on the formatted string's length.
+const getMaxInputLengthForCountry = (country: CountryCode): number => {
+  try {
+    const example = getExampleNumber(country, phoneExamples);
+    if (!example) return 18;
+    const formattedLength = example.formatNational().length;
+    return formattedLength + 2;
+  } catch {
+    return 18;
+  }
+};
+
+type PhoneValidity = "empty" | "too-short" | "too-long" | "invalid" | "valid";
+
+const getPhoneValidity = (
+  phone: string,
+  country: CountryCode,
+): PhoneValidity => {
+  if (!phone.trim()) return "empty";
+  const lengthStatus = validatePhoneNumberLength(phone, country);
+  if (lengthStatus === "TOO_SHORT") return "too-short";
+  if (lengthStatus === "TOO_LONG") return "too-long";
+  if (lengthStatus === "INVALID_LENGTH") return "invalid";
+  const parsed = parsePhoneNumberFromString(phone, country);
+  return parsed?.isValid() ? "valid" : "invalid";
+};
+
+const PHONE_HINT_MESSAGES: Record<Exclude<PhoneValidity, "empty" | "valid">, string> = {
+  "too-short": "Keep typing — that number looks too short for the selected country.",
+  "too-long": "That number is too long for the selected country.",
+  invalid: "That doesn't look like a valid number for the selected country.",
+};
+
+/* ─── Country Picker (searchable dropdown) ─── */
+type CountryPickerProps = {
+  country: CountryCode;
+  onSelect: (code: CountryCode) => void;
+  disabled?: boolean;
+};
+
+const CountryPicker = ({ country, onSelect, disabled }: CountryPickerProps) => {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const selected = COUNTRY_BY_CODE[country] ?? COUNTRIES[0];
+
+  useEffect(() => {
+    if (!open) return;
+    const handlePointer = (e: PointerEvent) => {
+      const target = e.target as Node | null;
+      if (popoverRef.current?.contains(target)) return;
+      if (buttonRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", handlePointer);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointer);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    setQuery("");
+    const raf = requestAnimationFrame(() => searchRef.current?.focus());
+    return () => cancelAnimationFrame(raf);
+  }, [open]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return COUNTRIES;
+    return COUNTRIES.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.dialCode.includes(q) ||
+        c.code.toLowerCase().includes(q),
+    );
+  }, [query]);
+
+  const handleToggle = () => {
+    if (disabled) return;
+    setOpen((prev) => !prev);
+  };
+
+  const handleSelect = (code: CountryCode) => {
+    onSelect(code);
+    setOpen(false);
+    buttonRef.current?.focus();
+  };
+
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 16 11"
-      preserveAspectRatio="xMidYMid meet"
-      aria-hidden="true"
-      className="block shrink-0"
-      style={{ width, height, minWidth: width, minHeight: height, borderRadius: 2, overflow: "hidden", boxShadow: "0 0 0 1px rgba(17,24,39,0.08)" }}
-    >
-      <rect width="16" height="11" fill="#B22234" />
-      <rect y="1" width="16" height="1" fill="#FFFFFF" />
-      <rect y="3" width="16" height="1" fill="#FFFFFF" />
-      <rect y="5" width="16" height="1" fill="#FFFFFF" />
-      <rect y="7" width="16" height="1" fill="#FFFFFF" />
-      <rect y="9" width="16" height="1" fill="#FFFFFF" />
-      <rect width="7" height="6" fill="#3C3B6E" />
-    </svg>
+    <div className="relative">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={`Select country. Current: ${selected.name} ${selected.dialCode}`}
+        disabled={disabled}
+        onClick={handleToggle}
+        className="flex items-center gap-1.5 px-4 h-full shrink-0 select-none disabled:opacity-60"
+        style={{ borderRight: "1.5px solid #E0D6C8" }}
+      >
+        <span className="text-base leading-none" aria-hidden="true">
+          {selected.flag}
+        </span>
+        <span className="text-sm font-bold" style={{ color: "#111827" }}>
+          {selected.dialCode}
+        </span>
+        <ChevronDown
+          className="h-3.5 w-3.5 transition-transform"
+          style={{
+            color: "#7A6E63",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+          aria-hidden="true"
+        />
+      </button>
+
+      {open && (
+        <div
+          ref={popoverRef}
+          role="dialog"
+          aria-label="Select country"
+          className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-white shadow-xl z-50 overflow-hidden"
+          style={{ border: "1.5px solid #E0D6C8" }}
+        >
+          <div className="p-2" style={{ borderBottom: "1px solid #E0D6C8" }}>
+            <label htmlFor="country-search" className="sr-only">
+              Search countries
+            </label>
+            <input
+              id="country-search"
+              ref={searchRef}
+              type="search"
+              autoComplete="off"
+              placeholder="Search country or code"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full px-3 py-2 text-sm rounded-lg outline-none"
+              style={{ background: "#F5F7FA", color: "#111827" }}
+            />
+          </div>
+
+          <ul
+            role="listbox"
+            aria-label="Countries"
+            className="max-h-64 overflow-y-auto py-1"
+          >
+            {filtered.length === 0 ? (
+              <li
+                className="px-4 py-3 text-sm"
+                style={{ color: "#7A6E63" }}
+              >
+                No matches
+              </li>
+            ) : (
+              filtered.map((c) => {
+                const isSelected = c.code === country;
+                return (
+                  <li key={c.code}>
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => handleSelect(c.code)}
+                      className="w-full flex items-center gap-3 px-4 py-2 text-sm text-left hover:bg-[#F5F7FA] focus:bg-[#F5F7FA] focus:outline-none"
+                      style={{
+                        color: "#111827",
+                        background: isSelected
+                          ? "rgba(217,7,28,0.06)"
+                          : undefined,
+                      }}
+                    >
+                      <span className="text-base leading-none" aria-hidden="true">
+                        {c.flag}
+                      </span>
+                      <span className="flex-1 truncate">{c.name}</span>
+                      <span
+                        className="tabular-nums"
+                        style={{ color: "#7A6E63" }}
+                      >
+                        {c.dialCode}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -313,16 +579,103 @@ const buildTrypsSmsUrl = () => {
   return `sms:${TRYPS_SMS_NUMBER}${separator}body=${encodeURIComponent(TRYPS_SMS_BODY)}`;
 };
 
+/* ─── Unified Tryps SMS CTA ─── */
+type TrypsSmsCTAProps = {
+  className?: string;
+  style?: CSSProperties;
+  children: ReactNode;
+  ariaLabel?: string;
+  onMouseEnter?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+};
+const TrypsSmsCTA = ({ className = "", style, children, ariaLabel, onMouseEnter, onMouseLeave }: TrypsSmsCTAProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      window.location.href = buildTrypsSmsUrl();
+    }
+  };
+  return (
+    <a
+      href="#waitlist"
+      onClick={handleClick}
+      className={className}
+      style={style}
+      aria-label={ariaLabel}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {children}
+    </a>
+  );
+};
+
 /* ─── Waitlist Form ─── */
 const PhoneCaptureHero = () => {
+  const [country, setCountry] = useState<CountryCode>("US");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  useEffect(() => {
+    const detected = detectDefaultCountry();
+    if (detected !== "US") setCountry(detected);
+  }, []);
+
+  const parsed = useMemo(
+    () => parsePhoneNumberFromString(phone, country),
+    [phone, country],
+  );
+  const validity = useMemo(
+    () => getPhoneValidity(phone, country),
+    [phone, country],
+  );
+  const isValid = validity === "valid";
+  const placeholder = useMemo(
+    () => getPlaceholderForCountry(country),
+    [country],
+  );
+  const maxInputLength = useMemo(
+    () => getMaxInputLengthForCountry(country),
+    [country],
+  );
+  const selectedCountry = COUNTRY_BY_CODE[country] ?? COUNTRIES[0];
+
+  const showInvalid = touched && validity !== "empty" && validity !== "valid";
+  const hintMessage =
+    validity === "empty" || validity === "valid"
+      ? null
+      : PHONE_HINT_MESSAGES[validity];
+
+  const handlePhoneChange = (value: string) => {
+    // Let libphonenumber-js decide what "too long" means for the selected
+    // country and trim accordingly. The <input> can never hold more digits
+    // than the country allows — regardless of keystroke, paste, or autofill.
+    const hasLeadingPlus = value.trimStart().startsWith("+");
+    const digitsOnly = value.replace(/\D/g, "");
+    const clampedDigits = clampDigitsToCountry(digitsOnly, country, hasLeadingPlus);
+    const source = hasLeadingPlus ? `+${clampedDigits}` : clampedDigits;
+    setPhone(formatPhoneForCountry(source, country));
+    if (error) setError("");
+  };
+
+  const handleCountryChange = (next: CountryCode) => {
+    setCountry(next);
+    setError("");
+    const digits = phone.replace(/\D/g, "");
+    const clampedDigits = clampDigitsToCountry(digits, next, false);
+    setPhone(clampedDigits ? formatPhoneForCountry(clampedDigits, next) : "");
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (phone.replace(/\D/g, "").length < 6) return;
+    setTouched(true);
+    if (!parsed || !isValid) {
+      setError("Please enter a valid phone number for the selected country.");
+      return;
+    }
     setLoading(true);
     setError("");
 
@@ -330,7 +683,13 @@ const PhoneCaptureHero = () => {
       void fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ countryCode: "+1", phoneNumber: phone, intent: "open_messages" }),
+        body: JSON.stringify({
+          countryCode: `+${getCountryCallingCode(country)}`,
+          phoneNumber: parsed.nationalNumber,
+          e164: parsed.number,
+          country,
+          intent: "open_messages",
+        }),
         keepalive: true,
       }).catch(() => {});
     } catch {
@@ -392,46 +751,80 @@ const PhoneCaptureHero = () => {
           Your mobile number to join the TRYPS group trip planning app waitlist
         </label>
 
-        <div className="flex items-stretch bg-white rounded-full overflow-hidden shadow-md" style={{ border: "1.5px solid #E0D6C8" }}>
-          <div className="flex items-center gap-1.5 px-4 shrink-0 select-none" style={{ borderRight: "1.5px solid #E0D6C8" }}>
-            <USFlagSVG />
-            <span className="text-sm font-bold" style={{ color: "#111827" }}>+1</span>
-          </div>
+        <div
+          className="flex items-stretch bg-white rounded-full overflow-visible shadow-md transition-colors"
+          style={{
+            border: `1.5px solid ${showInvalid ? "#D14343" : "#E0D6C8"}`,
+          }}
+        >
+          <CountryPicker
+            country={country}
+            onSelect={handleCountryChange}
+            disabled={loading}
+          />
 
           <input
             id="hero-phone"
             type="tel"
-            autoComplete="tel"
-            inputMode="numeric"
-            placeholder="555 123 4567"
+            autoComplete="tel-national"
+            inputMode="tel"
+            placeholder={placeholder}
             value={phone}
-            onChange={e => setPhone(e.target.value)}
-            className="flex-1 px-4 py-3.5 text-sm outline-none bg-transparent"
+            onChange={(e) => handlePhoneChange(e.target.value)}
+            onBlur={() => setTouched(true)}
+            aria-invalid={showInvalid}
+            aria-describedby={
+              error
+                ? "hero-phone-error"
+                : hintMessage
+                  ? "hero-phone-hint"
+                  : undefined
+            }
+            maxLength={maxInputLength}
+            className="flex-1 min-w-0 px-4 py-3.5 text-sm outline-none bg-transparent"
             style={{ color: "#111827" }}
             required
-            minLength={6}
             disabled={loading}
           />
 
           <button
             type="submit"
-            aria-label="Join TRYPS — opens Messages to text Hey Tryps to the TRYPS AI planner"
-            disabled={loading}
+            aria-label={`Join TRYPS — opens Messages to text Hey Tryps to the TRYPS AI planner. Sending from ${selectedCountry.name} ${selectedCountry.dialCode}.`}
+            disabled={loading || !isValid}
             className="text-white text-sm font-black px-6 py-3 rounded-full m-1 transition-all shrink-0 shadow-lg disabled:opacity-60 hover:scale-105 active:scale-95"
             style={{ background: "#D9071C", boxShadow: "0 4px 20px rgba(217,7,28,0.30)" }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#B00618")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#D9071C")}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#B00618")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#D9071C")}
           >
             {loading ? "..." : "Join"}
           </button>
         </div>
 
-        {error && (
-          <p className="text-xs pl-2 flex items-center gap-1.5" style={{ color: "#D14343" }}>
+        {error ? (
+          <p
+            id="hero-phone-error"
+            role="alert"
+            className="text-xs pl-2 flex items-center gap-1.5"
+            style={{ color: "#D14343" }}
+          >
             <XCircle className="h-3.5 w-3.5 shrink-0" />
             <span>{error}</span>
           </p>
-        )}
+        ) : hintMessage ? (
+          <p
+            id="hero-phone-hint"
+            aria-live="polite"
+            className="text-xs pl-2 flex items-center gap-1.5"
+            style={{ color: showInvalid ? "#D14343" : "#7A6E63" }}
+          >
+            {showInvalid ? (
+              <XCircle className="h-3.5 w-3.5 shrink-0" />
+            ) : (
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#7A6E63" }} aria-hidden="true" />
+            )}
+            <span>{hintMessage}</span>
+          </p>
+        ) : null}
 
         <p className="text-xs pl-2 flex items-center gap-1.5" style={{ color: "#7A6E63" }}>
           <span aria-hidden="true">💬</span>
@@ -457,69 +850,11 @@ const PhoneCaptureHero = () => {
         </div>
         <span className="text-xs tabular-nums" style={{ color: "#7A6E63" }}>500+ groups waiting</span>
       </div>
-
-      <div role="group" aria-label="TRYPS iOS and Android apps — coming soon" className="flex flex-col gap-2 pt-1">
-        <div className="flex flex-wrap gap-3">
-          <a
-            href="#waitlist"
-            aria-label="Download TRYPS on the App Store — iOS app coming soon, join the waitlist"
-            aria-disabled="true"
-            tabIndex={-1}
-            onClick={e => e.preventDefault()}
-            className="flex items-center gap-2.5 rounded-xl px-4 py-2.5 select-none opacity-60 cursor-not-allowed"
-            style={{ background: "#A09588", minWidth: 130 }}
-          >
-            <svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true">
-              <path
-                d="M14.94 11.44c-.02-2.23 1.82-3.31 1.9-3.36-1.04-1.52-2.66-1.73-3.23-1.75-1.37-.14-2.69.81-3.39.81-.7 0-1.77-.79-2.91-.77-1.49.02-2.87.87-3.63 2.2-1.56 2.7-.4 6.7 1.11 8.89.74 1.07 1.62 2.27 2.78 2.23 1.12-.05 1.54-.72 2.89-.72 1.35 0 1.74.72 2.91.7 1.2-.02 1.96-1.08 2.69-2.16.85-1.24 1.2-2.44 1.22-2.5-.03-.01-2.34-.9-2.34-3.57z"
-                fill="white"
-              />
-              <path
-                d="M12.72 4.28c.62-.75 1.03-1.79.92-2.83-.89.04-1.97.59-2.6 1.33-.57.66-1.07 1.71-.94 2.72.99.08 2-.5 2.62-1.22z"
-                fill="white"
-              />
-            </svg>
-            <div className="text-left">
-              <p className="text-white text-xs font-medium leading-none mb-0.5">Download on the</p>
-              <p className="text-white text-sm font-bold leading-none">App Store</p>
-            </div>
-          </a>
-
-          <a
-            href="#waitlist"
-            aria-label="Get TRYPS on Google Play — Android app coming soon, join the waitlist"
-            aria-disabled="true"
-            tabIndex={-1}
-            onClick={e => e.preventDefault()}
-            className="flex items-center gap-2.5 rounded-xl px-4 py-2.5 select-none opacity-60 cursor-not-allowed"
-            style={{ background: "#A09588", minWidth: 130 }}
-          >
-            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true">
-              <path d="M1 1.27v17.46L10.08 10 1 1.27z" fill="white" opacity="0.9" />
-              <path d="M13.5 6.8L3.2 1 10.08 10l3.42-3.2z" fill="white" opacity="0.7" />
-              <path d="M13.5 13.2L10.08 10 3.2 19l10.3-5.8z" fill="white" opacity="0.8" />
-              <path d="M16.5 8.5c.83.46.83 1.54 0 2L13.5 12.2 10.08 10l3.42-3.2 3 1.7z" fill="white" />
-            </svg>
-            <div className="text-left">
-              <p className="text-white text-xs font-medium leading-none mb-0.5 uppercase tracking-wide">Get it on</p>
-              <p className="text-white text-sm font-bold leading-none">Google Play</p>
-            </div>
-          </a>
-        </div>
-
-        <p className="text-xs pl-1" style={{ color: "#A09588" }}>
-          iOS &amp; Android apps coming soon —{" "}
-          <a href="#waitlist" className="font-semibold hover:underline" style={{ color: "#D9071C" }}>
-            join the waitlist
-          </a>{" "}
-          to be first.
-        </p>
-      </div>
     </div>
   );
 };
 
-/* ─── Hero Phone Mockup ─── */
+/* ─── Hero Phone Mockup (primary) ─── */
 const HeroMockup = () => (
   <div className="relative w-full max-w-[280px] mx-auto">
     <div
@@ -538,42 +873,78 @@ const HeroMockup = () => (
   </div>
 );
 
+/* ─── Secondary UI Screen (layered behind primary) ─── */
+type SecondaryScreenProps = { src: string; alt: string; tilt?: string; width?: number };
+const SecondaryScreen = ({ src, alt, tilt = "-8deg", width = 180 }: SecondaryScreenProps) => (
+  <div
+    className="inline-block"
+    style={{
+      transform: `rotate(${tilt})`,
+      filter: "drop-shadow(0 18px 40px rgba(61,53,48,0.22))",
+    }}
+    aria-hidden="true"
+  >
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={Math.round((width * 607) / 280)}
+      loading="eager"
+      className="block"
+    />
+  </div>
+);
+
 /* ─── Hero Scrapbook Collage ─── */
 const HeroCollage = () => (
-  <div className="relative w-full max-w-[480px] mx-auto min-h-[560px]">
-    <div className="absolute inset-0 flex items-center justify-center pt-2">
+  <div className="relative w-full max-w-[520px] mx-auto min-h-[600px]">
+    {/* Secondary screen — itinerary peeks from behind left */}
+    <div className="absolute top-20 -left-6 sm:-left-10 z-0 hidden sm:block">
+      <SecondaryScreen
+        src="/images/app/screen-itinerary.png"
+        alt="TRYPS app itinerary screen"
+        tilt="-10deg"
+        width={170}
+      />
+    </div>
+
+    {/* Secondary screen — expenses peeks from behind right */}
+    <div className="absolute bottom-8 -right-4 sm:-right-10 z-0 hidden sm:block">
+      <SecondaryScreen
+        src="/images/app/screen-expenses.png"
+        alt="TRYPS app expense splitting screen"
+        tilt="9deg"
+        width={160}
+      />
+    </div>
+
+    {/* Primary phone — centered, on top */}
+    <div className="absolute inset-0 flex items-center justify-center pt-2 z-10">
       <HeroMockup />
     </div>
 
-    <div
-      className="absolute top-4 right-0 sm:-right-2 z-20"
-      style={{ ["--tilt" as string]: "4deg" }}
-    >
+    {/* iMessage thread — top right */}
+    <div className="absolute top-4 right-0 sm:-right-2 z-20">
       <IMessageBubble side="out" tilt="4deg">
         hey — Amalfi in June?
       </IMessageBubble>
     </div>
 
-    <div
-      className="absolute top-24 right-4 sm:right-0 z-20"
-      style={{ ["--tilt" as string]: "-2deg" }}
-    >
+    <div className="absolute top-24 right-4 sm:right-0 z-20">
       <IMessageBubble side="in" tilt="-2deg">
         i'm in if we pick dates this week
       </IMessageBubble>
     </div>
 
+    {/* Sticky note — bottom left */}
     <div className="absolute bottom-16 -left-2 sm:-left-4 z-20">
       <StickyNote tone="yellow" tilt="-7deg" className="animate-tilt" style={{ ["--tilt" as unknown as string]: "-7deg" } as CSSProperties}>
         Lock dates <br /> by Sun ✱
       </StickyNote>
     </div>
 
-    <div className="absolute top-40 -left-4 sm:-left-8 z-10 animate-tilt" style={{ ["--tilt" as unknown as string]: "-10deg" } as CSSProperties}>
-      <CalendarPage month="JUN" day="14" tilt="-10deg" />
-    </div>
-
-    <div className="absolute -bottom-4 right-0 sm:right-2 z-10 animate-tilt" style={{ ["--tilt" as unknown as string]: "6deg" } as CSSProperties}>
+    {/* Polaroid — bottom right */}
+    <div className="absolute -bottom-4 right-0 sm:right-2 z-20 animate-tilt" style={{ ["--tilt" as unknown as string]: "6deg" } as CSSProperties}>
       <Polaroid
         tilt="6deg"
         width={150}
@@ -585,7 +956,8 @@ const HeroCollage = () => (
       </Polaroid>
     </div>
 
-    <div className="absolute top-60 -right-2 sm:right-8 z-10 hidden md:block animate-tilt" style={{ ["--tilt" as unknown as string]: "8deg" } as CSSProperties}>
+    {/* Boarding pass — mid right, desktop only */}
+    <div className="absolute top-72 -right-2 sm:right-10 z-20 hidden md:block animate-tilt" style={{ ["--tilt" as unknown as string]: "8deg" } as CSSProperties}>
       <BoardingPass from="NYC" to="NAP" date="JUN 14 · 8:40 AM" tilt="8deg" />
     </div>
   </div>
@@ -819,7 +1191,7 @@ const RecipesSection = () => (
 
     <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <SectionEyebrow n="07" label="TRYPS RECIPES" />
+        <SectionEyebrow n="05" label="TRYPS RECIPES" />
         <h2
           id="recipes-title"
           className="font-black tracking-tight mb-4"
@@ -960,7 +1332,7 @@ const IntegrationsSection = () => {
       style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 text-center">
-        <SectionEyebrow n="09" label="PLAYS NICELY WITH" />
+        <SectionEyebrow n="07" label="PLAYS NICELY WITH" />
         <h2
           id="integrations-title"
           className="font-black tracking-tight mb-4"
@@ -1034,10 +1406,12 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <a
               href="#waitlist"
-              className="text-white font-bold text-sm px-5 py-2.5 rounded-full transition-all hover:scale-105 shadow-md"
+              className="text-white font-bold text-sm px-5 py-2.5 rounded-full transition-all hover:scale-105 shadow-md inline-flex items-center gap-1.5"
               style={{ background: "#D9071C", boxShadow: "0 4px 16px rgba(217,7,28,0.25)" }}
+              aria-label="Text Hey Tryps to start planning"
             >
-              Join waitlist
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              Text Hey Tryps
             </a>
             <button
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl transition-colors"
@@ -1090,11 +1464,12 @@ export default function Home() {
             <div className="mt-3 pt-4" style={{ borderTop: "1px solid rgba(224,214,200,0.6)" }}>
               <a
                 href="#waitlist"
-                className="flex justify-center w-full text-white font-bold text-base px-5 py-3.5 rounded-2xl shadow-md transition-all hover:scale-105"
+                className="flex justify-center items-center gap-2 w-full text-white font-bold text-base px-5 py-3.5 rounded-2xl shadow-md transition-all hover:scale-105"
                 style={{ background: "#D9071C" }}
                 onClick={() => setMenuOpen(false)}
               >
-                Join waitlist →
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                Text Hey Tryps →
               </a>
             </div>
           </div>
@@ -1122,14 +1497,6 @@ export default function Home() {
               <div className="pt-4 text-center lg:text-left">
                 <SectionEyebrow n="00" label="Say hey to TRYPS" className="mb-5" />
 
-                <p
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm mb-6 md:mb-8"
-                  style={{ background: "rgba(217,7,28,0.10)", color: "#D9071C", border: "1px solid rgba(217,7,28,0.18)" }}
-                >
-                  <Star className="h-4 w-4 fill-current" />
-                  Group trip planning app
-                </p>
-
                 <h1
                   id="hero-title"
                   className="font-black tracking-tight mb-5 md:mb-6 text-balance"
@@ -1141,32 +1508,56 @@ export default function Home() {
                   </span>
                 </h1>
 
-                <div
-                  className="quick-answer rounded-2xl px-5 py-4 mb-5 max-w-lg mx-auto lg:mx-0 text-left"
-                  role="note"
-                  aria-label="What is TRYPS"
-                  style={{ background: "rgba(217,7,28,0.08)", border: "1px solid rgba(217,7,28,0.15)" }}
-                >
-                  <p className="text-sm font-black uppercase tracking-widest mb-1" style={{ color: "#D9071C", letterSpacing: "0.18em" }}>What is TRYPS?</p>
-                  <p className="text-base leading-relaxed" style={{ color: "#111827" }}>
-                    TRYPS is a group trip planning app for friends that helps you choose dates, build a shared itinerary, and split expenses — all in one place. No app download or sign-up required for anyone in the group.
-                  </p>
-                </div>
-
-                <div className="flex items-start justify-center lg:justify-start gap-3 max-w-lg mx-auto lg:mx-0 mb-8">
-                  <MessageCircle className="h-5 w-5 shrink-0 mt-0.5" style={{ color: "#D9071C" }} />
-                  <p className="text-base leading-relaxed" style={{ color: "#7A6E63" }}>
-                    No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.
-                  </p>
-                </div>
+                <p className="text-base md:text-lg leading-relaxed mb-7 max-w-lg mx-auto lg:mx-0" style={{ color: "#7A6E63" }}>
+                  TRYPS gets your group to lock dates, build a shared itinerary, and split expenses — one link, no downloads, no sign-ups.
+                </p>
 
                 <div className="flex justify-center lg:justify-start">
                   <PhoneCaptureHero />
                 </div>
 
-                <p className="text-sm leading-relaxed text-center lg:text-left" style={{ color: "#7A6E63" }}>
-                  Trusted by friend groups planning birthdays, bachelor trips, reunions, weekend getaways, and long vacations.
-                </p>
+                {/* Metric strip + press row — social proof in first viewport */}
+                <div
+                  className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 mt-2 mb-5"
+                  aria-label="TRYPS usage metrics"
+                >
+                  {[
+                    { n: "500+", label: "groups planning" },
+                    { n: "12k+", label: "messages routed" },
+                    { n: "NYC",  label: "built in" },
+                  ].map((m, i) => (
+                    <div key={m.label} className="flex items-center gap-2">
+                      {i > 0 && (
+                        <span className="w-1 h-1 rounded-full" style={{ background: "#A09588" }} aria-hidden="true" />
+                      )}
+                      <span className="text-sm font-black tabular-nums" style={{ color: "#111827" }}>{m.n}</span>
+                      <span className="text-xs" style={{ color: "#7A6E63" }}>{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2"
+                  aria-label="As seen on"
+                >
+                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: "#A09588", letterSpacing: "0.22em" }}>
+                    As seen on
+                  </span>
+                  {[
+                    { label: "Product Hunt" },
+                    { label: "Reddit r/travel" },
+                    { label: "Indie Hackers" },
+                    { label: "X / Twitter" },
+                  ].map(p => (
+                    <span
+                      key={p.label}
+                      className="text-xs font-black uppercase tracking-wider"
+                      style={{ color: "#A09588", letterSpacing: "0.14em", filter: "grayscale(1)", opacity: 0.75 }}
+                    >
+                      {p.label}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Right — scrapbook collage */}
@@ -1180,183 +1571,6 @@ export default function Home() {
         {/* ── TRUST MARQUEE ── */}
         <TrustMarquee />
 
-        {/* ── FEATURES ── */}
-        <section
-          id="features"
-          aria-labelledby="features-title"
-          className="py-16 md:py-28"
-          style={{ background: "#FFFFFF", borderTop: "1px solid rgba(224,214,200,0.4)" }}
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 md:mb-18">
-              <SectionEyebrow n="01" label="Everything you need" />
-              <h2
-                id="features-title"
-                className="font-black tracking-tight mb-4"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#111827" }}
-              >
-                Everything your group needs — without the chaos
-              </h2>
-            </div>
-
-            <div className="mb-8">
-              {/* Featured card with embedded iMessage preview */}
-              <div
-                className="relative rounded-4xl p-8 md:p-10 mb-6 flex flex-col md:flex-row gap-7 items-start md:items-center transition-all duration-300 hover:shadow-xl overflow-hidden"
-                style={{ background: "#F5F7FA", border: "1.5px solid #E0D6C8" }}
-              >
-                <div className="flex-1 flex flex-col md:flex-row gap-7 items-start md:items-center">
-                  <div
-                    className="h-16 w-16 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg"
-                    style={{ background: "linear-gradient(135deg, #D9071C, #E85050)" }}
-                  >
-                    <MessageCircle className="h-8 w-8" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-black uppercase tracking-widest mb-2 block tabular-nums" style={{ color: "#D9071C", letterSpacing: "0.22em" }}>01</span>
-                    <h3 className="text-2xl font-black mb-2" style={{ color: "#111827" }}>Get everyone in instantly</h3>
-                    <p className="text-base leading-relaxed" style={{ color: "#7A6E63" }}>
-                      Send one link. No apps, no accounts, no "wait, what are we using?" — your whole group is in and contributing in seconds.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="hidden md:flex flex-col gap-2 shrink-0 min-w-[220px]" aria-hidden="true">
-                  <IMessageBubble side="in" tilt="-1deg">Join the Amalfi trip →</IMessageBubble>
-                  <IMessageBubble side="out" tilt="1deg" className="self-end">omw, tell Sam and Priya</IMessageBubble>
-                </div>
-              </div>
-
-              {/* Grid of remaining 4 */}
-              <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0">
-                {[
-                  { n: "02", title: "Lock dates in one round",          desc: "One poll. Everyone responds. Dates decided — no endless back-and-forth.", color: "#4A90D9", icon: Calendar,   accent: "calendar" as const },
-                  { n: "03", title: "Keep the plan in one place",       desc: "A shared itinerary everyone can see and update — no confusion, no scattered notes.", color: "#34D399", icon: MapPin,     accent: "polaroid" as const },
-                  { n: "04", title: "No awkward money conversations",   desc: "Track who paid what and who owes whom — settle up cleanly at the end.",             color: "#8B5CF6", icon: Wallet,     accent: "pass"     as const },
-                  { n: "05", title: "Know what everyone wants",         desc: "Capture preferences early so you don't plan a trip half the group isn't excited about.", color: "#EC4899", icon: Globe, accent: "sticky" as const },
-                ].map(f => (
-                  <li
-                    key={f.title}
-                    className="relative rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg overflow-hidden"
-                    style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}
-                  >
-                    <div className="absolute top-3 right-3 opacity-80" aria-hidden="true">
-                      {f.accent === "calendar" && <CalendarPage month="JUN" day="14" tilt="12deg" size={52} />}
-                      {f.accent === "polaroid" && (
-                        <div className="inline-block p-1.5 pb-3 shadow-md" style={{ background: "#FFFDF8", borderRadius: 3, transform: "rotate(8deg)" }}>
-                          <div className="w-12 h-12 rounded-sm" style={{ background: "linear-gradient(135deg, #34D399 0%, #4A90D9 100%)" }} />
-                        </div>
-                      )}
-                      {f.accent === "pass" && (
-                        <span className="inline-block px-2 py-1 rounded-md text-[9px] font-black tabular-nums text-white shadow-md" style={{ background: "#8B5CF6", transform: "rotate(8deg)", letterSpacing: "0.12em" }}>$1,680</span>
-                      )}
-                      {f.accent === "sticky" && (
-                        <span
-                          className="inline-block px-2 py-1.5 text-[10px] font-bold shadow-md"
-                          style={{ background: "#FFE875", color: "#111827", transform: "rotate(10deg)" }}
-                        >
-                          vibe: chill
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="h-11 w-11 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: `${f.color}18` }}>
-                      <f.icon className="h-5 w-5" style={{ color: f.color }} />
-                    </div>
-                    <span className="text-xs font-black uppercase tracking-widest mb-2 block tabular-nums" style={{ color: f.color, letterSpacing: "0.22em" }}>{f.n}</span>
-                    <h3 className="text-base font-black mb-2" style={{ color: "#111827" }}>{f.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#7A6E63" }}>{f.desc}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="text-center rounded-4xl p-7 md:p-10" style={{ background: "#F5F7FA", border: "1.5px solid #E0D6C8" }}>
-              <p className="text-xl font-black mb-4" style={{ color: "#111827" }}>Start your group trip</p>
-              <a
-                href="/start"
-                className="inline-flex items-center gap-2 text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg transition-all hover:scale-105"
-                style={{ background: "#D9071C", boxShadow: "0 6px 24px rgba(217,7,28,0.28)" }}
-              >
-                Create trip
-                <ArrowRight className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ── HOW IT WORKS ── */}
-        <section
-          id="how-it-works"
-          aria-labelledby="how-title"
-          className="py-16 md:py-28 relative overflow-hidden"
-          style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12 md:mb-18">
-              <SectionEyebrow n="02" label="How it works" />
-              <h2
-                id="how-title"
-                className="font-black tracking-tight"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#111827" }}
-              >
-                From "we should plan something" to booked and ready
-              </h2>
-            </div>
-
-            <div className="relative">
-              {/* Dashed flight path */}
-              <svg
-                className="hidden lg:block absolute left-[6%] right-[6%] pointer-events-none"
-                style={{ top: 42, width: "88%", height: 40 }}
-                viewBox="0 0 1000 40"
-                preserveAspectRatio="none"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M10 20 Q 250 -10 500 20 T 990 20"
-                  stroke="#D9071C"
-                  strokeWidth="1.5"
-                  strokeDasharray="5 7"
-                  strokeOpacity="0.4"
-                  fill="none"
-                />
-              </svg>
-
-              <ol className="grid lg:grid-cols-4 gap-6 list-none p-0 relative">
-                {[
-                  { n: "1", title: "Create and invite",     desc: "Start a trip in seconds. Share a link or iMessage so everyone joins instantly." },
-                  { n: "2", title: "Lock dates fast",       desc: "Run one availability poll so your group can pick dates without endless back-and-forth." },
-                  { n: "3", title: "Plan together",         desc: "Add places, stays, activities, and notes to one shared itinerary everyone can update." },
-                  { n: "4", title: "Split expenses simply", desc: "Track shared costs during the trip so everyone can see balances and settle up cleanly." },
-                ].map((item, idx) => (
-                  <li
-                    key={item.n}
-                    className="relative rounded-4xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-lg group"
-                    style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}
-                  >
-                    <div
-                      className="relative rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-5 border-4 border-white shadow-md transition-transform group-hover:scale-110 tabular-nums"
-                      style={{
-                        background: idx === 0 ? "#D9071C" : "rgba(217,7,28,0.10)",
-                        color: idx === 0 ? "#FFFFFF" : "#D9071C",
-                        width: 60,
-                        height: 60,
-                      }}
-                      aria-hidden="true"
-                    >
-                      {idx === 0 ? <Plane className="h-6 w-6" /> : item.n}
-                    </div>
-                    <h3 className="text-lg font-black mb-3" style={{ color: "#111827" }}>{item.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#7A6E63" }}>{item.desc}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
-
         {/* ── PROBLEM VS SOLUTION ── */}
         <section
           aria-labelledby="problem-solution-title"
@@ -1365,7 +1579,7 @@ export default function Home() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-16">
-              <SectionEyebrow n="03" label="The coordination tax" />
+              <SectionEyebrow n="01" label="The coordination tax" />
               <h2
                 id="problem-solution-title"
                 className="font-black tracking-tight"
@@ -1488,55 +1702,180 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── COMPARISON ── */}
+        {/* ── FEATURES ── */}
         <section
-          id="comparison"
-          aria-labelledby="comparison-title"
+          id="features"
+          aria-labelledby="features-title"
           className="py-16 md:py-28"
-          style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
+          style={{ background: "#FFFFFF", borderTop: "1px solid rgba(224,214,200,0.4)" }}
         >
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-10 md:mb-14">
-              <SectionEyebrow n="04" label="vs Everything else" />
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 md:mb-18">
+              <SectionEyebrow n="02" label="Everything you need" />
               <h2
-                id="comparison-title"
-                className="font-black tracking-tight"
+                id="features-title"
+                className="font-black tracking-tight mb-4"
                 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#111827" }}
               >
-                Why not just use WhatsApp, Google Sheets, or Wanderlog?
+                Everything your group needs — without the chaos
               </h2>
             </div>
 
-            <ul className="space-y-4 mb-10 list-none p-0">
-              {[
-                { tool: "WhatsApp",     verdict: "great for chatting, but not built for locking dates, structuring trip plans, or tracking shared expenses. Important details disappear in the thread, and decisions often stall because nobody owns the workflow." },
-                { tool: "Google Sheets", verdict: "flexible, but manual and fragmented. Someone still has to design the planning system, update it, and chase the group to keep it accurate." },
-                { tool: "Splitwise",    verdict: "useful for settling costs, but it only solves one part of the trip. It does not help your group decide when to go, what to do, or how the plan comes together." },
-                { tool: "Wanderlog",    verdict: "useful for itinerary planning, but not designed around group alignment first. TRYPS is built around the coordination problem: getting friends to decide, commit, and move forward together." },
-              ].map(row => (
-                <li
-                  key={row.tool}
-                  className="flex items-stretch rounded-2xl overflow-hidden shadow-sm"
-                  style={{ background: "#FFFDF8", border: "1.5px solid #E0D6C8" }}
-                >
+            <div className="mb-8">
+              {/* Featured card with embedded iMessage preview */}
+              <div
+                className="relative rounded-4xl p-8 md:p-10 mb-6 flex flex-col md:flex-row gap-7 items-start md:items-center transition-all duration-300 hover:shadow-xl overflow-hidden"
+                style={{ background: "#F5F7FA", border: "1.5px solid #E0D6C8" }}
+              >
+                <div className="flex-1 flex flex-col md:flex-row gap-7 items-start md:items-center">
                   <div
-                    className="px-5 py-5 flex items-center justify-center shrink-0 w-32 md:w-40"
-                    style={{ background: "rgba(217,7,28,0.06)", borderRight: "1.5px dashed rgba(217,7,28,0.25)" }}
+                    className="h-16 w-16 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #D9071C, #E85050)" }}
                   >
-                    <span className="text-xs md:text-sm font-black uppercase tracking-widest text-center" style={{ color: "#D9071C", letterSpacing: "0.14em" }}>
-                      {row.tool}
-                    </span>
+                    <MessageCircle className="h-8 w-8" />
                   </div>
-                  <p className="px-5 md:px-7 py-5 leading-relaxed text-sm md:text-base" style={{ color: "#7A6E63" }}>
-                    {row.verdict}
-                  </p>
-                </li>
-              ))}
-            </ul>
+                  <div>
+                    <span className="text-xs font-black uppercase tracking-widest mb-2 block tabular-nums" style={{ color: "#D9071C", letterSpacing: "0.22em" }}>01</span>
+                    <h3 className="text-2xl font-black mb-2" style={{ color: "#111827" }}>Get everyone in instantly</h3>
+                    <p className="text-base leading-relaxed" style={{ color: "#7A6E63" }}>
+                      Send one link. No apps, no accounts, no "wait, what are we using?" — your whole group is in and contributing in seconds.
+                    </p>
+                  </div>
+                </div>
 
-            <div className="rounded-3xl p-7 md:p-10 text-white text-center shadow-xl" style={{ background: "linear-gradient(145deg, #D9071C 0%, #B00618 100%)" }}>
-              <p className="text-lg font-medium mb-3 opacity-90">TRYPS combines planning, date coordination, and expense splitting in one shared flow built specifically for trips with friends.</p>
-              <p className="text-2xl font-black">One link. Everyone in. Dates locked. Plan built. Costs settled.</p>
+                <div className="hidden md:flex flex-col gap-2 shrink-0 min-w-[220px]" aria-hidden="true">
+                  <IMessageBubble side="in" tilt="-1deg">Join the Amalfi trip →</IMessageBubble>
+                  <IMessageBubble side="out" tilt="1deg" className="self-end">omw, tell Sam and Priya</IMessageBubble>
+                </div>
+              </div>
+
+              {/* Grid of remaining 4 */}
+              <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0">
+                {[
+                  { n: "02", title: "Lock dates in one round",          desc: "One poll. Everyone responds. Dates decided — no endless back-and-forth.", color: "#4A90D9", icon: Calendar,   accent: "calendar" as const },
+                  { n: "03", title: "Keep the plan in one place",       desc: "A shared itinerary everyone can see and update — no confusion, no scattered notes.", color: "#34D399", icon: MapPin,     accent: "polaroid" as const },
+                  { n: "04", title: "No awkward money conversations",   desc: "Track who paid what and who owes whom — settle up cleanly at the end.",             color: "#8B5CF6", icon: Wallet,     accent: "pass"     as const },
+                  { n: "05", title: "Know what everyone wants",         desc: "Capture preferences early so you don't plan a trip half the group isn't excited about.", color: "#EC4899", icon: Globe, accent: "sticky" as const },
+                ].map(f => (
+                  <li
+                    key={f.title}
+                    className="relative rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg overflow-hidden"
+                    style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}
+                  >
+                    <div className="absolute top-3 right-3 opacity-80" aria-hidden="true">
+                      {f.accent === "calendar" && <CalendarPage month="JUN" day="14" tilt="12deg" size={52} />}
+                      {f.accent === "polaroid" && (
+                        <div className="inline-block p-1.5 pb-3 shadow-md" style={{ background: "#FFFDF8", borderRadius: 3, transform: "rotate(8deg)" }}>
+                          <div className="w-12 h-12 rounded-sm" style={{ background: "linear-gradient(135deg, #34D399 0%, #4A90D9 100%)" }} />
+                        </div>
+                      )}
+                      {f.accent === "pass" && (
+                        <span className="inline-block px-2 py-1 rounded-md text-[9px] font-black tabular-nums text-white shadow-md" style={{ background: "#8B5CF6", transform: "rotate(8deg)", letterSpacing: "0.12em" }}>$1,680</span>
+                      )}
+                      {f.accent === "sticky" && (
+                        <span
+                          className="inline-block px-2 py-1.5 text-[10px] font-bold shadow-md"
+                          style={{ background: "#FFE875", color: "#111827", transform: "rotate(10deg)" }}
+                        >
+                          vibe: chill
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="h-11 w-11 rounded-xl flex items-center justify-center mb-4 shadow-sm" style={{ background: `${f.color}18` }}>
+                      <f.icon className="h-5 w-5" style={{ color: f.color }} />
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-widest mb-2 block tabular-nums" style={{ color: f.color, letterSpacing: "0.22em" }}>{f.n}</span>
+                    <h3 className="text-base font-black mb-2" style={{ color: "#111827" }}>{f.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: "#7A6E63" }}>{f.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="text-center rounded-4xl p-7 md:p-10" style={{ background: "#F5F7FA", border: "1.5px solid #E0D6C8" }}>
+              <p className="text-xl font-black mb-4" style={{ color: "#111827" }}>Start your group trip</p>
+              <TrypsSmsCTA
+                className="inline-flex items-center gap-2 text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg transition-all hover:scale-105"
+                style={{ background: "#D9071C", boxShadow: "0 6px 24px rgba(217,7,28,0.28)" }}
+                ariaLabel="Text Hey Tryps to start planning your group trip"
+              >
+                <MessageCircle className="h-5 w-5" aria-hidden="true" />
+                Text Hey Tryps
+                <ArrowRight className="h-5 w-5" />
+              </TrypsSmsCTA>
+            </div>
+          </div>
+        </section>
+
+        {/* ── HOW IT WORKS ── */}
+        <section
+          id="how-it-works"
+          aria-labelledby="how-title"
+          className="py-16 md:py-28 relative overflow-hidden"
+          style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
+        >
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12 md:mb-18">
+              <SectionEyebrow n="03" label="How it works" />
+              <h2
+                id="how-title"
+                className="font-black tracking-tight"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#111827" }}
+              >
+                From "we should plan something" to booked and ready
+              </h2>
+            </div>
+
+            <div className="relative">
+              {/* Dashed flight path */}
+              <svg
+                className="hidden lg:block absolute left-[6%] right-[6%] pointer-events-none"
+                style={{ top: 42, width: "88%", height: 40 }}
+                viewBox="0 0 1000 40"
+                preserveAspectRatio="none"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 20 Q 250 -10 500 20 T 990 20"
+                  stroke="#D9071C"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 7"
+                  strokeOpacity="0.4"
+                  fill="none"
+                />
+              </svg>
+
+              <ol className="grid lg:grid-cols-4 gap-6 list-none p-0 relative">
+                {[
+                  { n: "1", title: "Create and invite",     desc: "Start a trip in seconds. Share a link or iMessage so everyone joins instantly." },
+                  { n: "2", title: "Lock dates fast",       desc: "Run one availability poll so your group can pick dates without endless back-and-forth." },
+                  { n: "3", title: "Plan together",         desc: "Add places, stays, activities, and notes to one shared itinerary everyone can update." },
+                  { n: "4", title: "Split expenses simply", desc: "Track shared costs during the trip so everyone can see balances and settle up cleanly." },
+                ].map((item, idx) => (
+                  <li
+                    key={item.n}
+                    className="relative rounded-4xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-lg group"
+                    style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}
+                  >
+                    <div
+                      className="relative rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-5 border-4 border-white shadow-md transition-transform group-hover:scale-110 tabular-nums"
+                      style={{
+                        background: idx === 0 ? "#D9071C" : "rgba(217,7,28,0.10)",
+                        color: idx === 0 ? "#FFFFFF" : "#D9071C",
+                        width: 60,
+                        height: 60,
+                      }}
+                      aria-hidden="true"
+                    >
+                      {idx === 0 ? <Plane className="h-6 w-6" /> : item.n}
+                    </div>
+                    <h3 className="text-lg font-black mb-3" style={{ color: "#111827" }}>{item.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: "#7A6E63" }}>{item.desc}</p>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </section>
@@ -1549,7 +1888,7 @@ export default function Home() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-16">
-              <SectionEyebrow n="05" label="Real trips" />
+              <SectionEyebrow n="04" label="Real trips" />
               <h2
                 id="social-proof-title"
                 className="font-black tracking-tight"
@@ -1611,76 +1950,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── USE CASES ── */}
-        <section
-          id="use-cases"
-          aria-labelledby="use-cases-title"
-          className="py-16 md:py-28"
-          style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-10 md:mb-16">
-              <SectionEyebrow n="06" label="Built for" />
-              <h2
-                id="use-cases-title"
-                className="font-black tracking-tight"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: "#111827" }}
-              >
-                What types of group trips is TRYPS built for?
-              </h2>
-            </div>
-
-            <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 mb-12">
-              {[
-                { n: "1", title: "The trip stuck in the group chat",            desc: 'Turn "we should go" into an actual plan.' },
-                { n: "2", title: "The trip where no one agrees on dates",       desc: "One poll. Dates locked. Move forward." },
-                { n: "3", title: "The trip where one person does all the work", desc: "Everyone contributes. No single organiser burden." },
-                { n: "4", title: "The trip where money gets messy",             desc: "Expenses tracked automatically. No awkward follow-ups." },
-              ].map(uc => (
-                <li
-                  key={uc.n}
-                  className="relative rounded-4xl p-6 md:p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
-                  style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}
-                >
-                  <span
-                    className="absolute -top-3 left-6 px-3 py-1 text-[10px] font-black uppercase tracking-widest tabular-nums text-white"
-                    style={{ background: "#D9071C", borderRadius: 4, letterSpacing: "0.2em" }}
-                    aria-hidden="true"
-                  >
-                    USE CASE {uc.n}
-                  </span>
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 mt-2 text-xl font-black tabular-nums"
-                    style={{ background: "rgba(217,7,28,0.10)", color: "#D9071C" }}
-                    aria-hidden="true"
-                  >
-                    {uc.n}
-                  </div>
-                  <h3 className="text-base font-black mb-2" style={{ color: "#111827" }}>{uc.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#7A6E63" }}>{uc.desc}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div className="rounded-3xl p-7 md:p-10" style={{ background: "#FFFFFF", border: "1.5px solid #E0D6C8" }}>
-              <h3 className="text-xl font-black mb-5" style={{ color: "#111827" }}>Popular trip examples</h3>
-              <ul className="space-y-4 list-none p-0">
-                {[
-                  { href: "/plan-a-goa-trip-with-friends",         label: "Planning a Goa trip with friends?",         desc: "Lock dates, build your plan, and split costs faster than coordinating over chat." },
-                  { href: "/plan-a-manali-trip-with-friends",      label: "Planning a Manali trip with friends?",      desc: "Keep dates, stays, and travel plans aligned in one place." },
-                  { href: "/plan-a-pondicherry-trip-with-friends", label: "Planning a Pondicherry trip with friends?", desc: "Decide faster without bouncing across chats and spreadsheets." },
-                  { href: "/plan-a-coorg-trip-with-friends",       label: "Planning a Coorg trip with friends?",       desc: "Build the itinerary together and keep expense tracking simple." },
-                ].map(item => (
-                  <li key={item.href} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 text-sm">
-                    <a href={item.href} className="font-bold hover:underline shrink-0" style={{ color: "#D9071C" }}>{item.label}</a>
-                    <span style={{ color: "#7A6E63" }}>{item.desc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* ── RECIPES (NEW) ── */}
         <RecipesSection />
 
@@ -1692,7 +1961,7 @@ export default function Home() {
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-14">
-              <SectionEyebrow n="08" label="See it in action" color="#E85050" />
+              <SectionEyebrow n="06" label="See it in action" color="#E85050" />
               <h2
                 id="preview-title"
                 className="font-black tracking-tight mb-4 text-white"
@@ -1717,30 +1986,6 @@ export default function Home() {
         {/* ── INTEGRATIONS (NEW) ── */}
         <IntegrationsSection />
 
-        {/* ── ABOUT ── */}
-        <section
-          aria-labelledby="about-title"
-          className="py-16 md:py-28"
-          style={{ background: "#FFFFFF", borderTop: "1px solid rgba(224,214,200,0.4)" }}
-        >
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2
-              id="about-title"
-              className="font-black tracking-tight mb-5"
-              style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", lineHeight: 1.15, letterSpacing: "-0.02em", color: "#111827" }}
-            >
-              Built by people who care about making group trips actually happen
-            </h2>
-            <p className="text-lg leading-relaxed mb-4" style={{ color: "#7A6E63" }}>
-              TRYPS was built to solve the coordination mess that stops most friend trips before they start: too many chats, unclear dates, scattered plans, and awkward expense follow-ups.
-            </p>
-            <p className="text-base leading-relaxed" style={{ color: "#7A6E63" }}>
-              Learn more about the team, product vision, and company background on our{" "}
-              <a href="/about" className="font-bold hover:underline" style={{ color: "#D9071C" }}>About page</a>.
-            </p>
-          </div>
-        </section>
-
         {/* ── FAQ ── */}
         <section
           id="faq"
@@ -1750,7 +1995,7 @@ export default function Home() {
         >
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-10 md:mb-14">
-              <SectionEyebrow n="10" label="FAQ" />
+              <SectionEyebrow n="08" label="FAQ" />
               <h2
                 id="faq-title"
                 className="font-black tracking-tight"
@@ -1794,30 +2039,6 @@ export default function Home() {
                 </details>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* ── RESOURCES ── */}
-        <section
-          aria-labelledby="resources-title"
-          className="py-14 md:py-20"
-          style={{ background: "#FFFFFF", borderTop: "1px solid rgba(224,214,200,0.4)" }}
-        >
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 id="resources-title" className="text-2xl font-black mb-6" style={{ color: "#111827" }}>Helpful planning guides</h2>
-            <ul className="space-y-3 list-none p-0">
-              {[
-                { href: "/group-trip-planning-guide",       label: "How to plan a group trip without endless back-and-forth" },
-                { href: "/split-trip-expenses",             label: "How to split trip expenses with friends fairly" },
-                { href: "/weekend-trip-planning-checklist", label: "Weekend trip planning checklist for friend groups" },
-              ].map(item => (
-                <li key={item.href}>
-                  <a href={item.href} className="font-semibold hover:underline text-base" style={{ color: "#D9071C" }}>
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -1876,14 +2097,15 @@ export default function Home() {
             <p className="text-xl mb-12 font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>
               Create a trip. Share the link. Get everyone aligned in minutes.
             </p>
-            <a
-              href="/start"
+            <TrypsSmsCTA
               className="inline-flex items-center gap-3 font-black text-xl px-14 py-6 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95"
               style={{ background: "#FFFFFF", color: "#D9071C", boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}
+              ariaLabel="Text Hey Tryps to start planning with friends"
             >
-              Start planning with friends
+              <MessageCircle className="h-6 w-6" aria-hidden="true" />
+              Text Hey Tryps
               <ArrowRight className="h-6 w-6" />
-            </a>
+            </TrypsSmsCTA>
           </div>
         </section>
       </main>
@@ -1891,21 +2113,62 @@ export default function Home() {
       {/* ── FOOTER ── */}
       <footer style={{ background: "#111827", color: "#F5F5F5", borderTop: "3px solid #D9071C" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
-            <div className="flex items-center gap-2.5">
-              <TrypsLogo height={28} />
-              <span className="sr-only">TRYPS</span>
-              <Plane className="h-4 w-4" style={{ color: "#D9071C", transform: "rotate(-30deg)" }} aria-hidden="true" />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+            {/* Brand + built-in */}
+            <div className="md:col-span-1">
+              <div className="flex items-center gap-2.5 mb-4">
+                <TrypsLogo height={28} />
+                <span className="sr-only">TRYPS</span>
+                <Plane className="h-4 w-4" style={{ color: "#D9071C", transform: "rotate(-30deg)" }} aria-hidden="true" />
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                Built in NYC by people who got tired of trips stuck in the group chat.
+              </p>
+              <a href="/about" className="inline-block mt-3 text-sm font-semibold hover:underline" style={{ color: "#D9071C" }}>
+                About the team →
+              </a>
             </div>
-            <nav aria-label="Footer navigation" className="flex flex-wrap gap-6 text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
-              <a href="/about"   className="hover:text-white transition-colors">About</a>
-              <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
-              <a href="/terms"   className="hover:text-white transition-colors">Terms</a>
-              <a href="/contact" className="hover:text-white transition-colors">Contact</a>
-              <a href="/group-trip-planning-guide" className="hover:text-white transition-colors">Guide</a>
-              <a href="/blog"    className="hover:text-white transition-colors">Blog</a>
-            </nav>
+
+            {/* Product */}
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em" }}>
+                Product
+              </p>
+              <ul className="flex flex-col gap-2.5 list-none p-0 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#how-it-works" className="hover:text-white transition-colors">How it works</a></li>
+                <li><a href="#recipes" className="hover:text-white transition-colors">Recipes</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+
+            {/* Guides */}
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em" }}>
+                Planning guides
+              </p>
+              <ul className="flex flex-col gap-2.5 list-none p-0 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <li><a href="/group-trip-planning-guide" className="hover:text-white transition-colors">Group trip planning guide</a></li>
+                <li><a href="/split-trip-expenses" className="hover:text-white transition-colors">Split trip expenses fairly</a></li>
+                <li><a href="/weekend-trip-planning-checklist" className="hover:text-white transition-colors">Weekend trip checklist</a></li>
+                <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em" }}>
+                Company
+              </p>
+              <ul className="flex flex-col gap-2.5 list-none p-0 text-sm" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
+                <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="/privacy" className="hover:text-white transition-colors">Privacy</a></li>
+                <li><a href="/terms" className="hover:text-white transition-colors">Terms</a></li>
+              </ul>
+            </div>
           </div>
+
           <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
             <p className="text-sm leading-relaxed max-w-md" style={{ color: "rgba(255,255,255,0.35)" }}>
               TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.
