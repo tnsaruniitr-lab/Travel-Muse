@@ -8,7 +8,12 @@ import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import pg from "pg";
-import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
+import {
+  parsePhoneNumber,
+  isValidPhoneNumber,
+  getCountries,
+  getCountryCallingCode,
+} from "libphonenumber-js";
 
 const connectionString = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
 const pool = new pg.Pool({
@@ -25,14 +30,12 @@ const isProd = process.env.NODE_ENV === "production";
 const port = Number(process.env.PORT) || 3000;
 const base = process.env.BASE_PATH ?? "/";
 
-const ALLOWED_COUNTRY_CODES = new Set([
-  "+1", "+44", "+91", "+61", "+64", "+353", "+27", "+65", "+60",
-  "+49", "+33", "+34", "+39", "+31", "+46", "+47", "+45", "+358",
-  "+55", "+52", "+54", "+57", "+51", "+56", "+58", "+593", "+595",
-  "+81", "+82", "+86", "+852", "+853", "+886", "+66", "+62",
-  "+92", "+880", "+94", "+977", "+63", "+84", "+66",
-  "+971", "+966", "+20", "+234", "+254", "+233", "+212",
-]);
+// All calling codes supported by libphonenumber-js (one entry per dial code,
+// e.g. "+1" covers US/CA, "+44" covers GB, etc.). Validation of the full
+// number is still performed by `isValidPhoneNumber` below.
+const ALLOWED_COUNTRY_CODES = new Set<string>(
+  getCountries().map((c) => `+${getCountryCallingCode(c)}`),
+);
 
 const waitlistLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
