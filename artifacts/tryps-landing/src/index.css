@@ -259,6 +259,14 @@
   animation: float 5s ease-in-out infinite;
 }
 
+@keyframes float-steady {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+.animate-float-steady {
+  animation: float-steady 5s ease-in-out infinite;
+}
+
 /* ── Scrapbook / poke-inspired props ───────────────────────────── */
 @keyframes tilt-wiggle {
   0%, 100% { transform: rotate(var(--tilt, -3deg)) translateY(0); }
@@ -293,6 +301,7 @@
   .animate-marquee-slow,
   .animate-marquee-reverse,
   .animate-float,
+  .animate-float-steady,
   .animate-tilt {
     animation: none !important;
   }

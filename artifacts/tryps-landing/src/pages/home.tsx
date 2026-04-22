@@ -211,6 +211,46 @@ const TapeStrip = ({ tilt = "-2deg", className = "", style = {}, width = 96 }: T
   />
 );
 
+/* ─── Brand Mark (hand-drawn brushstroke accent) ─── */
+type BrandMarkVariant = "11" | "12" | "13";
+type BrandMarkProps = {
+  variant: BrandMarkVariant;
+  className?: string;
+  style?: CSSProperties;
+  width?: number;
+  tilt?: string;
+  tone?: "red" | "white";
+  opacity?: number;
+};
+const BRAND_MARK_RATIO = 480 / 420; // intrinsic aspect
+const BrandMark = ({
+  variant,
+  className = "",
+  style = {},
+  width = 120,
+  tilt = "0deg",
+  tone = "red",
+  opacity = 1,
+}: BrandMarkProps) => (
+  <img
+    src={`/brand-elements/branding-${variant}.png`}
+    alt=""
+    width={width}
+    height={Math.round(width / BRAND_MARK_RATIO)}
+    draggable={false}
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+    className={`block pointer-events-none select-none ${className}`}
+    style={{
+      transform: `rotate(${tilt})`,
+      opacity,
+      filter: tone === "white" ? "brightness(0) invert(1)" : undefined,
+      ...style,
+    }}
+  />
+);
+
 /* ─── Boarding Pass ─── */
 type BoardingPassProps = {
   from?: string;
@@ -854,111 +894,120 @@ const PhoneCaptureHero = () => {
   );
 };
 
-/* ─── Hero Phone Mockup (primary) ─── */
+/* ─── Hero Phone Mockup — iMessage thread with Tryps ──────────────────
+   Source asset: /public/images/iMessage.png is a *full* iPhone mockup
+   (intrinsic 728 × 1471, ratio ≈ 0.495). Sized to match the app-mockup
+   scale used elsewhere on the site (~240–260 px wide → ~485–525 px
+   tall) so the phone reads as one element in the scrapbook, not the
+   only thing in it. */
+const HERO_PHONE_INTRINSIC_W = 728;
+const HERO_PHONE_INTRINSIC_H = 1471;
 const HeroMockup = () => (
-  <div className="relative w-full max-w-[280px] mx-auto">
+  <div className="relative w-full max-w-[220px] sm:max-w-[240px] lg:max-w-[260px] mx-auto">
     <div
       className="absolute inset-0 rounded-[3rem] blur-3xl pointer-events-none scale-95 translate-y-6"
       style={{ background: "radial-gradient(ellipse at center, rgba(217,7,28,0.22) 0%, rgba(232,80,80,0.12) 60%, transparent 100%)" }}
       aria-hidden="true"
     />
     <img
-      src="/images/app/screen-trip-created.png"
-      alt="TRYPS app — trip created confirmation screen showing New York Adventure with Text Friends button"
-      width={280}
-      height={607}
-      className="relative w-full drop-shadow-2xl animate-float"
+      src="/images/iMessage.png"
+      alt="TRYPS in iMessage — user texts Hey Tryps and receives a Hollywood Trip link preview with a May date poll"
+      width={HERO_PHONE_INTRINSIC_W}
+      height={HERO_PHONE_INTRINSIC_H}
+      sizes="(min-width: 1024px) 260px, (min-width: 640px) 240px, 220px"
+      className="relative block w-full h-auto drop-shadow-2xl animate-float-steady"
       loading="eager"
+      decoding="async"
+      // @ts-expect-error — fetchPriority is valid HTML, not yet in React types
+      fetchpriority="high"
+      draggable={false}
     />
   </div>
 );
 
-/* ─── Secondary UI Screen (layered behind primary) ─── */
-type SecondaryScreenProps = { src: string; alt: string; tilt?: string; width?: number };
-const SecondaryScreen = ({ src, alt, tilt = "-8deg", width = 180 }: SecondaryScreenProps) => (
-  <div
-    className="inline-block"
-    style={{
-      transform: `rotate(${tilt})`,
-      filter: "drop-shadow(0 18px 40px rgba(61,53,48,0.22))",
-    }}
-    aria-hidden="true"
-  >
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={Math.round((width * 607) / 280)}
-      loading="eager"
-      className="block"
-    />
-  </div>
-);
-
-/* ─── Hero Scrapbook Collage ─── */
+/* ─── Hero Scrapbook Collage ───────────────────────────────────────────
+   Single iMessage phone at app-mockup scale, surrounded by brand props:
+   floating chat bubbles top-right, boarding pass mid-right, polaroid
+   bottom-right, sticky note bottom-left, brushstroke behind. */
 const HeroCollage = () => (
-  <div className="relative w-full max-w-[520px] mx-auto min-h-[600px]">
-    {/* Secondary screen — itinerary peeks from behind left */}
-    <div className="absolute top-20 -left-6 sm:-left-10 z-0 hidden sm:block">
-      <SecondaryScreen
-        src="/images/app/screen-itinerary.png"
-        alt="TRYPS app itinerary screen"
-        tilt="-10deg"
-        width={170}
-      />
-    </div>
-
-    {/* Secondary screen — expenses peeks from behind right */}
-    <div className="absolute bottom-8 -right-4 sm:-right-10 z-0 hidden sm:block">
-      <SecondaryScreen
-        src="/images/app/screen-expenses.png"
-        alt="TRYPS app expense splitting screen"
-        tilt="9deg"
-        width={160}
-      />
-    </div>
-
-    {/* Primary phone — centered, on top */}
-    <div className="absolute inset-0 flex items-center justify-center pt-2 z-10">
-      <HeroMockup />
-    </div>
-
-    {/* iMessage thread — top right */}
-    <div className="absolute top-4 right-0 sm:-right-2 z-20">
+  <div className="relative w-full max-w-[480px] mx-auto min-h-[560px] sm:min-h-[600px] lg:min-h-[640px]">
+    {/* Floating chat bubbles — top-right, narrating the group-chat moment */}
+    <div
+      className="absolute -top-2 right-2 sm:right-6 z-30 hidden md:block animate-tilt"
+      style={{ ["--tilt" as unknown as string]: "4deg" } as CSSProperties}
+    >
       <IMessageBubble side="out" tilt="4deg">
         hey — Amalfi in June?
       </IMessageBubble>
     </div>
-
-    <div className="absolute top-24 right-4 sm:right-0 z-20">
-      <IMessageBubble side="in" tilt="-2deg">
+    <div
+      className="absolute top-14 right-0 sm:right-10 z-30 hidden md:block animate-tilt"
+      style={{ ["--tilt" as unknown as string]: "-3deg" } as CSSProperties}
+    >
+      <IMessageBubble side="in" tilt="-3deg">
         i'm in if we pick dates this week
       </IMessageBubble>
     </div>
 
-    {/* Sticky note — bottom left */}
-    <div className="absolute bottom-16 -left-2 sm:-left-4 z-20">
-      <StickyNote tone="yellow" tilt="-7deg" className="animate-tilt" style={{ ["--tilt" as unknown as string]: "-7deg" } as CSSProperties}>
+    {/* Center phone — the hero iMessage mockup */}
+    <div className="relative z-20 flex justify-center pt-12 sm:pt-16">
+      <HeroMockup />
+    </div>
+
+    {/* Boarding pass — sits high on the right so it clears the Hollywood
+        link-preview card in the chat. Pushed further outside the column
+        edge so the overlap with the phone is just the bezel, not the screen. */}
+    <div
+      className="absolute top-[20%] -right-10 lg:-right-14 z-30 hidden md:block animate-tilt"
+      style={{ ["--tilt" as unknown as string]: "8deg" } as CSSProperties}
+    >
+      <BoardingPass from="JFK" to="LAX" date="MAY 8 · 7:20 AM" tilt="8deg" />
+    </div>
+
+    {/* Sticky note — pulled further left so it leans against the phone
+        from outside, instead of taping over the chat input bar */}
+    <div className="absolute bottom-6 -left-4 sm:-left-8 lg:-left-10 z-30">
+      <StickyNote
+        tone="yellow"
+        tilt="-7deg"
+        className="animate-tilt"
+        style={{ ["--tilt" as unknown as string]: "-7deg" } as CSSProperties}
+      >
         Lock dates <br /> by Sun ✱
       </StickyNote>
     </div>
 
-    {/* Polaroid — bottom right */}
-    <div className="absolute -bottom-4 right-0 sm:right-2 z-20 animate-tilt" style={{ ["--tilt" as unknown as string]: "6deg" } as CSSProperties}>
+    {/* Polaroid — peeking off the lower-right corner of the phone */}
+    <div
+      className="absolute -bottom-2 right-0 sm:-right-2 z-30 animate-tilt"
+      style={{ ["--tilt" as unknown as string]: "6deg" } as CSSProperties}
+    >
       <Polaroid
         tilt="6deg"
         width={150}
         height={170}
-        caption="Amalfi — Jun 2025"
+        caption="Hollywood — May 2026"
         photoBg="linear-gradient(160deg, #F59E0B 0%, #E85050 50%, #8B5CF6 100%)"
       >
-        <Palmtree className="h-14 w-14 text-white/80" aria-hidden="true" />
+        <svg
+          className="h-16 w-16 text-white/85"
+          viewBox="0 0 64 48"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="14" cy="38" r="5.5" />
+          <circle cx="50" cy="38" r="5.5" />
+          <path d="M6 38 C6 28 10 22 18 22 L30 22" />
+          <path d="M30 22 L36 22 C42 22 46 18 46 12 L46 6" />
+          <path d="M40 6 L54 6" />
+          <path d="M46 12 C52 16 56 26 56 38" />
+          <circle cx="45" cy="13" r="1.4" fill="currentColor" stroke="none" />
+        </svg>
       </Polaroid>
-    </div>
-
-    {/* Boarding pass — mid right, desktop only */}
-    <div className="absolute top-72 -right-2 sm:right-10 z-20 hidden md:block animate-tilt" style={{ ["--tilt" as unknown as string]: "8deg" } as CSSProperties}>
-      <BoardingPass from="NYC" to="NAP" date="JUN 14 · 8:40 AM" tilt="8deg" />
     </div>
   </div>
 );
@@ -1188,6 +1237,11 @@ const RecipesSection = () => (
   >
     <TapeStrip tilt="-4deg" className="top-6 left-6" width={120} />
     <TapeStrip tilt="3deg" className="top-8 right-10" width={96} />
+
+    {/* Brand brushstrokes — playful scribble accent */}
+    <div className="absolute top-10 left-1/2 -translate-x-1/2 pointer-events-none hidden md:block">
+      <BrandMark variant="12" width={110} tilt="-4deg" opacity={0.28} />
+    </div>
 
     <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
@@ -1663,19 +1717,13 @@ export default function Home() {
                   </Polaroid>
                 </div>
 
-                <svg
-                  className="absolute bottom-0 right-0 pointer-events-none opacity-20"
-                  width="240"
-                  height="140"
-                  viewBox="0 0 240 140"
-                  fill="none"
+                {/* Brand brushstrokes — hand-drawn trip route with waypoints */}
+                <div
+                  className="absolute bottom-2 right-2 md:bottom-4 md:right-6 pointer-events-none"
                   aria-hidden="true"
                 >
-                  <path d="M10 130 Q 80 80 140 60 T 230 10" stroke="white" strokeWidth="1.5" strokeDasharray="4 6" />
-                  <g transform="translate(220 4) rotate(-30)">
-                    <path d="M10.84 3.16l-.54.54a1 1 0 0 0-.29.71V5.8l-6.5 3.6a.5.5 0 0 0-.26.45v1.2a.5.5 0 0 0 .62.48L9.5 10.2v2.98l-1.56 1.05a.5.5 0 0 0-.22.41v.86a.5.5 0 0 0 .7.46l2.58-1.12 2.58 1.12a.5.5 0 0 0 .7-.46v-.86a.5.5 0 0 0-.22-.41L12.5 13.18V10.2l5.63 1.33a.5.5 0 0 0 .62-.48V9.85a.5.5 0 0 0-.26-.45l-6.5-3.6V4.41a1 1 0 0 0-.3-.71l-.53-.54a.5.5 0 0 0-.72 0z" fill="white" />
-                  </g>
-                </svg>
+                  <BrandMark variant="13" width={220} tilt="-6deg" tone="white" opacity={0.35} />
+                </div>
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-7">
@@ -1815,7 +1863,12 @@ export default function Home() {
           className="py-16 md:py-28 relative overflow-hidden"
           style={{ background: "#F5F7FA", borderTop: "1px solid rgba(224,214,200,0.4)" }}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Brand brushstrokes — kinetic accent in the header area */}
+          <div className="absolute top-8 right-6 md:right-16 pointer-events-none hidden md:block">
+            <BrandMark variant="11" width={140} tilt="12deg" opacity={0.35} />
+          </div>
+
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <div className="text-center max-w-2xl mx-auto mb-12 md:mb-18">
               <SectionEyebrow n="03" label="How it works" />
               <h2
@@ -2057,6 +2110,14 @@ export default function Home() {
 
           {/* Tape + faded scrapbook props */}
           <TapeStrip tilt="-3deg" className="top-8 left-1/2 -translate-x-1/2" width={140} style={{ background: "rgba(255,255,255,0.22)" }} />
+
+          {/* Brand brushstrokes — dynamic motion in corners */}
+          <div className="absolute top-16 right-8 md:right-24 z-0 pointer-events-none hidden md:block">
+            <BrandMark variant="12" width={200} tilt="15deg" tone="white" opacity={0.18} />
+          </div>
+          <div className="absolute bottom-10 right-8 md:right-40 z-0 pointer-events-none">
+            <BrandMark variant="11" width={180} tilt="-8deg" tone="white" opacity={0.14} />
+          </div>
 
           <div className="absolute top-24 left-6 md:left-20 z-10 opacity-70 hidden md:block" aria-hidden="true">
             <IMessageBubble side="in" tilt="-5deg" style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.9)" }}>
