@@ -1705,9 +1705,11 @@ export default function Home() {
                 className="relative rounded-[2.5rem] p-7 md:p-10 text-white md:-translate-y-5 shadow-2xl overflow-hidden"
                 style={{ background: "linear-gradient(145deg, #D9071C 0%, #B00618 100%)" }}
               >
-                <div className="absolute -top-6 -left-4 hidden md:block pointer-events-none z-10" aria-hidden="true">
+                {/* Polaroid — pinned to the top-right corner, clear of the
+                    "With TRYPS" heading on the left and the bullet list below */}
+                <div className="absolute -top-6 -right-4 hidden md:block pointer-events-none z-10" aria-hidden="true">
                   <Polaroid
-                    tilt="-10deg"
+                    tilt="10deg"
                     width={110}
                     height={120}
                     caption="Positano ✔"
@@ -2133,12 +2135,6 @@ export default function Home() {
             <IMessageBubble side="in" tilt="-3deg" style={{ background: "rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.95)" }}>
               ok i'll make a poll
             </IMessageBubble>
-          </div>
-
-          <div className="absolute -bottom-4 left-4 md:left-12 z-10 opacity-95 hidden lg:block" aria-hidden="true">
-            <Polaroid tilt="-8deg" width={140} height={150} caption="next summer" photoBg="linear-gradient(160deg, #FFFDF8 0%, #FFE875 100%)">
-              <Palmtree className="h-12 w-12" style={{ color: "#D9071C" }} />
-            </Polaroid>
           </div>
 
           <div className="max-w-5xl mx-auto px-6 py-24 md:py-40 text-center relative z-20">
